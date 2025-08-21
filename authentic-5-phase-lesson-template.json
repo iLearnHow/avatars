@@ -1,0 +1,281 @@
+{
+  "lesson_template": "Authentic 5-Phase Visual Lesson System",
+  "version": "2.0 - Matches Physical Mockups",
+  "description": "Lesson template based on actual visual mockups with sticky note interface, person silhouette anchor, and tactile design aesthetic",
+  
+  "visual_design_analysis": {
+    "core_elements": {
+      "person_silhouette": "Central dark gray figure (head and shoulders) - consistent anchor throughout all phases",
+      "sticky_notes": "Green paper-like notes with realistic shadows and slight rotation",
+      "background": "Warm orange/yellow gradient throughout",
+      "plus_icon": "Small orange square consistently positioned bottom-right",
+      "typography": "Hand-written style, casual and approachable"
+    },
+    
+    "layout_principles": {
+      "central_anchor": "Person silhouette remains constant visual focal point",
+      "sticky_note_positioning": "Strategic placement around silhouette for optimal interaction",
+      "phase_consistency": "Consistent element positioning across similar phase types",
+      "tactile_aesthetic": "Physical, paper-like appearance with depth and shadows"
+    }
+  },
+
+  "phase_structure": {
+    "total_phases": 5,
+    "phase_sequence": ["welcome", "beginning", "middle", "end", "wisdom"],
+    "phase_types": {
+      "welcome": "introduction_with_context",
+      "beginning": "foundational_question", 
+      "middle": "deepening_question",
+      "end": "application_question",
+      "wisdom": "reflection_and_integration"
+    },
+    "estimated_duration": "8-12 minutes total"
+  },
+
+  "complete_lesson_example": {
+    "day": 217,
+    "date": "August 5, 2025", 
+    "title": "Music Evolution - The Soundtrack of Civilization",
+    "learning_objective": "Explore musical development while understanding how cultural evolution reflects and shapes social values, technology, and global connections.",
+    
+    "phases": {
+      
+      "phase_1_welcome": {
+        "display_name": "Welcome",
+        "duration": "30-45 seconds",
+        "visual_elements": {
+          "phase_label": {
+            "text": "Welcome",
+            "position": "top_left_corner_sticky_note",
+            "style": "small_green_note_slight_rotation"
+          },
+          "welcome_content": {
+            "position": "large_note_left_of_silhouette",
+            "content": {
+              "greeting": "Welcome!",
+              "date_context": "Today is August 5, 2025",
+              "time_context": "Your local time is 10:00am",
+              "lesson_preview": "Today's lesson is all about Music Evolution!"
+            },
+            "style": "large_green_sticky_note_realistic_shadow"
+          },
+          "person_silhouette": "central_dark_gray_head_shoulders",
+          "plus_icon": "bottom_right_orange_square"
+        },
+        "interaction": "auto_progress_after_4_seconds",
+        "audio_cue": "welcoming_introduction_with_date_time_context"
+      },
+
+      "phase_2_beginning": {
+        "display_name": "Beginning", 
+        "duration": "2-3 minutes",
+        "visual_elements": {
+          "phase_label": {
+            "text": "Beginning",
+            "position": "top_left_corner_sticky_note"
+          },
+          "question_label": {
+            "text": "Q1",
+            "position": "top_left_of_silhouette",
+            "style": "medium_green_note_centered_text"
+          },
+          "choice_a": {
+            "text": "A", 
+            "position": "left_side_of_silhouette_mid_height",
+            "style": "square_green_note_large_letter",
+            "interaction": "clickable_hover_effect"
+          },
+          "choice_b": {
+            "text": "B",
+            "position": "right_side_of_silhouette_mid_height", 
+            "style": "square_green_note_large_letter",
+            "interaction": "clickable_hover_effect"
+          }
+        },
+        "question_content": {
+          "question_text": "What drives the evolution of music across different cultures?",
+          "option_a": {
+            "text": "Technology and available instruments",
+            "teaching_moment": "Technology plays a role, but let's explore the deeper human elements that truly drive musical evolution."
+          },
+          "option_b": {
+            "text": "Social values and human connections", 
+            "teaching_moment": "Excellent insight! Music evolves as a reflection of our social bonds and changing values across time and cultures."
+          }
+        },
+        "interaction_flow": "choice_selection → feedback_display → auto_advance_after_2_5_seconds"
+      },
+
+      "phase_3_middle": {
+        "display_name": "Middle",
+        "duration": "2-3 minutes", 
+        "visual_elements": {
+          "phase_label": {
+            "text": "Middle",
+            "position": "top_left_corner_sticky_note"
+          },
+          "question_label": {
+            "text": "Q2",
+            "position": "top_left_of_silhouette"
+          },
+          "choice_a": {
+            "text": "A",
+            "position": "left_side_of_silhouette_mid_height"
+          },
+          "choice_b": {
+            "text": "B", 
+            "position": "right_side_of_silhouette_mid_height"
+          }
+        },
+        "question_content": {
+          "question_text": "How does music serve as a bridge between different generations and cultures?",
+          "option_a": {
+            "text": "Through shared rhythms and universal melodies",
+            "teaching_moment": "Rhythms and melodies do connect us, but there's an even deeper layer of connection through music."
+          },
+          "option_b": {
+            "text": "By carrying stories and emotions across time",
+            "teaching_moment": "Beautifully understood! Music carries the emotional DNA of human experience, connecting hearts across centuries."
+          }
+        },
+        "interaction_flow": "choice_selection → feedback_display → auto_advance_after_2_5_seconds"
+      },
+
+      "phase_4_end": {
+        "display_name": "End",
+        "duration": "2-3 minutes",
+        "visual_elements": {
+          "phase_label": {
+            "text": "End",
+            "position": "top_left_corner_sticky_note"
+          },
+          "question_label": {
+            "text": "Q3", 
+            "position": "top_left_of_silhouette"
+          },
+          "choice_a": {
+            "text": "A",
+            "position": "left_side_of_silhouette_mid_height"
+          },
+          "choice_b": {
+            "text": "B",
+            "position": "right_side_of_silhouette_mid_height"
+          }
+        },
+        "question_content": {
+          "question_text": "What can today's music evolution teach us about adapting to rapid technological change?",
+          "option_a": {
+            "text": "Embrace new tools while preserving human connection",
+            "teaching_moment": "Perfect! Music shows us how to evolve with technology while maintaining our essential human connections."
+          },
+          "option_b": {
+            "text": "Focus on creating the most technically advanced music",
+            "teaching_moment": "Technical advancement matters, but music's greatest power lies in maintaining human connection through change."
+          }
+        },
+        "interaction_flow": "choice_selection → feedback_display → auto_advance_after_2_5_seconds"
+      },
+
+      "phase_5_wisdom": {
+        "display_name": "Wisdom",
+        "duration": "1-2 minutes",
+        "visual_elements": {
+          "phase_label": {
+            "text": "Wisdom", 
+            "position": "top_left_corner_sticky_note"
+          },
+          "wisdom_panels": {
+            "position": "three_horizontal_notes_across_bottom_of_silhouette",
+            "panel_1": {
+              "title": "Reflection",
+              "content": "Music evolves as we evolve, carrying forward the essence of human experience."
+            },
+            "panel_2": {
+              "title": "Insight",
+              "content": "Every generation adds its voice to the eternal human song."
+            },
+            "panel_3": {
+              "title": "Growth", 
+              "content": "Understanding musical evolution helps us navigate all forms of cultural change."
+            }
+          }
+        },
+        "daily_fortune": "Your appreciation for cultural evolution will guide you through times of rapid change.",
+        "completion_action": "lesson_complete_celebration"
+      }
+    }
+  },
+
+  "technical_specifications": {
+    "html_structure": {
+      "person_silhouette": ".person-silhouette (350px x 450px, border-radius: 175px 175px 50px 50px)",
+      "sticky_notes": ".sticky-note (green background, box-shadow, slight rotation)",
+      "phase_container": ".phase (absolute positioning, opacity transitions)",
+      "feedback_system": ".feedback (centered popup with smooth animations)"
+    },
+
+    "css_styling": {
+      "background": "linear-gradient(135deg, #FFD700 0%, #FFA500 100%)",
+      "sticky_note_color": "#90EE90",
+      "silhouette_color": "#4A5568", 
+      "text_color": "#2D5016",
+      "shadow_effect": "2px 4px 8px rgba(0,0,0,0.2)",
+      "hover_transform": "rotate(0deg) scale(1.02)"
+    },
+
+    "javascript_functions": {
+      "showPhase(index)": "Controls phase visibility and transitions",
+      "selectChoice(choice, questionNum)": "Handles A/B choice selection",
+      "showFeedback(message)": "Displays response feedback",
+      "updateDateTime()": "Real-time date/time updates",
+      "nextPhase()": "Advances to next phase",
+      "autoProgress()": "Manages automatic progression timing"
+    }
+  },
+
+  "interaction_patterns": {
+    "welcome_phase": "display_context → auto_advance_4_seconds",
+    "question_phases": "display_question → wait_for_choice → show_feedback_2_5_seconds → next_phase",
+    "wisdom_phase": "display_reflection_panels → lesson_complete",
+    "feedback_system": "immediate_visual_response → encouraging_message → smooth_transition",
+    "navigation": "forward_progression_with_back_option → manual_restart_available"
+  },
+
+  "content_adaptation": {
+    "age_groups": {
+      "early_childhood": "Simple vocabulary, basic concepts, shorter attention span",
+      "youth": "Engaging examples, peer-relevant content, interactive elements", 
+      "young_adult": "Complex reasoning, real-world applications, critical thinking",
+      "midlife": "Professional connections, life experience integration, practical wisdom",
+      "wisdom_years": "Historical perspective, legacy thinking, deep reflection"
+    },
+
+    "tone_variations": {
+      "neutral_academic": "Clear, informative, professional learning approach",
+      "fun_irreverent": "Playful, energetic, humorous with casual language",
+      "grandmother_caring": "Warm, nurturing, wise guidance with gentle encouragement"
+    },
+
+    "language_localization": {
+      "supported_languages": 12,
+      "adaptation_scope": "all_text_content + cultural_context_sensitivity",
+      "formatting": "right_to_left_language_support + character_set_optimization"
+    }
+  },
+
+  "success_metrics": {
+    "engagement": "time_per_phase + choice_interaction_rate + completion_percentage",
+    "learning_effectiveness": "question_accuracy + reflection_quality + retention_testing", 
+    "user_experience": "navigation_smoothness + visual_appeal_rating + return_engagement",
+    "technical_performance": "load_times + transition_smoothness + error_rates"
+  },
+
+  "integration_notes": {
+    "curriculum_compatibility": "Works with existing JSON structure and daily lesson format",
+    "avatar_system": "Ready for Kelly/Ken visual integration with expression matching",
+    "audio_narration": "Syncs with phase progression and choice interactions", 
+    "analytics_tracking": "Phase completion, choice selection, time spent, user progression",
+    "responsive_design": "Maintains visual integrity across screen sizes while preserving ratios"
+  }
+}

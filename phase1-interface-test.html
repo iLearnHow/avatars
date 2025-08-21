@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase 1 Interface Test - Two Icons Only</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f0f0f0; }
+        .test { background: white; padding: 20px; margin: 15px 0; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .success { background: #d4edda; color: #155724; padding: 10px; border-radius: 4px; margin: 10px 0; }
+        .error { background: #f8d7da; color: #721c24; padding: 10px; border-radius: 4px; margin: 10px 0; }
+        .warning { background: #fff3cd; color: #856404; padding: 10px; border-radius: 4px; margin: 10px 0; }
+        button { background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; margin: 5px; }
+        button:hover { background: #0056b3; }
+        iframe { width: 100%; height: 600px; border: 1px solid #ccc; border-radius: 4px; }
+        .demo { display: flex; gap: 20px; margin: 20px 0; }
+        .demo-section { background: #f8f9fa; padding: 20px; border-radius: 8px; }
+        .phase1-demo { background: #e7f3ff; padding: 20px; border-radius: 8px; margin: 20px 0; }
+        .phase1-icon { width: 60px; height: 60px; background: rgba(255, 255, 255, 0.95); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; color: #007AFF; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15); margin: 10px; }
+        .phase1-icon:hover { transform: scale(1.1); box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2); }
+        .behavior-test { background: #fff3cd; padding: 15px; border-radius: 4px; margin: 10px 0; }
+        .behavior-list { list-style: none; padding: 0; }
+        .behavior-list li { padding: 8px 0; border-bottom: 1px solid #eee; }
+        .behavior-list li:last-child { border-bottom: none; }
+    </style>
+</head>
+<body>
+    <h1>🎯 Phase 1 Interface Test - Two Icons Only</h1>
+    
+    <div class="test">
+        <h2>✅ Test 1: Phase 1 Controls Structure</h2>
+        <p><strong>Status:</strong> <span id="phase1-status">Checking...</span></p>
+        <p><strong>Expected:</strong> Only two icons visible in Phase 1: Hold (✋) and Menu (☰)</p>
+    </div>
+    
+    <div class="test">
+        <h2>✅ Test 2: Hold Button Functionality</h2>
+        <p><strong>Status:</strong> <span id="hold-status">Checking...</span></p>
+        <p><strong>Expected:</strong> Hold button pauses avatar and expands all controls</p>
+    </div>
+    
+    <div class="test">
+        <h2>✅ Test 3: Menu Button Functionality</h2>
+        <p><strong>Status:</strong> <span id="menu-status">Checking...</span></p>
+        <p><strong>Expected:</strong> Menu button expands all controls upward</p>
+    </div>
+    
+    <div class="test">
+        <h2>✅ Test 4: Auto-Collapse Behavior</h2>
+        <p><strong>Status:</strong> <span id="autocollapse-status">Checking...</span></p>
+        <p><strong>Expected:</strong> Controls collapse when avatar starts talking</p>
+    </div>
+    
+    <div class="test">
+        <h2>✅ Test 5: Expanded Controls</h2>
+        <p><strong>Status:</strong> <span id="expanded-status">Checking...</span></p>
+        <p><strong>Expected:</strong> Expanded controls show all variant options</p>
+    </div>
+    
+    <div class="test">
+        <h2>🧪 Demo: Phase 1 Interface</h2>
+        <div class="phase1-demo">
+            <h3>Phase 1 - Clean Interface (Two Icons Only)</h3>
+            <p><strong>Bottom Left:</strong> Hold button (✋) - pauses avatar and expands controls</p>
+            <p><strong>Bottom Right:</strong> Menu button (☰) - expands all controls</p>
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; margin: 20px 0;">
+                <div class="phase1-icon" onclick="testHold()">✋</div>
+                <div style="text-align: center; flex: 1;">
+                    <h4>Kelly Avatar</h4>
+                    <p>Teaching today's lesson...</p>
+                </div>
+                <div class="phase1-icon" onclick="testMenu()">☰</div>
+            </div>
+            
+            <p><em>When avatar is talking, only these two icons are visible. Clicking either expands all controls.</em></p>
+        </div>
+    </div>
+    
+    <div class="test">
+        <h2>🎯 Behavior Specifications</h2>
+        <div class="behavior-test">
+            <p><strong>Phase 1 Behavior:</strong></p>
+            <ul class="behavior-list">
+                <li><strong>Initial State:</strong> Only two icons visible - Hold (✋) and Menu (☰)</li>
+                <li><strong>Hold Button:</strong> Pauses avatar, shows "Hold, please" message, expands all controls</li>
+                <li><strong>Menu Button:</strong> Expands all controls upward with backdrop blur</li>
+                <li><strong>Auto-Collapse:</strong> When avatar starts talking, all controls collapse back to Phase 1</li>
+                <li><strong>Interruption:</strong> Both buttons interrupt avatar to give user control</li>
+                <li><strong>Clean Design:</strong> No labels, just icons - hamburger menu, hand for hold</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="test">
+        <h2>🧪 Live Interface Test</h2>
+        <p>Test the Phase 1 interface in the live system:</p>
+        <button onclick="openLiveTest()">Open Live Phase 1 Test</button>
+        <div id="live-test"></div>
+    </div>
+
+    <script>
+        function testHold() {
+            console.log('✋ Testing Hold button');
+            alert('Hold button clicked - should pause avatar and expand all controls');
+        }
+
+        function testMenu() {
+            console.log('☰ Testing Menu button');
+            alert('Menu button clicked - should expand all controls');
+        }
+
+        async function runTests() {
+            console.log('🎯 Running Phase 1 interface tests...');
+            
+            // Test 1: Check for Phase 1 controls structure
+            try {
+                const response = await fetch('http://localhost:8000/');
+                const html = await response.text();
+                
+                const hasPhase1Controls = html.includes('phase1-controls');
+                const hasHoldButton = html.includes('hold-button') && html.includes('hold-icon');
+                const hasMenuButton = html.includes('menu-button') && html.includes('menu-icon');
+                const hasExpandedControls = html.includes('expanded-controls');
+                
+                if (hasPhase1Controls && hasHoldButton && hasMenuButton && hasExpandedControls) {
+                    document.getElementById('phase1-status').textContent = '✅ PASSED - Phase 1 controls structure correct';
+                    document.getElementById('phase1-status').className = 'success';
+                } else {
+                    document.getElementById('phase1-status').textContent = '❌ FAILED - Phase 1 controls structure missing';
+                    document.getElementById('phase1-status').className = 'error';
+                }
+            } catch (error) {
+                document.getElementById('phase1-status').textContent = '❌ ERROR - ' + error.message;
+                document.getElementById('phase1-status').className = 'error';
+            }
+            
+            // Test 2: Check for Hold button functionality
+            try {
+                const response = await fetch('http://localhost:8000/');
+                const html = await response.text();
+                
+                const hasHoldOnclick = html.includes('onclick="tellAvatar(\'hold\')"');
+                const hasExpandAllControls = html.includes('expandAllControls()');
+                
+                if (hasHoldOnclick && hasExpandAllControls) {
+                    document.getElementById('hold-status').textContent = '✅ PASSED - Hold button functionality correct';
+                    document.getElementById('hold-status').className = 'success';
+                } else {
+                    document.getElementById('hold-status').textContent = '❌ FAILED - Hold button functionality missing';
+                    document.getElementById('hold-status').className = 'error';
+                }
+            } catch (error) {
+                document.getElementById('hold-status').textContent = '❌ ERROR - ' + error.message;
+                document.getElementById('hold-status').className = 'error';
+            }
+            
+            // Test 3: Check for Menu button functionality
+            try {
+                const response = await fetch('http://localhost:8000/');
+                const html = await response.text();
+                
+                const hasMenuOnclick = html.includes('onclick="toggleAllControls()"');
+                const hasToggleAllControls = html.includes('function toggleAllControls()');
+                
+                if (hasMenuOnclick && hasToggleAllControls) {
+                    document.getElementById('menu-status').textContent = '✅ PASSED - Menu button functionality correct';
+                    document.getElementById('menu-status').className = 'success';
+                } else {
+                    document.getElementById('menu-status').textContent = '❌ FAILED - Menu button functionality missing';
+                    document.getElementById('menu-status').className = 'error';
+                }
+            } catch (error) {
+                document.getElementById('menu-status').textContent = '❌ ERROR - ' + error.message;
+                document.getElementById('menu-status').className = 'error';
+            }
+            
+            // Test 4: Check for auto-collapse behavior
+            try {
+                const response = await fetch('http://localhost:8000/');
+                const html = await response.text();
+                
+                const hasCollapseAllControls = html.includes('collapseAllControls()');
+                const hasTalkCommand = html.includes('case \'talk\':');
+                
+                if (hasCollapseAllControls && hasTalkCommand) {
+                    document.getElementById('autocollapse-status').textContent = '✅ PASSED - Auto-collapse behavior implemented';
+                    document.getElementById('autocollapse-status').className = 'success';
+                } else {
+                    document.getElementById('autocollapse-status').textContent = '❌ FAILED - Auto-collapse behavior missing';
+                    document.getElementById('autocollapse-status').className = 'error';
+                }
+            } catch (error) {
+                document.getElementById('autocollapse-status').textContent = '❌ ERROR - ' + error.message;
+                document.getElementById('autocollapse-status').className = 'error';
+            }
+            
+            // Test 5: Check for expanded controls
+            try {
+                const response = await fetch('http://localhost:8000/');
+                const html = await response.text();
+                
+                const hasExpandedControls = html.includes('expanded-controls');
+                const hasAvatarControls = html.includes('avatar-controls');
+                const hasContentControls = html.includes('content-controls');
+                
+                if (hasExpandedControls && hasAvatarControls && hasContentControls) {
+                    document.getElementById('expanded-status').textContent = '✅ PASSED - Expanded controls structure correct';
+                    document.getElementById('expanded-status').className = 'success';
+                } else {
+                    document.getElementById('expanded-status').textContent = '❌ FAILED - Expanded controls structure missing';
+                    document.getElementById('expanded-status').className = 'error';
+                }
+            } catch (error) {
+                document.getElementById('expanded-status').textContent = '❌ ERROR - ' + error.message;
+                document.getElementById('expanded-status').className = 'error';
+            }
+        }
+        
+        function openLiveTest() {
+            const testDiv = document.getElementById('live-test');
+            testDiv.innerHTML = `
+                <h3>🧪 Live Phase 1 Interface Test</h3>
+                <p><strong>Test Instructions:</strong></p>
+                <ol>
+                    <li>Wait for the page to load completely</li>
+                    <li>Verify only two icons are visible in Phase 1:</li>
+                    <ul>
+                        <li>✋ Hold button (bottom left)</li>
+                        <li>☰ Menu button (bottom right)</li>
+                    </ul>
+                    <li>Test Hold button functionality:</li>
+                    <ul>
+                        <li>Click Hold button - should pause avatar</li>
+                        <li>Should show "Hold, please" message</li>
+                        <li>Should expand all controls upward</li>
+                    </ul>
+                    <li>Test Menu button functionality:</li>
+                    <ul>
+                        <li>Click Menu button - should expand all controls</li>
+                        <li>Should show backdrop blur overlay</li>
+                        <li>Should reveal all variant controls</li>
+                    </ul>
+                    <li>Test auto-collapse behavior:</li>
+                    <ul>
+                        <li>When avatar starts talking, controls should collapse</li>
+                        <li>Should return to Phase 1 (two icons only)</li>
+                    </ul>
+                    <li>Test interruption behavior:</li>
+                    <ul>
+                        <li>Both buttons should interrupt avatar</li>
+                        <li>Both should give user control over what and how</li>
+                    </ul>
+                </ol>
+                <p><strong>Expected Behavior:</strong></p>
+                <ul>
+                    <li>Phase 1 shows only two icons (Hold and Menu)</li>
+                    <li>Both buttons expand controls when clicked</li>
+                    <li>Controls auto-collapse when avatar talks</li>
+                    <li>Clean design with no labels, just icons</li>
+                    <li>Interruption gives user control over avatar behavior</li>
+                </ul>
+                <iframe src="http://localhost:8000/" title="Phase 1 Interface Test"></iframe>
+            `;
+        }
+        
+        // Run tests on page load
+        window.addEventListener('load', runTests);
+    </script>
+</body>
+</html> 

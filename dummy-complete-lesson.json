@@ -1,0 +1,232 @@
+{
+  "lesson_id": "DUMMY_COMPLETE_001",
+  "title": "🎯 Complete System Test - The Amazing World of Everything",
+  "subtitle": "Testing Every Icon, Overlay, and Function",
+  "description": "This is a comprehensive test lesson that demonstrates every feature of the iLearn system",
+  
+  "metadata": {
+    "difficulty": "beginner",
+    "duration": "15 minutes",
+    "topics": ["system-testing", "comprehensive-demo", "feature-validation"],
+    "tags": ["demo", "test", "complete", "all-features"]
+  },
+
+  "content": {
+    "introduction": {
+      "title": "🚀 Welcome to the Complete System Test",
+      "text": "This lesson will test every single feature of the iLearn system. You'll see avatars switch, overlays open, and all controls working perfectly.",
+      "learning_objectives": [
+        "Test all 6 right-side icons (📅😊🎭🌍👶➕)",
+        "Test all 2 left-side action buttons (📅🎯)",
+        "Test all 6 expanded controls (🗣️🔊🔇🐌⚡🔄)",
+        "Test all 2 phase controls (✋☰)",
+        "Verify all overlays work with identifying content"
+      ]
+    },
+
+    "main_content": {
+      "sections": [
+        {
+          "title": "📅 Calendar Test Section",
+          "content": "Click the calendar icon to test lesson selection. You should see a calendar overlay with 366 days of lessons.",
+          "test_instruction": "Click 📅 icon → Should open calendar overlay"
+        },
+        {
+          "title": "😊 Tone Test Section", 
+          "content": "Click the tone icon to test voice tone selection. You should see Grandmother, Fun, and Neutral options.",
+          "test_instruction": "Click 😊 icon → Should open tone overlay"
+        },
+        {
+          "title": "🎭 Avatar Test Section",
+          "content": "Click the avatar icon to test avatar switching. You should see Ken, Kelly, and You options.",
+          "test_instruction": "Click 🎭 icon → Should open avatar overlay"
+        },
+        {
+          "title": "🌍 Language Test Section",
+          "content": "Click the language icon to test language selection. You should see EN, ES, FR, DE, ZH, JA options.",
+          "test_instruction": "Click 🌍 icon → Should open language overlay"
+        },
+        {
+          "title": "👶 Age Test Section",
+          "content": "Click the age icon to test age group selection. You should see 10 age groups from 2-102 years.",
+          "test_instruction": "Click 👶 icon → Should open age overlay"
+        },
+        {
+          "title": "➕ Create Test Section",
+          "content": "Click the create icon to test lesson creation. You should see a new lesson creator interface.",
+          "test_instruction": "Click ➕ icon → Should open lesson creator"
+        }
+      ]
+    },
+
+    "interactive_elements": {
+      "left_side_buttons": [
+        {
+          "id": "find-another-lesson",
+          "text": "📅 Find Another Lesson",
+          "action": "open_calendar_overlay",
+          "test_instruction": "Click left button → Should open calendar"
+        },
+        {
+          "id": "create-new-lesson", 
+          "text": "🎯 Create New Lesson",
+          "action": "open_lesson_creator",
+          "test_instruction": "Click left button → Should open creator"
+        }
+      ],
+      "expanded_controls": [
+        {
+          "id": "continue-speech",
+          "text": "🗣️ Continue",
+          "action": "continue_avatar_speech",
+          "test_instruction": "Click → Should continue speech"
+        },
+        {
+          "id": "louder-volume",
+          "text": "🔊 Louder", 
+          "action": "increase_volume",
+          "test_instruction": "Click → Should increase volume"
+        },
+        {
+          "id": "quieter-volume",
+          "text": "🔇 Softer",
+          "action": "decrease_volume", 
+          "test_instruction": "Click → Should decrease volume"
+        },
+        {
+          "id": "slower-speed",
+          "text": "🐌 Slower",
+          "action": "slow_down_speech",
+          "test_instruction": "Click → Should slow speech"
+        },
+        {
+          "id": "faster-speed",
+          "text": "⚡ Faster",
+          "action": "speed_up_speech",
+          "test_instruction": "Click → Should speed up speech"
+        },
+        {
+          "id": "repeat-content",
+          "text": "🔄 Repeat",
+          "action": "repeat_current_content",
+          "test_instruction": "Click → Should repeat content"
+        }
+      ],
+      "phase_controls": [
+        {
+          "id": "hold-button",
+          "text": "✋ Hold",
+          "action": "pause_current_state",
+          "test_instruction": "Click → Should pause/hold"
+        },
+        {
+          "id": "menu-button",
+          "text": "☰ Menu",
+          "action": "open_menu_options",
+          "test_instruction": "Click → Should open menu"
+        }
+      ]
+    }
+  },
+
+  "overlays": {
+    "calendar": {
+      "title": "📅 Lesson Calendar",
+      "description": "Select a day to load a lesson:",
+      "options": [
+        {"day": 1, "lesson": "Day 1: Introduction to Everything"},
+        {"day": 2, "lesson": "Day 2: The Basics of Life"},
+        {"day": 3, "lesson": "Day 3: Advanced Concepts"},
+        {"day": 4, "lesson": "Day 4: Practical Applications"},
+        {"day": 5, "lesson": "Day 5: Real World Examples"}
+      ]
+    },
+    "tone": {
+      "title": "😊 Voice Tone Selection",
+      "description": "Choose how the avatar should speak:",
+      "options": [
+        {"tone": "grandmother", "description": "Warm and nurturing like a grandmother"},
+        {"tone": "fun", "description": "Exciting and energetic"},
+        {"tone": "neutral", "description": "Clear and professional"}
+      ]
+    },
+    "avatar": {
+      "title": "🎭 Avatar Selection", 
+      "description": "Choose your learning companion:",
+      "options": [
+        {"avatar": "ken", "description": "Ken - The friendly teacher"},
+        {"avatar": "kelly", "description": "Kelly - The enthusiastic guide"},
+        {"avatar": "you", "description": "You - Your own voice"}
+      ]
+    },
+    "language": {
+      "title": "🌍 Language Selection",
+      "description": "Choose your preferred language:",
+      "options": [
+        {"code": "en", "name": "English", "flag": "🇺🇸"},
+        {"code": "es", "name": "Español", "flag": "🇪🇸"},
+        {"code": "fr", "name": "Français", "flag": "🇫🇷"},
+        {"code": "de", "name": "Deutsch", "flag": "🇩🇪"},
+        {"code": "zh", "name": "中文", "flag": "🇨🇳"},
+        {"code": "ja", "name": "日本語", "flag": "🇯🇵"}
+      ]
+    },
+    "age": {
+      "title": "👶 Age Group Selection",
+      "description": "Select your age group for appropriate content:",
+      "options": [
+        {"age": "2-5", "description": "Toddlers and preschoolers"},
+        {"age": "6-8", "description": "Early elementary"},
+        {"age": "9-12", "description": "Late elementary"},
+        {"age": "13-15", "description": "Early teens"},
+        {"age": "16-18", "description": "Late teens"},
+        {"age": "19-25", "description": "Young adults"},
+        {"age": "26-35", "description": "Adults"},
+        {"age": "36-50", "description": "Middle-aged"},
+        {"age": "51-65", "description": "Seniors"},
+        {"age": "66-102", "description": "Elderly"}
+      ]
+    }
+  },
+
+  "variants": {
+    "difficulty_levels": ["beginner", "intermediate", "advanced"],
+    "learning_styles": ["visual", "auditory", "kinesthetic"],
+    "content_types": ["theory", "practical", "interactive"],
+    "duration_options": ["5 minutes", "15 minutes", "30 minutes"]
+  },
+
+  "assessment": {
+    "quiz_questions": [
+      {
+        "question": "Which icon opens the calendar overlay?",
+        "options": ["📅", "😊", "🎭", "🌍"],
+        "correct": "📅",
+        "explanation": "The calendar icon (📅) opens the lesson calendar overlay."
+      },
+      {
+        "question": "How many age groups are available?",
+        "options": ["5", "8", "10", "12"],
+        "correct": "10",
+        "explanation": "There are 10 age groups from 2-102 years."
+      },
+      {
+        "question": "Which avatar option represents your own voice?",
+        "options": ["Ken", "Kelly", "You", "None"],
+        "correct": "You",
+        "explanation": "The 'You' option uses your own voice for narration."
+      }
+    ]
+  },
+
+  "completion": {
+    "success_message": "🎉 Congratulations! You've successfully tested every feature of the iLearn system.",
+    "next_steps": [
+      "Try creating your own lesson using the ➕ icon",
+      "Explore different avatars with the 🎭 icon", 
+      "Test various languages with the 🌍 icon",
+      "Adjust content for your age with the 👶 icon"
+    ],
+    "certificate": "Complete System Test Master"
+  }
+} 

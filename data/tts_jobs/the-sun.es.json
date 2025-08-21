@@ -1,0 +1,33 @@
+{
+  "slug": "the-sun",
+  "language": "es",
+  "version": "tts_jobs_v1",
+  "defaultSpeaker": "kelly",
+  "phases": [
+    {
+      "id": "welcome",
+      "text": "Bienvenido. Hoy veremos cómo el Sol nos ayuda cada día y cómo notarlo. Te guiaré con tres preguntas cortas; si lo necesitas, daré una pista.",
+      "approxChars": 140
+    },
+    {
+      "id": "beginning",
+      "text": "Pregunta uno. ¿Qué tecnología usa directamente la energía del Sol—la geotérmica o la solar? Elige cuando estés listo/a.",
+      "approxChars": 119
+    },
+    {
+      "id": "middle",
+      "text": "Pregunta dos. ¿La luz del Sol ayuda a producir qué vitamina—la C o la D? Respira y elige cuando estés listo/a.",
+      "approxChars": 110
+    },
+    {
+      "id": "end",
+      "text": "Pregunta tres. El Sol ilumina a todos sin preferidos. ¿De qué es metáfora—competencia, o equidad e imparcialidad? Elige cuando estés listo/a.",
+      "approxChars": 141
+    },
+    {
+      "id": "wisdom",
+      "text": "Wisdom to carry: the same light that warms you powers life all around you. Notice it today—then be a little sun for someone else.",
+      "approxChars": 129
+    }
+  ]
+}

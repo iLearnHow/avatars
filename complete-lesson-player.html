@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iLearn - Complete Learning Experience</title>
+    <meta name="description" content="Personalized learning with Kelly and Ken - Complete lesson experience">
+    <meta name="keywords" content="education, learning, personalized, lessons, avatars">
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="/assets/avatars/kelly.jpg" as="image">
+    <link rel="preload" href="/assets/avatars/ken.jpg" as="image">
+    
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            overflow: hidden;
+            background: #000;
+            color: white;
+            line-height: 1.6;
+        }
+
+        /* Main container - 16:9 aspect ratio */
+        .lesson-player {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background: #000;
+            overflow: hidden;
+        }
+
+        /* Avatar container - full screen wallpaper */
+        .avatar-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: 1;
+            transition: all 0.5s ease;
+        }
+
+        /* Browser interface overlay */
+        .browser-interface {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            font-size: 14px;
+            backdrop-filter: blur(10px);
+        }
+
+        .browser-url {
+            margin-left: 20px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .browser-notification {
+            margin-left: auto;
+            background: #007AFF;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+
+        /* Lesson info overlay - top left */
+        .lesson-info {
+            position: absolute;
+            top: 60px;
+            left: 40px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 12px;
+            max-width: 300px;
+            z-index: 5;
+            backdrop-filter: blur(10px);
+        }
+
+        .lesson-info h2 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .lesson-info p {
+            font-size: 14px;
+            color: #ccc;
+            margin-bottom: 12px;
+        }
+
+        .start-lesson-btn {
+            background: #007AFF;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+
+        .start-lesson-btn:hover {
+            background: #0056CC;
+        }
+
+        /* Calendar overlay - top right */
+        .calendar-overlay {
+            position: absolute;
+            top: 60px;
+            right: 40px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 12px;
+            width: 280px;
+            z-index: 5;
+            backdrop-filter: blur(10px);
+        }
+
+        .calendar-overlay h3 {
+            font-size: 16px;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+            margin-bottom: 12px;
+        }
+
+        .calendar-day {
+            width: 32px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .calendar-day:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .calendar-day.selected {
+            background: #007AFF;
+            color: white;
+        }
+
+        .calendar-instructions {
+            font-size: 12px;
+            color: #ccc;
+            margin-bottom: 12px;
+        }
+
+        .close-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        /* Side navigation icons */
+        .side-navigation {
+            position: absolute;
+            top: 120px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 5;
+        }
+
+        .nav-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(0, 0, 0, 0.8);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-icon:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-icon.active {
+            background: #007AFF;
+        }
+
+        /* Player controls - bottom */
+        .player-controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            z-index: 5;
+            backdrop-filter: blur(10px);
+        }
+
+        .control-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+
+        .avatar-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 12px;
+            border-radius: 20px;
+        }
+
+        .avatar-bubble {
+            width: 32px;
+            height: 32px;
+            background: #007AFF;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: white;
+        }
+
+        .avatar-text {
+            font-size: 12px;
+            color: #ccc;
+        }
+
+        .play-button {
+            width: 48px;
+            height: 48px;
+            background: #007AFF;
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .play-button:hover {
+            background: #0056CC;
+        }
+
+        .progress-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .progress-bar {
+            flex: 1;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #007AFF;
+            border-radius: 2px;
+            transition: width 0.1s;
+        }
+
+        .time-display {
+            font-size: 12px;
+            color: #ccc;
+            min-width: 80px;
+        }
+
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .volume-slider {
+            width: 80px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            cursor: pointer;
+        }
+
+        .speed-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .speed-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .autoplay-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .toggle-checkbox {
+            width: 16px;
+            height: 16px;
+        }
+
+        .info-button {
+            width: 32px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        /* Lesson content overlay */
+        .lesson-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            padding: 40px;
+            border-radius: 16px;
+            max-width: 600px;
+            text-align: center;
+            z-index: 3;
+            backdrop-filter: blur(10px);
+            display: none;
+        }
+
+        .lesson-content.active {
+            display: block;
+        }
+
+        .lesson-title {
+            font-size: 24px;
+            margin-bottom: 16px;
+            color: #fff;
+        }
+
+        .lesson-text {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+
+        .lesson-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .action-btn {
+            background: #007AFF;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        /* Loading overlay */
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 20;
+            backdrop-filter: blur(10px);
+        }
+
+        .loading-spinner {
+            width: 48px;
+            height: 48px;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            border-top: 4px solid #007AFF;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Error message */
+        .error-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 0, 0, 0.9);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            z-index: 15;
+            display: none;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .lesson-info, .calendar-overlay {
+                max-width: 250px;
+                padding: 16px;
+            }
+            
+            .player-controls {
+                padding: 16px;
+            }
+            
+            .control-row {
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="lesson-player" id="lesson-player">
+        <!-- Browser interface -->
+        <div class="browser-interface">
+            <div class="browser-url">ilearnhow.com</div>
+            <div class="browser-notification">New Chrome available</div>
+        </div>
+
+        <!-- Avatar container -->
+        <div class="avatar-container" id="avatar-container">
+            <!-- Avatar background will be set dynamically -->
+        </div>
+
+        <!-- Lesson info overlay -->
+        <div class="lesson-info" id="lesson-info">
+            <h2>Welcome to iLearn</h2>
+            <p>Loading your personalized lesson...</p>
+            <button class="start-lesson-btn" id="start-lesson-btn">Start Lesson</button>
+        </div>
+
+        <!-- Calendar overlay -->
+        <div class="calendar-overlay" id="calendar-overlay">
+            <h3>July 2025 Lesson Calendar</h3>
+            <div class="calendar-grid" id="calendar-grid">
+                <!-- Calendar days will be generated dynamically -->
+            </div>
+            <div class="calendar-instructions">Hover for topic. Click to load lesson.</div>
+            <button class="close-btn" id="close-calendar">Close</button>
+        </div>
+
+        <!-- Side navigation -->
+        <div class="side-navigation">
+            <button class="nav-icon active" data-section="calendar">📅</button>
+            <button class="nav-icon" data-section="home">🏠</button>
+            <button class="nav-icon" data-section="trophy">🏆</button>
+            <button class="nav-icon" data-section="info">ℹ️</button>
+            <button class="nav-icon" data-section="menu">☰</button>
+        </div>
+
+        <!-- Player controls -->
+        <div class="player-controls">
+            <div class="control-row">
+                <div class="avatar-info">
+                    <div class="avatar-bubble">iL</div>
+                    <div class="avatar-text">My name is Kelly</div>
+                </div>
+                
+                <button class="play-button" id="play-button">▶️</button>
+                
+                <div class="progress-container">
+                    <div class="progress-bar" id="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                    <div class="time-display" id="time-display">0:00 / 0:00</div>
+                </div>
+                
+                <div class="volume-control">
+                    <span>🔊</span>
+                    <input type="range" class="volume-slider" id="volume-slider" min="0" max="100" value="50">
+                </div>
+                
+                <div class="speed-control">
+                    <button class="speed-btn" data-speed="0.5">0.5x</button>
+                    <button class="speed-btn active" data-speed="1">1x</button>
+                    <button class="speed-btn" data-speed="1.5">1.5x</button>
+                    <button class="speed-btn" data-speed="2">2x</button>
+                </div>
+                
+                <div class="autoplay-toggle">
+                    <input type="checkbox" class="toggle-checkbox" id="autoplay-toggle">
+                    <span>Autoplay</span>
+                </div>
+                
+                <button class="info-button" id="info-button">ℹ️</button>
+            </div>
+        </div>
+
+        <!-- Lesson content overlay -->
+        <div class="lesson-content" id="lesson-content">
+            <h2 class="lesson-title" id="lesson-title">Lesson Title</h2>
+            <p class="lesson-text" id="lesson-text">Lesson content will appear here...</p>
+            <div class="lesson-actions">
+                <button class="action-btn" id="continue-btn">Continue</button>
+                <button class="action-btn" id="pause-btn">Pause</button>
+            </div>
+        </div>
+
+        <!-- Loading overlay -->
+        <div class="loading-overlay" id="loading-overlay">
+            <div class="loading-spinner"></div>
+        </div>
+
+        <!-- Error message -->
+        <div class="error-message" id="error-message"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="complete-lesson-generator.js"></script>
+    <script src="complete-lesson-player.js"></script>
+</body>
+</html> 

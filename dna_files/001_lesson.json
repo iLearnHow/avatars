@@ -1,0 +1,59 @@
+{
+  "day": 1,
+  "title": "Dance Expression - Movement as Language",
+  "objective": "Explore how dance serves as a universal language of expression, connecting body, mind, and emotion through movement.",
+  "phases": {
+    "1": {
+      "type": "welcome",
+      "content": "Welcome to today's lesson on Dance Expression - Movement as Language. We'll explore how dance connects our body, mind, and emotions.",
+      "avatar_expression": "teaching_explaining"
+    },
+    "2": {
+      "type": "question_1",
+      "content": "What is the primary purpose of dance as a form of expression?",
+      "choices": [
+        "A) To entertain audiences only",
+        "B) To communicate emotions and stories through movement",
+        "C) To compete with other dancers",
+        "D) To follow strict choreography"
+      ],
+      "correct_answer": "B",
+      "avatar_expression": "question_curious"
+    },
+    "3": {
+      "type": "question_2",
+      "content": "How does dance connect body and mind?",
+      "choices": [
+        "A) Only through physical exercise",
+        "B) Through synchronized movement, emotion, and intention",
+        "C) Only through music",
+        "D) Only through performance"
+      ],
+      "correct_answer": "B",
+      "avatar_expression": "question_curious"
+    },
+    "4": {
+      "type": "question_3",
+      "content": "What makes dance a universal language?",
+      "choices": [
+        "A) It's only for professional dancers",
+        "B) It transcends cultural and language barriers",
+        "C) It requires formal training",
+        "D) It's only for young people"
+      ],
+      "correct_answer": "B",
+      "avatar_expression": "question_curious"
+    },
+    "5": {
+      "type": "daily_fortune",
+      "content": "Your daily fortune: Today you will discover that movement is your body's way of speaking. Like dance, your ability to express yourself authentically will open new doors of connection and understanding.",
+      "avatar_expression": "happy_celebrating"
+    }
+  },
+  "variants": {
+    "age_groups": ["age_2", "age_5", "age_8", "age_12", "age_16", "age_25", "age_40", "age_60", "age_80", "age_102"],
+    "tones": ["grandmother", "fun", "neutral"],
+    "languages": ["english", "spanish", "french", "german", "chinese", "japanese"],
+    "avatars": ["kelly", "ken"]
+  }
+} 

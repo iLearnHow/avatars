@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ask Interface Test - Interactive Learning</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f0f0f0; }
+        .test { background: white; padding: 20px; margin: 15px 0; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .success { background: #d4edda; color: #155724; padding: 10px; border-radius: 4px; margin: 10px 0; }
+        .error { background: #f8d7da; color: #721c24; padding: 10px; border-radius: 4px; margin: 10px 0; }
+        .warning { background: #fff3cd; color: #856404; padding: 10px; border-radius: 4px; margin: 10px 0; }
+        button { background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; margin: 5px; }
+        button:hover { background: #0056b3; }
+        iframe { width: 100%; height: 600px; border: 1px solid #ccc; border-radius: 4px; }
+        .demo { display: flex; gap: 20px; margin: 20px 0; }
+        .demo-section { background: #f8f9fa; padding: 20px; border-radius: 8px; }
+        .demo-icon { width: 50px; height: 50px; background: white; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 18px; margin: 10px 0; position: relative; gap: 2px; padding: 4px; }
+        .demo-icon .icon-emoji { font-size: 18px; }
+        .demo-icon .icon-label { font-size: 8px; color: #666; font-weight: 500; text-align: center; line-height: 1; }
+        .feature { background: #e7f3ff; padding: 15px; border-radius: 4px; margin: 10px 0; }
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin: 15px 0; }
+        .feature-item { background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #007bff; }
+        .feature-title { font-weight: bold; color: #007bff; margin-bottom: 5px; }
+        .feature-desc { font-size: 14px; color: #666; }
+        .todo { background: #fff3cd; padding: 15px; border-radius: 4px; margin: 10px 0; }
+        .todo-list { list-style: none; padding: 0; }
+        .todo-list li { padding: 8px 0; border-bottom: 1px solid #eee; }
+        .todo-list li:last-child { border-bottom: none; }
+        .todo-list li:before { content: "🔮 "; margin-right: 8px; }
+    </style>
+</head>
+<body>
+    <h1>❓ Ask Interface Test - Interactive Learning</h1>
+    
+    <div class="test">
+        <h2>✅ Test 1: Ask Button Implementation</h2>
+        <p><strong>Status:</strong> <span id="ask-button-status">Checking...</span></p>
+        <p><strong>Expected:</strong> Ask button (❓) added to secondary controls</p>
+    </div>
+    
+    <div class="test">
+        <h2>✅ Test 2: Ask Functionality</h2>
+        <p><strong>Status:</strong> <span id="ask-function-status">Checking...</span></p>
+        <p><strong>Expected:</strong> Ask button pauses lesson and shows interface</p>
+    </div>
+    
+    <div class="test">
+        <h2>✅ Test 3: Ask Interface Components</h2>
+        <p><strong>Status:</strong> <span id="interface-components-status">Checking...</span></p>
+        <p><strong>Expected:</strong> Voice/Text options and lesson resources</p>
+    </div>
+    
+    <div class="test">
+        <h2>✅ Test 4: Auto-play Message</h2>
+        <p><strong>Status:</strong> <span id="autoplay-status">Checking...</span></p>
+        <p><strong>Expected:</strong> "What would you like to know?" auto-plays</p>
+    </div>
+    
+    <div class="test">
+        <h2>✅ Test 5: Text Input Functionality</h2>
+        <p><strong>Status:</strong> <span id="text-input-status">Checking...</span></p>
+        <p><strong>Expected:</strong> Text input with submit/cancel buttons</p>
+    </div>
+    
+    <div class="test">
+        <h2>🎯 Ask Interface Features</h2>
+        <div class="feature">
+            <p><strong>Purpose:</strong> Transform passive lesson player into interactive learning experience</p>
+        </div>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <div class="feature-title">🎤 Voice Question</div>
+                <div class="feature-desc">Future voice input for natural interaction</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-title">✏️ Type Question</div>
+                <div class="feature-desc">Text input for detailed questions</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-title">📚 Related Topics</div>
+                <div class="feature-desc">Connect to lesson knowledge base</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-title">🔗 Additional Links</div>
+                <div class="feature-desc">Expand learning resources</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-title">📖 Deep Dive</div>
+                <div class="feature-desc">Advanced topic exploration</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-title">🤖 LLM Integration</div>
+                <div class="feature-desc">Homegrown AI for intelligent responses</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="test">
+        <h2>🧪 Demo: Ask Interface Structure</h2>
+        <p>This demo shows the new Ask interface components:</p>
+        <div class="demo">
+            <div class="demo-section">
+                <h3>Secondary Controls (Updated)</h3>
+                <div class="demo-icon">
+                    <div class="icon-emoji">🗣️</div>
+                    <div class="icon-label">Talk</div>
+                </div>
+                <div class="demo-icon">
+                    <div class="icon-emoji">❓</div>
+                    <div class="icon-label">Ask</div>
+                </div>
+                <div class="demo-icon">
+                    <div class="icon-emoji">🔊</div>
+                    <div class="icon-label">Louder</div>
+                </div>
+                <p><em>Ask button added to secondary controls</em></p>
+            </div>
+            <div class="demo-section">
+                <h3>Ask Interface Options</h3>
+                <div style="display: flex; gap: 10px; margin: 10px 0;">
+                    <div style="background: white; padding: 15px; border-radius: 10px; text-align: center; flex: 1;">
+                        <div style="font-size: 24px;">🎤</div>
+                        <div style="font-size: 12px; color: #007bff;">Voice Question</div>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 10px; text-align: center; flex: 1;">
+                        <div style="font-size: 24px;">✏️</div>
+                        <div style="font-size: 12px; color: #007bff;">Type Question</div>
+                    </div>
+                </div>
+                <p><em>Two input options for questions</em></p>
+            </div>
+            <div class="demo-section">
+                <h3>Lesson Resources</h3>
+                <div style="background: #f0f8ff; padding: 15px; border-radius: 10px;">
+                    <div style="margin-bottom: 8px;">📚 Related Topics</div>
+                    <div style="margin-bottom: 8px;">🔗 Additional Links</div>
+                    <div style="margin-bottom: 8px;">📖 Deep Dive</div>
+                </div>
+                <p><em>Knowledge base integration</em></p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="test">
+        <h2>🔮 Future Implementation TODOs</h2>
+        <div class="todo">
+            <p><strong>Next Steps for Full Ask Functionality:</strong></p>
+            <ul class="todo-list">
+                <li>Voice input implementation with Web Speech API</li>
+                <li>Knowledge base integration for lesson topics</li>
+                <li>Homegrown LLM connection for intelligent responses</li>
+                <li>Question processing and response generation</li>
+                <li>Relevant resource filtering and display</li>
+                <li>Voice-to-text and text-to-speech integration</li>
+                <li>Context-aware responses based on current lesson</li>
+                <li>Learning path suggestions based on questions</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="test">
+        <h2>🧪 Live Interface Test</h2>
+        <p>Test the Ask interface in the live interface:</p>
+        <button onclick="openLiveTest()">Open Live Interface Test</button>
+        <div id="live-test"></div>
+    </div>
+
+    <script>
+        async function runTests() {
+            console.log('❓ Running ask interface tests...');
+            
+            // Test 1: Check for Ask button implementation
+            try {
+                const response = await fetch('http://localhost:8000/');
+                const html = await response.text();
+                
+                const hasAskButton = html.includes('data-label="Ask"') && html.includes('❓');
+                const hasAskFunction = html.includes('tellAvatar(\'ask\')');
+                
+                if (hasAskButton && hasAskFunction) {
+                    document.getElementById('ask-button-status').textContent = '✅ PASSED - Ask button implemented';
+                    document.getElementById('ask-button-status').className = 'success';
+                } else {
+                    document.getElementById('ask-button-status').textContent = '❌ FAILED - Ask button not implemented';
+                    document.getElementById('ask-button-status').className = 'error';
+                }
+            } catch (error) {
+                document.getElementById('ask-button-status').textContent = '❌ ERROR - ' + error.message;
+                document.getElementById('ask-button-status').className = 'error';
+            }
+            
+            // Test 2: Check for Ask functionality
+            try {
+                const response = await fetch('http://localhost:8000/');
+                const html = await response.text();
+                
+                const hasAskCase = html.includes('case \'ask\'');
+                const hasPauseLesson = html.includes('pauseLesson()');
+                const hasShowAskInterface = html.includes('showAskInterface()');
+                
+                if (hasAskCase && hasPauseLesson && hasShowAskInterface) {
+                    document.getElementById('ask-function-status').textContent = '✅ PASSED - Ask functionality implemented';
+                    document.getElementById('ask-function-status').className = 'success';
+                } else {
+                    document.getElementById('ask-function-status').textContent = '❌ FAILED - Ask functionality incomplete';
+                    document.getElementById('ask-function-status').className = 'error';
+                }
+            } catch (error) {
+                document.getElementById('ask-function-status').textContent = '❌ ERROR - ' + error.message;
+                document.getElementById('ask-function-status').className = 'error';
+            }
+            
+            // Test 3: Check for Ask interface components
+            try {
+                const response = await fetch('http://localhost:8000/');
+                const html = await response.text();
+                
+                const hasAskOverlay = html.includes('ask-overlay');
+                const hasVoiceOption = html.includes('Voice Question');
+                const hasTextOption = html.includes('Type Question');
+                const hasResources = html.includes('Lesson Resources');
+                
+                if (hasAskOverlay && hasVoiceOption && hasTextOption && hasResources) {
+                    document.getElementById('interface-components-status').textContent = '✅ PASSED - Ask interface components implemented';
+                    document.getElementById('interface-components-status').className = 'success';
+                } else {
+                    document.getElementById('interface-components-status').textContent = '❌ FAILED - Ask interface components missing';
+                    document.getElementById('interface-components-status').className = 'error';
+                }
+            } catch (error) {
+                document.getElementById('interface-components-status').textContent = '❌ ERROR - ' + error.message;
+                document.getElementById('interface-components-status').className = 'error';
+            }
+            
+            // Test 4: Check for auto-play message
+            try {
+                const response = await fetch('http://localhost:8000/');
+                const html = await response.text();
+                
+                const hasAutoplayMessage = html.includes('What would you like to know?');
+                const hasAvatarResponse = html.includes('avatarResponse');
+                
+                if (hasAutoplayMessage && hasAvatarResponse) {
+                    document.getElementById('autoplay-status').textContent = '✅ PASSED - Auto-play message implemented';
+                    document.getElementById('autoplay-status').className = 'success';
+                } else {
+                    document.getElementById('autoplay-status').textContent = '❌ FAILED - Auto-play message missing';
+                    document.getElementById('autoplay-status').className = 'error';
+                }
+            } catch (error) {
+                document.getElementById('autoplay-status').textContent = '❌ ERROR - ' + error.message;
+                document.getElementById('autoplay-status').className = 'error';
+            }
+            
+            // Test 5: Check for text input functionality
+            try {
+                const response = await fetch('http://localhost:8000/');
+                const html = await response.text();
+                
+                const hasTextInput = html.includes('question-textarea');
+                const hasSubmitBtn = html.includes('submitQuestion()');
+                const hasCancelBtn = html.includes('closeAskInterface()');
+                
+                if (hasTextInput && hasSubmitBtn && hasCancelBtn) {
+                    document.getElementById('text-input-status').textContent = '✅ PASSED - Text input functionality implemented';
+                    document.getElementById('text-input-status').className = 'success';
+                } else {
+                    document.getElementById('text-input-status').textContent = '❌ FAILED - Text input functionality incomplete';
+                    document.getElementById('text-input-status').className = 'error';
+                }
+            } catch (error) {
+                document.getElementById('text-input-status').textContent = '❌ ERROR - ' + error.message;
+                document.getElementById('text-input-status').className = 'error';
+            }
+        }
+        
+        function openLiveTest() {
+            const testDiv = document.getElementById('live-test');
+            testDiv.innerHTML = `
+                <h3>🧪 Live Interface Test</h3>
+                <p><strong>Test Instructions:</strong></p>
+                <ol>
+                    <li>Wait for the page to load completely</li>
+                    <li>Click Hold button to pause lesson and show menu</li>
+                    <li>Click Ask button (❓) in secondary controls</li>
+                    <li>Verify "What would you like to know?" auto-plays</li>
+                    <li>Check Ask interface appears with Voice/Text options</li>
+                    <li>Click "Type Question" to test text input</li>
+                    <li>Type a question and click "Ask Question"</li>
+                    <li>Verify lesson resources are displayed</li>
+                </ol>
+                <p><strong>Expected Behavior:</strong></p>
+                <ul>
+                    <li>Ask button: Pauses lesson and shows interactive interface</li>
+                    <li>Auto-play: "What would you like to know?" message</li>
+                    <li>Options: Voice Question (🎤) and Type Question (✏️)</li>
+                    <li>Resources: Related Topics, Additional Links, Deep Dive</li>
+                    <li>Text Input: Focused textarea with submit/cancel buttons</li>
+                    <li>Future: Will connect to knowledge base and homegrown LLM</li>
+                </ul>
+                <iframe src="http://localhost:8000/" title="Ask Interface Test"></iframe>
+            `;
+        }
+        
+        // Run tests on page load
+        window.addEventListener('load', runTests);
+    </script>
+</body>
+</html> 

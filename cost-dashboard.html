@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iLearn Cost Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .dashboard {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 30px;
+        }
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .metric-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid #667eea;
+        }
+        .metric-card.warning {
+            border-left-color: #ffc107;
+            background: #fff3cd;
+        }
+        .metric-card.danger {
+            border-left-color: #dc3545;
+            background: #f8d7da;
+        }
+        .metric-title {
+            font-size: 0.9em;
+            text-transform: uppercase;
+            color: #6c757d;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .metric-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .metric-subtitle {
+            font-size: 0.9em;
+            color: #6c757d;
+        }
+        .budget-bar {
+            background: #e9ecef;
+            border-radius: 10px;
+            height: 20px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        .budget-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #28a745, #20c997);
+            transition: width 0.3s ease;
+        }
+        .budget-fill.warning {
+            background: linear-gradient(90deg, #ffc107, #fd7e14);
+        }
+        .budget-fill.danger {
+            background: linear-gradient(90deg, #dc3545, #e83e8c);
+        }
+        .breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .breakdown-card {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .breakdown-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid #f1f3f4;
+        }
+        .breakdown-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        .breakdown-label {
+            color: #6c757d;
+        }
+        .breakdown-value {
+            font-weight: 600;
+            color: #333;
+        }
+        .actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #5a6fd8;
+        }
+        .btn-warning {
+            background: #ffc107;
+            color: #212529;
+        }
+        .btn-warning:hover {
+            background: #e0a800;
+        }
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+        .btn-danger:hover {
+            background: #c82333;
+        }
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+        .alerts {
+            margin-top: 20px;
+        }
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 4px solid;
+        }
+        .alert-warning {
+            background: #fff3cd;
+            border-color: #ffc107;
+            color: #856404;
+        }
+        .alert-danger {
+            background: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+        .alert-info {
+            background: #d1ecf1;
+            border-color: #17a2b8;
+            color: #0c5460;
+        }
+        .refresh-info {
+            text-align: center;
+            color: #6c757d;
+            font-size: 0.9em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="header">
+            <h1>💰 iLearn Cost Dashboard</h1>
+            <p>Real-time monitoring of API costs and usage</p>
+        </div>
+        
+        <div class="content">
+            <div class="metrics-grid">
+                <div class="metric-card" id="total-cost-card">
+                    <div class="metric-title">Total Spent</div>
+                    <div class="metric-value" id="total-cost">$0.00</div>
+                    <div class="metric-subtitle">All time costs</div>
+                </div>
+                
+                <div class="metric-card" id="daily-budget-card">
+                    <div class="metric-title">Daily Budget</div>
+                    <div class="metric-value" id="daily-remaining">$500.00</div>
+                    <div class="metric-subtitle">Remaining today</div>
+                    <div class="budget-bar">
+                        <div class="budget-fill" id="daily-fill" style="width: 0%"></div>
+                    </div>
+                </div>
+                
+                <div class="metric-card" id="monthly-budget-card">
+                    <div class="metric-title">Monthly Budget</div>
+                    <div class="metric-value" id="monthly-remaining">$2,000.00</div>
+                    <div class="metric-subtitle">Remaining this month</div>
+                    <div class="budget-bar">
+                        <div class="budget-fill" id="monthly-fill" style="width: 0%"></div>
+                    </div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-title">Lessons Per Day</div>
+                    <div class="metric-value" id="lessons-per-day">∞</div>
+                    <div class="metric-subtitle">At current cost</div>
+                </div>
+            </div>
+            
+            <div class="breakdown">
+                <div class="breakdown-card">
+                    <div class="breakdown-title">ElevenLabs API</div>
+                    <div class="breakdown-item">
+                        <span class="breakdown-label">Total Cost</span>
+                        <span class="breakdown-value" id="elevenlabs-cost">$0.00</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span class="breakdown-label">Requests</span>
+                        <span class="breakdown-value" id="elevenlabs-requests">0</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span class="breakdown-label">Characters</span>
+                        <span class="breakdown-value" id="elevenlabs-chars">0</span>
+                    </div>
+                </div>
+                
+                <div class="breakdown-card">
+                    <div class="breakdown-title">Claude API</div>
+                    <div class="breakdown-item">
+                        <span class="breakdown-label">Total Cost</span>
+                        <span class="breakdown-value" id="claude-cost">$0.00</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span class="breakdown-label">Requests</span>
+                        <span class="breakdown-value" id="claude-requests">0</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span class="breakdown-label">Input Tokens</span>
+                        <span class="breakdown-value" id="claude-input">0</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span class="breakdown-label">Output Tokens</span>
+                        <span class="breakdown-value" id="claude-output">0</span>
+                    </div>
+                </div>
+                
+                <div class="breakdown-card">
+                    <div class="breakdown-title">Storage</div>
+                    <div class="breakdown-item">
+                        <span class="breakdown-label">Total Cost</span>
+                        <span class="breakdown-value" id="storage-cost">$0.00</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span class="breakdown-label">Storage Used</span>
+                        <span class="breakdown-value" id="storage-gb">0 GB</span>
+                    </div>
+                </div>
+                
+                <div class="breakdown-card">
+                    <div class="breakdown-title">Cost Estimates</div>
+                    <div class="breakdown-item">
+                        <span class="breakdown-label">Fast Lesson</span>
+                        <span class="breakdown-value">$0.001</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span class="breakdown-label">Full Lesson</span>
+                        <span class="breakdown-value" id="full-lesson-cost">$15.12</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span class="breakdown-label">366 Lessons</span>
+                        <span class="breakdown-value" id="full-curriculum-cost">$5,533.92</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="actions">
+                <button class="btn btn-primary" onclick="refreshDashboard()">🔄 Refresh</button>
+                <button class="btn btn-warning" onclick="testElevenLabs()">🎵 Test ElevenLabs</button>
+                <button class="btn btn-secondary" onclick="testClaude()">🤖 Test Claude</button>
+                <button class="btn btn-danger" onclick="resetCosts()">🔄 Reset Costs</button>
+            </div>
+            
+            <div class="alerts" id="alerts"></div>
+            
+            <div class="refresh-info">
+                Auto-refreshing every 30 seconds • Last updated: <span id="last-update">Never</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="cost-tracker.js"></script>
+    <script>
+        let costTracker;
+        let refreshInterval;
+        
+        function initDashboard() {
+            costTracker = new CostTracker();
+            updateDashboard();
+            startAutoRefresh();
+        }
+        
+        function updateDashboard() {
+            const report = costTracker.getCostReport();
+            
+            // Update total cost
+            document.getElementById('total-cost').textContent = `$${report.summary.totalSpent.toFixed(2)}`;
+            
+            // Update daily budget
+            const dailyPercent = (report.summary.totalSpent / report.summary.dailyBudget) * 100;
+            document.getElementById('daily-remaining').textContent = `$${report.summary.dailyRemaining.toFixed(2)}`;
+            const dailyFill = document.getElementById('daily-fill');
+            dailyFill.style.width = `${Math.min(dailyPercent, 100)}%`;
+            dailyFill.className = `budget-fill ${dailyPercent > 80 ? 'danger' : dailyPercent > 60 ? 'warning' : ''}`;
+            
+            // Update monthly budget
+            const monthlyPercent = (report.summary.totalSpent / report.summary.monthlyBudget) * 100;
+            document.getElementById('monthly-remaining').textContent = `$${report.summary.monthlyRemaining.toFixed(2)}`;
+            const monthlyFill = document.getElementById('monthly-fill');
+            monthlyFill.style.width = `${Math.min(monthlyPercent, 100)}%`;
+            monthlyFill.className = `budget-fill ${monthlyPercent > 80 ? 'danger' : monthlyPercent > 60 ? 'warning' : ''}`;
+            
+            // Update lessons per day
+            const lessonsPerDay = report.estimates.lessonsPerDay;
+            document.getElementById('lessons-per-day').textContent = lessonsPerDay > 1000 ? '∞' : lessonsPerDay;
+            
+            // Update breakdown
+            document.getElementById('elevenlabs-cost').textContent = `$${report.breakdown.elevenLabs.cost.toFixed(2)}`;
+            document.getElementById('elevenlabs-requests').textContent = report.breakdown.elevenLabs.requests.toLocaleString();
+            document.getElementById('elevenlabs-chars').textContent = report.breakdown.elevenLabs.characters.toLocaleString();
+            
+            document.getElementById('claude-cost').textContent = `$${report.breakdown.claude.cost.toFixed(2)}`;
+            document.getElementById('claude-requests').textContent = report.breakdown.claude.requests.toLocaleString();
+            document.getElementById('claude-input').textContent = report.breakdown.claude.inputTokens.toLocaleString();
+            document.getElementById('claude-output').textContent = report.breakdown.claude.outputTokens.toLocaleString();
+            
+            document.getElementById('storage-cost').textContent = `$${report.breakdown.storage.cost.toFixed(2)}`;
+            document.getElementById('storage-gb').textContent = `${report.breakdown.storage.gigabytes.toFixed(2)} GB`;
+            
+            // Update estimates
+            document.getElementById('full-lesson-cost').textContent = `$${report.estimates.lessonCost.total.toFixed(2)}`;
+            document.getElementById('full-curriculum-cost').textContent = `$${(report.estimates.lessonCost.total * 366).toFixed(2)}`;
+            
+            // Update last refresh time
+            document.getElementById('last-update').textContent = new Date().toLocaleTimeString();
+            
+            // Update card colors based on budget status
+            updateCardColors(report);
+            
+            // Show alerts
+            showAlerts(report);
+        }
+        
+        function updateCardColors(report) {
+            const dailyPercent = (report.summary.totalSpent / report.summary.dailyBudget) * 100;
+            const monthlyPercent = (report.summary.totalSpent / report.summary.monthlyBudget) * 100;
+            
+            const dailyCard = document.getElementById('daily-budget-card');
+            const monthlyCard = document.getElementById('monthly-budget-card');
+            
+            dailyCard.className = `metric-card ${dailyPercent > 80 ? 'danger' : dailyPercent > 60 ? 'warning' : ''}`;
+            monthlyCard.className = `metric-card ${monthlyPercent > 80 ? 'danger' : monthlyPercent > 60 ? 'warning' : ''}`;
+        }
+        
+        function showAlerts(report) {
+            const alertsContainer = document.getElementById('alerts');
+            alertsContainer.innerHTML = '';
+            
+            if (report.summary.dailyRemaining < 0) {
+                alertsContainer.innerHTML += `
+                    <div class="alert alert-danger">
+                        🚨 Daily budget exceeded! Spent: $${report.summary.totalSpent.toFixed(2)}
+                    </div>
+                `;
+            } else if (report.summary.dailyRemaining < 50) {
+                alertsContainer.innerHTML += `
+                    <div class="alert alert-warning">
+                        ⚠️ Daily budget warning: $${report.summary.dailyRemaining.toFixed(2)} remaining
+                    </div>
+                `;
+            }
+            
+            if (report.summary.monthlyRemaining < 0) {
+                alertsContainer.innerHTML += `
+                    <div class="alert alert-danger">
+                        🚨 Monthly budget exceeded! Spent: $${report.summary.totalSpent.toFixed(2)}
+                    </div>
+                `;
+            } else if (report.summary.monthlyRemaining < 200) {
+                alertsContainer.innerHTML += `
+                    <div class="alert alert-warning">
+                        ⚠️ Monthly budget warning: $${report.summary.monthlyRemaining.toFixed(2)} remaining
+                    </div>
+                `;
+            }
+            
+            if (alertsContainer.innerHTML === '') {
+                alertsContainer.innerHTML = `
+                    <div class="alert alert-info">
+                        ✅ Budget status: Healthy
+                    </div>
+                `;
+            }
+        }
+        
+        function startAutoRefresh() {
+            refreshInterval = setInterval(updateDashboard, 30000); // Refresh every 30 seconds
+        }
+        
+        function refreshDashboard() {
+            updateDashboard();
+        }
+        
+        function testElevenLabs() {
+            const testScript = "Hello, this is a test of the ElevenLabs API integration for iLearn.";
+            const result = costTracker.trackElevenLabsUsage(testScript.length);
+            console.log('Test ElevenLabs usage:', result);
+            updateDashboard();
+        }
+        
+        function testClaude() {
+            const inputTokens = 100;
+            const outputTokens = 200;
+            const result = costTracker.trackClaudeUsage(inputTokens, outputTokens);
+            console.log('Test Claude usage:', result);
+            updateDashboard();
+        }
+        
+        function resetCosts() {
+            if (confirm('Are you sure you want to reset all costs? This cannot be undone.')) {
+                costTracker.reset();
+                updateDashboard();
+            }
+        }
+        
+        // Initialize dashboard when page loads
+        window.addEventListener('load', initDashboard);
+    </script>
+</body>
+</html> 

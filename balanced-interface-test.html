@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balanced Interface Test - Mirrored Experience</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f0f0f0; }
+        .test { background: white; padding: 20px; margin: 15px 0; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .success { background: #d4edda; color: #155724; padding: 10px; border-radius: 4px; margin: 10px 0; }
+        .error { background: #f8d7da; color: #721c24; padding: 10px; border-radius: 4px; margin: 10px 0; }
+        .warning { background: #fff3cd; color: #856404; padding: 10px; border-radius: 4px; margin: 10px 0; }
+        button { background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; margin: 5px; }
+        button:hover { background: #0056b3; }
+        iframe { width: 100%; height: 600px; border: 1px solid #ccc; border-radius: 4px; }
+        .demo { display: flex; gap: 20px; margin: 20px 0; }
+        .demo-section { background: #f8f9fa; padding: 20px; border-radius: 8px; }
+        .demo-icon { width: 60px; height: 60px; background: white; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 20px; margin: 10px 0; position: relative; gap: 2px; padding: 4px; }
+        .demo-icon .icon-emoji { font-size: 20px; }
+        .demo-icon .icon-label { font-size: 8px; color: #666; font-weight: 500; text-align: center; line-height: 1; }
+        .interface-layout { background: #e7f3ff; padding: 20px; border-radius: 8px; margin: 20px 0; }
+        .layout-diagram { display: flex; justify-content: space-between; align-items: center; margin: 20px 0; }
+        .left-panel, .right-panel { background: white; padding: 20px; border-radius: 10px; text-align: center; flex: 1; margin: 0 10px; }
+        .left-panel { border-left: 4px solid #007bff; }
+        .right-panel { border-right: 4px solid #007bff; }
+        .center-avatar { background: #f0f8ff; padding: 30px; border-radius: 15px; text-align: center; margin: 0 20px; }
+        .bottom-controls { display: flex; justify-content: space-between; margin-top: 20px; }
+        .collapsed-control { width: 50px; height: 50px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; border: 2px solid #007bff; }
+    </style>
+</head>
+<body>
+    <h1>⚖️ Balanced Interface Test - Mirrored Experience</h1>
+    
+    <div class="test">
+        <h2>✅ Test 1: Avatar Controls (Left Side)</h2>
+        <p><strong>Status:</strong> <span id="avatar-controls-status">Checking...</span></p>
+        <p><strong>Expected:</strong> Hold and Ask buttons positioned on left side</p>
+    </div>
+    
+    <div class="test">
+        <h2>✅ Test 2: Content Controls (Right Side)</h2>
+        <p><strong>Status:</strong> <span id="content-controls-status">Checking...</span></p>
+        <p><strong>Expected:</strong> Calendar, Tone, Avatar, Language, Age, Create on right</p>
+    </div>
+    
+    <div class="test">
+        <h2>✅ Test 3: Collapsed Controls</h2>
+        <p><strong>Status:</strong> <span id="collapsed-controls-status">Checking...</span></p>
+        <p><strong>Expected:</strong> Collapsed controls in bottom corners</p>
+    </div>
+    
+    <div class="test">
+        <h2>✅ Test 4: Toggle Functions</h2>
+        <p><strong>Status:</strong> <span id="toggle-functions-status">Checking...</span></p>
+        <p><strong>Expected:</strong> toggleAvatarControls and toggleContentControls functions</p>
+    </div>
+    
+    <div class="test">
+        <h2>✅ Test 5: Balanced Experience</h2>
+        <p><strong>Status:</strong> <span id="balanced-experience-status">Checking...</span></p>
+        <p><strong>Expected:</strong> Left controls HOW avatar talks, Right controls WHAT avatar says</p>
+    </div>
+    
+    <div class="test">
+        <h2>🎯 Interface Layout</h2>
+        <div class="interface-layout">
+            <p><strong>Design Philosophy:</strong> "Humans don't have buttons on their chest" - Natural, balanced interface</p>
+            <div class="layout-diagram">
+                <div class="left-panel">
+                    <h3>Avatar Behavior Controls</h3>
+                    <p><strong>HOW the avatar talks</strong></p>
+                    <div class="demo-icon">
+                        <div class="icon-emoji">✋</div>
+                        <div class="icon-label">Hold, please</div>
+                    </div>
+                    <div class="demo-icon">
+                        <div class="icon-emoji">❓</div>
+                        <div class="icon-label">Ask</div>
+                    </div>
+                    <p><em>Under welcome message</em></p>
+                </div>
+                <div class="center-avatar">
+                    <h3>Kelly Avatar</h3>
+                    <p>"Hello! Today we're learning..."</p>
+                    <p><em>Natural conversation</em></p>
+                </div>
+                <div class="right-panel">
+                    <h3>Content Controls</h3>
+                    <p><strong>WHAT the avatar says</strong></p>
+                    <div class="demo-icon">
+                        <div class="icon-emoji">📅</div>
+                        <div class="icon-label">Calendar</div>
+                    </div>
+                    <div class="demo-icon">
+                        <div class="icon-emoji">😊</div>
+                        <div class="icon-label">Tone</div>
+                    </div>
+                    <p><em>Bottom right corner</em></p>
+                </div>
+            </div>
+            <div class="bottom-controls">
+                <div class="collapsed-control">✋</div>
+                <div style="flex: 1; text-align: center; padding: 10px;">
+                    <p><em>Collapsed controls in bottom corners</em></p>
+                </div>
+                <div class="collapsed-control">☰</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="test">
+        <h2>🧪 Demo: Balanced Interface Structure</h2>
+        <p>This demo shows the new balanced, mirrored interface:</p>
+        <div class="demo">
+            <div class="demo-section">
+                <h3>Left Side: Avatar Behavior</h3>
+                <p><strong>Primary Controls:</strong></p>
+                <div class="demo-icon">
+                    <div class="icon-emoji">✋</div>
+                    <div class="icon-label">Hold, please</div>
+                </div>
+                <div class="demo-icon">
+                    <div class="icon-emoji">❓</div>
+                    <div class="icon-label">Ask</div>
+                </div>
+                <p><strong>Secondary Controls:</strong></p>
+                <div class="demo-icon">
+                    <div class="icon-emoji">🗣️</div>
+                    <div class="icon-label">Talk</div>
+                </div>
+                <div class="demo-icon">
+                    <div class="icon-emoji">🔊</div>
+                    <div class="icon-label">Louder</div>
+                </div>
+                <p><em>Controls HOW avatar talks</em></p>
+            </div>
+            <div class="demo-section">
+                <h3>Right Side: Content Controls</h3>
+                <p><strong>Lesson Content:</strong></p>
+                <div class="demo-icon">
+                    <div class="icon-emoji">📅</div>
+                    <div class="icon-label">Calendar</div>
+                </div>
+                <div class="demo-icon">
+                    <div class="icon-emoji">😊</div>
+                    <div class="icon-label">Tone</div>
+                </div>
+                <div class="demo-icon">
+                    <div class="icon-emoji">🎭</div>
+                    <div class="icon-label">Avatar</div>
+                </div>
+                <p><em>Controls WHAT avatar says</em></p>
+            </div>
+            <div class="demo-section">
+                <h3>Collapsed Controls</h3>
+                <p><strong>Bottom Corners:</strong></p>
+                <div style="display: flex; justify-content: space-between; margin: 10px 0;">
+                    <div class="collapsed-control">✋</div>
+                    <div class="collapsed-control">☰</div>
+                </div>
+                <p><em>Hover to expand</em></p>
+                <p><em>Click to toggle</em></p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="test">
+        <h2>🧪 Live Interface Test</h2>
+        <p>Test the balanced interface in the live interface:</p>
+        <button onclick="openLiveTest()">Open Live Interface Test</button>
+        <div id="live-test"></div>
+    </div>
+
+    <script>
+        async function runTests() {
+            console.log('⚖️ Running balanced interface tests...');
+            
+            // Test 1: Check for avatar controls on left side
+            try {
+                const response = await fetch('http://localhost:8000/');
+                const html = await response.text();
+                
+                const hasAvatarControls = html.includes('avatar-controls');
+                const hasPrimaryAvatarControls = html.includes('primary-avatar-controls');
+                const hasHoldAndAsk = html.includes('data-label="Hold, please"') && html.includes('data-label="Ask"');
+                
+                if (hasAvatarControls && hasPrimaryAvatarControls && hasHoldAndAsk) {
+                    document.getElementById('avatar-controls-status').textContent = '✅ PASSED - Avatar controls on left side';
+                    document.getElementById('avatar-controls-status').className = 'success';
+                } else {
+                    document.getElementById('avatar-controls-status').textContent = '❌ FAILED - Avatar controls not properly positioned';
+                    document.getElementById('avatar-controls-status').className = 'error';
+                }
+            } catch (error) {
+                document.getElementById('avatar-controls-status').textContent = '❌ ERROR - ' + error.message;
+                document.getElementById('avatar-controls-status').className = 'error';
+            }
+            
+            // Test 2: Check for content controls on right side
+            try {
+                const response = await fetch('http://localhost:8000/');
+                const html = await response.text();
+                
+                const hasContentControls = html.includes('content-controls');
+                const hasCalendarAndTone = html.includes('data-label="Calendar"') && html.includes('data-label="Tone"');
+                
+                if (hasContentControls && hasCalendarAndTone) {
+                    document.getElementById('content-controls-status').textContent = '✅ PASSED - Content controls on right side';
+                    document.getElementById('content-controls-status').className = 'success';
+                } else {
+                    document.getElementById('content-controls-status').textContent = '❌ FAILED - Content controls not properly positioned';
+                    document.getElementById('content-controls-status').className = 'error';
+                }
+            } catch (error) {
+                document.getElementById('content-controls-status').textContent = '❌ ERROR - ' + error.message;
+                document.getElementById('content-controls-status').className = 'error';
+            }
+            
+            // Test 3: Check for collapsed controls
+            try {
+                const response = await fetch('http://localhost:8000/');
+                const html = await response.text();
+                
+                const hasCollapsedAvatar = html.includes('collapsed-avatar-controls');
+                const hasCollapsedContent = html.includes('collapsed-content-controls');
+                const hasCollapsedIcon = html.includes('collapsed-icon');
+                
+                if (hasCollapsedAvatar && hasCollapsedContent && hasCollapsedIcon) {
+                    document.getElementById('collapsed-controls-status').textContent = '✅ PASSED - Collapsed controls implemented';
+                    document.getElementById('collapsed-controls-status').className = 'success';
+                } else {
+                    document.getElementById('collapsed-controls-status').textContent = '❌ FAILED - Collapsed controls missing';
+                    document.getElementById('collapsed-controls-status').className = 'error';
+                }
+            } catch (error) {
+                document.getElementById('collapsed-controls-status').textContent = '❌ ERROR - ' + error.message;
+                document.getElementById('collapsed-controls-status').className = 'error';
+            }
+            
+            // Test 4: Check for toggle functions
+            try {
+                const response = await fetch('http://localhost:8000/');
+                const html = await response.text();
+                
+                const hasToggleAvatar = html.includes('toggleAvatarControls()');
+                const hasToggleContent = html.includes('toggleContentControls()');
+                
+                if (hasToggleAvatar && hasToggleContent) {
+                    document.getElementById('toggle-functions-status').textContent = '✅ PASSED - Toggle functions implemented';
+                    document.getElementById('toggle-functions-status').className = 'success';
+                } else {
+                    document.getElementById('toggle-functions-status').textContent = '❌ FAILED - Toggle functions missing';
+                    document.getElementById('toggle-functions-status').className = 'error';
+                }
+            } catch (error) {
+                document.getElementById('toggle-functions-status').textContent = '❌ ERROR - ' + error.message;
+                document.getElementById('toggle-functions-status').className = 'error';
+            }
+            
+            // Test 5: Check for balanced experience
+            try {
+                const response = await fetch('http://localhost:8000/');
+                const html = await response.text();
+                
+                const hasLeftPositioning = html.includes('left: 20px');
+                const hasRightPositioning = html.includes('right: 20px');
+                const hasBottomPositioning = html.includes('bottom: 40px');
+                
+                if (hasLeftPositioning && hasRightPositioning && hasBottomPositioning) {
+                    document.getElementById('balanced-experience-status').textContent = '✅ PASSED - Balanced experience implemented';
+                    document.getElementById('balanced-experience-status').className = 'success';
+                } else {
+                    document.getElementById('balanced-experience-status').textContent = '❌ FAILED - Balanced experience not properly positioned';
+                    document.getElementById('balanced-experience-status').className = 'error';
+                }
+            } catch (error) {
+                document.getElementById('balanced-experience-status').textContent = '❌ ERROR - ' + error.message;
+                document.getElementById('balanced-experience-status').className = 'error';
+            }
+        }
+        
+        function openLiveTest() {
+            const testDiv = document.getElementById('live-test');
+            testDiv.innerHTML = `
+                <h3>🧪 Live Interface Test</h3>
+                <p><strong>Test Instructions:</strong></p>
+                <ol>
+                    <li>Wait for the page to load completely</li>
+                    <li>Verify Hold and Ask buttons are on the left side</li>
+                    <li>Check content controls (Calendar, Tone, etc.) are on the right</li>
+                    <li>Look for collapsed controls in bottom corners (✋ and ☰)</li>
+                    <li>Hover over collapsed controls to expand them</li>
+                    <li>Click collapsed controls to toggle visibility</li>
+                    <li>Test the balanced experience: Left = HOW, Right = WHAT</li>
+                </ol>
+                <p><strong>Expected Behavior:</strong></p>
+                <ul>
+                    <li>Left Side: Avatar behavior controls (Hold, Ask, Talk, etc.)</li>
+                    <li>Right Side: Content controls (Calendar, Tone, Avatar, etc.)</li>
+                    <li>Collapsed Controls: Bottom corners with hover/click to expand</li>
+                    <li>Balanced Experience: Mirrored behavior on both sides</li>
+                    <li>Natural Interface: No "buttons on chest" - human-like design</li>
+                </ul>
+                <iframe src="http://localhost:8000/" title="Balanced Interface Test"></iframe>
+            `;
+        }
+        
+        // Run tests on page load
+        window.addEventListener('load', runTests);
+    </script>
+</body>
+</html> 

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final iLearn Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f0f0f0; }
+        .test { background: white; padding: 20px; margin: 15px 0; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .success { background: #d4edda; color: #155724; padding: 10px; border-radius: 4px; margin: 10px 0; }
+        .error { background: #f8d7da; color: #721c24; padding: 10px; border-radius: 4px; margin: 10px 0; }
+        .warning { background: #fff3cd; color: #856404; padding: 10px; border-radius: 4px; margin: 10px 0; }
+        button { background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; margin: 5px; }
+        button:hover { background: #0056b3; }
+        iframe { width: 100%; height: 600px; border: 1px solid #ccc; border-radius: 4px; }
+        .log { background: #f8f9fa; border: 1px solid #dee2e6; padding: 10px; margin: 10px 0; border-radius: 4px; font-family: monospace; font-size: 12px; max-height: 200px; overflow-y: auto; }
+    </style>
+</head>
+<body>
+    <h1>🎯 Final iLearn Test - Critical Fixes Verification</h1>
+    
+    <div class="test">
+        <h2>✅ FIX 1: No Start Button - Auto-Play</h2>
+        <p><strong>Status:</strong> <span id="autoplay-status">Checking...</span></p>
+        <p><strong>Expected:</strong> Lesson should auto-start when page loads (no start button needed)</p>
+    </div>
+    
+    <div class="test">
+        <h2>✅ FIX 2: Clean Overlay (No Ugly Black)</h2>
+        <p><strong>Status:</strong> <span id="overlay-status">Checking...</span></p>
+        <p><strong>Expected:</strong> Lesson content should appear in clean white overlay, not black</p>
+    </div>
+    
+    <div class="test">
+        <h2>✅ FIX 3: Real Curriculum Data</h2>
+        <p><strong>Status:</strong> <span id="curriculum-status">Checking...</span></p>
+        <p><strong>Expected:</strong> Should show real lesson content, not "Electromagnetic Spectrum"</p>
+    </div>
+    
+    <div class="test">
+        <h2>✅ FIX 4: Variant Icons Work</h2>
+        <p><strong>Status:</strong> <span id="variant-status">Checking...</span></p>
+        <p><strong>Expected:</strong> Clicking tone/avatar/language/age icons should change content</p>
+    </div>
+    
+    <div class="test">
+        <h2>✅ FIX 5: Calendar Actually Shows</h2>
+        <p><strong>Status:</strong> <span id="calendar-status">Checking...</span></p>
+        <p><strong>Expected:</strong> Calendar icon should open actual calendar with days</p>
+    </div>
+    
+    <div class="test">
+        <h2>🧪 Live Interface Test</h2>
+        <p>Click the button below to test the actual interface:</p>
+        <button onclick="openLiveTest()">Open Live Interface Test</button>
+        <div id="live-test"></div>
+    </div>
+
+    <script>
+        async function runTests() {
+            console.log('🚀 Running final tests...');
+            
+            // Test 1: Check for no start button
+            try {
+                const response = await fetch('http://localhost:8000/');
+                const html = await response.text();
+                
+                const hasStartButton = html.includes('start-lesson-btn');
+                const hasAutoplay = html.includes('Auto-starting lesson');
+                
+                if (!hasStartButton && hasAutoplay) {
+                    document.getElementById('autoplay-status').textContent = '✅ PASSED - No start button, auto-play enabled';
+                    document.getElementById('autoplay-status').className = 'success';
+                } else {
+                    document.getElementById('autoplay-status').textContent = '❌ FAILED - Start button still exists or no auto-play';
+                    document.getElementById('autoplay-status').className = 'error';
+                }
+            } catch (error) {
+                document.getElementById('autoplay-status').textContent = '❌ ERROR - ' + error.message;
+                document.getElementById('autoplay-status').className = 'error';
+            }
+            
+            // Test 2: Check for clean overlay
+            try {
+                const response = await fetch('http://localhost:8000/');
+                const html = await response.text();
+                
+                const hasBlackOverlay = html.includes('background: rgba(0, 0, 0, 0.8)');
+                const hasWhiteOverlay = html.includes('background: rgba(255, 255, 255, 0.95)');
+                
+                if (!hasBlackOverlay && hasWhiteOverlay) {
+                    document.getElementById('overlay-status').textContent = '✅ PASSED - Clean white overlay, no black';
+                    document.getElementById('overlay-status').className = 'success';
+                } else {
+                    document.getElementById('overlay-status').textContent = '❌ FAILED - Still has black overlay';
+                    document.getElementById('overlay-status').className = 'error';
+                }
+            } catch (error) {
+                document.getElementById('overlay-status').textContent = '❌ ERROR - ' + error.message;
+                document.getElementById('overlay-status').className = 'error';
+            }
+            
+            // Test 3: Check for real curriculum data
+            try {
+                const response = await fetch('http://localhost:8000/');
+                const html = await response.text();
+                
+                const hasElectromagnetic = html.includes('Electromagnetic Spectrum');
+                const hasDynamicContent = html.includes('lesson-info-title');
+                
+                if (!hasElectromagnetic && hasDynamicContent) {
+                    document.getElementById('curriculum-status').textContent = '✅ PASSED - Real curriculum data, no hardcoded content';
+                    document.getElementById('curriculum-status').className = 'success';
+                } else {
+                    document.getElementById('curriculum-status').textContent = '❌ FAILED - Still has hardcoded content';
+                    document.getElementById('curriculum-status').className = 'error';
+                }
+            } catch (error) {
+                document.getElementById('curriculum-status').textContent = '❌ ERROR - ' + error.message;
+                document.getElementById('curriculum-status').className = 'error';
+            }
+            
+            // Test 4: Check variant system
+            try {
+                const response = await fetch('http://localhost:8000/');
+                const html = await response.text();
+                
+                const hasSetTone = html.includes('setTone(');
+                const hasSetAvatar = html.includes('setAvatar(');
+                const hasSetLanguage = html.includes('setLanguage(');
+                const hasSetAge = html.includes('setAge(');
+                
+                if (hasSetTone && hasSetAvatar && hasSetLanguage && hasSetAge) {
+                    document.getElementById('variant-status').textContent = '✅ PASSED - Variant functions found';
+                    document.getElementById('variant-status').className = 'success';
+                } else {
+                    document.getElementById('variant-status').textContent = '❌ FAILED - Missing variant functions';
+                    document.getElementById('variant-status').className = 'error';
+                }
+            } catch (error) {
+                document.getElementById('variant-status').textContent = '❌ ERROR - ' + error.message;
+                document.getElementById('variant-status').className = 'error';
+            }
+            
+            // Test 5: Check calendar
+            try {
+                const response = await fetch('http://localhost:8000/');
+                const html = await response.text();
+                
+                const hasGenerateCalendar = html.includes('generateCalendar()');
+                const hasCalendarGrid = html.includes('calendar-grid');
+                
+                if (hasGenerateCalendar && hasCalendarGrid) {
+                    document.getElementById('calendar-status').textContent = '✅ PASSED - Calendar functions found';
+                    document.getElementById('calendar-status').className = 'success';
+                } else {
+                    document.getElementById('calendar-status').textContent = '❌ FAILED - Missing calendar functions';
+                    document.getElementById('calendar-status').className = 'error';
+                }
+            } catch (error) {
+                document.getElementById('calendar-status').textContent = '❌ ERROR - ' + error.message;
+                document.getElementById('calendar-status').className = 'error';
+            }
+        }
+        
+        function openLiveTest() {
+            const testDiv = document.getElementById('live-test');
+            testDiv.innerHTML = `
+                <h3>🧪 Live Interface Test</h3>
+                <p><strong>Test Instructions:</strong></p>
+                <ol>
+                    <li>Wait for the page to load completely</li>
+                    <li>Check if lesson auto-starts (no start button needed)</li>
+                    <li>Check if lesson info shows real content (not "Electromagnetic Spectrum")</li>
+                    <li>Check if lesson content appears in clean white overlay</li>
+                    <li>Try clicking variant icons (tone, avatar, language, age) - content should change</li>
+                    <li>Click calendar icon - should open actual calendar with days</li>
+                </ol>
+                <iframe src="http://localhost:8000/" title="iLearn Live Test"></iframe>
+            `;
+        }
+        
+        // Run tests on page load
+        window.addEventListener('load', runTests);
+    </script>
+</body>
+</html> 

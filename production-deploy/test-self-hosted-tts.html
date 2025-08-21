@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Self-Hosted TTS - No Railway!</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .voice-test {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        button:hover {
+            background: #218838;
+        }
+        .status {
+            margin: 15px 0;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        .audio-player {
+            background: rgba(40,167,69,0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        audio {
+            width: 100%;
+            margin: 10px 0;
+        }
+        .server-info {
+            background: #e9ecef;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        .instructions {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎤 Test Self-Hosted TTS - No Railway!</h1>
+        
+        <div class="instructions">
+            <strong>🚀 Self-Hosted Solution:</strong>
+            <ol>
+                <li>This TTS server runs completely on your machine</li>
+                <li>No Railway dependency - no external services</li>
+                <li>Uses your actual Ken & Kelly voice files</li>
+                <li>Can be deployed anywhere (VPS, local, etc.)</li>
+            </ol>
+        </div>
+        
+        <div class="voice-test">
+            <h3>🔧 Server Status</h3>
+            <button onclick="checkServer()">Check Self-Hosted TTS Server</button>
+            <div id="serverStatus"></div>
+        </div>
+        
+        <div class="voice-test">
+            <h3>🎭 Kelly Voice Test</h3>
+            <p>Testing with your actual Kelly voice files</p>
+            <button onclick="testKelly()">Test Kelly Voice</button>
+            <div id="kellyStatus"></div>
+            <div id="kellyAudio" class="audio-player" style="display: none;"></div>
+        </div>
+        
+        <div class="voice-test">
+            <h3>🎭 Ken Voice Test</h3>
+            <p>Testing with your actual Ken voice files</p>
+            <button onclick="testKen()">Test Ken Voice</button>
+            <div id="kenStatus"></div>
+            <div id="kenAudio" class="audio-player" style="display: none;"></div>
+        </div>
+        
+        <div class="voice-test">
+            <h3>📁 Voice File Info</h3>
+            <button onclick="getVoiceInfo()">Get Voice File Information</button>
+            <div id="voiceInfo"></div>
+        </div>
+        
+        <div class="server-info">
+            <strong>Self-Hosted TTS Server:</strong><br>
+            <code>python3 self-hosted-tts-server.py</code><br><br>
+            
+            <strong>Features:</strong><br>
+            ✅ No Railway dependency<br>
+            ✅ Uses your custom voice files<br>
+            ✅ CORS enabled for all origins<br>
+            ✅ Fallback audio generation<br>
+            ✅ Phoneme data for avatar sync<br>
+            ✅ Can run anywhere with Python<br><br>
+            
+            <strong>Deployment Options:</strong><br>
+            • Local development (localhost:8080)<br>
+            • VPS/Cloud server<br>
+            • Docker container<br>
+            • Any Python-compatible hosting
+        </div>
+    </div>
+
+    <script>
+        const TTS_SERVER = 'http://localhost:8080';
+        
+        function log(elementId, message, type = 'info') {
+            const logEl = document.getElementById(elementId);
+            const timestamp = new Date().toLocaleTimeString();
+            logEl.innerHTML = `<span class="${type}">[${timestamp}] ${message}</span>`;
+        }
+        
+        async function checkServer() {
+            const statusEl = document.getElementById('serverStatus');
+            
+            log('serverStatus', '<span class="loading"></span> Checking self-hosted TTS server...', 'info');
+            
+            try {
+                const response = await fetch(`${TTS_SERVER}/health`);
+                const data = await response.json();
+                
+                statusEl.innerHTML = `
+                    <div class="status success">
+                        <strong>✅ Self-Hosted TTS Server is Running!</strong><br>
+                        <strong>Server:</strong> ${data.server}<br>
+                        <strong>Version:</strong> ${data.version}<br>
+                        <strong>Engine:</strong> ${data.engine}<br>
+                        <strong>Voices:</strong> ${data.voices.join(', ')}<br>
+                        <strong>Railway Free:</strong> ${data.railway_free ? 'Yes!' : 'No'}<br>
+                        <strong>Base Directory:</strong> ${data.base_dir}
+                    </div>
+                `;
+                
+            } catch (error) {
+                statusEl.innerHTML = `
+                    <div class="status error">
+                        <strong>❌ Self-Hosted TTS Server Not Running</strong><br>
+                        <strong>Error:</strong> ${error.message}<br><br>
+                        <strong>To start the server:</strong><br>
+                        <code>cd production-deploy && python3 self-hosted-tts-server.py</code>
+                    </div>
+                `;
+            }
+        }
+        
+        async function testKelly() {
+            await testVoice('kelly', 'kellyStatus', 'kellyAudio');
+        }
+        
+        async function testKen() {
+            await testVoice('ken', 'kenStatus', 'kenAudio');
+        }
+        
+        async function testVoice(speaker, statusId, audioId) {
+            const statusEl = document.getElementById(statusId);
+            const audioEl = document.getElementById(audioId);
+            
+            log(statusId, `<span class="loading"></span> Testing ${speaker} voice with self-hosted TTS...`, 'info');
+            
+            try {
+                const response = await fetch(`${TTS_SERVER}/api/tts`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        text: `Hello! I am ${speaker}, and this is my voice generated by your self-hosted TTS server. No Railway needed!`,
+                        speaker: speaker,
+                        include_phonemes: true
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                
+                statusEl.innerHTML = `
+                    <div class="status success">
+                        <strong>✅ ${speaker} voice generated successfully!</strong><br>
+                        <strong>Duration:</strong> ${data.duration?.toFixed(2)}s<br>
+                        <strong>Method:</strong> ${data.method}<br>
+                        <strong>Engine:</strong> ${data.engine}
+                    </div>
+                `;
+                
+                // Create and play audio
+                const audioData = `data:audio/wav;base64,${data.audio}`;
+                const audio = new Audio(audioData);
+                audio.controls = true;
+                
+                // Display audio player
+                audioEl.style.display = 'block';
+                audioEl.innerHTML = `
+                    <h4>🎵 ${speaker} Voice Audio Player</h4>
+                    <p><strong>Method:</strong> ${data.method}</p>
+                    <p><strong>Duration:</strong> ${data.duration?.toFixed(2)}s</p>
+                    <audio controls src="${audioData}"></audio>
+                    <p><em>This audio was generated by your self-hosted TTS server!</em></p>
+                `;
+                
+                // Auto-play
+                await audio.play();
+                
+            } catch (error) {
+                statusEl.innerHTML = `
+                    <div class="status error">
+                        <strong>❌ Error generating ${speaker} voice:</strong><br>
+                        ${error.message}<br><br>
+                        <strong>Make sure the self-hosted TTS server is running:</strong><br>
+                        <code>python3 self-hosted-tts-server.py</code>
+                    </div>
+                `;
+                console.error('Voice test error:', error);
+            }
+        }
+        
+        async function getVoiceInfo() {
+            const infoEl = document.getElementById('voiceInfo');
+            
+            log('voiceInfo', '<span class="loading"></span> Getting voice file information...', 'info');
+            
+            try {
+                const kellyResponse = await fetch(`${TTS_SERVER}/voices/kelly`);
+                const kenResponse = await fetch(`${TTS_SERVER}/voices/ken`);
+                
+                const kellyInfo = await kellyResponse.json();
+                const kenInfo = await kenResponse.json();
+                
+                infoEl.innerHTML = `
+                    <div class="status success">
+                        <strong>Voice File Information:</strong><br><br>
+                        
+                        <strong>Kelly Voice:</strong><br>
+                        • Reference: ${kellyInfo.files.reference.exists ? '✅' : '❌'} ${kellyInfo.files.reference.path}<br>
+                        • Segments: ${kellyInfo.files.segments.exists ? '✅' : '❌'} ${kellyInfo.files.segments.count} files<br>
+                        • Fallback: ${kellyInfo.files.fallback.exists ? '✅' : '❌'} ${kellyInfo.files.fallback.path}<br><br>
+                        
+                        <strong>Ken Voice:</strong><br>
+                        • Reference: ${kenInfo.files.reference.exists ? '✅' : '❌'} ${kenInfo.files.reference.path}<br>
+                        • Segments: ${kenInfo.files.segments.exists ? '✅' : '❌'} ${kenInfo.files.segments.count} files<br>
+                        • Fallback: ${kenInfo.files.fallback.exists ? '✅' : '❌'} ${kenInfo.files.fallback.path}
+                    </div>
+                `;
+                
+            } catch (error) {
+                infoEl.innerHTML = `
+                    <div class="status error">
+                        <strong>❌ Error getting voice info:</strong><br>
+                        ${error.message}
+                    </div>
+                `;
+            }
+        }
+        
+        // Auto-check server on load
+        window.addEventListener('load', () => {
+            checkServer();
+        });
+    </script>
+</body>
+</html>

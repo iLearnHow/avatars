@@ -1,0 +1,1 @@
+export const ELEVENLABS_API_KEY = "sk_ae968c7f6f78f4645eebef7cc7cfe1a03d95e8a846d6612f";

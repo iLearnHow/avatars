@@ -1,0 +1,33 @@
+{
+  "slug": "puppies",
+  "language": "es",
+  "version": "tts_jobs_v1",
+  "defaultSpeaker": "kelly",
+  "phases": [
+    {
+      "id": "welcome",
+      "text": "Welcome. Today we’ll notice how puppies learn, how we teach kindly, and how we build trust. I’ll guide you through three short questions and offer a hint if you need one.",
+      "approxChars": 170
+    },
+    {
+      "id": "beginning",
+      "text": "Question one. What helps a puppy feel safe and ready to learn—endless treats, or steady love and routines? Listen, then choose.",
+      "approxChars": 127
+    },
+    {
+      "id": "middle",
+      "text": "Pregunta dos. ¿Qué enseña a un cachorro el significado de ‘sit’—decir la palabra cada vez más fuerte, o combinar la palabra con una señal de mano y un premio? Elige cuando estés listo/a.",
+      "approxChars": 186
+    },
+    {
+      "id": "end",
+      "text": "Pregunta tres. ¿Qué crea un vínculo fuerte—castigar errores, o notar y premiar pequeños buenos comportamientos? Elige cuando estés listo/a.",
+      "approxChars": 139
+    },
+    {
+      "id": "wisdom",
+      "text": "Wisdom to carry: puppies learn what we notice. Catch one small good thing today, mark it with a kind word, and watch trust grow.",
+      "approxChars": 128
+    }
+  ]
+}

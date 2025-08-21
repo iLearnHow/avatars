@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avatar Debug Diagnostic</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #000;
+            color: white;
+        }
+
+        .debug-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .avatar-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -1;
+        }
+
+        .avatar-container.ken-active {
+            background-image: url('/lesson-player-deploy/assets/avatars/ken/ken_neutral_default.png');
+        }
+
+        .avatar-container.kelly-active {
+            background-image: url('/lesson-player-deploy/assets/avatars/kelly/kelly_neutral_default.png');
+        }
+
+        .debug-panel {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px;
+        }
+
+        .debug-panel h3 {
+            margin-top: 0;
+            color: #007AFF;
+        }
+
+        .debug-info {
+            margin: 10px 0;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 12px;
+        }
+
+        .debug-button {
+            background: #007AFF;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .debug-button:hover {
+            background: #0056CC;
+        }
+
+        .status {
+            margin-top: 10px;
+            padding: 10px;
+            background: rgba(0, 122, 255, 0.2);
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="debug-container">
+        <div id="avatar-container" class="avatar-container kelly-active"></div>
+        
+        <div class="debug-panel">
+            <h3>🔍 Avatar Debug Diagnostic</h3>
+            
+            <div class="debug-info" id="container-info">
+                <strong>Avatar Container:</strong><br>
+                ID: <span id="container-id">Loading...</span><br>
+                Classes: <span id="container-classes">Loading...</span><br>
+                Background: <span id="container-background">Loading...</span><br>
+                Z-Index: <span id="container-zindex">Loading...</span>
+            </div>
+            
+            <div class="debug-info" id="image-info">
+                <strong>Image Status:</strong><br>
+                Ken Image: <span id="ken-status">Loading...</span><br>
+                Kelly Image: <span id="kelly-status">Loading...</span>
+            </div>
+            
+            <div class="debug-info" id="css-info">
+                <strong>CSS Status:</strong><br>
+                Body Background: <span id="body-background">Loading...</span><br>
+                Container Position: <span id="container-position">Loading...</span><br>
+                Container Size: <span id="container-size">Loading...</span>
+            </div>
+            
+            <button class="debug-button" onclick="testImageLoading()">Test Image Loading</button>
+            <button class="debug-button" onclick="testCSSClasses()">Test CSS Classes</button>
+            <button class="debug-button" onclick="testBackgroundSystem()">Test Background System</button>
+            <button class="debug-button" onclick="switchAvatar()">Switch Avatar</button>
+            
+            <div class="status" id="status">Status: Ready for debugging</div>
+        </div>
+    </div>
+
+    <script>
+        function updateDebugInfo() {
+            const container = document.getElementById('avatar-container');
+            const computedStyle = window.getComputedStyle(container);
+            
+            // Container info
+            document.getElementById('container-id').textContent = container.id;
+            document.getElementById('container-classes').textContent = container.className;
+            document.getElementById('container-background').textContent = computedStyle.backgroundImage;
+            document.getElementById('container-zindex').textContent = computedStyle.zIndex;
+            
+            // CSS info
+            document.getElementById('body-background').textContent = window.getComputedStyle(document.body).background;
+            document.getElementById('container-position').textContent = computedStyle.position;
+            document.getElementById('container-size').textContent = `${computedStyle.width} x ${computedStyle.height}`;
+        }
+
+        function testImageLoading() {
+            updateStatus('Testing image loading...');
+            
+            const kenImage = new Image();
+            const kellyImage = new Image();
+            
+            kenImage.onload = () => {
+                document.getElementById('ken-status').textContent = '✅ Loaded';
+                updateStatus('Ken image loaded successfully');
+            };
+            kenImage.onerror = () => {
+                document.getElementById('ken-status').textContent = '❌ Failed';
+                updateStatus('Ken image failed to load');
+            };
+            kenImage.src = '/lesson-player-deploy/assets/avatars/ken/ken_neutral_default.png';
+            
+            kellyImage.onload = () => {
+                document.getElementById('kelly-status').textContent = '✅ Loaded';
+                updateStatus('Kelly image loaded successfully');
+            };
+            kellyImage.onerror = () => {
+                document.getElementById('kelly-status').textContent = '❌ Failed';
+                updateStatus('Kelly image failed to load');
+            };
+            kellyImage.src = '/lesson-player-deploy/assets/avatars/kelly/kelly_neutral_default.png';
+        }
+
+        function testCSSClasses() {
+            updateStatus('Testing CSS classes...');
+            const container = document.getElementById('avatar-container');
+            
+            console.log('Container classes:', container.className);
+            console.log('Has kelly-active:', container.classList.contains('kelly-active'));
+            console.log('Has ken-active:', container.classList.contains('ken-active'));
+            
+            updateStatus('CSS classes tested - check console for details');
+        }
+
+        function testBackgroundSystem() {
+            updateStatus('Testing background system...');
+            
+            // Simulate the background system
+            const avatarContainer = document.getElementById('avatar-container');
+            const wallpaper = '/lesson-player-deploy/assets/avatars/kelly/kelly_neutral_default.png';
+            
+            avatarContainer.style.backgroundImage = `url(${wallpaper})`;
+            avatarContainer.style.backgroundSize = 'cover';
+            avatarContainer.style.backgroundPosition = 'center';
+            
+            updateStatus('Background system applied - check if avatar is visible');
+        }
+
+        function switchAvatar() {
+            updateStatus('Switching avatar...');
+            const container = document.getElementById('avatar-container');
+            
+            if (container.classList.contains('kelly-active')) {
+                container.classList.remove('kelly-active');
+                container.classList.add('ken-active');
+                updateStatus('Switched to Ken');
+            } else {
+                container.classList.remove('ken-active');
+                container.classList.add('kelly-active');
+                updateStatus('Switched to Kelly');
+            }
+            
+            updateDebugInfo();
+        }
+
+        function updateStatus(message) {
+            document.getElementById('status').textContent = `Status: ${message}`;
+            console.log(`🔍 Debug: ${message}`);
+        }
+
+        // Initialize debug info
+        window.addEventListener('load', () => {
+            updateDebugInfo();
+            testImageLoading();
+            updateStatus('Debug diagnostic ready');
+        });
+
+        // Update debug info periodically
+        setInterval(updateDebugInfo, 2000);
+    </script>
+</body>
+</html> 

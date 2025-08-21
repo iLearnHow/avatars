@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iLearn How - Immersive UI v40 (Production)</title>
+    <script>
+    // Early global open shim (queues until real openModal is ready)
+    (function(){
+      if (!window.__mlOpen) {
+        window.__mlOpen = function(id){
+          window.__mlOpenQueue = window.__mlOpenQueue || [];
+          window.__mlOpenQueue.push(id);
+        };
+      }
+    })();
+    // Global early shim to avoid cached bundle errors before any scripts load
+    (function(){
+      try {
+        var P = (window.UniversalLessonPlayer && window.UniversalLessonPlayer.prototype) || null;
+        if (P && typeof P._makeInspectorsDraggable !== 'function') {
+          P._makeInspectorsDraggable = function(){};
+        }
+        // Ensure phase mapper exists for legacy bundles
+        if (P && typeof P.mapPhaseForContent !== 'function') {
+          P.mapPhaseForContent = function(phase){
+            try {
+              var direct = ['welcome','beginning','middle','end','wisdom'];
+              if (direct.indexOf(phase) !== -1) return phase;
+              var alias = { opening:'welcome', question_1:'beginning', question_2:'middle', question_3:'end', closing:'wisdom', fortune:'wisdom' };
+              return alias[phase] || phase;
+            } catch(_) { return phase; }
+          };
+        }
+        // Also define an idempotent helper on window to re-apply after the class attaches
+        if (!window.__ml_drag_shim_installed) {
+          window._mlEnsureDragShim = function(){
+            try {
+              var P2 = (window.UniversalLessonPlayer && window.UniversalLessonPlayer.prototype) || null;
+              if (P2 && typeof P2._makeInspectorsDraggable !== 'function') { P2._makeInspectorsDraggable = function(){}; }
+              if (P2 && typeof P2.mapPhaseForContent !== 'function') {
+                P2.mapPhaseForContent = function(phase){
+                  try {
+                    var direct = ['welcome','beginning','middle','end','wisdom'];
+                    if (direct.indexOf(phase) !== -1) return phase;
+                    var alias = { opening:'welcome', question_1:'beginning', question_2:'middle', question_3:'end', closing:'wisdom', fortune:'wisdom' };
+                    return alias[phase] || phase;
+                  } catch(_) { return phase; }
+                };
+              }
+            } catch(e){}
+          };
+          window.__ml_drag_shim_installed = true;
+        }
+      } catch(e){}
+    })();
+    </script>
+    <style>
+        :root {
+            --glass-bg: rgba(242, 242, 247, 0.8); --glass-blur: blur(50px);
+            --glass-border: 1px solid rgba(255, 255, 255, 0.6); --shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            --text-primary: #1d1d1f; --accent-blue: #007AFF; --icon-size: 44px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body, html { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif; overflow: hidden; height: 100vh; background-color: #fff; }
+        .immersive-container { position: relative; width: 100vw; height: 100vh; }
+        .avatar-background { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; z-index: 1; transition: background-image 0.5s ease-in-out; background-color: #e0e0e0; }
+        .avatar-background.kelly { background-image: url('/production-deploy/assets/avatars/kelly/optimized/base-states/kelly_neutral_default.png'); }
+        .avatar-background.ken { background-image: url('/production-deploy/assets/avatars/ken/ken_neutral_default.png'); }
+        .main-content-area, .ui-overlays { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        .ui-overlays { z-index: 10; pointer-events: none; }
+        .ui-overlays > * { pointer-events: auto; }
+        .phase { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; visibility: hidden; transition: opacity 0.5s ease-in-out; pointer-events: none; }
+        .phase.active { opacity: 1; visibility: visible; pointer-events: auto; }
+        .ios-panel { background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border-radius: 22px; border: var(--glass-border); box-shadow: var(--shadow); color: var(--text-primary); position: absolute; transition: all 0.3s ease; }
+        .content-note { font-weight: 500; font-size: 19px; max-width: 400px; padding: 22px 28px; }
+        .position-question-deck { top: 18%; right: 20px; }
+        .position-lower-deck { top: 45%; left: 50%; transform: translateX(-50%); width: 50%; max-width: 500px; display: flex; flex-direction: column; gap: 15px; background: transparent; box-shadow: none; backdrop-filter: none; border: none; align-items: center; }
+        .phase[data-question-side="left"] .position-lower-deck { left: 20px; transform: translateX(0); align-items: flex-start; }
+        .phase[data-question-side="right"] .position-lower-deck { right: 20px; left: auto; transform: translateX(0); align-items: flex-end; }
+        .position-centered-moment { top: 50%; left: 50%; transform: translate(-50%, -50%); }
+        .choice-note { cursor: pointer; transition: all 0.2s ease; padding: 18px 22px; }
+        .choice-note:hover { transform: scale(1.03); box-shadow: 0 12px 40px rgba(0,0,0,0.2); }
+        .choice-note.selected { border: 2px solid var(--accent-blue); background: rgba(0, 122, 255, 0.1); }
+        .inspector-panel { width: 360px; height: 380px; display: none; flex-direction: column; resize: both; overflow: hidden; z-index: 400; }
+        .inspector-panel.visible { display: flex; }
+        .inspector-header { padding: 10px 10px 10px 20px; cursor: grab; background: rgba(0,0,0,0.05); border-bottom: 1px solid rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; }
+        .inspector-header .pill-label { font-size: 13px; font-weight: 600; }
+        .inspector-close-btn { width: 28px; height: 28px; border: none; background: rgba(0,0,0,0.1); border-radius: 50%; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: background-color 0.2s; }
+        .inspector-close-btn:hover { background: rgba(0,0,0,0.2); }
+        .inspector-content { padding: 15px; flex-grow: 1; overflow-y: auto; }
+        .inspector-content pre { white-space: pre-wrap; word-wrap: break-word; font-size: 12px; }
+        #state-inspector { top: 20px; left: 20px; } #content-inspector { bottom: 20px; left: 20px; } #code-inspector { top: 20px; right: 20px; }
+        
+        .bottom-right-controls { position: fixed; z-index: 500; bottom: 20px; right: 20px; display: flex; align-items: flex-end; gap: 12px; }
+        .control-btn { width: var(--icon-size); height: var(--icon-size); border-radius: 50%; border: none; background: var(--glass-bg); backdrop-filter: var(--glass-blur); box-shadow: var(--shadow); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease-in-out; color: #333; }
+        .control-btn:hover { background: rgba(255,255,255,0.9); transform: scale(1.05); }
+        .control-btn.active { background: var(--accent-blue); color: white; }
+        .control-btn svg { width: 55%; height: 55%; stroke-width: 1.5; pointer-events: none; }
+        
+        .master-flyout-container { position: relative; }
+        .master-flyout-menu { position: absolute; bottom: calc(100% + 10px); right: 0; width: 300px; padding: 15px; display: flex; flex-direction: column; gap: 15px; opacity: 0; pointer-events: none; transform: translateY(10px); transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); }
+        .master-flyout-container.active .master-flyout-menu { opacity: 1; pointer-events: auto; transform: translateY(0); }
+        .flyout-section { display: flex; flex-direction: column; gap: 8px; }
+        .flyout-section-label { font-size: 12px; font-weight: 600; color: rgba(0,0,0,0.5); padding-left: 5px; }
+        .flyout-btn-group { display: flex; justify-content: space-around; background: rgba(0,0,0,0.05); border-radius: 12px; padding: 5px; }
+        .flyout-btn { flex-grow: 1; text-align: center; border: none; background: transparent; font-size: 15px; padding: 8px; border-radius: 9px; cursor: pointer; transition: background-color 0.2s; }
+        .flyout-btn.active { background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        
+        #read-along-player { 
+            position: fixed;
+            bottom: 20px; 
+            left: 20px; 
+            transform: none; 
+            width: 28%; 
+            max-width: 420px; 
+            min-width: 240px;
+            text-align: left; 
+            font-size: 14px; 
+            line-height: 1.25;
+            font-weight: 500; 
+            padding: 10px 14px;
+            background: rgba(0, 0, 0, 0.05);
+            color: #333;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 20;
+        }
+        .progress-bar-container { 
+            position: fixed; 
+            top: 50%; 
+            left: 30px; 
+            transform: translateY(-50%); 
+            width: auto;
+            z-index: 2; 
+        }
+        .progress-bar { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            position: relative; 
+            gap: 25px;
+        }
+        .progress-line { 
+            position: absolute; 
+            width: 2px; 
+            background-color: rgba(0,0,0,0.1); 
+            height: 100%; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            z-index: -1; 
+        }
+        .progress-line-fill { 
+            position: absolute; 
+            width: 2px; 
+            background-color: var(--accent-blue); 
+            height: 0%; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            z-index: -1; 
+            transition: height 0.4s ease-in-out; 
+        }
+        .progress-label-group { 
+            display: flex; 
+            align-items: center; 
+            cursor: pointer; 
+            width: 120px; /* Give it some width for the label */
+        }
+        .progress-step {
+            flex-shrink: 0; /* Prevent step from shrinking */
+        }
+        .progress-label { 
+            font-size: 12px; 
+            color: #888; 
+            margin-left: 15px; 
+            font-weight: 500; 
+            transition: color 0.3s; 
+        }
+        .progress-label-group.completed .progress-label { color: var(--text-primary); }
+        .progress-label-group.active .progress-label { color: var(--accent-blue); font-weight: 600; }
+        .progress-step { width: 12px; height: 12px; border-radius: 50%; background-color: rgba(255,255,255,0.4); transition: all 0.4s ease-in-out; }
+        .progress-step.active, .progress-step.completed { background-color: #fff; }
+        .progress-step.active { transform: scale(1.3); }
+                                                                              
+        /* Right-side vertical icon rail */
+        .right-icon-rail { position: fixed; top: 50%; right: 20px; transform: translateY(-50%); z-index: 2000; display: flex; flex-direction: column; gap: 12px; pointer-events: auto; visibility: hidden; opacity: 0; transition: opacity .2s ease; }
+        .rail-btn { pointer-events: auto; }
+        .rail-btn { width: var(--icon-size); height: var(--icon-size); border-radius: 14px; border: none; background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); box-shadow: var(--shadow); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease-in-out; color: #333; }
+        .rail-btn:hover { background: rgba(255,255,255,0.9); transform: translateY(-1px); }
+        .rail-btn.active { background: var(--accent-blue); color: white; }
+
+        /* Panels / Modals */
+        .modal-overlay { position: fixed; inset: 0; background: transparent; display: none; z-index: 1500; }
+        .modal-overlay.visible { display: flex; }
+        .modal-card { width: min(360px, 92vw); max-height: 78vh; overflow: auto; border-radius: 16px; border: var(--glass-border); background: var(--glass-bg); box-shadow: var(--shadow); padding: 16px; position: fixed; }
+        .modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+        .modal-title { font-weight: 700; font-size: 18px; }
+        .modal-close { border: none; background: rgba(0,0,0,0.08); border-radius: 10px; padding: 6px 10px; cursor: pointer; }
+        .search-input { width: 100%; padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(0,0,0,0.1); font-size: 16px; }
+        .result-item { padding: 10px 12px; border-radius: 12px; cursor: pointer; transition: background 0.15s; }
+        .result-item:hover { background: rgba(255,255,255,0.8); }
+        .pill { display: inline-block; background: rgba(0,0,0,0.06); padding: 6px 10px; border-radius: 999px; font-size: 12px; margin-right: 6px; }
+        .row { display: flex; gap: 10px; flex-wrap: wrap; }
+        .row .pill { margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+    <div class="immersive-container">
+        <div id="start-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); display: flex; align-items: center; justify-content: center; z-index: 2500; pointer-events: auto;">
+            <div class="ios-panel" style="padding:22px 26px; border-radius:20px; display:flex; flex-direction:column; gap:10px; align-items:center; pointer-events: auto;">
+                <div style="font-weight:700; font-size:18px;" id="start-lesson-title">Today’s Lesson</div>
+                <div style="opacity:0.8; font-size:14px;" id="start-lesson-sub">Loading…</div>
+                <button id="start-lesson-btn" style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif; font-size: 22px; font-weight: 600; padding: 14px 28px; border-radius: 14px; border: none; background: #007AFF; color: #fff; cursor: pointer; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2); transition: transform 0.2s;">Start Lesson</button>
+            </div>
+        </div>
+        <div id="avatar-background" class="avatar-background kelly"></div>
+        <div class="main-content-area">
+            <!-- Persistent Question Area -->
+            <div id="persistent-question-container" class="ios-panel content-note position-question-deck" style="visibility: hidden;"></div>
+
+            <div class="phase" id="welcome-phase">
+                <div class="ios-panel content-note position-right-shoulder" id="welcome-content">
+                    <div id="lesson-title" style="font-weight:700; font-size:22px; margin-bottom:8px;">Lesson</div>
+                    <div id="lesson-preview" style="opacity:0.85;"></div>
+                </div>
+            </div>
+            
+            <div class="phase" id="beginning-phase" data-question-side="center">
+                <div class="ios-panel position-lower-deck">
+                    <div style="font-weight:600; margin-bottom:6px;" class="question-text" id="beginning-question"></div>
+                    <div class="choice-note choice-a" id="beginning-choice-a"><div class="choice-text"></div><div class="teaching-moment" style="display:none; margin-top:6px; opacity:0.9;"></div></div>
+                    <div class="choice-note choice-b" id="beginning-choice-b"><div class="choice-text"></div><div class="teaching-moment" style="display:none; margin-top:6px; opacity:0.9;"></div></div>
+                </div>
+            </div>
+            <div class="phase" id="middle-phase" data-question-side="center">
+                <div class="ios-panel position-lower-deck">
+                    <div style="font-weight:600; margin-bottom:6px;" class="question-text" id="middle-question"></div>
+                    <div class="choice-note choice-a" id="middle-choice-a"><div class="choice-text"></div><div class="teaching-moment" style="display:none; margin-top:6px; opacity:0.9;"></div></div>
+                    <div class="choice-note choice-b" id="middle-choice-b"><div class="choice-text"></div><div class="teaching-moment" style="display:none; margin-top:6px; opacity:0.9;"></div></div>
+                </div>
+            </div>
+            <div class="phase" id="end-phase" data-question-side="center">
+                <div class="ios-panel position-lower-deck">
+                    <div style="font-weight:600; margin-bottom:6px;" class="question-text" id="end-question"></div>
+                    <div class="choice-note choice-a" id="end-choice-a"><div class="choice-text"></div><div class="teaching-moment" style="display:none; margin-top:6px; opacity:0.9;"></div></div>
+                    <div class="choice-note choice-b" id="end-choice-b"><div class="choice-text"></div><div class="teaching-moment" style="display:none; margin-top:6px; opacity:0.9;"></div></div>
+                </div>
+            </div>
+
+            <div class="phase" id="wisdom-phase" data-question-side="right">
+                <div class="ios-panel content-note position-right-shoulder" id="wisdom-content">
+                    <div id="daily-fortune"></div>
+                </div>
+            </div>
+            <div class="phase" id="teaching-moment-phase"><div class="ios-panel content-note position-centered-moment" id="teaching-moment-content"></div></div>
+        </div>
+        <div class="ui-overlays">
+            <!-- Toast container -->
+            <div id="toast" class="ios-panel" style="position:fixed; left:50%; transform:translateX(-50%); bottom:30px; padding:10px 14px; display:none; z-index:1001; font-size:13px;"></div>
+            <div id="state-inspector" class="ios-panel inspector-panel"><div class="inspector-header"><span class="pill-label">Live State</span><button class="inspector-close-btn" data-inspector="state-inspector">&times;</button></div><div class="inspector-content"><pre id="state-inspector-content"></pre></div></div>
+            <div id="content-inspector" class="ios-panel inspector-panel"><div class="inspector-header"><span class="pill-label">Content Inspector</span><button class="inspector-close-btn" data-inspector="content-inspector">&times;</button></div><div class="inspector-content"><pre id="content-inspector-content"></pre></div></div>
+            <div id="code-inspector" class="ios-panel inspector-panel"><div class="inspector-header"><span class="pill-label">Lesson DNA</span><button class="inspector-close-btn" data-inspector="code-inspector">&times;</button></div><div class="inspector-content"><pre id="code-inspector-content"></pre></div></div>
+            <div class="progress-bar-container">
+                <div class="progress-bar">
+                    <div class="progress-line"></div>
+                    <div class="progress-line-fill" id="progress-line-fill"></div>
+                    <div class="progress-label-group" data-phase="0"><div class="progress-step" id="progress-step-0"></div><span class="progress-label">Welcome</span></div>
+                    <div class="progress-line-connector"></div>
+                    <div class="progress-label-group" data-phase="1"><div class="progress-step" id="progress-step-1"></div><span class="progress-label">Beginning</span></div>
+                    <div class="progress-line-connector"></div>
+                    <div class="progress-label-group" data-phase="2"><div class="progress-step" id="progress-step-2"></div><span class="progress-label">Middle</span></div>
+                    <div class="progress-line-connector"></div>
+                    <div class="progress-label-group" data-phase="3"><div class="progress-step" id="progress-step-3"></div><span class="progress-label">End</span></div>
+                    <div class="progress-line-connector"></div>
+                    <div class="progress-label-group" data-phase="4"><div class="progress-step" id="progress-step-4"></div><span class="progress-label">Wisdom</span></div>
+                </div>
+            </div>
+            <div id="read-along-player" class="ios-panel"></div>
+            <div class="bottom-right-controls">
+                <div class="master-flyout-container">
+                    <button class="control-btn" id="master-trigger"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" /></svg></button>
+                    <div class="master-flyout-menu ios-panel">
+                        <div class="flyout-section" id="avatar-controls"><span class="flyout-section-label">Avatar</span><div class="flyout-btn-group"><button class="flyout-btn" data-avatar="kelly">Kelly</button><button class="flyout-btn" data-avatar="ken">Ken</button></div></div>
+                        <div class="flyout-section" id="tone-controls"><span class="flyout-section-label">Tone</span><div class="flyout-btn-group"><button class="flyout-btn" data-tone="neutral">Neutral</button><button class="flyout-btn" data-tone="fun">Fun</button><button class="flyout-btn" data-tone="grandmother">Grandma</button></div></div>
+                        <div class="flyout-section" id="age-controls"><span class="flyout-section-label">Age</span><div class="flyout-btn-group"><button class="flyout-btn" data-age="infant">Infant</button><button class="flyout-btn" data-age="toddler">Toddler</button><button class="flyout-btn" data-age="early_childhood">5-7</button><button class="flyout-btn" data-age="middle_childhood">8-10</button><button class="flyout-btn" data-age="pre_teen">Pre-teen</button></div></div>
+                        <div class="flyout-section" id="age-controls-2"><div class="flyout-btn-group"><button class="flyout-btn" data-age="teen">Teen</button><button class="flyout-btn" data-age="young_adult">Young Adult</button><button class="flyout-btn" data-age="adult">Adult</button><button class="flyout-btn" data-age="middle_age">Middle Age</button><button class="flyout-btn" data-age="senior">Senior</button><button class="flyout-btn" data-age="elder">Elder</button></div></div>
+                        <div class="flyout-section" id="media-controls"><span class="flyout-section-label">Media</span><div class="flyout-btn-group"><button class="flyout-btn" id="play-pause">Play/Pause</button><button class="flyout-btn" id="volume-up">Vol +</button><button class="flyout-btn" id="volume-down">Vol -</button></div></div>
+                        <div class="flyout-section" id="progress-controls"><span class="flyout-section-label">Progress</span><div class="flyout-btn-group"><button class="flyout-btn" id="save-progress">Save</button><button class="flyout-btn" id="load-progress">Load</button></div></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Right-side rail (shadow component) -->
+            <div id="legacy-rail" style="display:none"></div>
+            <ml-rail id="ml-rail" style="position:fixed; top:50%; right:20px; transform:translateY(-50%); z-index:2000; visibility:hidden; opacity:0;"></ml-rail>
+        </div>
+    </div>
+
+    <!-- Live Modal -->
+    <div class="modal-overlay" id="live-modal">
+        <div class="modal-card">
+            <div class="modal-header"><div class="modal-title">Live Class</div><button class="modal-close" data-close="live-modal">Close</button></div>
+            <div id="live-countdown" class="pill">Starting in: --:--</div>
+            <div style="margin-top:10px; opacity:0.85">At the top of the hour, the live class will automatically start.</div>
+            <div style="margin-top:14px;" class="row"><button class="pill" id="start-live-now">Start Now</button></div>
+        </div>
+    </div>
+
+    <!-- Find Modal -->
+    <div class="modal-overlay" id="find-modal">
+        <div class="modal-card">
+            <div class="modal-header"><div class="modal-title">Find a Daily Lesson</div><button class="modal-close" data-close="find-modal">Close</button></div>
+            <input id="find-input" class="search-input" placeholder="Search 366 topics by title..."/>
+            <div id="find-results" style="margin-top:12px;"></div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="modal-overlay" id="settings-modal">
+        <div class="modal-card">
+            <div class="modal-header"><div class="modal-title">Settings</div><button class="modal-close" data-close="settings-modal">Close</button></div>
+            <div style="display:flex; gap:16px; flex-wrap:wrap;">
+                <div style="flex:1; min-width:260px;">
+                    <div class="pill" style="margin-bottom:8px;">Account</div>
+                    <div style="display:flex; flex-direction:column; gap:8px;">
+                        <input id="login-username" class="search-input" placeholder="Username"/>
+                        <input id="login-password" class="search-input" placeholder="Password" type="password"/>
+                        <div class="row"><button class="pill" id="btn-login">Login</button><button class="pill" id="btn-register">Register</button><button class="pill" id="btn-logout">Logout</button></div>
+                        <div id="auth-status" style="font-size:13px; opacity:0.8;"></div>
+                    </div>
+                </div>
+                <div style="flex:1; min-width:260px;">
+                    <div class="pill" style="margin-bottom:8px;">Preferences</div>
+                    <div class="row">
+                        <span class="pill" data-avatar="kelly">Avatar: Kelly</span>
+                        <span class="pill" data-avatar="ken">Avatar: Ken</span>
+                        <span class="pill" data-tone="neutral">Tone: Neutral</span>
+                        <span class="pill" data-tone="fun">Tone: Fun</span>
+                        <span class="pill" data-tone="grandmother">Tone: Grandma</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Calendar Modal -->
+    <div class="modal-overlay" id="calendar-modal">
+        <div class="modal-card">
+            <div class="modal-header"><div class="modal-title">Calendar</div><button class="modal-close" data-close="calendar-modal">Close</button></div>
+            <div class="row" style="margin-bottom:10px;">
+                <button class="pill" id="go-yesterday">Yesterday</button>
+                <button class="pill" id="go-today">Today</button>
+                <button class="pill" id="go-tomorrow">Tomorrow</button>
+            </div>
+            <div id="calendar-results"></div>
+        </div>
+    </div>
+
+    <!-- Language Modal -->
+    <div class="modal-overlay" id="language-modal">
+        <div class="modal-card">
+            <div class="modal-header"><div class="modal-title">Language</div><button class="modal-close" data-close="language-modal">Close</button></div>
+            <div class="row" id="language-options">
+                <span class="pill" data-language="english" title="English is available for all demo lessons">English</span>
+                <span class="pill" data-language="spanish" title="Spanish available where PhaseDNA is authored">Spanish</span>
+                <span class="pill" data-language="french" title="French available where PhaseDNA is authored">French</span>
+            </div>
+            <div style="opacity:0.75; font-size:13px; margin-top:8px;">Languages available depend on the selected lesson DNA.</div>
+        </div>
+    </div>
+
+    <!-- Tone Modal -->
+    <div class="modal-overlay" id="tone-modal">
+        <div class="modal-card">
+            <div class="modal-header"><div class="modal-title">Tone</div><button class="modal-close" data-close="tone-modal">Close</button></div>
+            <div class="row" id="tone-options">
+                <span class="pill" data-tone="grandmother">Grandmother</span>
+                <span class="pill" data-tone="fun">Fun</span>
+                <span class="pill" data-tone="neutral">Neutral</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Avatar Modal -->
+    <div class="modal-overlay" id="avatar-modal">
+        <div class="modal-card">
+            <div class="modal-header"><div class="modal-title">Avatar</div><button class="modal-close" data-close="avatar-modal">Close</button></div>
+            <div class="row" id="avatar-options">
+                <span class="pill" data-avatar="kelly">Kelly</span>
+                <span class="pill" data-avatar="ken">Ken</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Age Modal -->
+    <div class="modal-overlay" id="age-modal">
+        <div class="modal-card">
+            <div class="modal-header"><div class="modal-title">Age</div><button class="modal-close" data-close="age-modal">Close</button></div>
+            <div class="row" id="age-options">
+                <span class="pill" data-age="age_2">2</span>
+                <span class="pill" data-age="age_5">5</span>
+                <span class="pill" data-age="age_8">8</span>
+                <span class="pill" data-age="age_12">12</span>
+                <span class="pill" data-age="age_16">16</span>
+                <span class="pill" data-age="age_25">25</span>
+                <span class="pill" data-age="age_40">40</span>
+                <span class="pill" data-age="age_60">60</span>
+                <span class="pill" data-age="age_80">80</span>
+                <span class="pill" data-age="age_102">102</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Speed Modal -->
+    <div class="modal-overlay" id="speed-modal">
+        <div class="modal-card">
+            <div class="modal-header"><div class="modal-title">Playback Speed</div><button class="modal-close" data-close="speed-modal">Close</button></div>
+            <div class="row" id="speed-options">
+                <span class="pill" data-speed="0.8">0.8x</span>
+                <span class="pill" data-speed="1.0">1.0x</span>
+                <span class="pill" data-speed="1.25">1.25x</span>
+                <span class="pill" data-speed="1.5">1.5x</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Controls Modal (quick nav) -->
+    <div class="modal-overlay" id="controls-modal">
+        <div class="modal-card">
+            <div class="modal-header"><div class="modal-title">Controls</div><button class="modal-close" data-close="controls-modal">Close</button></div>
+            <div class="row"><button class="pill" id="prev-btn">Prev</button><button class="pill" id="next-btn">Next</button><button class="pill" id="restart-btn">Restart</button><button class="pill" id="run-evals">Run Evals</button></div>
+        </div>
+    </div>
+
+    <!-- Hidden audio element for ElevenLabs playback -->
+    <audio id="tts-audio" preload="auto" style="display:none;"></audio>
+    <!-- Core systems: use existing architecture -->
+    <script src="/complete-elevenlabs-integration.js?v=20250811a"></script>
+    <script src="/dna-file-loader.js?v=20250811a"></script>
+    <script src="/complete-curriculum.js?v=20250811a"></script>
+    <script src="/corrected-variant-generator-v2.js?v=20250811a"></script>
+    <script src="/complete-lesson-player.js?v=20250811a" onload="window._mlEnsureDragShim && window._mlEnsureDragShim()"></script>
+    <!-- Rail Web Component -->
+    <script>
+      (function(){
+        class MlRail extends HTMLElement{
+          constructor(){ super(); this._s = this.attachShadow({mode:'open'}); }
+          connectedCallback(){
+            const root = document.createElement('div');
+            root.style.cssText = 'display:flex; flex-direction:column; gap:12px;';
+            const makeBtn = (id, label) => { const b=document.createElement('button'); b.id=id; b.textContent=label; b.title=label; b.setAttribute('data-modal-anchor','1'); b.style.cssText='width:44px;height:44px;border-radius:14px;border:none;background:rgba(255,255,255,0.8);box-shadow:0 10px 40px rgba(0,0,0,0.2);cursor:pointer'; return b; };
+            const map = [
+              ['icon-live','🟢','live-modal'], ['icon-find','🔎','find-modal'], ['icon-settings','⚙️','settings-modal'], ['icon-calendar','📅','calendar-modal'],
+              ['icon-model','🧑‍🏫','avatar-modal'], ['icon-tone','🎚️','tone-modal'], ['icon-language','🌍','language-modal'], ['icon-age','🎯','age-modal'], ['icon-speed','⏩','speed-modal'], ['icon-controls','🎛️','controls-modal']
+            ];
+            map.forEach(([id,emoji,modal])=>{ const btn=makeBtn(id,emoji); btn.dataset.modal=modal; root.appendChild(btn); });
+            this._s.appendChild(root);
+            this._s.addEventListener('click',(e)=>{
+              const btn = e.target.closest('button'); if (!btn) return;
+              const m = btn.dataset.modal; if (!m) return;
+              let r=null; try { r=btn.getBoundingClientRect(); } catch {}
+              try { this.dispatchEvent(new CustomEvent('ml:open', { detail:{ modal:m, rect:{ x:r?.x, y:r?.y, width:r?.width, height:r?.height } }, bubbles:true, composed:true })); } catch {}
+              if (window.__mlOpen) window.__mlOpen(m, r);
+            });
+          }
+        }
+        customElements.define('ml-rail', MlRail);
+      })();
+    </script>
+    <!-- Diagnostics overlay (enable with ?debug=1) -->
+    <div id="ui-diagnostics" style="position:fixed; top:12px; left:12px; z-index:3000; background:rgba(0,0,0,0.6); color:#fff; padding:8px 10px; border-radius:8px; font:12px/1.3 -apple-system, BlinkMacSystemFont; display:none; max-width:40vw; pointer-events:none;"></div>
+    <script>
+      // Safety guard: ensure draggable method exists even if an older cached bundle calls it
+      (function(){
+        try {
+          if (window.UniversalLessonPlayer && !window.UniversalLessonPlayer.prototype._makeInspectorsDraggable) {
+            window.UniversalLessonPlayer.prototype._makeInspectorsDraggable = function(){};
+          }
+        } catch(e) { /* no-op */ }
+      })();
+    </script>
+
+    <!-- Required containers for the universal player (kept minimal within existing layout) -->
+    <div id="avatar-container" style="position:absolute; inset:0; background-size:cover; background-position:center; z-index:1; display:none;"></div>
+    <div id="lesson-content-overlay" style="position:absolute; inset:0; display:none; z-index:12;">
+        <div id="lesson-content" class="ios-panel content-note position-centered-moment" style="display:none;">
+            <div class="current-phase-label" style="font-weight:700; margin-bottom:6px;"></div>
+            <div id="lesson-text"></div>
+            <div class="phase-content question-content hidden" style="margin-top:10px;">
+                <div class="question-label" style="font-weight:600; margin-bottom:6px;"></div>
+                <div class="choices-container" style="display:flex; flex-direction:column; gap:10px;"></div>
+            </div>
+            <div class="choice-feedback hidden"></div>
+        </div>
+    </div>
+    <div id="variant-badges" class="ios-panel" style="position:absolute; top:12px; right:90px; padding:8px 10px; display:block; z-index:15; font-size:12px;"></div>
+    <div id="calendar-overlay" style="position:absolute; top:10%; right:90px; width:340px; max-height:70vh; overflow:auto; display:none; z-index:15;" class="ios-panel">
+        <div id="calendar-grid" style="display:grid; grid-template-columns: repeat(7, 1fr); gap:6px; padding:10px;"></div>
+    </div>
+    <div id="tone-overlay" class="ios-panel" style="position:absolute; top:20%; right:90px; padding:10px; display:none; z-index:15;">
+        <select id="tone-select"><option value="grandmother">Grandmother</option><option value="fun">Fun</option><option value="neutral" selected>Neutral</option></select>
+    </div>
+    <div id="avatar-overlay" class="ios-panel" style="position:absolute; top:28%; right:90px; padding:10px; display:none; z-index:15;">
+        <select id="avatar-select"><option value="kelly" selected>Kelly</option><option value="ken">Ken</option></select>
+    </div>
+    <div id="language-overlay" class="ios-panel" style="position:absolute; top:36%; right:90px; padding:10px; display:none; z-index:15;">
+        <select id="language-select"><option value="english" selected>English</option><option value="spanish">Spanish</option><option value="french">French</option></select>
+    </div>
+    <div id="age-overlay" class="ios-panel" style="position:absolute; top:44%; right:90px; padding:10px; display:none; z-index:15;">
+        <select id="age-select">
+            <option value="age_2">2</option><option value="age_5">5</option><option value="age_8">8</option><option value="age_12">12</option><option value="age_16">16</option>
+            <option value="age_25" selected>25</option><option value="age_40">40</option><option value="age_60">60</option><option value="age_80">80</option><option value="age_102">102</option>
+        </select>
+    </div>
+    <div style="position:fixed; left:30px; bottom:24px; z-index:20; display:flex; align-items:center; gap:10px;">
+        <button id="play-btn" class="pill">▶️</button>
+        <div style="width:200px; height:6px; background:rgba(0,0,0,0.1); border-radius:6px; overflow:hidden;">
+            <div id="progress-fill" style="height:100%; width:0%; background:var(--accent-blue);"></div>
+        </div>
+        <input id="volume-slider" type="range" min="0" max="100" value="50"/>
+    </div>
+
+    <!-- Data source mapping: DNA by day (Sun, Moon, Ocean) and Puppies compatibility -->
+    <script>
+    window.getDNALessonData = async function(day) {
+        try {
+            const lang = (window.lessonPlayer?.currentVariant?.language || 'english');
+            const langCode = lang === 'spanish' ? 'es' : (lang === 'french' ? 'fr' : 'en');
+            // Day mappings based on January curriculum
+            if (day === 1) { // Sun
+                // PhaseDNA v1 preferred by language
+                let res = await fetch(`/data/the-sun.${langCode}.phased.json`); if (res.ok) return await res.json();
+                if (langCode !== 'en') { res = await fetch('/data/the-sun.en.phased.json'); if (res.ok) return await res.json(); }
+                // Legacy
+                res = await fetch('/data/sun_normalized.json'); if (res.ok) return await res.json();
+                res = await fetch('/dna-templates/the-sun.json'); if (res.ok) return await res.json();
+            }
+            if (day === 10) { // Moon
+                let res = await fetch(`/data/the-moon.${langCode}.phased.json`); if (res.ok) return await res.json();
+                if (langCode !== 'en') { res = await fetch('/data/the-moon.en.phased.json'); if (res.ok) return await res.json(); }
+                res = await fetch('/data/moon_normalized.json'); if (res.ok) return await res.json();
+                res = await fetch('/data/the-moon.json'); if (res.ok) return await res.json();
+            }
+            if (day === 24) { // Oceans
+                let res = await fetch(`/data/earths-magnificent-oceans.${langCode}.phased.json`); if (res.ok) return await res.json();
+                if (langCode !== 'en') { res = await fetch('/data/earths-magnificent-oceans.en.phased.json'); if (res.ok) return await res.json(); }
+                res = await fetch('/data/ocean_normalized.json'); if (res.ok) return await res.json();
+            }
+            // Puppies special-case using phases JSON -> simple DNA
+            const qp = new URLSearchParams(location.search);
+            if (qp.get('topic') === 'puppies') {
+                let res = await fetch(`/data/puppies.${langCode}.phased.json`);
+                if (res.ok) return await res.json();
+                if (langCode !== 'en') { res = await fetch('/data/puppies.en.phased.json'); if (res.ok) return await res.json(); }
+                res = await fetch('/data/puppies_normalized.json');
+                if (res.ok) return await res.json();
+                res = await fetch('/lessons/puppies-lesson-final.json');
+                if (res.ok) {
+                    const j = await res.json();
+                    const q1 = j.phases.find(p=>p.type==='beginning');
+                    const q2 = j.phases.find(p=>p.type==='middle')||q1; const q3 = j.phases.find(p=>p.type==='end')||q1;
+                    return {
+                        lesson_metadata: { lesson_id: 'puppies', day: 0, universal_concept: j.title, learning_essence: j.objective || '' },
+                        age_expressions: { '25': { concept_name: { neutral: { display_text: j.title, voice_over_script: j.title } } } },
+                        core_lesson_structure: {
+                            question_1: { concept_focus: 'Care', ages: { '25': { question: { neutral: { display_text: q1?.question_text || '' } }, option_a: { display_text: q1?.choices?.option_a?.text || '' }, option_b: { display_text: q1?.choices?.option_b?.text || '' }, teaching_moments: { option_a_response: q1?.choices?.option_a?.teaching_moment?.neutral?.young_adult || '', option_b_response: q1?.choices?.option_b?.teaching_moment?.neutral?.young_adult || '' } } } },
+                            question_2: { concept_focus: 'Training', ages: { '25': { question: { neutral: { display_text: q2?.question_text || '' } }, option_a: { display_text: q2?.choices?.option_a?.text || '' }, option_b: { display_text: q2?.choices?.option_b?.text || '' }, teaching_moments: { option_a_response: q2?.choices?.option_a?.teaching_moment?.neutral?.young_adult || '', option_b_response: q2?.choices?.option_b?.teaching_moment?.neutral?.young_adult || '' } } } },
+                            question_3: { concept_focus: 'Bond', ages: { '25': { question: { neutral: { display_text: q3?.question_text || '' } }, option_a: { display_text: q3?.choices?.option_a?.text || '' }, option_b: { display_text: q3?.choices?.option_b?.text || '' }, teaching_moments: { option_a_response: q3?.choices?.option_a?.teaching_moment?.neutral?.young_adult || '', option_b_response: q3?.choices?.option_b?.teaching_moment?.neutral?.young_adult || '' } } } }
+                        },
+                        wisdom_phase_content: { fortune: { neutral: { display_text: 'Puppies learn with love and patience.', voice_over_script: 'Puppies learn with love and patience.' } } }
+                    };
+                }
+            }
+            return null;
+        } catch(e) { console.warn('getDNALessonData failed', e); return null; }
+    };
+
+    // Initialize the universal lesson player
+    window.addEventListener('DOMContentLoaded', () => {
+        window.lessonPlayer = new UniversalLessonPlayer();
+        // Populate start overlay with day + title and reveal rail after start
+        window.addEventListener('ml:lesson_loaded', ()=>{
+            try {
+                const day = window.lessonPlayer?.selectedDay || window.lessonPlayer?.currentDay;
+                const meta = window.COMPLETE_CURRICULUM?.[day];
+                const titleEl = document.getElementById('start-lesson-title');
+                const subEl = document.getElementById('start-lesson-sub');
+                if (titleEl && meta?.title) titleEl.textContent = meta.title;
+                if (subEl) subEl.textContent = `Day ${day}`;
+            } catch {}
+        });
+        const startOverlay = document.getElementById('start-overlay');
+        const railEl = document.getElementById('ml-rail');
+        document.getElementById('start-lesson-btn')?.addEventListener('click', ()=>{
+            // Strict sequence: 1) avatar visible (already), 2) start lesson, 3) reveal rail
+            window.lessonPlayer?.startUniversalLesson();
+            if (startOverlay) startOverlay.style.display = 'none';
+            // Delay rail reveal slightly to avoid any initial content flash
+            setTimeout(()=>{ if (railEl) { railEl.style.visibility='visible'; railEl.style.opacity='1'; } }, 150);
+        });
+
+        // ElevenLabs key is auto-provisioned by integration if missing
+
+        // Unified rail event delegation
+        const rail = document.getElementById('right-icon-rail');
+        if (rail) {
+            rail.addEventListener('click', (e)=>{
+                const btn = e.target.closest('.rail-btn');
+                if (!btn) return;
+                const modalId = btn.getAttribute('data-modal');
+                if (modalId) openModal(modalId);
+            });
+            rail.addEventListener('dblclick', (e)=>{
+                const btn = e.target.closest('#icon-live');
+                if (btn) window.lessonPlayer?.togglePlayback();
+            });
+        }
+
+        // Toast helper
+        window.__ml_toast = function(msg, timeoutMs){ try { const t=document.getElementById('toast'); if(!t) return; t.textContent=String(msg||''); t.style.display='block'; clearTimeout(window.__ml_toast_timer); window.__ml_toast_timer=setTimeout(()=>{ t.style.display='none'; }, Math.max(1500, timeoutMs||2500)); } catch(e){} };
+
+        // Diagnostics
+        const qp = new URLSearchParams(location.search);
+        const dbg = qp.get('debug') === '1';
+        const dbgDiv = document.getElementById('ui-diagnostics');
+        function dbgLog(obj){ if (!dbg || !dbgDiv) return; dbgDiv.style.display='block'; dbgDiv.textContent = `[${new Date().toLocaleTimeString()}]\n` + JSON.stringify(obj, null, 2); }
+
+        // Overlay Manager with one‑modal policy and focus trap
+        let __activeModal = null; let __lastFocus = null;
+        function trapFocus(e){
+            if (!__activeModal || e.key !== 'Tab') return;
+            const focusables = __activeModal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+            if (!focusables.length) return;
+            const first = focusables[0]; const last = focusables[focusables.length-1];
+            if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+            else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
+        const modalIconMap = {
+            'live-modal': 'icon-live',
+            'find-modal': 'icon-find',
+            'settings-modal': 'icon-settings',
+            'calendar-modal': 'icon-calendar',
+            'language-modal': 'icon-language',
+            'speed-modal': 'icon-speed',
+            'controls-modal': 'icon-controls'
+        };
+        function setActiveIconForModal(id){
+            document.querySelectorAll('.right-icon-rail .rail-btn').forEach(b=>b.classList.remove('active'));
+            const iconId = modalIconMap[id];
+            if (iconId) document.getElementById(iconId)?.classList.add('active');
+        }
+        function openModal(id, anchorRect){
+            document.querySelectorAll('.modal-overlay.visible').forEach(el=>el.classList.remove('visible'));
+            const el = document.getElementById(id); if (!el) return;
+            __activeModal = el; __lastFocus = document.activeElement;
+            el.classList.add('visible'); el.setAttribute('aria-modal','true'); el.setAttribute('role','dialog');
+            // Anchor next to rail icon if rect provided
+            try {
+                const card = el.querySelector('.modal-card');
+                if (card && anchorRect) {
+                    card.style.top = `${Math.max(12, anchorRect.y - 10)}px`;
+                    card.style.right = `76px`;
+                    card.style.left = 'auto';
+                }
+            } catch {}
+            const focusTarget = el.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+            setTimeout(()=> focusTarget?.focus(), 0);
+            document.addEventListener('keydown', trapFocus);
+            setActiveIconForModal(id);
+            try { document.body.style.overflow='hidden'; } catch(e){}
+        }
+        // global open helper for static onclicks (flush queued open requests)
+        window.__mlOpen = openModal;
+        try {
+            if (Array.isArray(window.__mlOpenQueue)) {
+                const q = window.__mlOpenQueue.slice();
+                window.__mlOpenQueue.length = 0;
+                q.forEach(id=> openModal(id));
+            }
+        } catch {}
+        function clearActiveIcons(){ document.querySelectorAll('.right-icon-rail .rail-btn').forEach(b=>b.classList.remove('active')); }
+        function closeById(id){ const el = document.getElementById(id); if(!el) return; el.classList.remove('visible'); if (__activeModal===el){ document.removeEventListener('keydown', trapFocus); __activeModal=null; __lastFocus?.focus?.(); } clearActiveIcons(); try { document.body.style.overflow='auto'; } catch(e){} }
+        function closeAllModals(){ document.querySelectorAll('.modal-overlay.visible').forEach(el=>el.classList.remove('visible')); document.removeEventListener('keydown', trapFocus); __activeModal=null; clearActiveIcons(); try { document.body.style.overflow='auto'; } catch(e){} }
+        document.querySelectorAll('.modal-overlay').forEach(el=> el.addEventListener('click', (e)=>{ if (e.target===el) closeAllModals(); }));
+        document.addEventListener('keydown', (e)=>{ if (e.key==='Escape') closeAllModals(); });
+        // Shadow DOM safety net: global click catcher for any element with data-modal in composed path
+        document.addEventListener('click', (e)=>{
+            try {
+                const path = e.composedPath && e.composedPath();
+                if (!Array.isArray(path)) return;
+                const hostBtn = path.find(n => n && n.dataset && n.dataset.modal);
+                if (hostBtn && typeof hostBtn.dataset.modal === 'string') {
+                    const rect = hostBtn.getBoundingClientRect?.();
+                    dbgLog({event:'click', targetModal: hostBtn.dataset.modal, rect});
+                    openModal(hostBtn.dataset.modal, rect);
+                }
+            } catch {}
+        }, true);
+        // already wired above
+
+        // Live countdown modal
+        document.getElementById('icon-live')?.addEventListener('click', () => openModal('live-modal'));
+        function updateCountdown(){
+            const now = new Date();
+            const nextHour = new Date(now);
+            nextHour.setMinutes(0,0,0);
+            if (now.getMinutes() !== 0 || now.getSeconds() !== 0) nextHour.setHours(nextHour.getHours()+1);
+            const diff = Math.max(0, nextHour - now);
+            const m = String(Math.floor(diff/60000)).padStart(2,'0');
+            const s = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+            const el = document.getElementById('live-countdown'); if (el) el.textContent = `Starting in: ${m}:${s}`;
+        }
+        setInterval(updateCountdown, 1000); updateCountdown();
+        document.getElementById('start-live-now')?.addEventListener('click', ()=>{ closeById('live-modal'); window.lessonPlayer?.startUniversalLesson(); });
+
+        // Master menu toggle
+        document.getElementById('master-trigger')?.addEventListener('click', () => {
+            document.querySelector('.master-flyout-container')?.classList.toggle('active');
+        });
+
+        // Controls modal actions
+        document.getElementById('prev-btn')?.addEventListener('click', ()=> window.lessonPlayer?.previousPhase());
+        document.getElementById('next-btn')?.addEventListener('click', ()=> window.lessonPlayer?.nextPhase());
+        document.getElementById('restart-btn')?.addEventListener('click', ()=> window.lessonPlayer?.restartLesson());
+        document.getElementById('run-evals')?.addEventListener('click', async ()=>{
+            // Modal summary container
+            const modal = document.getElementById('controls-modal');
+            const summaryDiv = document.createElement('div');
+            summaryDiv.style.marginTop = '12px';
+            summaryDiv.style.fontSize = '13px';
+            summaryDiv.textContent = 'Running evals…';
+            modal?.querySelector('.modal-card')?.appendChild(summaryDiv);
+
+            const plans = [
+                {day:1, topic:'Sun'},
+                {day:10, topic:'Moon'},
+                {day:24, topic:'Oceans'},
+                {day:0, topic:'Puppies', qp:'puppies'}
+            ];
+            const langs = ['english','spanish','french'];
+            const tones = ['neutral','fun','grandmother'];
+            const ages = ['age_8','age_16','age_25'];
+            const rows = [];
+            for (const p of plans){
+                for (const lang of langs){
+                    for (const tone of tones){
+                        for (const age of ages){
+                            try{
+                                window.lessonPlayer.currentVariant.language = lang;
+                                window.lessonPlayer.currentVariant.tone = tone;
+                                window.lessonPlayer.currentVariant.age = age;
+                                if (p.qp) { const url = new URL(window.location.href); url.searchParams.set('topic', p.qp); history.replaceState({}, '', url); }
+                                await window.lessonPlayer.loadLessonByDay(p.day || window.lessonPlayer.currentDay);
+                                const report = window.lessonPlayer.evaluateCurrentDNA();
+                                const warn = (report.warnings||[]).length;
+                                const abOk = !!report.phases?.beginning?.hasA && !!report.phases?.beginning?.hasB
+                                           && !!report.phases?.middle?.hasA && !!report.phases?.middle?.hasB
+                                           && !!report.phases?.end?.hasA && !!report.phases?.end?.hasB;
+                                rows.push({topic:p.topic, lang, tone, age, warnings: warn, ab: abOk});
+                            }catch(e){ rows.push({topic:p.topic, lang, tone, age, error: true}); }
+                        }
+                    }
+                }
+            }
+            const passed = rows.filter(r=>!r.error && r.warnings===0 && r.ab).length;
+            const total = rows.length;
+            summaryDiv.textContent = `Eval complete: ${passed}/${total} variant checks passed (A/B present and 0 warnings).`;
+            // Download JSON button
+            const dl = document.createElement('button');
+            dl.className = 'pill';
+            dl.textContent = 'Download Eval JSON';
+            dl.onclick = ()=>{
+                const blob = new Blob([JSON.stringify(rows, null, 2)], {type:'application/json'});
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url; a.download = 'eval_results.json'; a.click();
+                setTimeout(()=>URL.revokeObjectURL(url), 2000);
+            };
+            summaryDiv.appendChild(document.createElement('br'));
+            summaryDiv.appendChild(dl);
+        });
+
+        // Calendar quick buttons
+        document.getElementById('go-yesterday')?.addEventListener('click', ()=>{
+            const day = (window.lessonPlayer?.selectedDay || window.lessonPlayer?.currentDay || 1) - 1;
+            if (day>=1) window.lessonPlayer?.loadLessonByDay(day);
+        });
+        // Calendar hover: show lesson title previews when possible
+        window.addEventListener('ml:lesson_loaded', ()=>{
+            try {
+                const grid = document.getElementById('calendar-grid'); if (!grid) return;
+                const buttons = grid.querySelectorAll('.calendar-day');
+                buttons.forEach(btn=>{
+                    const dayNum = Number(btn.textContent);
+                    const monthName = document.getElementById('current-month')?.textContent || 'January';
+                    // Best-effort: map month+day -> dayOfYear using player helper if available
+                    let monthIndex = ['January','February','March','April','May','June','July','August','September','October','November','December'].indexOf(monthName) + 1;
+                    if (monthIndex < 1) monthIndex = new Date().getMonth()+1;
+                    const d = window.lessonPlayer?.getDayOfYear?.(monthIndex, dayNum);
+                    const meta = window.COMPLETE_CURRICULUM?.[d];
+                    if (meta?.title) btn.title = meta.title;
+                });
+            } catch {}
+        });
+
+        // Variant modals wiring
+        document.querySelectorAll('#avatar-options [data-avatar]')?.forEach(el=>el.addEventListener('click', (e)=>{
+            const v = e.currentTarget.getAttribute('data-avatar'); if (v) { window.lessonPlayer?.onAvatarChange(v); closeById('avatar-modal'); }
+        }));
+        document.querySelectorAll('#tone-options [data-tone]')?.forEach(el=>el.addEventListener('click', (e)=>{
+            const v = e.currentTarget.getAttribute('data-tone'); if (v) { window.lessonPlayer?.onToneChange(v); closeById('tone-modal'); }
+        }));
+        document.querySelectorAll('#age-options [data-age]')?.forEach(el=>el.addEventListener('click', (e)=>{
+            const v = e.currentTarget.getAttribute('data-age'); if (v) { window.lessonPlayer?.onAgeChange(v); closeById('age-modal'); }
+        }));
+        document.querySelectorAll('#language-options [data-language]')?.forEach(el=>el.addEventListener('click', (e)=>{
+            const v = e.currentTarget.getAttribute('data-language'); if (v) { window.lessonPlayer?.onLanguageChange(v); closeById('language-modal'); }
+        }));
+        // Speed modal wiring
+        document.querySelectorAll('#speed-options .pill')?.forEach(el=>el.addEventListener('click', (e)=>{
+            const v = parseFloat(e.currentTarget.getAttribute('data-speed')||'1'); window.lessonPlayer?.setSpeed(v);
+        }));
+
+        // Language availability: disable unsupported options per current lesson DNA
+        function refreshLanguageAvailability(){
+            try {
+                const langPills = document.querySelectorAll('#language-options .pill');
+                const day = window.lessonPlayer?.selectedDay || window.lessonPlayer?.currentDay;
+                const available = new Set(['english']);
+                // Detect availability from current DNA filenames heuristic
+                const currentDNA = window.lessonPlayer?.currentDNA;
+                if (currentDNA?.metadata?.version === 'phase_v1') {
+                    // Assume current language is available; also infer likely siblings for demo lessons
+                    available.add(window.lessonPlayer?.currentVariant?.language || 'english');
+                    // If lessonId matches our authored demos, all three are supported
+                    const lid = currentDNA?.metadata?.lessonId || '';
+                    if (['the-sun','the-moon','earths-magnificent-oceans','puppies'].includes(lid)) {
+                        available.add('spanish'); available.add('french');
+                    }
+                }
+                langPills.forEach(p=>{
+                    const lang = p.getAttribute('data-language');
+                    const supported = available.has(lang);
+                    p.style.opacity = supported ? '1' : '0.45';
+                    p.style.pointerEvents = supported ? 'auto' : 'none';
+                    if (!supported) p.title = 'Not available for this lesson yet';
+                });
+            } catch {}
+        }
+        window.addEventListener('ml:lesson_loaded', refreshLanguageAvailability);
+        setTimeout(refreshLanguageAvailability, 1000);
+
+        // Variant badges updater
+        function updateBadges(){
+            const el = document.getElementById('variant-badges');
+            if (!el || !window.lessonPlayer) return;
+            const v = window.lessonPlayer.currentVariant;
+            el.innerHTML = `<span class="pill">Avatar: ${v.avatar}</span> <span class="pill">Tone: ${v.tone}</span> <span class="pill">Lang: ${v.language}</span> <span class="pill">Age: ${v.age}</span>`;
+        }
+        setInterval(updateBadges, 1000); updateBadges();
+        document.getElementById('go-today')?.addEventListener('click', ()=>{
+            const day = window.lessonPlayer?.currentDay || 1; window.lessonPlayer?.loadLessonByDay(day);
+        });
+        document.getElementById('go-tomorrow')?.addEventListener('click', ()=>{
+            const day = (window.lessonPlayer?.selectedDay || window.lessonPlayer?.currentDay || 1) + 1;
+            if (day<=366) window.lessonPlayer?.loadLessonByDay(day);
+        });
+
+        // Inspector toggles
+        const toggleInspector = id => document.getElementById(id)?.classList.toggle('visible');
+        document.getElementById('inspector-state-toggle')?.addEventListener('click', () => toggleInspector('state-inspector'));
+        document.getElementById('inspector-content-toggle')?.addEventListener('click', () => toggleInspector('content-inspector'));
+        document.getElementById('inspector-code-toggle')?.addEventListener('click', () => toggleInspector('code-inspector'));
+        document.querySelectorAll('.inspector-close-btn').forEach(btn => btn.addEventListener('click', (e)=>{
+            const id = e.currentTarget.dataset.inspector; closeById(id);
+        }));
+
+        // Modal close buttons
+        document.querySelectorAll('.modal-close').forEach(btn => btn.addEventListener('click', (e)=>{
+            const id = e.currentTarget.dataset.close; closeById(id);
+        }));
+
+        // Find modal: search curriculum titles
+        const findInput = document.getElementById('find-input');
+        const findResults = document.getElementById('find-results');
+        async function ensureIndex(){
+            if (window.__ml_index) return window.__ml_index;
+            const months = ['january','february','march','april','may','june','july','august','september','october','november','december'];
+            const topics = [];
+            await Promise.all(months.map(async m=>{ try{ const r=await fetch(`/data/${m}_curriculum.json`); if(r.ok){ const j=await r.json(); j.days?.forEach(d=>topics.push({m: j.month||m, day:d.day, title:d.title})); } }catch{} }));
+            window.__ml_index = topics; return topics;
+        }
+        findInput?.addEventListener('input', async (e)=>{
+            const q = e.currentTarget.value.trim().toLowerCase();
+            const idx = await ensureIndex();
+            const matches = q ? idx.filter(t=>t.title.toLowerCase().includes(q)).slice(0,20) : [];
+            if (!findResults) return;
+            findResults.innerHTML = matches.map(m=>`<div class="result-item" data-day="${m.day}">${m.title}<div style="font-size:12px;opacity:0.7;">${m.m} ${m.day}</div></div>`).join('');
+            findResults.querySelectorAll('.result-item').forEach(el=> el.addEventListener('click',()=>{
+                const day = Number(el.getAttribute('data-day')); closeById('find-modal'); window.lessonPlayer?.loadLessonByDay(day);
+            }));
+        });
+    });
+    </script>
+</body>
+</html>

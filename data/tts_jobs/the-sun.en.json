@@ -1,0 +1,33 @@
+{
+  "slug": "the-sun",
+  "language": "en",
+  "version": "tts_jobs_v1",
+  "defaultSpeaker": "kelly",
+  "phases": [
+    {
+      "id": "welcome",
+      "text": "Welcome. Today, the Sun is our guide to how the world really works: where energy comes from, how motion creates patterns we live by, and how a simple idea can connect everyone on Earth. I’ll walk with you through three short choices. No rush, and if you want a nudge, I’ll give one.",
+      "approxChars": 282
+    },
+    {
+      "id": "beginning",
+      "text": "Let’s start simple. What actually makes day and night—does the Sun circle us, or are we the ones spinning? Picture a globe on your desk and a lamp across the room.",
+      "approxChars": 163
+    },
+    {
+      "id": "middle",
+      "text": "Now imagine a plant by a window. Over a few days, does it grow evenly in every direction, or lean toward the sunlight? Picture it for a second before deciding.",
+      "approxChars": 159
+    },
+    {
+      "id": "end",
+      "text": "Last one. Why do we have seasons—because Earth gets much farther from the Sun, or because we’re slightly tilted as we go around it? Picture a tilted globe moving around a lamp.",
+      "approxChars": 176
+    },
+    {
+      "id": "wisdom",
+      "text": "Wisdom to carry: one steady source, many patterns. The Sun’s light is constant; rotation and tilt turn it into day, night, and seasons. Notice one pattern today, and let it change how you see the world.",
+      "approxChars": 202
+    }
+  ]
+}

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Lip-Sync Test</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .avatar-display {
+            margin: 20px 0;
+        }
+        
+        .avatar-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 15px;
+            border: 3px solid rgba(255,255,255,0.3);
+            object-fit: cover;
+        }
+        
+        .controls {
+            margin: 20px 0;
+        }
+        
+        .btn {
+            background: #007AFF;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #0056CC;
+            transform: translateY(-2px);
+        }
+        
+        .btn.success {
+            background: #00C851;
+        }
+        
+        .btn.warning {
+            background: #FFC107;
+        }
+        
+        .status {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.1);
+        }
+        
+        .status.success {
+            background: rgba(0, 200, 81, 0.2);
+            border: 1px solid #00C851;
+        }
+        
+        .status.error {
+            background: rgba(255, 68, 68, 0.2);
+            border: 1px solid #FF4444;
+        }
+        
+        .status.info {
+            background: rgba(0, 122, 255, 0.2);
+            border: 1px solid #007AFF;
+        }
+        
+        .test-results {
+            text-align: left;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🎭 Complete Lip-Sync System Test</h1>
+        <p>Testing Railway TTS + Image-based Visemes + Phoneme Timing</p>
+        
+        <div class="status info" id="status">
+            Initializing test system...
+        </div>
+        
+        <div class="avatar-display">
+            <img id="avatar-image" src="assets/avatars/kelly/2d/visemes_flat/kelly_REST.png" alt="Avatar" class="avatar-image">
+            <div id="current-viseme">Current Viseme: REST</div>
+        </div>
+        
+        <div class="controls">
+            <button class="btn" onclick="testVisemeImages()">🧪 Test Viseme Images</button>
+            <button class="btn" onclick="testRailwayTTS()">🎤 Test Railway TTS</button>
+            <button class="btn success" onclick="testCompleteLipsync()">🎭 Test Complete Lip-Sync</button>
+            <button class="btn warning" onclick="testPhonemeMapping()">🗣️ Test Phoneme Mapping</button>
+        </div>
+        
+        <div class="test-results" id="test-results">
+            Test results will appear here...
+        </div>
+    </div>
+
+    <script>
+        let currentAvatar = 'kelly';
+        let testResults = [];
+        
+        // Viseme image paths
+        const visemeImages = {
+            kelly: {
+                'REST': 'assets/avatars/kelly/2d/visemes_flat/kelly_REST.png',
+                'A': 'assets/avatars/kelly/2d/visemes_flat/kelly_A.png',
+                'E': 'assets/avatars/kelly/2d/visemes_flat/kelly_E.png',
+                'I': 'assets/avatars/kelly/2d/visemes_flat/kelly_I.png',
+                'O': 'assets/avatars/kelly/2d/visemes_flat/kelly_O.png',
+                'MBP': 'assets/avatars/kelly/2d/visemes_flat/kelly_MBP.png',
+                'FV': 'assets/avatars/kelly/2d/visemes_flat/kelly_FV.png',
+                'TH': 'assets/avatars/kelly/2d/visemes_flat/kelly_TH.png',
+                'DNTL': 'assets/avatars/kelly/2d/visemes_flat/kelly_DNTL.png',
+                'KG': 'assets/avatars/kelly/2d/visemes_flat/kelly_KG.png',
+                'S': 'assets/avatars/kelly/2d/visemes_flat/kelly_S.png',
+                'WQ': 'assets/avatars/kelly/2d/visemes_flat/kelly_WQ.png',
+                'R': 'assets/avatars/kelly/2d/visemes_flat/kelly_R.png'
+            }
+        };
+        
+        // Phoneme to viseme mapping
+        const phonemeToViseme = {
+            'AA': 'A', 'AE': 'A', 'AH': 'A', 'AO': 'O', 'AW': 'O', 'AY': 'A',
+            'EH': 'E', 'ER': 'R', 'EY': 'E', 'IH': 'I', 'IY': 'I', 'OW': 'O', 'OY': 'O',
+            'UH': 'O', 'UW': 'O',
+            'B': 'MBP', 'M': 'MBP', 'P': 'MBP',
+            'F': 'FV', 'V': 'FV',
+            'TH': 'TH',
+            'D': 'DNTL', 'N': 'DNTL', 'T': 'DNTL', 'L': 'DNTL',
+            'K': 'KG', 'G': 'KG',
+            'S': 'S', 'Z': 'S',
+            'W': 'WQ', 'Q': 'WQ',
+            'R': 'R'
+        };
+        
+        function updateStatus(message, type = 'info') {
+            const status = document.getElementById('status');
+            status.textContent = message;
+            status.className = `status ${type}`;
+        }
+        
+        function addResult(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            testResults.push(`[${timestamp}] ${message}`);
+            
+            const resultsDiv = document.getElementById('test-results');
+            resultsDiv.innerHTML = testResults.map(result => 
+                `<div style="margin: 5px 0; padding: 5px; background: rgba(255,255,255,0.1); border-radius: 5px;">${result}</div>`
+            ).join('');
+            
+            resultsDiv.scrollTop = resultsDiv.scrollHeight;
+        }
+        
+        function showViseme(viseme) {
+            const avatarImage = document.getElementById('avatar-image');
+            const visemeText = document.getElementById('current-viseme');
+            
+            if (visemeImages[currentAvatar] && visemeImages[currentAvatar][viseme]) {
+                avatarImage.src = visemeImages[currentAvatar][viseme];
+                visemeText.textContent = `Current Viseme: ${viseme}`;
+                return true;
+            } else {
+                addResult(`❌ Viseme ${viseme} not found for ${currentAvatar}`, 'error');
+                return false;
+            }
+        }
+        
+        async function testVisemeImages() {
+            updateStatus('Testing viseme images...', 'info');
+            addResult('🧪 Starting viseme image test...');
+            
+            const visemes = ['REST', 'A', 'E', 'I', 'O', 'MBP', 'FV', 'TH', 'DNTL', 'KG', 'S', 'WQ', 'R'];
+            let successCount = 0;
+            
+            for (const viseme of visemes) {
+                if (showViseme(viseme)) {
+                    successCount++;
+                    addResult(`✅ ${viseme} viseme loaded successfully`);
+                } else {
+                    addResult(`❌ ${viseme} viseme failed to load`);
+                }
+                
+                // Wait a bit between visemes
+                await new Promise(resolve => setTimeout(resolve, 300));
+            }
+            
+            // Return to REST
+            showViseme('REST');
+            
+            if (successCount === visemes.length) {
+                updateStatus(`✅ All ${successCount} viseme images working!`, 'success');
+                addResult(`🎉 Viseme test completed: ${successCount}/${visemes.length} successful`);
+            } else {
+                updateStatus(`⚠️ Viseme test: ${successCount}/${visemes.length} successful`, 'warning');
+                addResult(`⚠️ Viseme test completed: ${successCount}/${visemes.length} successful`);
+            }
+        }
+        
+        async function testRailwayTTS() {
+            updateStatus('Testing Railway TTS connection...', 'info');
+            addResult('🎤 Testing Railway TTS connection...');
+            
+            try {
+                const response = await fetch('https://mynextlesson-synthesis-production.up.railway.app/health');
+                if (response.ok) {
+                    const data = await response.json();
+                    updateStatus('✅ Railway TTS connected!', 'success');
+                    addResult(`✅ Railway TTS Health: ${JSON.stringify(data, null, 2)}`);
+                    
+                    // Test TTS endpoint
+                    addResult('🎤 Testing TTS endpoint...');
+                    const ttsResponse = await fetch('https://mynextlesson-synthesis-production.up.railway.app/api/tts', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ text: 'Hello', speaker: 'kelly', format: 'wav' })
+                    });
+                    
+                    if (ttsResponse.ok) {
+                        const ttsData = await ttsResponse.json();
+                        addResult(`✅ TTS Response: Audio length ${ttsData.audio?.length || 0} chars, Phonemes: ${ttsData.phonemes?.length || 0}`);
+                        // Play audio (user-gesture initiated)
+                        try {
+                            const audio = new Audio(`data:audio/wav;base64,${ttsData.audio}`);
+                            await audio.play();
+                            addResult('🔊 Playing sample audio');
+                        } catch (e) { addResult(`⚠️ Audio play failed: ${e.message}`, 'warning'); }
+                        if (ttsData.phonemes && ttsData.phonemes.length > 0) {
+                            addResult(`🎯 Phoneme data: ${JSON.stringify(ttsData.phonemes)}`);
+                        }
+                    } else {
+                        addResult(`❌ TTS request failed: ${ttsResponse.status}`, 'error');
+                    }
+                } else {
+                    updateStatus('❌ Railway TTS connection failed', 'error');
+                    addResult(`❌ Railway TTS Health failed: ${response.status}`, 'error');
+                }
+            } catch (error) {
+                updateStatus('❌ Railway TTS test error', 'error');
+                addResult(`❌ Railway TTS test error: ${error.message}`, 'error');
+            }
+        }
+        
+        async function testCompleteLipsync() {
+            updateStatus('Testing complete lip-sync system...', 'info');
+            addResult('🎭 Testing complete lip-sync system...');
+            
+            try {
+                // Test TTS with phonemes
+                const response = await fetch('https://mynextlesson-synthesis-production.up.railway.app/api/tts', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        text: 'Hello world, this is a test of the lip-sync system', 
+                        speaker: 'kelly', 
+                        format: 'wav' 
+                    })
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    addResult(`✅ TTS generated: ${data.audio?.length || 0} chars of audio`);
+                    
+                    if (data.phonemes && data.phonemes.length > 0) {
+                        addResult(`🎯 Phoneme data received: ${data.phonemes.length} phonemes`);
+                        // Play audio and drive visemes from audio.currentTime
+                        const audio = new Audio(`data:audio/wav;base64,${data.audio}`);
+                        await audio.play();
+                        addResult('🔊 Audio playing; starting viseme sync');
+                        let idx = 0;
+                        const step = () => {
+                            const t = audio.currentTime || 0;
+                            while (idx < data.phonemes.length && data.phonemes[idx].end <= t) idx++;
+                            const ph = data.phonemes[idx];
+                            if (ph && ph.start <= t && t <= ph.end) {
+                                const vis = phonemeToViseme[ph.phoneme] || 'REST';
+                                showViseme(vis);
+                            }
+                            if (audio.ended || idx >= data.phonemes.length) { showViseme('REST'); updateStatus('✅ Complete lip-sync test successful!', 'success'); return; }
+                            requestAnimationFrame(step);
+                        };
+                        requestAnimationFrame(step);
+                        
+                    } else {
+                        addResult('⚠️ No phoneme data received, using fallback', 'warning');
+                        // Fallback to pattern-based lip-sync
+                        await testPatternLipsync();
+                    }
+                } else {
+                    addResult(`❌ TTS request failed: ${response.status}`, 'error');
+                }
+            } catch (error) {
+                addResult(`❌ Complete lip-sync test error: ${error.message}`, 'error');
+                updateStatus('❌ Complete lip-sync test failed', 'error');
+            }
+        }
+        
+        async function testPatternLipsync() {
+            addResult('🔄 Testing pattern-based lip-sync fallback...');
+            
+            const pattern = ['REST', 'A', 'E', 'I', 'O', 'S', 'REST'];
+            let index = 0;
+            
+            const interval = setInterval(() => {
+                if (index >= pattern.length) {
+                    clearInterval(interval);
+                    showViseme('REST');
+                    addResult('✅ Pattern lip-sync fallback completed');
+                    return;
+                }
+                
+                showViseme(pattern[index]);
+                addResult(`🔄 Pattern viseme: ${pattern[index]}`);
+                index++;
+            }, 300);
+        }
+        
+        async function testPhonemeMapping() {
+            updateStatus('Testing phoneme to viseme mapping...', 'info');
+            addResult('🗣️ Testing phoneme to viseme mapping...');
+            
+            const testPhonemes = [
+                'AA', 'EH', 'IH', 'OW', 'B', 'F', 'TH', 'D', 'K', 'S', 'W', 'R'
+            ];
+            
+            let successCount = 0;
+            
+            for (const phoneme of testPhonemes) {
+                const viseme = phonemeToViseme[phoneme];
+                if (viseme) {
+                    successCount++;
+                    addResult(`✅ ${phoneme} → ${viseme}`);
+                    
+                    // Show the viseme briefly
+                    showViseme(viseme);
+                    await new Promise(resolve => setTimeout(resolve, 200));
+                } else {
+                    addResult(`❌ ${phoneme} → No mapping found`, 'error');
+                }
+            }
+            
+            // Return to REST
+            showViseme('REST');
+            
+            if (successCount === testPhonemes.length) {
+                updateStatus('✅ All phoneme mappings working!', 'success');
+                addResult(`🎉 Phoneme mapping test: ${successCount}/${testPhonemes.length} successful`);
+            } else {
+                updateStatus(`⚠️ Phoneme mapping: ${successCount}/${testPhonemes.length} successful`, 'warning');
+                addResult(`⚠️ Phoneme mapping test: ${successCount}/${testPhonemes.length} successful`);
+            }
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            updateStatus('✅ Test system ready! Click buttons to test components.', 'success');
+            addResult('🚀 Test system initialized');
+        });
+    </script>
+</body>
+</html>

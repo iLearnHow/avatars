@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Natural Human Controls Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f0f0f0; }
+        .test { background: white; padding: 20px; margin: 15px 0; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .success { background: #d4edda; color: #155724; padding: 10px; border-radius: 4px; margin: 10px 0; }
+        .error { background: #f8d7da; color: #721c24; padding: 10px; border-radius: 4px; margin: 10px 0; }
+        .warning { background: #fff3cd; color: #856404; padding: 10px; border-radius: 4px; margin: 10px 0; }
+        button { background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; margin: 5px; }
+        button:hover { background: #0056b3; }
+        iframe { width: 100%; height: 600px; border: 1px solid #ccc; border-radius: 4px; }
+        .log { background: #f8f9fa; border: 1px solid #dee2e6; padding: 10px; margin: 10px 0; border-radius: 4px; font-family: monospace; font-size: 12px; max-height: 200px; overflow-y: auto; }
+    </style>
+</head>
+<body>
+    <h1>🎯 Natural Human Controls Test</h1>
+    
+    <div class="test">
+        <h2>✅ Test 1: Media Player Elements Removed</h2>
+        <p><strong>Status:</strong> <span id="media-status">Checking...</span></p>
+        <p><strong>Expected:</strong> No progress bars, media controls, or autoplay checkboxes visible</p>
+    </div>
+    
+    <div class="test">
+        <h2>✅ Test 2: Natural Human Controls Added</h2>
+        <p><strong>Status:</strong> <span id="controls-status">Checking...</span></p>
+        <p><strong>Expected:</strong> Subtle human control buttons (stop, louder, quieter, slower, faster, hold, repeat)</p>
+    </div>
+    
+    <div class="test">
+        <h2>✅ Test 3: Avatar Response System</h2>
+        <p><strong>Status:</strong> <span id="response-status">Checking...</span></p>
+        <p><strong>Expected:</strong> Avatar should respond to commands with visual feedback</p>
+    </div>
+    
+    <div class="test">
+        <h2>✅ Test 4: Natural Interaction Functions</h2>
+        <p><strong>Status:</strong> <span id="function-status">Checking...</span></p>
+        <p><strong>Expected:</strong> tellAvatar() and avatarResponse() functions should be available</p>
+    </div>
+    
+    <div class="test">
+        <h2>🧪 Live Interface Test</h2>
+        <p>Click the button below to test the natural human controls in the actual interface:</p>
+        <button onclick="openLiveTest()">Open Live Interface Test</button>
+        <div id="live-test"></div>
+    </div>
+
+    <script>
+        async function runTests() {
+            console.log('🚀 Running natural controls tests...');
+            
+            // Test 1: Check for media player elements
+            try {
+                const response = await fetch('http://localhost:8000/');
+                const html = await response.text();
+                
+                const hasProgressBar = html.includes('progress-container');
+                const hasPlayControls = html.includes('play-controls');
+                const hasAutoplayToggle = html.includes('autoplay-toggle');
+                const hasVolumeSlider = html.includes('volume-slider');
+                
+                if (!hasProgressBar && !hasPlayControls && !hasAutoplayToggle && !hasVolumeSlider) {
+                    document.getElementById('media-status').textContent = '✅ PASSED - Media player elements removed';
+                    document.getElementById('media-status').className = 'success';
+                } else {
+                    document.getElementById('media-status').textContent = '❌ FAILED - Media player elements still present';
+                    document.getElementById('media-status').className = 'error';
+                }
+            } catch (error) {
+                document.getElementById('media-status').textContent = '❌ ERROR - ' + error.message;
+                document.getElementById('media-status').className = 'error';
+            }
+            
+            // Test 2: Check for natural human controls
+            try {
+                const response = await fetch('http://localhost:8000/');
+                const html = await response.text();
+                
+                const hasHumanControls = html.includes('human-controls');
+                const hasControlButtons = html.includes('control-btn');
+                const hasTellAvatar = html.includes('tellAvatar(');
+                
+                if (hasHumanControls && hasControlButtons && hasTellAvatar) {
+                    document.getElementById('controls-status').textContent = '✅ PASSED - Natural human controls added';
+                    document.getElementById('controls-status').className = 'success';
+                } else {
+                    document.getElementById('controls-status').textContent = '❌ FAILED - Natural controls missing';
+                    document.getElementById('controls-status').className = 'error';
+                }
+            } catch (error) {
+                document.getElementById('controls-status').textContent = '❌ ERROR - ' + error.message;
+                document.getElementById('controls-status').className = 'error';
+            }
+            
+            // Test 3: Check for avatar response system
+            try {
+                const response = await fetch('http://localhost:8000/');
+                const html = await response.text();
+                
+                const hasAvatarResponse = html.includes('avatarResponse(');
+                const hasResponseAnimation = html.includes('fadeInOut');
+                
+                if (hasAvatarResponse && hasResponseAnimation) {
+                    document.getElementById('response-status').textContent = '✅ PASSED - Avatar response system added';
+                    document.getElementById('response-status').className = 'success';
+                } else {
+                    document.getElementById('response-status').textContent = '❌ FAILED - Avatar response system missing';
+                    document.getElementById('response-status').className = 'error';
+                }
+            } catch (error) {
+                document.getElementById('response-status').textContent = '❌ ERROR - ' + error.message;
+                document.getElementById('response-status').className = 'error';
+            }
+            
+            // Test 4: Check for natural interaction functions
+            try {
+                const response = await fetch('http://localhost:8000/');
+                const html = await response.text();
+                
+                const hasTellAvatarFunction = html.includes('function tellAvatar(');
+                const hasAvatarResponseFunction = html.includes('function avatarResponse(');
+                const hasSetSpeed = html.includes('setSpeed(');
+                const hasPauseLesson = html.includes('pauseLesson(');
+                
+                if (hasTellAvatarFunction && hasAvatarResponseFunction && hasSetSpeed && hasPauseLesson) {
+                    document.getElementById('function-status').textContent = '✅ PASSED - Natural interaction functions available';
+                    document.getElementById('function-status').className = 'success';
+                } else {
+                    document.getElementById('function-status').textContent = '❌ FAILED - Natural interaction functions missing';
+                    document.getElementById('function-status').className = 'error';
+                }
+            } catch (error) {
+                document.getElementById('function-status').textContent = '❌ ERROR - ' + error.message;
+                document.getElementById('function-status').className = 'error';
+            }
+        }
+        
+        function openLiveTest() {
+            const testDiv = document.getElementById('live-test');
+            testDiv.innerHTML = `
+                <h3>🧪 Live Interface Test</h3>
+                <p><strong>Test Instructions:</strong></p>
+                <ol>
+                    <li>Wait for the page to load completely</li>
+                    <li>Look for subtle control buttons at the bottom (⏸️ 🔊 🔇 🐌 ⚡ ✋ 🔄)</li>
+                    <li>Try clicking the control buttons - avatar should respond</li>
+                    <li>Check that no media player elements are visible</li>
+                    <li>Verify the interface feels natural, not like a media player</li>
+                </ol>
+                <iframe src="http://localhost:8000/" title="Natural Controls Test"></iframe>
+            `;
+        }
+        
+        // Run tests on page load
+        window.addEventListener('load', runTests);
+    </script>
+</body>
+</html> 

@@ -1,0 +1,678 @@
+{
+  "lesson_id": "dance_expression",
+  "day": 1,
+  "date": "January 1",
+  "universal_concept": "authentic_self_expression_through_movement_and_creativity",
+  "core_principle": "genuine_expression_emerges_from_inner_connection_rather_than_external_performance",
+  "learning_essence": "What learners will discover about authentic self-expression through movement",
+
+  "age_expressions": {
+    "age_2": {
+      "concept_name": "Toddler Dance Joy",
+      "core_metaphor": "simple_sensory_movement_metaphor",
+      "complexity_level": "sensory_immediate_concrete",
+      "attention_span": "2-3_minutes",
+      "cognitive_focus": "sensory_exploration_and_immediate_joy",
+      "examples": [
+        "feeling_music_in_body",
+        "simple_arm_waving_movement",
+        "bouncing_to_rhythm",
+        "clapping_hands_together",
+        "spinning_in_circles"
+      ],
+      "vocabulary": ["move", "dance", "happy", "music", "feel", "joy", "fun"],
+      "abstract_concepts": {
+        "main_concept_1": "how_toddler_experiences_joy_through_movement",
+        "main_concept_2": "how_toddler_feels_music_in_body",
+        "main_concept_3": "how_toddler_expresses_happiness_through_dance"
+      }
+    },
+    "age_5": {
+      "concept_name": "Early Childhood Dance Play",
+      "core_metaphor": "play_family_dance_activity_metaphor",
+      "complexity_level": "concrete_observable_actions",
+      "attention_span": "3-4_minutes",
+      "cognitive_focus": "basic_movement_with_feeling_connection",
+      "examples": [
+        "dancing_with_family_members",
+        "copying_animal_movements",
+        "making_up_simple_dance_moves",
+        "dancing_to_favorite_songs",
+        "pretending_to_be_different_characters"
+      ],
+      "vocabulary": ["dance", "family", "play", "move", "pretend", "fun", "music"],
+      "abstract_concepts": {
+        "main_concept_1": "how_child_experiences_dance_in_family_play",
+        "main_concept_2": "how_child_uses_imagination_in_movement",
+        "main_concept_3": "how_child_feels_connection_through_dance"
+      }
+    },
+    "age_8": {
+      "concept_name": "School Age Dance Skills",
+      "core_metaphor": "school_friendship_dance_learning_metaphor",
+      "complexity_level": "rule_understanding_and_skill_development",
+      "attention_span": "4-5_minutes",
+      "cognitive_focus": "learning_dance_moves_with_friends",
+      "examples": [
+        "learning_simple_dance_routines",
+        "dancing_with_friends_at_school",
+        "practicing_basic_dance_steps",
+        "creating_dance_with_partner",
+        "performing_in_school_show"
+      ],
+      "vocabulary": ["learn", "practice", "routine", "friend", "perform", "skill", "dance"],
+      "abstract_concepts": {
+        "main_concept_1": "how_this_helps_in_school_and_learning",
+        "main_concept_2": "how_this_builds_friendships_through_dance",
+        "main_concept_3": "how_this_develops_dance_skills_and_confidence"
+      }
+    },
+    "age_12": {
+      "concept_name": "Pre-Teen Dance Identity",
+      "core_metaphor": "identity_exploration_through_dance_metaphor",
+      "complexity_level": "identity_formation_and_self_expression",
+      "attention_span": "5-6_minutes",
+      "cognitive_focus": "personal_style_and_peer_acceptance",
+      "examples": [
+        "developing_personal_dance_style",
+        "dancing_with_peer_groups",
+        "expressing_individuality_through_movement",
+        "choosing_dance_music_preferences",
+        "sharing_dance_with_friends"
+      ],
+      "vocabulary": ["style", "identity", "individual", "express", "choose", "share", "dance"],
+      "abstract_concepts": {
+        "main_concept_1": "how_this_shapes_personal_dance_identity",
+        "main_concept_2": "how_this_affects_peer_relationships_through_dance",
+        "main_concept_3": "how_this_prepares_for_individual_expression"
+      }
+    },
+    "age_16": {
+      "concept_name": "Teen Dance Expression",
+      "core_metaphor": "self_discovery_through_dance_metaphor",
+      "complexity_level": "abstract_thinking_and_emotional_expression",
+      "attention_span": "6_minutes",
+      "cognitive_focus": "emotional_expression_and_identity_formation",
+      "examples": [
+        "expressing_emotions_through_dance",
+        "exploring_different_dance_styles",
+        "creating_original_dance_moves",
+        "dancing_as_emotional_outlet",
+        "developing_dance_as_art_form"
+      ],
+      "vocabulary": ["express", "emotion", "create", "art", "style", "identity", "dance"],
+      "abstract_concepts": {
+        "main_concept_1": "how_this_develops_emotional_expression_through_dance",
+        "main_concept_2": "how_this_forms_personal_artistic_identity",
+        "main_concept_3": "how_this_prepares_for_creative_expression"
+      }
+    },
+    "age_25": {
+      "concept_name": "Young Adult Dance Mastery",
+      "core_metaphor": "life_building_through_dance_metaphor",
+      "complexity_level": "practical_application_and_skill_mastery",
+      "attention_span": "6_minutes",
+      "cognitive_focus": "career_development_and_personal_growth",
+      "examples": [
+        "developing_dance_career_skills",
+        "teaching_dance_to_others",
+        "performing_professionally",
+        "creating_dance_choreography",
+        "building_dance_community"
+      ],
+      "vocabulary": ["mastery", "career", "teach", "perform", "create", "community", "dance"],
+      "abstract_concepts": {
+        "main_concept_1": "how_this_optimizes_dance_career_development",
+        "main_concept_2": "how_this_builds_dance_community_connections",
+        "main_concept_3": "how_this_creates_sustainable_dance_practices"
+      }
+    },
+    "age_40": {
+      "concept_name": "Midlife Dance Leadership",
+      "core_metaphor": "stewardship_and_dance_community_metaphor",
+      "complexity_level": "leadership_community_contribution",
+      "attention_span": "6_minutes",
+      "cognitive_focus": "mentoring_and_community_building",
+      "examples": [
+        "mentoring_young_dancers",
+        "leading_dance_community_programs",
+        "organizing_dance_events",
+        "preserving_dance_traditions",
+        "building_intergenerational_dance_connections"
+      ],
+      "vocabulary": ["leadership", "mentor", "community", "preserve", "build", "connect", "dance"],
+      "abstract_concepts": {
+        "main_concept_1": "how_this_enables_dance_community_leadership",
+        "main_concept_2": "how_this_supports_next_generation_dancers",
+        "main_concept_3": "how_this_creates_lasting_dance_community_impact"
+      }
+    },
+    "age_60": {
+      "concept_name": "Pre-Retirement Dance Wisdom",
+      "core_metaphor": "wisdom_consolidation_through_dance_metaphor",
+      "complexity_level": "wisdom_integration_and_legacy_building",
+      "attention_span": "6_minutes",
+      "cognitive_focus": "wisdom_sharing_and_tradition_preservation",
+      "examples": [
+        "sharing_dance_wisdom_with_others",
+        "preserving_dance_traditions",
+        "adapting_dance_for_aging_body",
+        "teaching_dance_history",
+        "passing_on_dance_legacy"
+      ],
+      "vocabulary": ["wisdom", "tradition", "preserve", "adapt", "teach", "legacy", "dance"],
+      "abstract_concepts": {
+        "main_concept_1": "how_life_experience_consolidates_into_dance_wisdom",
+        "main_concept_2": "how_to_preserve_dance_traditions_for_future",
+        "main_concept_3": "how_to_continue_dance_contribution_in_changing_roles"
+      }
+    },
+    "age_80": {
+      "concept_name": "Elder Dance Celebration",
+      "core_metaphor": "wisdom_sharing_and_life_celebration_metaphor",
+      "complexity_level": "philosophical_integration_and_meaning_making",
+      "attention_span": "6_minutes",
+      "cognitive_focus": "meaning_making_and_life_celebration",
+      "examples": [
+        "celebrating_life_through_dance",
+        "sharing_dance_stories_with_family",
+        "finding_joy_in_simple_movements",
+        "connecting_dance_to_life_meaning",
+        "dancing_as_meditation_and_joy"
+      ],
+      "vocabulary": ["celebrate", "joy", "meaning", "story", "connect", "meditation", "dance"],
+      "abstract_concepts": {
+        "main_concept_1": "how_lifetime_dance_experience_creates_unique_wisdom",
+        "main_concept_2": "how_this_connects_dance_to_universal_human_joy",
+        "main_concept_3": "how_this_celebrates_life_through_movement"
+      }
+    },
+    "age_102": {
+      "concept_name": "Centenarian Dance Perspective",
+      "core_metaphor": "ultimate_life_perspective_through_dance_metaphor",
+      "complexity_level": "transcendent_perspective_and_universal_wisdom",
+      "attention_span": "6_minutes",
+      "cognitive_focus": "transcendent_perspective_on_movement_and_life",
+      "examples": [
+        "seeing_dance_as_universal_language",
+        "understanding_movement_as_life_essence",
+        "connecting_all_dance_traditions",
+        "finding_eternal_joy_in_movement",
+        "sharing_ultimate_dance_wisdom"
+      ],
+      "vocabulary": ["universal", "essence", "eternal", "wisdom", "connect", "transcend", "dance"],
+      "abstract_concepts": {
+        "main_concept_1": "how_century_perspective_reveals_dance_as_universal_language",
+        "main_concept_2": "how_ultimate_life_experience_connects_to_dance_essence",
+        "main_concept_3": "how_this_understanding_transcends_individual_to_universal_dance_wisdom"
+      }
+    }
+  },
+
+  "tone_delivery_dna": {
+    "grandmother": {
+      "voice_character": "loving_wise_elder_with_life_experience_and_gentle_guidance",
+      "emotional_temperature": "warm_nurturing_encouraging_with_gentle_wisdom",
+      "language_patterns": {
+        "openings": ["My dear dancer,", "Sweetheart, come dance with me,", "Oh my precious one,", "Come here, love, let's move together,"],
+        "transitions": ["And here's the beautiful thing about dance", "Now, this is where it gets wonderful", "The most amazing part is"],
+        "encouragements": ["How wonderful you are!", "What a gift you have for movement!", "I'm so proud of how you express yourself!", "You have such natural rhythm!"],
+        "closings": ["You are so loved, dear dancer", "Keep dancing with joy in your heart", "Keep growing in movement and love"]
+      },
+      "metaphor_style": "heart_centered_family_love_nature_wisdom_based",
+      "question_approach": "gentle_nurturing_curiosity_with_life_experience_perspective",
+      "validation_style": "celebration_of_personal_growth_and_inherent_worth"
+    },
+    "fun": {
+      "voice_character": "enthusiastic_adventure_guide_and_celebration_coach",
+      "emotional_temperature": "high_energy_joyful_celebratory_with_achievement_focus",
+      "language_patterns": {
+        "openings": ["Ready for something AMAZING? Welcome to the incredible world of dance!", "Time for an awesome dance adventure!", "Let's dive into something incredible - DANCE!", "Welcome to the fun zone of movement!"],
+        "transitions": ["But here's where it gets REALLY cool!", "Plot twist - this is about to get epic!", "And now for the best part ever!"],
+        "encouragements": ["You're absolutely crushing this dance!", "That rhythm of yours is on fire!", "You're like a dance superhero!", "What a rockstar move!"],
+        "closings": ["Keep being the amazing dancer you are!", "You're going to do incredible things with movement!", "See you tomorrow, dance superstar!"]
+      },
+      "metaphor_style": "adventure_achievement_superhero_celebration_based",
+      "question_approach": "exciting_challenges_and_achievement_focused_exploration",
+      "validation_style": "enthusiastic_achievement_celebration_and_capability_recognition"
+    },
+    "neutral": {
+      "voice_character": "knowledgeable_professional_educator_and_competence_builder",
+      "emotional_temperature": "calm_confident_respectful_with_professional_warmth",
+      "language_patterns": {
+        "openings": ["Today we're exploring dance expression", "Let's examine movement and creativity", "This topic involves authentic self-expression", "We can understand dance as universal language"],
+        "transitions": ["Building on this foundation of movement", "This connects to human expression", "We can observe that dance is", "The evidence shows that movement"],
+        "encouragements": ["You're thinking clearly about dance expression", "That's solid understanding of movement", "You understand the key principle of authentic expression", "You've grasped the important concept of dance"],
+        "closings": ["This knowledge serves you well in understanding dance", "Understanding this builds your movement capabilities", "You're developing strong dance expression skills"]
+      },
+      "metaphor_style": "professional_competence_evidence_based_growth_focused",
+      "question_approach": "analytical_inquiry_and_competence_building_exploration",
+      "validation_style": "professional_competence_recognition_and_skill_development_celebration"
+    }
+  },
+
+  "language_translations": {
+    "english": {
+      "language_code": "en",
+      "language_name": "English",
+      "native_display": "English",
+      "cultural_adaptation": {
+        "individualistic_emphasis": true,
+        "direct_communication": true,
+        "achievement_focus": true,
+        "informal_relationships": true,
+        "privacy_respect": true,
+        "time_efficiency": true
+      },
+      "communication_patterns": {
+        "formality_level": "casual_professional_mix",
+        "directness": "straightforward_clear_communication",
+        "hierarchy_respect": "egalitarian_with_merit_recognition",
+        "group_individual_balance": "individual_achievement_within_community_context"
+      },
+      "key_phrases": {
+        "greeting": "Welcome back!",
+        "encouragement": "Great thinking!",
+        "transition": "Now let's explore",
+        "closing": "See you tomorrow!",
+        "question_intro": "Here's an interesting question:",
+        "choice_prompt": "What do you think?",
+        "validation_positive": "Excellent insight!",
+        "validation_redirect": "Let's think about this differently:"
+      },
+      "cultural_examples": {
+        "family_structure": "diverse_family_forms_individual_choice",
+        "education_approach": "collaborative_learning_individual_achievement",
+        "work_context": "career_development_work_life_balance",
+        "community_engagement": "voluntary_participation_civic_responsibility"
+      }
+    },
+    "spanish": {
+      "language_code": "es",
+      "language_name": "Español",
+      "native_display": "Español",
+      "cultural_adaptation": {
+        "family_emphasis": true,
+        "respect_hierarchy": true,
+        "community_focus": true,
+        "relationship_priority": true,
+        "emotional_expression": true,
+        "tradition_value": true
+      },
+      "communication_patterns": {
+        "formality_level": "respectful_warm_personal",
+        "directness": "relationship_sensitive_communication",
+        "hierarchy_respect": "age_wisdom_authority_recognition",
+        "group_individual_balance": "family_community_over_individual_achievement"
+      },
+      "key_phrases": {
+        "greeting": "¡Bienvenido de nuevo!",
+        "encouragement": "¡Excelente razonamiento!",
+        "transition": "Ahora exploremos",
+        "closing": "¡Hasta mañana!",
+        "question_intro": "Aquí tienes una pregunta interesante:",
+        "choice_prompt": "¿Qué piensas?",
+        "validation_positive": "¡Qué perspicacia tan excelente!",
+        "validation_redirect": "Pensemos en esto de otra manera:"
+      },
+      "cultural_examples": {
+        "family_structure": "extended_family_intergenerational_support",
+        "education_approach": "respectful_learning_collective_achievement",
+        "work_context": "relationship_building_family_work_integration",
+        "community_engagement": "community_celebration_collective_responsibility"
+      }
+    }
+  },
+
+  "core_lesson_structure": {
+    "question_1": {
+      "concept_focus": "fundamental_understanding_of_authentic_dance_expression",
+      "universal_principle": "genuine_expression_emerges_from_inner_connection_rather_than_external_performance",
+      "cognitive_target": "basic_understanding_that_forms_foundation_for_deeper_learning",
+      "choice_architecture": {
+        "option_a": "common_misconception_that_dance_is_about_perfect_technique_and_external_approval",
+        "option_b": "deeper_truth_that_dance_is_about_inner_connection_and_authentic_expression"
+      },
+      "teaching_moments": {
+        "option_a_response": "gentle_correction_that_builds_toward_deeper_understanding_of_authentic_expression",
+        "option_b_response": "celebration_of_insight_with_connection_to_broader_implications_of_authentic_dance"
+      }
+    },
+    "question_2": {
+      "concept_focus": "practical_application_of_dance_expression_in_daily_life",
+      "universal_principle": "how_dance_expression_shows_up_in_daily_human_experience_everywhere",
+      "cognitive_target": "connecting_abstract_concept_to_concrete_lived_experience",
+      "choice_architecture": {
+        "option_a": "limited_or_surface_level_application_of_dance_concept",
+        "option_b": "deeper_more_comprehensive_application_that_serves_human_flourishing"
+      },
+      "teaching_moments": {
+        "option_a_response": "expansion_from_limited_view_to_broader_life_applications_of_dance",
+        "option_b_response": "celebration_of_practical_wisdom_with_encouragement_for_dance_application"
+      }
+    },
+    "question_3": {
+      "concept_focus": "connection_to_human_rights_global_citizenship_or_collective_wellbeing_through_dance",
+      "universal_principle": "how_dance_expression_connects_to_universal_human_dignity_and_flourishing",
+      "cognitive_target": "understanding_personal_connection_to_larger_human_community_and_shared_responsibility",
+      "choice_architecture": {
+        "option_a": "individualistic_or_narrow_perspective_on_dance_expression",
+        "option_b": "perspective_that_includes_collective_wellbeing_and_human_rights_through_dance"
+      },
+      "teaching_moments": {
+        "option_a_response": "gentle_expansion_from_individual_to_collective_benefit_and_responsibility_through_dance",
+        "option_b_response": "celebration_of_global_citizenship_thinking_and_connection_to_human_dignity_through_dance"
+      }
+    }
+  },
+
+  "example_selector_data": {
+    "question_1_examples": {
+      "age_2": {
+        "scenario": "simple_sensory_dance_situation_toddler_experiences",
+        "option_a": "trying_to_copy_perfect_dance_moves_from_video",
+        "option_b": "moving_naturally_to_music_with_joy"
+      },
+      "age_5": {
+        "scenario": "play_or_family_dance_situation_child_experiences",
+        "option_a": "focusing_only_on_getting_dance_steps_right",
+        "option_b": "dancing_with_family_and_expressing_joy"
+      },
+      "age_8": {
+        "scenario": "school_or_learning_dance_situation",
+        "option_a": "memorizing_dance_routine_without_feeling",
+        "option_b": "learning_dance_while_expressing_personal_style"
+      },
+      "age_12": {
+        "scenario": "identity_or_peer_dance_situation_that_pre_teen_faces",
+        "option_a": "trying_to_dance_like_popular_kids_to_fit_in",
+        "option_b": "developing_own_dance_style_with_confidence"
+      },
+      "age_16": {
+        "scenario": "abstract_thinking_or_value_formation_dance_situation",
+        "option_a": "following_dance_trends_without_questioning",
+        "option_b": "exploring_dance_as_form_of_self_expression"
+      },
+      "age_25": {
+        "scenario": "career_relationship_or_life_building_dance_situation",
+        "option_a": "focusing_only_on_dance_technique_for_career",
+        "option_b": "developing_authentic_dance_style_while_building_community"
+      },
+      "age_40": {
+        "scenario": "leadership_or_community_dance_responsibility_situation",
+        "option_a": "teaching_dance_only_for_performance_standards",
+        "option_b": "mentoring_dancers_to_find_their_authentic_expression"
+      },
+      "age_60": {
+        "scenario": "wisdom_consolidation_or_transition_dance_situation",
+        "option_a": "preserving_only_traditional_dance_forms_unchanged",
+        "option_b": "adapting_dance_traditions_for_new_generations"
+      },
+      "age_80": {
+        "scenario": "meaning_making_or_wisdom_sharing_dance_situation",
+        "option_a": "focusing_only_on_past_dance_achievements",
+        "option_b": "sharing_dance_wisdom_to_inspire_future_generations"
+      },
+      "age_102": {
+        "scenario": "transcendent_perspective_or_universal_connection_dance_situation",
+        "option_a": "seeing_dance_as_individual_artistic_expression_only",
+        "option_b": "understanding_dance_as_universal_human_language"
+      }
+    },
+    "question_2_examples": {
+      "age_2": {
+        "scenario": "daily_sensory_activity_where_toddler_can_experience_dance",
+        "option_a": "watching_dance_videos_without_moving",
+        "option_b": "moving_body_naturally_to_any_music_heard"
+      },
+      "age_5": {
+        "scenario": "daily_activity_where_child_can_apply_dance_concept",
+        "option_a": "practicing_dance_steps_in_isolation",
+        "option_b": "dancing_with_family_during_daily_activities"
+      },
+      "age_8": {
+        "scenario": "school_or_learning_situation_for_applying_dance_concept",
+        "option_a": "memorizing_dance_for_school_performance_only",
+        "option_b": "using_dance_to_express_learning_and_emotions"
+      },
+      "age_12": {
+        "scenario": "peer_or_identity_situation_for_applying_dance_concept",
+        "option_a": "dancing_only_to_impress_peers",
+        "option_b": "dancing_to_express_authentic_self_with_confidence"
+      },
+      "age_16": {
+        "scenario": "value_formation_or_future_planning_application_of_dance_concept",
+        "option_a": "choosing_dance_career_only_for_fame",
+        "option_b": "pursuing_dance_as_authentic_self_expression"
+      },
+      "age_25": {
+        "scenario": "professional_personal_or_community_application_opportunity",
+        "option_a": "teaching_dance_only_for_income",
+        "option_b": "teaching_dance_to_inspire_authentic_expression"
+      },
+      "age_40": {
+        "scenario": "leadership_mentoring_or_community_building_application",
+        "option_a": "leading_dance_program_only_for_recognition",
+        "option_b": "building_dance_community_that_nurtures_authentic_expression"
+      },
+      "age_60": {
+        "scenario": "wisdom_sharing_or_transition_navigation_application",
+        "option_a": "preserving_dance_traditions_without_adaptation",
+        "option_b": "adapting_dance_wisdom_for_current_and_future_needs"
+      },
+      "age_80": {
+        "scenario": "wisdom_sharing_or_legacy_building_application",
+        "option_a": "focusing_only_on_past_dance_achievements",
+        "option_b": "sharing_dance_wisdom_to_inspire_future_generations"
+      },
+      "age_102": {
+        "scenario": "ultimate_wisdom_sharing_or_transcendent_contribution_application",
+        "option_a": "focusing_on_individual_dance_lifetime_only",
+        "option_b": "contributing_to_universal_understanding_of_dance_as_human_essence"
+      }
+    },
+    "question_3_examples": {
+      "age_2": {
+        "scenario": "simple_sharing_or_kindness_situation_with_others_through_dance",
+        "option_a": "dancing_only_for_own_immediate_joy",
+        "option_b": "dancing_to_share_joy_with_family_members"
+      },
+      "age_5": {
+        "scenario": "situation_where_child_can_consider_others_feelings_through_dance",
+        "option_a": "dancing_only_to_show_off_own_moves",
+        "option_b": "dancing_to_include_and_celebrate_with_friends"
+      },
+      "age_8": {
+        "scenario": "school_or_community_situation_involving_dance_and_inclusion",
+        "option_a": "dancing_only_with_popular_friends",
+        "option_b": "dancing_to_include_everyone_in_class"
+      },
+      "age_12": {
+        "scenario": "peer_group_or_community_participation_dance_situation",
+        "option_a": "dancing_only_to_gain_social_status",
+        "option_b": "dancing_to_build_inclusive_community"
+      },
+      "age_16": {
+        "scenario": "social_justice_or_community_responsibility_dance_situation",
+        "option_a": "dancing_only_with_same_cultural_background",
+        "option_b": "dancing_to_celebrate_diverse_cultural_expressions"
+      },
+      "age_25": {
+        "scenario": "civic_engagement_or_social_responsibility_dance_situation",
+        "option_a": "dancing_only_for_personal_career_advancement",
+        "option_b": "dancing_to_build_community_and_share_culture"
+      },
+      "age_40": {
+        "scenario": "community_leadership_or_intergenerational_dance_responsibility",
+        "option_a": "teaching_dance_only_to_elite_students",
+        "option_b": "making_dance_accessible_to_all_ages_and_backgrounds"
+      },
+      "age_60": {
+        "scenario": "community_stewardship_or_wisdom_application_dance_situation",
+        "option_a": "preserving_only_traditional_dance_forms",
+        "option_b": "adapting_dance_traditions_for_modern_community_needs"
+      },
+      "age_80": {
+        "scenario": "wisdom_sharing_or_advocacy_for_human_dignity_dance_situation",
+        "option_a": "accepting_dance_inequities_as_unchangeable",
+        "option_b": "using_dance_wisdom_to_advocate_for_cultural_inclusion"
+      },
+      "age_102": {
+        "scenario": "ultimate_perspective_on_human_dignity_and_universal_dance_connection",
+        "option_a": "seeing_dance_as_separate_cultural_expressions",
+        "option_b": "understanding_dance_as_universal_human_language_connecting_all_cultures"
+      }
+    }
+  },
+
+  "daily_fortune_elements": {
+    "core_identity_shift": "who_the_learner_becomes_through_understanding_authentic_dance_expression",
+    "skill_celebration": "specific_capabilities_and_wisdom_gained_through_dance_learning",
+    "relationship_impact": "how_this_knowledge_improves_connections_with_others_through_dance",
+    "universal_connection": "how_dance_connects_to_larger_patterns_in_life_relationships_and_human_experience",
+    "fortune_template": "You just earned your daily fortune... Today, {date}, is a perfect day to realize {core_identity_shift} about dance expression and {relationship_impact}. Because {universal_connection} without authentic movement is incomplete expression. You are a natural dancer and natural dancers are joyful beings. If you don't like {option_a} or {option_b}, or you love {option_c} and not {option_a} or {option_b}, or {option_b} and not {option_a} and {option_c}, or who cares about any of these - it's just about authentic self-expression. It's going to be ok because we can dance authentically at any time. If you are looking for {universal_interest_a} or {universal_interest_b}, or {universal_interest_c}, here's how to discover more. If you run into a topic, just click on 'learning + curiosity' and I'll grab the context and make you a UL."
+  },
+
+  "__lesson_player_integration": {
+    "ken_kelly_avatar_system": {
+      "mood_triggers": {
+        "opening": "curious_welcoming_energy_matched_to_dance_topic",
+        "question_1": "thoughtful_encouraging_energy_for_authentic_expression",
+        "question_2": "practical_engaged_energy_for_dance_application",
+        "question_3": "inspiring_connected_energy_for_community_and_rights",
+        "fortune": "celebratory_empowering_energy_for_dance_identity"
+      },
+      "expression_variations": {
+        "grandmother_tone": "warm_gentle_wise_expressions_with_loving_eyes",
+        "fun_tone": "energetic_celebratory_excited_expressions_with_bright_engagement",
+        "neutral_tone": "calm_professional_encouraging_expressions_with_respectful_attention"
+      },
+      "age_responsiveness": {
+        "age_2_5": "extra_gentle_playful_expressions_with_nurturing_energy",
+        "age_8_12": "encouraging_curious_expressions_with_learning_excitement",
+        "age_16_25": "confident_inspiring_expressions_with_achievement_focus",
+        "age_40_60": "wise_respectful_expressions_with_leadership_acknowledgment",
+        "age_80_102": "deeply_respectful_celebratory_expressions_with_wisdom_honor"
+      },
+      "face_safe_positioning": {
+        "overlay_restrictions": "never_cover_avatar_face_eyes_or_mouth_during_dance_content",
+        "ui_anchor_points": "bottom_right_expansion_that_respects_avatar_presence_and_mood",
+        "dynamic_adjustment": "ui_positioning_adapts_to_avatar_expression_changes_throughout_lesson",
+        "safe_zone_calculation": "algorithm_calculates_face_boundaries_for_each_mood_and_expression_combination"
+      }
+    },
+    "glass_morphism_integration": {
+      "overlay_styling": {
+        "background": "rgba(255, 255, 255, 0.85)",
+        "backdrop_filter": "blur(20px)",
+        "border_radius": "12px",
+        "border": "1px solid rgba(0, 0, 0, 0.1)",
+        "box_shadow": "0 8px 32px rgba(0, 0, 0, 0.1)"
+      },
+      "content_hierarchy": {
+        "lesson_text": "primary_overlay_with_full_glass_morphism_treatment",
+        "question_choices": "secondary_overlay_with_consistent_glass_styling",
+        "fortune_display": "celebratory_overlay_with_enhanced_glass_effects",
+        "all_stack_overlays": "consistent_glass_styling_across_all_bottom_right_components"
+      },
+      "responsive_behavior": {
+        "mobile_adaptation": "overlay_scales_appropriately_for_smaller_screens_maintains_16_9_ratio",
+        "text_sizing": "maintains_readability_while_preserving_aesthetic",
+        "touch_targets": "ensures_accessible_interaction_zones_for_all_devices"
+      }
+    },
+    "bottom_right_stack_mapping": {
+      "hamburger_menu": {
+        "trigger_behavior": "expands_collapses_entire_icon_stack",
+        "animation": "3_line_to_x_rotation_transform",
+        "dna_integration": "controls_visibility_of_all_overlay_systems"
+      },
+      "new_lesson_generator": {
+        "icon": "sparkle_magic_wand",
+        "workflow_trigger": "opens_custom_topic_input_overlay",
+        "24_hour_process": "validates_topic_generates_dna_notifies_completion",
+        "dna_integration": "creates_new_lesson_dna_file_following_this_template_structure"
+      },
+      "lesson_controls": {
+        "icon": "comprehensive_media_controls",
+        "panel_style": "apple_style_rounded_expandable_downward",
+        "controls": "play_pause_rewind_speed_volume_progress_bar",
+        "dna_integration": "synchronizes_with_content_generation_templates_timing_guidelines"
+      },
+      "language_picker": {
+        "icon": "translation_language_symbol",
+        "display": "12_language_button_grid_with_native_names",
+        "languages": "uses_language_translations_section_for_all_12_languages",
+        "dna_integration": "instant_switching_uses_cultural_adaptation_and_communication_patterns"
+      },
+      "tone_picker": {
+        "icon": "emoji_face_selector",
+        "options": "neutral_😐_fun_😄_grandmother_👵",
+        "behavior": "instant_tone_switching_affects_avatar_mood_and_content",
+        "dna_integration": "uses_tone_delivery_dna_section_for_complete_voice_character_transformation"
+      },
+      "age_slider": {
+        "icon": "horizontal_age_range_slider",
+        "range": "2_to_102_years_with_10_stops",
+        "buckets": "2_5_8_12_16_25_40_60_80_102",
+        "display": "shows_age_numbers_not_bucket_names",
+        "dna_integration": "instant_content_adaptation_using_age_expressions_section_all_10_buckets"
+      },
+      "avatar_picker": {
+        "icon": "three_circular_profile_options",
+        "options": "kelly_ken_you",
+        "you_workflow": "live_face_scan_voice_training_realtime_avatar_generation_with_lipsync",
+        "paid_feature": "teacher_student_custom_avatar_creation_service",
+        "dna_integration": "dynamic_avatar_switching_with_mood_triggers_and_expression_variations"
+      },
+      "calendar_lesson_picker": {
+        "icon": "mini_calendar_expandable_to_year_view",
+        "functionality": "366_days_clickable_with_predefined_topics",
+        "features": "completion_status_today_highlighting_month_navigation",
+        "dna_integration": "loads_corresponding_dna_file_for_selected_date_maintains_all_current_preferences"
+      },
+      "about_overlay": {
+        "icon": "information_i_symbol",
+        "display": "single_overlay_with_tabbed_interface",
+        "tabs": "about_us_how_it_works_upgrade_now_contact_us",
+        "upgrade_special": "prominent_styling_for_upgrade_now_tab",
+        "dna_integration": "overlay_uses_glass_morphism_integration_styling_specifications"
+      },
+      "audio_controls_separate": {
+        "position": "moveable_sticky_note_behavior_separate_from_stack",
+        "default_state": "open_by_default_but_closable",
+        "draggable": "user_can_move_around_screen_for_optimal_positioning",
+        "dna_integration": "synchronizes_with_content_sections_respects_face_safe_positioning_rules"
+      }
+    },
+    "variant_switching_integration": {
+      "seamless_transitions": {
+        "age_switching": "content_updates_immediately_using_age_expressions_while_preserving_lesson_progress",
+        "tone_switching": "avatar_mood_and_content_voice_update_using_tone_delivery_dna_with_smooth_transitions",
+        "language_switching": "full_content_adaptation_using_language_translations_with_cultural_appropriateness",
+        "avatar_switching": "ken_kelly_you_transitions_smoothly_using_avatar_system_specifications_with_mood_preservation"
+      },
+      "progress_preservation": {
+        "question_state": "maintains_user_progress_through_questions_during_all_variant_changes",
+        "personalization": "remembers_user_preferences_across_sessions_using_local_storage_integration",
+        "completion_tracking": "tracks_learning_completion_across_all_3240_possible_variant_combinations"
+      },
+      "dna_utilization": {
+        "instant_regeneration": "uses_same_dna_file_to_generate_new_variant_without_server_calls_or_delays",
+        "content_consistency": "maintains_educational_integrity_using_quality_validation_targets_across_all_variants",
+        "cultural_adaptation": "applies_appropriate_cultural_intelligence_markers_for_all_language_tone_age_combinations"
+      }
+    },
+    "16_9_aspect_ratio_compliance": {
+      "locked_player_design": "maintains_16_9_ratio_across_all_devices_and_orientations_as_specified",
+      "content_positioning": "all_overlays_designed_for_16_9_viewing_area_using_responsive_behavior_guidelines",
+      "mobile_adaptation": "slight_adjustments_while_maintaining_16_9_essence_as_per_system_requirements",
+      "ui_scaling": "bottom_right_stack_and_overlays_scale_appropriately_within_16_9_constraints"
+    },
+    "white_theme_enforcement": {
+      "background_consistency": "pure_white_background_ffffff_visible_behind_ken_kelly_avatars_always",
+      "overlay_transparency": "glass_morphism_overlays_maintain_white_theme_visibility_using_85_percent_white_opacity",
+      "no_dark_mode": "system_never_switches_to_dark_themes_always_maintains_white_foundation_as_specified"
+    }
+  }
+} 

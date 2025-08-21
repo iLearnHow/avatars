@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Railway TTS Live Test</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .pending { background: #fff3cd; color: #856404; }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover { background: #0056b3; }
+        button:disabled { background: #ccc; cursor: not-allowed; }
+        .test-area {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .voice-selector {
+            margin: 10px 0;
+        }
+        #log {
+            margin-top: 20px;
+            padding: 10px;
+            background: #000;
+            color: #0f0;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚂 Railway TTS Live Test</h1>
+        <p>Test your Railway Piper TTS deployment</p>
+        
+        <div id="status" class="status pending">Enter your Railway URL below...</div>
+        
+        <div class="test-area">
+            <h3>Step 1: Enter Railway URL</h3>
+            <input type="text" 
+                   id="railwayUrl" 
+                   placeholder="https://your-app.up.railway.app" 
+                   style="width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px;">
+            <button onclick="testConnection()">Test Connection</button>
+        </div>
+        
+        <div class="test-area" id="ttsTest" style="display: none;">
+            <h3>Step 2: Test Text-to-Speech</h3>
+            <textarea id="testText" rows="3">Hello! I'm Kelly, and I'm excited to teach you about the wonders of our solar system today!</textarea>
+            
+            <div class="voice-selector">
+                <label>
+                    <input type="radio" name="voice" value="kelly" checked> Kelly (Female)
+                </label>
+                <label style="margin-left: 20px;">
+                    <input type="radio" name="voice" value="ken"> Ken (Male)
+                </label>
+            </div>
+            
+            <button onclick="generateSpeech()" id="generateBtn">Generate Speech</button>
+            <button onclick="playLastAudio()" id="playBtn" disabled>Play Again</button>
+        </div>
+        
+        <div id="log"></div>
+    </div>
+    
+    <script>
+        let railwayUrl = '';
+        let lastAudio = null;
+        
+        function log(message, type = 'info') {
+            const logDiv = document.getElementById('log');
+            const time = new Date().toLocaleTimeString();
+            const color = type === 'error' ? '#f00' : type === 'success' ? '#0f0' : '#fff';
+            logDiv.innerHTML += `<div style="color: ${color}">[${time}] ${message}</div>`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+        
+        async function testConnection() {
+            railwayUrl = document.getElementById('railwayUrl').value.trim();
+            if (!railwayUrl) {
+                alert('Please enter your Railway URL');
+                return;
+            }
+            
+            const status = document.getElementById('status');
+            status.className = 'status pending';
+            status.textContent = 'Testing connection...';
+            log('Testing connection to ' + railwayUrl);
+            
+            try {
+                const response = await fetch(`${railwayUrl}/health`);
+                const data = await response.json();
+                
+                status.className = 'status success';
+                status.textContent = `✅ Connected! Engine: ${data.engine || 'Unknown'}`;
+                log('Connection successful: ' + JSON.stringify(data), 'success');
+                
+                document.getElementById('ttsTest').style.display = 'block';
+            } catch (error) {
+                status.className = 'status error';
+                status.textContent = '❌ Connection failed: ' + error.message;
+                log('Connection error: ' + error.message, 'error');
+            }
+        }
+        
+        async function generateSpeech() {
+            const text = document.getElementById('testText').value;
+            const voice = document.querySelector('input[name="voice"]:checked').value;
+            const btn = document.getElementById('generateBtn');
+            
+            btn.disabled = true;
+            btn.textContent = 'Generating...';
+            log(`Generating speech with ${voice} voice...`);
+            
+            try {
+                const response = await fetch(`${railwayUrl}/api/tts`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        text: text,
+                        speaker: voice,
+                        include_phonemes: true
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.audio) {
+                    lastAudio = new Audio(`data:audio/wav;base64,${data.audio}`);
+                    await lastAudio.play();
+                    
+                    log(`Speech generated successfully! Duration: ${data.duration?.toFixed(2)}s, Phonemes: ${data.phonemes?.length || 0}`, 'success');
+                    document.getElementById('playBtn').disabled = false;
+                } else {
+                    throw new Error('No audio data received');
+                }
+            } catch (error) {
+                log('TTS error: ' + error.message, 'error');
+                alert('Failed to generate speech: ' + error.message);
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Generate Speech';
+            }
+        }
+        
+        function playLastAudio() {
+            if (lastAudio) {
+                lastAudio.play();
+                log('Playing audio again...');
+            }
+        }
+        
+        // Auto-fill if Railway URL is in query params
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlFromParam = urlParams.get('url');
+        if (urlFromParam) {
+            document.getElementById('railwayUrl').value = urlFromParam;
+            testConnection();
+        }
+    </script>
+</body>
+</html>

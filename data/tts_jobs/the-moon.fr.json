@@ -1,0 +1,33 @@
+{
+  "slug": "the-moon",
+  "language": "fr",
+  "version": "tts_jobs_v1",
+  "defaultSpeaker": "kelly",
+  "phases": [
+    {
+      "id": "welcome",
+      "text": "Bienvenue. Ce soir, pensons comme des explorateurs: comment la Lune déplace l’eau, mesure les mois et inspire des histoires. Je te guiderai avec trois courtes questions; j’ajouterai un indice si besoin.",
+      "approxChars": 202
+    },
+    {
+      "id": "beginning",
+      "text": "Question un. Qu’est‑ce qui fait monter et descendre l’océan—le vent, ou la gravité de la Lune? Choisis quand tu es prêt(e).",
+      "approxChars": 123
+    },
+    {
+      "id": "middle",
+      "text": "Question deux. Combien de temps dure un tour de la Lune autour de la Terre—un jour, ou un mois? Choisis quand tu es prêt(e).",
+      "approxChars": 124
+    },
+    {
+      "id": "end",
+      "text": "Question trois. Des humains ont‑ils laissé des empreintes sur la Lune—non, trop loin, ou oui, les astronautes y ont marché? Choisis quand tu es prêt(e).",
+      "approxChars": 152
+    },
+    {
+      "id": "wisdom",
+      "text": "À emporter: comme la Lune, tu as des phases. Sois doux/douce pendant les moments plus sombres; la lumière revient.",
+      "approxChars": 114
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "slug": "the-moon",
+  "language": "en",
+  "version": "tts_jobs_v1",
+  "defaultSpeaker": "kelly",
+  "phases": [
+    {
+      "id": "welcome",
+      "text": "Welcome. Tonight we’ll think like explorers: how the Moon quietly moves water, measures months, and inspires stories. I’ll guide you with three short questions—hints included.",
+      "approxChars": 175
+    },
+    {
+      "id": "beginning",
+      "text": "Question one. What makes the ocean rise and fall—the wind, or the Moon’s gravity? Listen first, then choose.",
+      "approxChars": 108
+    },
+    {
+      "id": "middle",
+      "text": "Question two. How long is one trip around Earth for the Moon—about a day, or about a month? Choose when you're ready.",
+      "approxChars": 117
+    },
+    {
+      "id": "end",
+      "text": "Question three. Have humans ever left footprints on the Moon—no, it’s too far, or yes, astronauts walked there? Choose when you're ready.",
+      "approxChars": 137
+    },
+    {
+      "id": "wisdom",
+      "text": "Wisdom to carry: like the Moon, you have phases. Be gentle during the dim ones; the light returns.",
+      "approxChars": 98
+    }
+  ]
+}

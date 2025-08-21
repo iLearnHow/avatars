@@ -1,0 +1,33 @@
+{
+  "slug": "the-moon",
+  "language": "es",
+  "version": "tts_jobs_v1",
+  "defaultSpeaker": "kelly",
+  "phases": [
+    {
+      "id": "welcome",
+      "text": "Bienvenido. Esta noche pensaremos como exploradores: cómo la Luna mueve el agua, marca los meses e inspira historias. Te guiaré con tres preguntas cortas; incluiré pistas si hace falta.",
+      "approxChars": 185
+    },
+    {
+      "id": "beginning",
+      "text": "Pregunta uno. ¿Qué hace subir y bajar al océano—el viento, o la gravedad de la Luna? Elige cuando estés listo/a.",
+      "approxChars": 112
+    },
+    {
+      "id": "middle",
+      "text": "Pregunta dos. ¿Cuánto dura un viaje de la Luna alrededor de la Tierra—un día o un mes? Elige cuando estés listo/a.",
+      "approxChars": 114
+    },
+    {
+      "id": "end",
+      "text": "Pregunta tres. ¿Los humanos han dejado huellas en la Luna—no, está demasiado lejos, o sí, los astronautas caminaron allí? Elige cuando estés listo/a.",
+      "approxChars": 149
+    },
+    {
+      "id": "wisdom",
+      "text": "Para llevar: como la Luna, tú también tienes fases. Sé amable contigo en las más oscuras; la luz vuelve.",
+      "approxChars": 104
+    }
+  ]
+}

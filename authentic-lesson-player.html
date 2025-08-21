@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iLearn How - Authentic 5-Phase Lesson System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .lesson-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Person Silhouette - Central Anchor */
+        .person-silhouette {
+            width: 350px;
+            height: 450px;
+            background: #4A5568;
+            position: relative;
+            border-radius: 175px 175px 50px 50px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        /* Sticky Note Base Style */
+        .sticky-note {
+            background: #90EE90;
+            border-radius: 2px;
+            box-shadow: 2px 4px 8px rgba(0,0,0,0.2);
+            font-family: 'Comic Sans MS', cursive;
+            color: #2D5016;
+            position: absolute;
+            transform: rotate(-1deg);
+            transition: all 0.3s ease;
+        }
+
+        .sticky-note:hover {
+            transform: rotate(0deg) scale(1.02);
+            box-shadow: 4px 8px 16px rgba(0,0,0,0.3);
+        }
+
+        /* Phase Label - Top Left Corner */
+        .phase-label {
+            top: 20px;
+            left: 20px;
+            padding: 8px 16px;
+            font-size: 18px;
+            font-weight: bold;
+            z-index: 100;
+        }
+
+        /* Welcome Content */
+        .welcome-note {
+            top: 80px;
+            left: -120px;
+            width: 200px;
+            height: 160px;
+            padding: 15px;
+            font-size: 14px;
+            line-height: 1.4;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Question Labels */
+        .question-label {
+            top: 60px;
+            left: -80px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Choice Buttons */
+        .choice-a {
+            top: 150px;
+            left: -100px;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: bold;
+            cursor: pointer;
+            transform: rotate(-3deg);
+        }
+
+        .choice-b {
+            top: 150px;
+            right: -100px;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: bold;
+            cursor: pointer;
+            transform: rotate(2deg);
+        }
+
+        .choice-a:hover, .choice-b:hover {
+            transform: rotate(0deg) scale(1.1);
+            background: #7FDD7F;
+        }
+
+        /* Wisdom Panels */
+        .wisdom-panels {
+            bottom: 80px;
+            left: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .wisdom-panel {
+            width: 90px;
+            height: 70px;
+            background: #90EE90;
+            border-radius: 2px;
+            box-shadow: 2px 4px 8px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            text-align: center;
+            color: #2D5016;
+        }
+
+        .wisdom-panel:nth-child(1) { transform: rotate(-2deg); }
+        .wisdom-panel:nth-child(2) { transform: rotate(0deg); }
+        .wisdom-panel:nth-child(3) { transform: rotate(1deg); }
+
+        /* Plus Icon - Bottom Right */
+        .plus-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: #FF4500;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 2px 4px 8px rgba(0,0,0,0.2);
+        }
+
+        /* Phase Visibility */
+        .phase {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        .phase.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Feedback */
+        .feedback {
+            position: absolute;
+            bottom: 200px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #90EE90;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 2px 4px 8px rgba(0,0,0,0.2);
+            font-weight: bold;
+            color: #2D5016;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 200;
+        }
+
+        .feedback.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-10px);
+        }
+
+        /* Start Screen */
+        .start-screen {
+            position: fixed;
+            inset: 0;
+            background: rgba(255,255,255,0.95);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .start-screen h1 {
+            font-size: 36px;
+            color: #2D5016;
+            margin-bottom: 20px;
+            font-family: 'Comic Sans MS', cursive;
+        }
+
+        .start-screen p {
+            font-size: 18px;
+            color: #666;
+            max-width: 500px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .start-btn {
+            background: #90EE90;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            color: #2D5016;
+            font-family: 'Comic Sans MS', cursive;
+            box-shadow: 2px 4px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .start-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 4px 8px 16px rgba(0,0,0,0.3);
+        }
+
+        .hidden { display: none; }
+
+        /* Controls Panel */
+        .controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.9);
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 2px 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .control-btn {
+            background: #90EE90;
+            border: none;
+            padding: 8px 12px;
+            margin: 2px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Comic Sans MS', cursive;
+            font-size: 12px;
+            color: #2D5016;
+            transition: all 0.2s ease;
+        }
+
+        .control-btn:hover {
+            background: #7FDD7F;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="lesson-container">
+        <!-- Start Screen -->
+        <div class="start-screen" id="start-screen">
+            <h1>Music Evolution</h1>
+            <p>Discover how cultural evolution reflects and shapes social values, technology, and global connections through the soundtrack of human experience.</p>
+            <button class="start-btn" onclick="startLesson()">Begin Your Learning Journey</button>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+            <button class="control-btn" onclick="previousPhase()">← Back</button>
+            <button class="control-btn" onclick="nextPhase()">Next →</button>
+            <button class="control-btn" onclick="restartLesson()">Restart</button>
+        </div>
+
+        <!-- Person Silhouette -->
+        <div class="person-silhouette">
+            
+            <!-- Phase 1: Welcome -->
+            <div class="phase active" id="welcome-phase">
+                <div class="sticky-note phase-label">Welcome</div>
+                <div class="sticky-note welcome-note">
+                    <strong>Welcome!</strong><br><br>
+                    Today is <span id="current-date">August 5, 2025</span><br><br>
+                    Your local time is <span id="current-time">10:00am</span><br><br>
+                    Today's lesson is all about <strong>Music Evolution</strong>!
+                </div>
+            </div>
+
+            <!-- Phase 2: Beginning (Q1) -->
+            <div class="phase" id="beginning-phase">
+                <div class="sticky-note phase-label">Beginning</div>
+                <div class="sticky-note question-label">Q1</div>
+                <div class="sticky-note choice-a" onclick="selectChoice('A', 1)">A</div>
+                <div class="sticky-note choice-b" onclick="selectChoice('B', 1)">B</div>
+            </div>
+
+            <!-- Phase 3: Middle (Q2) -->
+            <div class="phase" id="middle-phase">
+                <div class="sticky-note phase-label">Middle</div>
+                <div class="sticky-note question-label">Q2</div>
+                <div class="sticky-note choice-a" onclick="selectChoice('A', 2)">A</div>
+                <div class="sticky-note choice-b" onclick="selectChoice('B', 2)">B</div>
+            </div>
+
+            <!-- Phase 4: End (Q3) -->
+            <div class="phase" id="end-phase">
+                <div class="sticky-note phase-label">End</div>
+                <div class="sticky-note question-label">Q3</div>
+                <div class="sticky-note choice-a" onclick="selectChoice('A', 3)">A</div>
+                <div class="sticky-note choice-b" onclick="selectChoice('B', 3)">B</div>
+            </div>
+
+            <!-- Phase 5: Wisdom -->
+            <div class="phase" id="wisdom-phase">
+                <div class="sticky-note phase-label">Wisdom</div>
+                <div class="wisdom-panels">
+                    <div class="wisdom-panel">Reflection</div>
+                    <div class="wisdom-panel">Insight</div>
+                    <div class="wisdom-panel">Growth</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Plus Icon -->
+        <div class="plus-icon">+</div>
+
+        <!-- Feedback -->
+        <div class="feedback" id="feedback">
+            Great choice!
+        </div>
+    </div>
+
+    <script>
+        class AuthenticLessonPlayer {
+            constructor() {
+                this.currentPhase = 0;
+                this.phases = ['welcome', 'beginning', 'middle', 'end', 'wisdom'];
+                this.phaseElements = [
+                    'welcome-phase', 'beginning-phase', 'middle-phase', 'end-phase', 'wisdom-phase'
+                ];
+                this.updateDateTime();
+                setInterval(() => this.updateDateTime(), 60000);
+            }
+
+            updateDateTime() {
+                const now = new Date();
+                const dateStr = now.toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                });
+                const timeStr = now.toLocaleTimeString('en-US', { 
+                    hour: 'numeric', 
+                    minute: '2-digit',
+                    hour12: true 
+                }).toLowerCase();
+                
+                const dateEl = document.getElementById('current-date');
+                const timeEl = document.getElementById('current-time');
+                
+                if (dateEl) dateEl.textContent = dateStr;
+                if (timeEl) timeEl.textContent = timeStr;
+            }
+
+            start() {
+                document.getElementById('start-screen').classList.add('hidden');
+                this.showPhase(0);
+                
+                // Auto-progress welcome after 4 seconds
+                setTimeout(() => {
+                    this.nextPhase();
+                }, 4000);
+            }
+
+            showPhase(phaseIndex) {
+                // Hide all phases
+                document.querySelectorAll('.phase').forEach(phase => {
+                    phase.classList.remove('active');
+                });
+
+                // Show current phase
+                if (phaseIndex >= 0 && phaseIndex < this.phaseElements.length) {
+                    document.getElementById(this.phaseElements[phaseIndex]).classList.add('active');
+                    this.currentPhase = phaseIndex;
+                    console.log(`Now showing: ${this.phases[phaseIndex]} phase`);
+                }
+            }
+
+            selectChoice(choice, questionNumber) {
+                console.log(`Question ${questionNumber}: Selected choice ${choice}`);
+                
+                this.showFeedback(`Excellent choice ${choice}!`);
+                
+                setTimeout(() => {
+                    this.hideFeedback();
+                    this.nextPhase();
+                }, 2500);
+            }
+
+            showFeedback(message) {
+                const feedback = document.getElementById('feedback');
+                feedback.textContent = message;
+                feedback.classList.add('show');
+            }
+
+            hideFeedback() {
+                document.getElementById('feedback').classList.remove('show');
+            }
+
+            nextPhase() {
+                if (this.currentPhase < this.phases.length - 1) {
+                    this.showPhase(this.currentPhase + 1);
+                } else {
+                    console.log('🎉 Lesson completed!');
+                    this.showFeedback('Lesson completed! 🎉');
+                }
+            }
+
+            previousPhase() {
+                if (this.currentPhase > 0) {
+                    this.showPhase(this.currentPhase - 1);
+                }
+            }
+
+            restart() {
+                this.showPhase(0);
+                document.getElementById('start-screen').classList.remove('hidden');
+            }
+        }
+
+        // Global player instance
+        const player = new AuthenticLessonPlayer();
+
+        // Interface functions
+        function startLesson() {
+            player.start();
+        }
+
+        function selectChoice(choice, questionNumber) {
+            player.selectChoice(choice, questionNumber);
+        }
+
+        function nextPhase() {
+            player.nextPhase();
+        }
+
+        function previousPhase() {
+            player.previousPhase();
+        }
+
+        function restartLesson() {
+            player.restart();
+        }
+    </script>
+</body>
+</html>

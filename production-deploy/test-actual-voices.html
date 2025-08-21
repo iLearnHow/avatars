@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Actual Ken & Kelly Voices</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .voice-test {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .status {
+            margin: 15px 0;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        .audio-player {
+            background: rgba(0,123,255,0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        audio {
+            width: 100%;
+            margin: 10px 0;
+        }
+        .file-info {
+            background: #e9ecef;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: monospace;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎤 Test Actual Ken & Kelly Voice Files</h1>
+        
+        <div class="voice-test">
+            <h3>🎭 Kelly Voice Test</h3>
+            <p>Testing with actual Kelly voice file: <code>dist/reference_kelly.wav</code></p>
+            <button onclick="testKellyFile()">Test Kelly Voice File</button>
+            <div id="kellyStatus"></div>
+            <div id="kellyAudio" class="audio-player" style="display: none;"></div>
+        </div>
+        
+        <div class="voice-test">
+            <h3>🎭 Ken Voice Test</h3>
+            <p>Testing with actual Ken voice file: <code>dist/reference_ken_mono16k.wav</code></p>
+            <button onclick="testKenFile()">Test Ken Voice File</button>
+            <div id="kenStatus"></div>
+            <div id="kenAudio" class="audio-player" style="display: none;"></div>
+        </div>
+        
+        <div class="voice-test">
+            <h3>🔧 File Check</h3>
+            <button onclick="checkVoiceFiles()">Check Voice Files</button>
+            <div id="fileStatus"></div>
+        </div>
+        
+        <div class="voice-test">
+            <h3>📋 Solution Summary</h3>
+            <div class="file-info">
+                <strong>Current Issue:</strong> Your Railway TTS server uses generic Piper voices, not your custom trained Ken & Kelly voices.
+                
+                <strong>What I Found:</strong>
+                ✅ You have custom voice training data in dist/data/kelly/ and dist/data/ken/
+                ✅ You have reference audio files: reference_kelly.wav and reference_ken_mono16k.wav
+                ❌ Your Railway server uses generic voices: en_US-amy-medium and en_US-ryan-medium
+                
+                <strong>Solution:</strong>
+                1. Deploy the new custom-voice-tts-server.py to Railway
+                2. This server will use your actual trained voice models
+                3. Fallback to Piper if custom models aren't ready
+                
+                <strong>Next Steps:</strong>
+                1. Test these voice files locally (buttons above)
+                2. If they work, deploy the custom server
+                3. Your students will hear the REAL Ken & Kelly voices!
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function log(elementId, message, type = 'info') {
+            const logEl = document.getElementById(elementId);
+            const timestamp = new Date().toLocaleTimeString();
+            logEl.innerHTML = `<span class="${type}">[${timestamp}] ${message}</span>`;
+        }
+        
+        async function testKellyFile() {
+            await testVoiceFile('kelly', 'kellyStatus', 'kellyAudio', '../dist/reference_kelly.wav');
+        }
+        
+        async function testKenFile() {
+            await testVoiceFile('ken', 'kenStatus', 'kenAudio', '../dist/reference_ken_mono16k.wav');
+        }
+        
+        async function testVoiceFile(speaker, statusId, audioId, filePath) {
+            const statusEl = document.getElementById(statusId);
+            const audioEl = document.getElementById(audioId);
+            
+            log(statusId, `🎤 Testing ${speaker} voice file: ${filePath}`, 'info');
+            
+            try {
+                // Create audio element
+                const audio = new Audio(filePath);
+                audio.controls = true;
+                audio.preload = 'metadata';
+                
+                // Wait for metadata to load
+                await new Promise((resolve, reject) => {
+                    audio.addEventListener('loadedmetadata', resolve);
+                    audio.addEventListener('error', reject);
+                    audio.load();
+                });
+                
+                // Display audio player
+                audioEl.style.display = 'block';
+                audioEl.innerHTML = `
+                    <h4>🎵 ${speaker} Voice Audio Player</h4>
+                    <p><strong>File:</strong> ${filePath}</p>
+                    <p><strong>Duration:</strong> ${audio.duration.toFixed(2)}s</p>
+                    <p><strong>Format:</strong> WAV</p>
+                    <audio controls src="${filePath}"></audio>
+                    <p><em>Click play to hear ${speaker}'s actual voice!</em></p>
+                `;
+                
+                log(statusId, `✅ ${speaker} voice file loaded successfully! Duration: ${audio.duration.toFixed(2)}s`, 'success');
+                
+            } catch (error) {
+                log(statusId, `❌ Error loading ${speaker} voice file: ${error.message}`, 'error');
+                console.error('Voice file error:', error);
+            }
+        }
+        
+        async function checkVoiceFiles() {
+            const statusEl = document.getElementById('fileStatus');
+            
+            log('fileStatus', '🔍 Checking voice files...', 'info');
+            
+            const files = [
+                '../dist/reference_kelly.wav',
+                '../dist/reference_ken_mono16k.wav',
+                '../dist/data/kelly/',
+                '../dist/data/ken/'
+            ];
+            
+            const results = [];
+            
+            for (const file of files) {
+                try {
+                    const response = await fetch(file, { method: 'HEAD' });
+                    if (response.ok) {
+                        results.push(`✅ ${file} - Found`);
+                    } else {
+                        results.push(`❌ ${file} - HTTP ${response.status}`);
+                    }
+                } catch (error) {
+                    results.push(`❌ ${file} - Error: ${error.message}`);
+                }
+            }
+            
+            statusEl.innerHTML = `
+                <div class="status success">
+                    <strong>Voice Files Status:</strong><br>
+                    ${results.join('<br>')}
+                </div>
+            `;
+        }
+        
+        // Auto-check files on load
+        window.addEventListener('load', () => {
+            checkVoiceFiles();
+        });
+    </script>
+</body>
+</html>

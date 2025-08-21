@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simplified Autoplay Interface Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f0f0f0; }
+        .test { background: white; padding: 20px; margin: 15px 0; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .success { background: #d4edda; color: #155724; padding: 10px; border-radius: 4px; margin: 10px 0; }
+        .error { background: #f8d7da; color: #721c24; padding: 10px; border-radius: 4px; margin: 10px 0; }
+        .warning { background: #fff3cd; color: #856404; padding: 10px; border-radius: 4px; margin: 10px 0; }
+        button { background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; margin: 5px; }
+        button:hover { background: #0056b3; }
+        iframe { width: 100%; height: 600px; border: 1px solid #ccc; border-radius: 4px; }
+        .demo { display: flex; gap: 20px; margin: 20px 0; }
+        .demo-section { background: #f8f9fa; padding: 20px; border-radius: 8px; }
+        .demo-icon { width: 60px; height: 60px; background: white; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 20px; margin: 10px 0; position: relative; gap: 2px; padding: 4px; }
+        .demo-icon.secondary { width: 50px; height: 50px; font-size: 18px; }
+        .demo-icon .icon-emoji { font-size: 20px; }
+        .demo-icon.secondary .icon-emoji { font-size: 18px; }
+        .demo-icon .icon-label { font-size: 9px; color: #666; font-weight: 500; text-align: center; line-height: 1; }
+        .demo-icon.secondary .icon-label { font-size: 8px; }
+    </style>
+</head>
+<body>
+    <h1>🚀 Simplified Autoplay Interface Test</h1>
+    
+    <div class="test">
+        <h2>✅ Test 1: Simplified Interface Implementation</h2>
+        <p><strong>Status:</strong> <span id="interface-status">Checking...</span></p>
+        <p><strong>Expected:</strong> Only Hold button visible initially (autoplay handles starting)</p>
+    </div>
+    
+    <div class="test">
+        <h2>✅ Test 2: Removed Talk Button</h2>
+        <p><strong>Status:</strong> <span id="talk-status">Checking...</span></p>
+        <p><strong>Expected:</strong> No Talk button since autoplay handles lesson start</p>
+    </div>
+    
+    <div class="test">
+        <h2>✅ Test 3: Menu in Right Stack</h2>
+        <p><strong>Status:</strong> <span id="menu-status">Checking...</span></p>
+        <p><strong>Expected:</strong> Menu button moved to right navigation stack</p>
+    </div>
+    
+    <div class="test">
+        <h2>✅ Test 4: Bottom Right Navigation</h2>
+        <p><strong>Status:</strong> <span id="nav-status">Checking...</span></p>
+        <p><strong>Expected:</strong> Navigation positioned from bottom right corner</p>
+    </div>
+    
+    <div class="test">
+        <h2>✅ Test 5: Hold Button Functionality</h2>
+        <p><strong>Status:</strong> <span id="hold-status">Checking...</span></p>
+        <p><strong>Expected:</strong> Hold button pauses lesson and toggles menu</p>
+    </div>
+    
+    <div class="test">
+        <h2>🧪 Demo: Simplified Interface Structure</h2>
+        <p>This demo shows the new simplified interface:</p>
+        <div class="demo">
+            <div class="demo-section">
+                <h3>Primary Control (Always Visible)</h3>
+                <div class="demo-icon">
+                    <div class="icon-emoji">✋</div>
+                    <div class="icon-label">Hold</div>
+                </div>
+                <p><em>Autoplay handles lesson start automatically</em></p>
+            </div>
+            <div class="demo-section">
+                <h3>Secondary Controls (Hidden by Default)</h3>
+                <div class="demo-icon secondary">
+                    <div class="icon-emoji">🔊</div>
+                    <div class="icon-label">Louder</div>
+                </div>
+                <div class="demo-icon secondary">
+                    <div class="icon-emoji">🔇</div>
+                    <div class="icon-label">Softer</div>
+                </div>
+                <div class="demo-icon secondary">
+                    <div class="icon-emoji">🐌</div>
+                    <div class="icon-label">Slower</div>
+                </div>
+                <div class="demo-icon secondary">
+                    <div class="icon-emoji">⚡</div>
+                    <div class="icon-label">Faster</div>
+                </div>
+                <div class="demo-icon secondary">
+                    <div class="icon-emoji">🔄</div>
+                    <div class="icon-label">Repeat</div>
+                </div>
+            </div>
+            <div class="demo-section">
+                <h3>Right Navigation (Bottom Right)</h3>
+                <div class="demo-icon secondary">
+                    <div class="icon-emoji">📅</div>
+                    <div class="icon-label">Calendar</div>
+                </div>
+                <div class="demo-icon secondary">
+                    <div class="icon-emoji">😊</div>
+                    <div class="icon-label">Tone</div>
+                </div>
+                <div class="demo-icon secondary">
+                    <div class="icon-emoji">🎭</div>
+                    <div class="icon-label">Avatar</div>
+                </div>
+                <div class="demo-icon secondary">
+                    <div class="icon-emoji">🌍</div>
+                    <div class="icon-label">Language</div>
+                </div>
+                <div class="demo-icon secondary">
+                    <div class="icon-emoji">👶</div>
+                    <div class="icon-label">Age</div>
+                </div>
+                <div class="demo-icon secondary">
+                    <div class="icon-emoji" style="color: #28a745;">➕</div>
+                    <div class="icon-label">Create</div>
+                </div>
+                <div class="demo-icon secondary">
+                    <div class="icon-emoji">☰</div>
+                    <div class="icon-label">Menu</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="test">
+        <h2>🧪 Live Interface Test</h2>
+        <p>Test the simplified autoplay interface in the live interface:</p>
+        <button onclick="openLiveTest()">Open Live Interface Test</button>
+        <div id="live-test"></div>
+    </div>
+
+    <script>
+        async function runTests() {
+            console.log('🚀 Running simplified autoplay interface tests...');
+            
+            // Test 1: Check for simplified interface implementation
+            try {
+                const response = await fetch('http://localhost:8000/');
+                const html = await response.text();
+                
+                const hasHoldPrimary = html.includes('control-btn primary') && html.includes('data-label="Hold"');
+                const hasSecondaryControls = html.includes('secondary-controls');
+                const noTalkButton = !html.includes('data-label="Talk"');
+                const hasMenuInNav = html.includes('side-navigation') && html.includes('data-label="Menu"');
+                
+                if (hasHoldPrimary && hasSecondaryControls && noTalkButton && hasMenuInNav) {
+                    document.getElementById('interface-status').textContent = '✅ PASSED - Simplified interface implemented';
+                    document.getElementById('interface-status').className = 'success';
+                } else {
+                    document.getElementById('interface-status').textContent = '❌ FAILED - Simplified interface missing';
+                    document.getElementById('interface-status').className = 'error';
+                }
+            } catch (error) {
+                document.getElementById('interface-status').textContent = '❌ ERROR - ' + error.message;
+                document.getElementById('interface-status').className = 'error';
+            }
+            
+            // Test 2: Check for removed talk button
+            try {
+                const response = await fetch('http://localhost:8000/');
+                const html = await response.text();
+                
+                const noTalkButton = !html.includes('data-label="Talk"');
+                const noTalkFunction = !html.includes('tellAvatar(\'talk\')');
+                
+                if (noTalkButton && noTalkFunction) {
+                    document.getElementById('talk-status').textContent = '✅ PASSED - Talk button removed';
+                    document.getElementById('talk-status').className = 'success';
+                } else {
+                    document.getElementById('talk-status').textContent = '❌ FAILED - Talk button still present';
+                    document.getElementById('talk-status').className = 'error';
+                }
+            } catch (error) {
+                document.getElementById('talk-status').textContent = '❌ ERROR - ' + error.message;
+                document.getElementById('talk-status').className = 'error';
+            }
+            
+            // Test 3: Check for menu in right stack
+            try {
+                const response = await fetch('http://localhost:8000/');
+                const html = await response.text();
+                
+                const hasMenuInNav = html.includes('side-navigation') && html.includes('data-label="Menu"');
+                const noMenuInControls = !html.includes('menu-btn');
+                
+                if (hasMenuInNav && noMenuInControls) {
+                    document.getElementById('menu-status').textContent = '✅ PASSED - Menu moved to right stack';
+                    document.getElementById('menu-status').className = 'success';
+                } else {
+                    document.getElementById('menu-status').textContent = '❌ FAILED - Menu not in right stack';
+                    document.getElementById('menu-status').className = 'error';
+                }
+            } catch (error) {
+                document.getElementById('menu-status').textContent = '❌ ERROR - ' + error.message;
+                document.getElementById('menu-status').className = 'error';
+            }
+            
+            // Test 4: Check for bottom right navigation
+            try {
+                const response = await fetch('http://localhost:8000/');
+                const html = await response.text();
+                
+                const hasBottomRight = html.includes('bottom: 40px') && html.includes('right: 20px');
+                const hasFlexColumn = html.includes('flex-direction: column');
+                
+                if (hasBottomRight && hasFlexColumn) {
+                    document.getElementById('nav-status').textContent = '✅ PASSED - Navigation positioned bottom right';
+                    document.getElementById('nav-status').className = 'success';
+                } else {
+                    document.getElementById('nav-status').textContent = '❌ FAILED - Navigation not positioned correctly';
+                    document.getElementById('nav-status').className = 'error';
+                }
+            } catch (error) {
+                document.getElementById('nav-status').textContent = '❌ ERROR - ' + error.message;
+                document.getElementById('nav-status').className = 'error';
+            }
+            
+            // Test 5: Check for hold button functionality
+            try {
+                const response = await fetch('http://localhost:8000/');
+                const html = await response.text();
+                
+                const hasHoldFunction = html.includes('tellAvatar(\'hold\')');
+                const hasToggleMenu = html.includes('toggleMenu()');
+                const hasPauseLesson = html.includes('pauseLesson()');
+                
+                if (hasHoldFunction && hasToggleMenu && hasPauseLesson) {
+                    document.getElementById('hold-status').textContent = '✅ PASSED - Hold button functionality complete';
+                    document.getElementById('hold-status').className = 'success';
+                } else {
+                    document.getElementById('hold-status').textContent = '❌ FAILED - Hold button functionality incomplete';
+                    document.getElementById('hold-status').className = 'error';
+                }
+            } catch (error) {
+                document.getElementById('hold-status').textContent = '❌ ERROR - ' + error.message;
+                document.getElementById('hold-status').className = 'error';
+            }
+        }
+        
+        function openLiveTest() {
+            const testDiv = document.getElementById('live-test');
+            testDiv.innerHTML = `
+                <h3>🧪 Live Interface Test</h3>
+                <p><strong>Test Instructions:</strong></p>
+                <ol>
+                    <li>Wait for the page to load completely</li>
+                    <li>Verify only Hold button is visible initially (autoplay starts lesson)</li>
+                    <li>Click the Hold button (✋) to pause and show menu</li>
+                    <li>Check that navigation appears in bottom right corner</li>
+                    <li>Click Menu button (☰) in right stack to toggle controls</li>
+                    <li>Verify secondary controls appear/disappear with menu</li>
+                </ol>
+                <p><strong>Expected Behavior:</strong></p>
+                <ul>
+                    <li>Initial state: Only Hold button visible (autoplay starts lesson)</li>
+                    <li>Hold button: Pauses lesson + toggles menu</li>
+                    <li>Navigation: Bottom right corner, hidden by default</li>
+                    <li>Menu button: In right navigation stack, controls secondary elements</li>
+                    <li>Simplified interface: No Talk button needed with autoplay</li>
+                </ul>
+                <iframe src="http://localhost:8000/" title="Simplified Autoplay Interface Test"></iframe>
+            `;
+        }
+        
+        // Run tests on page load
+        window.addEventListener('load', runTests);
+    </script>
+</body>
+</html> 

@@ -1,0 +1,303 @@
+{
+  "day": 15,
+  "title": "Puppies - Understanding Our Four-Legged Friends",
+  "objective": "Explore how puppies learn, grow, and communicate, while understanding the special bond between humans and dogs through care, training, and love.",
+  
+  "phases": {
+    "1": {
+      "type": "welcome",
+      "display_name": "Welcome",
+      "avatar_script": {
+        "neutral": {
+          "infant": "Hi little one! I'm so excited to learn about puppies with you today! Puppies are like little friends who love to play and grow, just like you do!",
+          "toddler": "Hello there! Today we're going to discover how puppies learn and become our very best friends. It's going to be so much fun!",
+          "early_childhood": "Welcome! Today we're exploring the amazing world of puppies! We'll learn how they talk to us and grow into wonderful dogs.",
+          "middle_childhood": "Welcome to our lesson about puppies! Today we'll explore how puppies develop and communicate with humans.",
+          "pre_teen": "Welcome to today's lesson about puppies! We'll examine how puppies learn, communicate, and develop into loyal companions.",
+          "teen": "Welcome to today's lesson about puppies! We'll examine how puppies learn, communicate, and develop into loyal companions.",
+          "young_adult": "Welcome to today's lesson about Puppies - Understanding Our Four-Legged Friends! Today we'll discover how puppies learn, grow, and become amazing companions.",
+          "adult": "Welcome to our exploration of puppy development! Today we'll examine how puppies learn, communicate, and form bonds with humans.",
+          "middle_age": "Welcome to our lesson about puppy behavior and development! Today we'll explore how puppies learn, communicate, and become loyal companions.",
+          "senior": "Welcome to our study of puppy development and communication! Today we'll examine how puppies learn, grow, and form meaningful relationships with humans.",
+          "elder": "Welcome to our comprehensive exploration of puppy development! Today we'll examine how puppies learn, communicate, and develop into remarkable companions."
+        },
+        "fun": {
+          "infant": "🎉 Hi little cutie! I'm SO excited to learn about puppies with you today! Puppies are like little friends who love to play and grow, just like you do! 🐕",
+          "toddler": "🎉 Hello! Today we're going to discover how puppies learn and become our BEST friends! It's going to be AWESOME! 🐕",
+          "early_childhood": "🎉 Welcome! Today we're exploring the SUPER COOL world of puppies! We'll learn how they talk to us and grow into WONDERFUL dogs! 🐕",
+          "middle_childhood": "🎉 Welcome to our SUPER FUN lesson about puppies! Today we'll explore how puppies develop and communicate with humans - it's going to be INCREDIBLE! 🐕",
+          "pre_teen": "🎉 Welcome to today's AWESOME lesson about puppies! We'll examine how puppies learn, communicate, and develop into loyal companions - this is going to be EPIC! 🐕",
+          "teen": "🎉 Welcome to today's AWESOME lesson about puppies! We'll examine how puppies learn, communicate, and develop into loyal companions - this is going to be EPIC! 🐕",
+          "young_adult": "🎉 Woohoo! Welcome to today's AMAZING lesson about Puppies - Understanding Our Four-Legged Friends! Today we'll discover how puppies learn, grow, and become AMAZING companions - it's going to be SO much fun! 🐕",
+          "adult": "🎉 Welcome to our SUPER FUN exploration of puppy development! Today we'll examine how puppies learn, communicate, and form bonds with humans - this is going to be INCREDIBLE! 🐕",
+          "middle_age": "🎉 Welcome to our AWESOME lesson about puppy behavior and development! Today we'll explore how puppies learn, communicate, and become loyal companions - it's going to be AMAZING! 🐕",
+          "senior": "🎉 Welcome to our SUPER COOL study of puppy development and communication! Today we'll examine how puppies learn, grow, and form meaningful relationships with humans - this is going to be EPIC! 🐕",
+          "elder": "🎉 Welcome to our AMAZING comprehensive exploration of puppy development! Today we'll examine how puppies learn, communicate, and develop into remarkable companions - it's going to be INCREDIBLE! 🐕"
+        },
+        "grandmother": {
+          "infant": "Oh, sweetheart! I'm so excited to learn about puppies with you today! Puppies are like little friends who love to play and grow, just like you do! 💕",
+          "toddler": "Hello, my dear! Today we're going to discover how puppies learn and become our dearest friends! 💕",
+          "early_childhood": "Welcome, my dear! Today we're exploring the wonderful world of puppies! We'll learn how they talk to us and grow into such lovely dogs! 💕",
+          "middle_childhood": "Welcome to our lovely lesson about puppies, my dear! Today we'll explore how puppies develop and communicate with humans - it's such a beautiful thing! 💕",
+          "pre_teen": "Welcome to today's wonderful lesson about puppies, my dear! We'll examine how puppies learn, communicate, and develop into such loyal companions! 💕",
+          "teen": "Welcome to today's wonderful lesson about puppies, my dear! We'll examine how puppies learn, communicate, and develop into such loyal companions! 💕",
+          "young_adult": "Oh, my dear! Welcome to today's lovely lesson about Puppies - Understanding Our Four-Legged Friends! Today we'll discover how puppies learn, grow, and become such wonderful companions! 💕",
+          "adult": "Welcome to our lovely exploration of puppy development, my dear! Today we'll examine how puppies learn, communicate, and form such beautiful bonds with humans! 💕",
+          "middle_age": "Welcome to our wonderful lesson about puppy behavior and development, my dear! Today we'll explore how puppies learn, communicate, and become such loyal companions! 💕",
+          "senior": "Welcome to our lovely study of puppy development and communication, my dear! Today we'll examine how puppies learn, grow, and form such meaningful relationships with humans! 💕",
+          "elder": "Welcome to our beautiful comprehensive exploration of puppy development, my dear! Today we'll examine how puppies learn, communicate, and develop into such remarkable companions! 💕"
+        }
+      },
+      "content": {
+        "welcome_message": "Welcome to today's lesson about Puppies - Understanding Our Four-Legged Friends!",
+        "lesson_preview": "Today we'll discover how puppies learn, grow, and become amazing companions.",
+        "date_context": "auto-generated",
+        "time_context": "auto-generated"
+      },
+      "avatar_expression": "teaching_explaining",
+      "duration": "30-45 seconds"
+    },
+    
+    "2": {
+      "type": "beginning",
+      "display_name": "Beginning",
+      "question_number": "Q1",
+      "question_text": "What is the most important thing a puppy needs to grow up healthy and happy?",
+      "avatar_script": {
+        "neutral": {
+          "infant": "Little one, let's think about what puppies need most to be happy! Look at these two choices and tell me what you think!",
+          "toddler": "Let's discover what puppies need most to grow up happy! Which of these do you think is most important?",
+          "early_childhood": "Let's figure out what helps a puppy grow up to be a good dog! Which of these choices do you think is right?",
+          "middle_childhood": "Let's explore what's most important for a puppy to become a well-adjusted dog! What do you think?",
+          "pre_teen": "Let's examine what's most important for a puppy to grow up healthy and happy! Which choice makes the most sense?",
+          "teen": "Let's examine what's most important for a puppy to grow up healthy and happy! Which choice makes the most sense?",
+          "young_adult": "Let's analyze what's most important for a puppy to grow up healthy and happy! Consider both options carefully.",
+          "adult": "Let's examine what's most important for a puppy to grow up healthy and happy! Consider both options carefully.",
+          "middle_age": "Let's examine what's most important for a puppy to grow up healthy and happy! Consider both options carefully.",
+          "senior": "Let's examine what's most important for a puppy to grow up healthy and happy! Consider both options carefully.",
+          "elder": "Let's examine what's most important for a puppy to grow up healthy and happy! Consider both options carefully."
+        },
+        "fun": {
+          "infant": "🎉 Little cutie, let's think about what puppies need most to be happy! Look at these two choices and tell me what you think! 🐕",
+          "toddler": "🎉 Let's discover what puppies need most to grow up happy! Which of these do you think is most important? 🐕",
+          "early_childhood": "🎉 Let's figure out what helps a puppy grow up to be a good dog! Which of these choices do you think is right? 🐕",
+          "middle_childhood": "🎉 Let's explore what's most important for a puppy to become a well-adjusted dog! What do you think? 🐕",
+          "pre_teen": "🎉 Let's examine what's most important for a puppy to grow up healthy and happy! Which choice makes the most sense? 🐕",
+          "teen": "🎉 Let's examine what's most important for a puppy to grow up healthy and happy! Which choice makes the most sense? 🐕",
+          "young_adult": "🎉 Let's analyze what's most important for a puppy to grow up healthy and happy! Consider both options carefully! 🐕",
+          "adult": "🎉 Let's examine what's most important for a puppy to grow up healthy and happy! Consider both options carefully! 🐕",
+          "middle_age": "🎉 Let's examine what's most important for a puppy to grow up healthy and happy! Consider both options carefully! 🐕",
+          "senior": "🎉 Let's examine what's most important for a puppy to grow up healthy and happy! Consider both options carefully! 🐕",
+          "elder": "🎉 Let's examine what's most important for a puppy to grow up healthy and happy! Consider both options carefully! 🐕"
+        },
+        "grandmother": {
+          "infant": "Oh, sweetheart, let's think about what puppies need most to be happy! Look at these two choices and tell me what you think! 💕",
+          "toddler": "Oh, my dear, let's discover what puppies need most to grow up happy! Which of these do you think is most important? 💕",
+          "early_childhood": "Oh, my dear, let's figure out what helps a puppy grow up to be a good dog! Which of these choices do you think is right? 💕",
+          "middle_childhood": "Oh, my dear, let's explore what's most important for a puppy to become a well-adjusted dog! What do you think? 💕",
+          "pre_teen": "Oh, my dear, let's examine what's most important for a puppy to grow up healthy and happy! Which choice makes the most sense? 💕",
+          "teen": "Oh, my dear, let's examine what's most important for a puppy to grow up healthy and happy! Which choice makes the most sense? 💕",
+          "young_adult": "Oh, my dear, let's analyze what's most important for a puppy to grow up healthy and happy! Consider both options carefully. 💕",
+          "adult": "Oh, my dear, let's examine what's most important for a puppy to grow up healthy and happy! Consider both options carefully. 💕",
+          "middle_age": "Oh, my dear, let's examine what's most important for a puppy to grow up healthy and happy! Consider both options carefully. 💕",
+          "senior": "Oh, my dear, let's examine what's most important for a puppy to grow up healthy and happy! Consider both options carefully. 💕",
+          "elder": "Oh, my dear, let's examine what's most important for a puppy to grow up healthy and happy! Consider both options carefully. 💕"
+        }
+      },
+      "choices": {
+        "option_a": {
+          "text": "Lots of toys and treats",
+          "teaching_moment": {
+            "neutral": {
+              "infant": "Toys are nice, but puppies need love and hugs most! Just like you do!",
+              "toddler": "Toys are fun, but puppies need something even more important - love and care from their family!",
+              "early_childhood": "Food is important, but puppies also need training, exercise, and lots of attention to become well-behaved dogs.",
+              "middle_childhood": "While enrichment is important, puppies need something more fundamental - consistent care, socialization, and training.",
+              "pre_teen": "While enrichment is important, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs.",
+              "teen": "While enrichment is important, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs.",
+              "young_adult": "While enrichment is important, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs.",
+              "adult": "While enrichment is important, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs.",
+              "middle_age": "While enrichment is important, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs.",
+              "senior": "While enrichment is important, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs.",
+              "elder": "While enrichment is important, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs."
+            },
+            "fun": {
+              "infant": "🎉 Toys are nice, but puppies need love and hugs most! Just like you do! 🐕",
+              "toddler": "🎉 Toys are SUPER fun, but puppies need something even more important - love and care from their family! 🐕",
+              "early_childhood": "🎉 Food is important, but puppies also need training, exercise, and LOTS of attention to become well-behaved dogs! 🐕",
+              "middle_childhood": "🎉 While enrichment is SUPER fun, puppies need something more fundamental - consistent care, socialization, and training! 🐕",
+              "pre_teen": "🎉 While enrichment is SUPER fun, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs! 🐕",
+              "teen": "🎉 While enrichment is SUPER fun, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs! 🐕",
+              "young_adult": "🎉 While enrichment is SUPER fun, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs! 🐕",
+              "adult": "🎉 While enrichment is SUPER fun, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs! 🐕",
+              "middle_age": "🎉 While enrichment is SUPER fun, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs! 🐕",
+              "senior": "🎉 While enrichment is SUPER fun, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs! 🐕",
+              "elder": "🎉 While enrichment is SUPER fun, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs! 🐕"
+            },
+            "grandmother": {
+              "infant": "Oh, my dear, toys are nice, but puppies need love and hugs most! Just like you, my precious one! 💕",
+              "toddler": "Oh, my dear, toys are lovely, but puppies need something even more precious - love and care from their family! 💕",
+              "early_childhood": "Oh, my dear, food is important, but puppies also need training, exercise, and lots of attention to become such well-behaved dogs! 💕",
+              "middle_childhood": "Oh, my dear, while enrichment is lovely, puppies need something more fundamental - consistent care, socialization, and training! 💕",
+              "pre_teen": "Oh, my dear, while enrichment is lovely, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs! 💕",
+              "teen": "Oh, my dear, while enrichment is lovely, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs! 💕",
+              "young_adult": "Oh, my dear, while enrichment is lovely, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs! 💕",
+              "adult": "Oh, my dear, while enrichment is lovely, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs! 💕",
+              "middle_age": "Oh, my dear, while enrichment is lovely, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs! 💕",
+              "senior": "Oh, my dear, while enrichment is lovely, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs! 💕",
+              "elder": "Oh, my dear, while enrichment is lovely, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs! 💕"
+            }
+          },
+          "response_script": {
+            "neutral": {
+              "infant": "That's a good thought! But toys are nice, while puppies need love and hugs most, just like you do! Try the other choice to learn more!",
+              "toddler": "Good thinking! But toys are fun, while puppies need something even more important - love and care from their family! Try the other choice to learn more!",
+              "early_childhood": "Good idea! But food is important, while puppies also need training, exercise, and lots of attention to become well-behaved dogs. Try the other choice to learn more!",
+              "middle_childhood": "Good thinking! But while enrichment is important, puppies need something more fundamental - consistent care, socialization, and training. Try the other choice to learn more!",
+              "pre_teen": "Good idea! But while enrichment is important, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs. Try the other choice to learn more!",
+              "teen": "Good thinking! But while enrichment is important, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs. Try the other choice to learn more!",
+              "young_adult": "Good consideration! But while enrichment is important, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs. Try the other choice to learn more!",
+              "adult": "Good thinking! But while enrichment is important, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs. Try the other choice to learn more!",
+              "middle_age": "Good consideration! But while enrichment is important, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs. Try the other choice to learn more!",
+              "senior": "Good thinking! But while enrichment is important, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs. Try the other choice to learn more!",
+              "elder": "Good consideration! But while enrichment is important, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs. Try the other choice to learn more!"
+            },
+            "fun": {
+              "infant": "🎉 That's a good thought! But toys are nice, while puppies need love and hugs most, just like you do! Try the other choice to learn more! 🐕",
+              "toddler": "🎉 Good thinking! But toys are SUPER fun, while puppies need something even more important - love and care from their family! Try the other choice to learn more! 🐕",
+              "early_childhood": "🎉 Good idea! But food is important, while puppies also need training, exercise, and LOTS of attention to become well-behaved dogs! Try the other choice to learn more! 🐕",
+              "middle_childhood": "🎉 Good thinking! But while enrichment is SUPER fun, puppies need something more fundamental - consistent care, socialization, and training! Try the other choice to learn more! 🐕",
+              "pre_teen": "🎉 Good idea! But while enrichment is SUPER fun, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs! Try the other choice to learn more! 🐕",
+              "teen": "🎉 Good thinking! But while enrichment is SUPER fun, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs! Try the other choice to learn more! 🐕",
+              "young_adult": "🎉 Good consideration! But while enrichment is SUPER fun, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs! Try the other choice to learn more! 🐕",
+              "adult": "🎉 Good thinking! But while enrichment is SUPER fun, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs! Try the other choice to learn more! 🐕",
+              "middle_age": "🎉 Good consideration! But while enrichment is SUPER fun, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs! Try the other choice to learn more! 🐕",
+              "senior": "🎉 Good thinking! But while enrichment is SUPER fun, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs! Try the other choice to learn more! 🐕",
+              "elder": "🎉 Good consideration! But while enrichment is SUPER fun, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs! Try the other choice to learn more! 🐕"
+            },
+            "grandmother": {
+              "infant": "Oh, my dear, that's a good thought! But toys are nice, while puppies need love and hugs most, just like you do! Try the other choice to learn more! 💕",
+              "toddler": "Oh, my dear, good thinking! But toys are lovely, while puppies need something even more precious - love and care from their family! Try the other choice to learn more! 💕",
+              "early_childhood": "Oh, my dear, good idea! But food is important, while puppies also need training, exercise, and lots of attention to become such well-behaved dogs! Try the other choice to learn more! 💕",
+              "middle_childhood": "Oh, my dear, good thinking! But while enrichment is lovely, puppies need something more fundamental - consistent care, socialization, and training! Try the other choice to learn more! 💕",
+              "pre_teen": "Oh, my dear, good idea! But while enrichment is lovely, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs! Try the other choice to learn more! 💕",
+              "teen": "Oh, my dear, good thinking! But while enrichment is lovely, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs! Try the other choice to learn more! 💕",
+              "young_adult": "Oh, my dear, good consideration! But while enrichment is lovely, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs! Try the other choice to learn more! 💕",
+              "adult": "Oh, my dear, good thinking! But while enrichment is lovely, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs! Try the other choice to learn more! 💕",
+              "middle_age": "Oh, my dear, good consideration! But while enrichment is lovely, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs! Try the other choice to learn more! 💕",
+              "senior": "Oh, my dear, good thinking! But while enrichment is lovely, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs! Try the other choice to learn more! 💕",
+              "elder": "Oh, my dear, good consideration! But while enrichment is lovely, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs! Try the other choice to learn more! 💕"
+            }
+          }
+        },
+        "option_b": {
+          "text": "Love, care, and consistent training",
+          "teaching_moment": {
+            "neutral": {
+              "infant": "Yes! Puppies need lots of love, just like you do!",
+              "toddler": "Perfect! Puppies need love, care, and gentle training, just like children do!",
+              "early_childhood": "Perfect! Puppies are like students - they learn best when they feel loved and have consistent, patient teachers.",
+              "middle_childhood": "Excellent! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement.",
+              "pre_teen": "Absolutely correct! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement.",
+              "teen": "Absolutely correct! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement.",
+              "young_adult": "Absolutely correct! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement.",
+              "adult": "Absolutely correct! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement.",
+              "middle_age": "Absolutely correct! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement.",
+              "senior": "Absolutely correct! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement.",
+              "elder": "Absolutely correct! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement."
+            },
+            "fun": {
+              "infant": "🎉 YES! Puppies need lots of love, just like you do! You're SO smart! 🐕",
+              "toddler": "🎉 PERFECT! Puppies need love, care, and gentle training, just like children do! You're AMAZING! 🐕",
+              "early_childhood": "🎉 PERFECT! Puppies are like students - they learn best when they feel loved and have consistent, patient teachers! 🐕",
+              "middle_childhood": "🎉 EXCELLENT! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement! 🐕",
+              "pre_teen": "🎉 ABSOLUTELY CORRECT! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement! 🐕",
+              "teen": "🎉 ABSOLUTELY CORRECT! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement! 🐕",
+              "young_adult": "🎉 ABSOLUTELY CORRECT! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement! 🐕",
+              "adult": "🎉 ABSOLUTELY CORRECT! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement! 🐕",
+              "middle_age": "🎉 ABSOLUTELY CORRECT! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement! 🐕",
+              "senior": "🎉 ABSOLUTELY CORRECT! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement! 🐕",
+              "elder": "🎉 ABSOLUTELY CORRECT! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement! 🐕"
+            },
+            "grandmother": {
+              "infant": "Oh, yes, my dear! Puppies need lots of love, just like you do! You're such a smart little one! 💕",
+              "toddler": "Oh, my dear, perfect! Puppies need love, care, and gentle training, just like children do! You're such a wonderful child! 💕",
+              "early_childhood": "Oh, my dear, perfect! Puppies are like students - they learn best when they feel loved and have consistent, patient teachers! 💕",
+              "middle_childhood": "Oh, my dear, excellent! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement! 💕",
+              "pre_teen": "Oh, my dear, absolutely correct! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement! 💕",
+              "teen": "Oh, my dear, absolutely correct! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement! 💕",
+              "young_adult": "Oh, my dear, absolutely correct! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement! 💕",
+              "adult": "Oh, my dear, absolutely correct! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement! 💕",
+              "middle_age": "Oh, my dear, absolutely correct! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement! 💕",
+              "senior": "Oh, my dear, absolutely correct! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement! 💕",
+              "elder": "Oh, my dear, absolutely correct! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement! 💕"
+            }
+          },
+          "response_script": {
+            "neutral": {
+              "infant": "Excellent! You're absolutely right! Puppies need lots of love, just like you do! This is the most important thing for them to grow up happy and healthy!",
+              "toddler": "Perfect! You're absolutely right! Puppies need love, care, and gentle training, just like children do! This gives them the foundation they need to grow up happy and healthy!",
+              "early_childhood": "Perfect! You're absolutely right! Puppies are like students - they learn best when they feel loved and have consistent, patient teachers. This is the foundation for their development!",
+              "middle_childhood": "Excellent! You're absolutely right! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement. This creates the environment they need to thrive!",
+              "pre_teen": "Absolutely correct! You're absolutely right! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement. This is essential for their healthy development!",
+              "teen": "Absolutely correct! You're absolutely right! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement. This is essential for their healthy development!",
+              "young_adult": "Absolutely correct! You're absolutely right! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement. This is essential for their healthy development!",
+              "adult": "Absolutely correct! You're absolutely right! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement. This is essential for their healthy development!",
+              "middle_age": "Absolutely correct! You're absolutely right! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement. This is essential for their healthy development!",
+              "senior": "Absolutely correct! You're absolutely right! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement. This is essential for their healthy development!",
+              "elder": "Absolutely correct! You're absolutely right! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement. This is essential for their healthy development!"
+            },
+            "fun": {
+              "infant": "🎉 EXCELLENT! You're absolutely right! Puppies need lots of love, just like you do! This is the most important thing for them to grow up happy and healthy! 🐕",
+              "toddler": "🎉 PERFECT! You're absolutely right! Puppies need love, care, and gentle training, just like children do! This gives them the foundation they need to grow up happy and healthy! 🐕",
+              "early_childhood": "🎉 PERFECT! You're absolutely right! Puppies are like students - they learn best when they feel loved and have consistent, patient teachers! This is the foundation for their development! 🐕",
+              "middle_childhood": "🎉 EXCELLENT! You're absolutely right! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement! This creates the environment they need to thrive! 🐕",
+              "pre_teen": "🎉 ABSOLUTELY CORRECT! You're absolutely right! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement! This is essential for their healthy development! 🐕",
+              "teen": "🎉 ABSOLUTELY CORRECT! You're absolutely right! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement! This is essential for their healthy development! 🐕",
+              "young_adult": "🎉 ABSOLUTELY CORRECT! You're absolutely right! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement! This is essential for their healthy development! 🐕",
+              "adult": "🎉 ABSOLUTELY CORRECT! You're absolutely right! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement! This is essential for their healthy development! 🐕",
+              "middle_age": "🎉 ABSOLUTELY CORRECT! You're absolutely right! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement! This is essential for their healthy development! 🐕",
+              "senior": "🎉 ABSOLUTELY CORRECT! You're absolutely right! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement! This is essential for their healthy development! 🐕",
+              "elder": "🎉 ABSOLUTELY CORRECT! You're absolutely right! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement! This is essential for their healthy development! 🐕"
+            },
+            "grandmother": {
+              "infant": "Oh, my dear, excellent! You're absolutely right! Puppies need lots of love, just like you do! This is the most important thing for them to grow up happy and healthy! 💕",
+              "toddler": "Oh, my dear, perfect! You're absolutely right! Puppies need love, care, and gentle training, just like children do! This gives them the foundation they need to grow up happy and healthy! 💕",
+              "early_childhood": "Oh, my dear, perfect! You're absolutely right! Puppies are like students - they learn best when they feel loved and have consistent, patient teachers! This is the foundation for their development! 💕",
+              "middle_childhood": "Oh, my dear, excellent! You're absolutely right! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement! This creates the environment they need to thrive! 💕",
+              "pre_teen": "Oh, my dear, absolutely correct! You're absolutely right! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement! This is essential for their healthy development! 💕",
+              "teen": "Oh, my dear, absolutely correct! You're absolutely right! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement! This is essential for their healthy development! 💕",
+              "young_adult": "Oh, my dear, absolutely correct! You're absolutely right! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement! This is essential for their healthy development! 💕",
+              "adult": "Oh, my dear, absolutely correct! You're absolutely right! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement! This is essential for their healthy development! 💕",
+              "middle_age": "Oh, my dear, absolutely correct! You're absolutely right! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement! This is essential for their healthy development! 💕",
+              "senior": "Oh, my dear, absolutely correct! You're absolutely right! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement! This is essential for their healthy development! 💕",
+              "elder": "Oh, my dear, absolutely correct! You're absolutely right! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement! This is essential for their healthy development! 💕"
+            }
+          }
+        }
+      },
+      "avatar_expression": "question_curious",
+      "duration": "2-3 minutes"
+    }
+  },
+  
+  "variants": {
+    "age_groups": ["infant", "toddler", "early_childhood", "middle_childhood", "pre_teen", "teen", "young_adult", "adult", "middle_age", "senior", "elder"],
+    "tones": ["grandmother", "fun", "neutral"], 
+    "languages": ["english", "spanish", "french", "german", "chinese", "japanese", "portuguese", "italian", "russian", "arabic", "hindi", "korean"],
+    "avatars": ["kelly", "ken"]
+  },
+  
+  "metadata": {
+    "created": "2025-01-02",
+    "topic_category": "animals_and_nature",
+    "difficulty_level": "beginner_friendly",
+    "universal_themes": ["care", "communication", "learning", "joy", "connection"],
+    "learning_outcomes": [
+      "Understand puppy development and needs",
+      "Recognize interspecies communication", 
+      "Apply puppy qualities to human growth",
+      "Develop empathy and responsibility"
+    ]
+  }
+} 

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Translation Verification - "Hold, please"</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f0f0f0; }
+        .translation { background: white; padding: 20px; margin: 15px 0; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .language { display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #eee; }
+        .language:last-child { border-bottom: none; }
+        .lang-name { font-weight: bold; min-width: 100px; }
+        .translation-text { font-size: 18px; }
+        .context { font-size: 12px; color: #666; font-style: italic; }
+        .verification { background: #e7f3ff; padding: 15px; border-radius: 4px; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <h1>🌍 Translation Verification: "Hold, please"</h1>
+    
+    <div class="verification">
+        <h3>📋 Context: Phone Conversation</h3>
+        <p><strong>English:</strong> "Hold, please" - What you say when you need a minute and you'll be right back</p>
+        <p><strong>Usage:</strong> "Can you hold, please? I'll be right back."</p>
+    </div>
+    
+    <div class="translation">
+        <h2>✅ Verified Translations</h2>
+        
+        <div class="language">
+            <span class="lang-name">English</span>
+            <span class="translation-text">"Hold, please"</span>
+            <span class="context">Standard phone etiquette</span>
+        </div>
+        
+        <div class="language">
+            <span class="lang-name">Spanish</span>
+            <span class="translation-text">"Espere, por favor"</span>
+            <span class="context">Formal phone hold request</span>
+        </div>
+        
+        <div class="language">
+            <span class="lang-name">French</span>
+            <span class="translation-text">"Attendez, s'il vous plaît"</span>
+            <span class="context">Polite phone hold request</span>
+        </div>
+        
+        <div class="language">
+            <span class="lang-name">German</span>
+            <span class="translation-text">"Bitte warten"</span>
+            <span class="context">Standard phone hold phrase</span>
+        </div>
+        
+        <div class="language">
+            <span class="lang-name">Chinese</span>
+            <span class="translation-text">"请稍等"</span>
+            <span class="context">Polite wait request</span>
+        </div>
+        
+        <div class="language">
+            <span class="lang-name">Japanese</span>
+            <span class="translation-text">"お待ちください"</span>
+            <span class="context">Polite wait request</span>
+        </div>
+    </div>
+    
+    <div class="translation">
+        <h2>🎯 Implementation Plan</h2>
+        <ol>
+            <li><strong>Icon Size:</strong> Make all navigation icons same size as primary controls (60px)</li>
+            <li><strong>Hold Button:</strong> Make it the biggest (70px) with "Hold, please" in all languages</li>
+            <li><strong>Secondary Controls:</strong> When menu opens, move "Talk" to second position</li>
+            <li><strong>Text Overflow:</strong> Fix "Calendar" and "Language" text cutoff issues</li>
+            <li><strong>Responsive Design:</strong> Ensure all translations fit properly</li>
+        </ol>
+    </div>
+    
+    <div class="translation">
+        <h2>📝 Translation Data for Implementation</h2>
+        <pre><code>
+// Hold button translations
+data-en="Hold, please"
+data-es="Espere, por favor"
+data-fr="Attendez, s'il vous plaît"
+data-de="Bitte warten"
+data-zh="请稍等"
+data-ja="お待ちください"
+
+// Icon sizes
+Primary controls (Hold): 70px
+Navigation icons: 60px (same as Talk/Hold)
+Secondary controls: 50px
+        </code></pre>
+    </div>
+</body>
+</html> 

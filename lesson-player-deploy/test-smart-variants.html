@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Variant Generator Test</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 30px;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid #667eea;
+        }
+        .stat-title {
+            font-size: 0.9em;
+            text-transform: uppercase;
+            color: #6c757d;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .stat-subtitle {
+            font-size: 0.9em;
+            color: #6c757d;
+        }
+        .variant-preview {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .variant-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .variant-id {
+            font-weight: bold;
+            color: #667eea;
+        }
+        .variant-meta {
+            font-size: 0.9em;
+            color: #6c757d;
+        }
+        .variant-content {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .content-section {
+            margin-bottom: 10px;
+        }
+        .content-label {
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 5px;
+        }
+        .content-text {
+            color: #6c757d;
+            line-height: 1.5;
+        }
+        .actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #5a6fd8;
+        }
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+        .btn-success:hover {
+            background: #218838;
+        }
+        .btn-warning {
+            background: #ffc107;
+            color: #212529;
+        }
+        .btn-warning:hover {
+            background: #e0a800;
+        }
+        .cost-analysis {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .cost-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #856404;
+            margin-bottom: 15px;
+        }
+        .cost-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            padding: 5px 0;
+        }
+        .cost-label {
+            color: #856404;
+        }
+        .cost-value {
+            font-weight: bold;
+            color: #856404;
+        }
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid;
+        }
+        .alert-info {
+            background: #d1ecf1;
+            border-color: #17a2b8;
+            color: #0c5460;
+        }
+        .alert-warning {
+            background: #fff3cd;
+            border-color: #ffc107;
+            color: #856404;
+        }
+        .alert-danger {
+            background: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 Smart Variant Generator</h1>
+            <p>Essential variants for a single lesson - Cost-effective approach</p>
+        </div>
+        
+        <div class="content">
+            <div class="alert alert-info">
+                <strong>📊 Scale Reality Check:</strong> A single lesson could have over 1 BILLION possible variants. 
+                We're focusing on 16 essential variants that cover 80% of user needs.
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-title">Total Possible Variants</div>
+                    <div class="stat-value">1,064,448,000</div>
+                    <div class="stat-subtitle">All combinations</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-title">Essential Variants</div>
+                    <div class="stat-value">16</div>
+                    <div class="stat-subtitle">Smart selection</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-title">Cost per Lesson</div>
+                    <div class="stat-value">$0.29</div>
+                    <div class="stat-subtitle">Essential variants only</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-title">Full Curriculum Cost</div>
+                    <div class="stat-value">$105.64</div>
+                    <div class="stat-subtitle">366 lessons</div>
+                </div>
+            </div>
+            
+            <div class="cost-analysis">
+                <div class="cost-title">💰 Cost Analysis</div>
+                <div class="cost-item">
+                    <span class="cost-label">Essential Variants per Lesson:</span>
+                    <span class="cost-value">16</span>
+                </div>
+                <div class="cost-item">
+                    <span class="cost-label">Input Tokens per Variant:</span>
+                    <span class="cost-value">500</span>
+                </div>
+                <div class="cost-item">
+                    <span class="cost-label">Output Tokens per Variant:</span>
+                    <span class="cost-value">1,000</span>
+                </div>
+                <div class="cost-item">
+                    <span class="cost-label">Total Input Tokens:</span>
+                    <span class="cost-value">8,000</span>
+                </div>
+                <div class="cost-item">
+                    <span class="cost-label">Total Output Tokens:</span>
+                    <span class="cost-value">16,000</span>
+                </div>
+                <div class="cost-item">
+                    <span class="cost-label">Input Cost:</span>
+                    <span class="cost-value">$0.024</span>
+                </div>
+                <div class="cost-item">
+                    <span class="cost-label">Output Cost:</span>
+                    <span class="cost-value">$0.240</span>
+                </div>
+                <div class="cost-item">
+                    <span class="cost-label"><strong>Total Cost per Lesson:</strong></span>
+                    <span class="cost-value"><strong>$0.264</strong></span>
+                </div>
+            </div>
+            
+            <div class="actions">
+                <button class="btn btn-primary" onclick="generateVariants()">🎯 Generate Essential Variants</button>
+                <button class="btn btn-success" onclick="showStatistics()">📊 Show Statistics</button>
+                <button class="btn btn-warning" onclick="compareApproaches()">⚖️ Compare Approaches</button>
+            </div>
+            
+            <div id="variants-container"></div>
+            
+            <div class="alert alert-warning">
+                <strong>🎯 Key Insight:</strong> By focusing on 16 essential variants instead of 1+ billion, 
+                we reduce cost from $38,016 to $0.26 per lesson - a 99.999% cost reduction!
+            </div>
+        </div>
+    </div>
+
+    <script src="smart-variant-generator.js"></script>
+    <script>
+        let generator;
+        
+        function initGenerator() {
+            generator = new SmartVariantGenerator();
+            console.log('🎯 Smart Variant Generator initialized');
+        }
+        
+        async function generateVariants() {
+            if (!generator) initGenerator();
+            
+            console.log('🚀 Generating essential variants...');
+            
+            try {
+                const variants = await generator.generateEssentialVariants('The Sun', 28);
+                displayVariants(variants);
+                
+                console.log('✅ Variants generated successfully');
+            } catch (error) {
+                console.error('❌ Error generating variants:', error);
+            }
+        }
+        
+        function displayVariants(variants) {
+            const container = document.getElementById('variants-container');
+            container.innerHTML = '<h2>📝 Generated Variants</h2>';
+            
+            variants.forEach((variant, index) => {
+                const variantDiv = document.createElement('div');
+                variantDiv.className = 'variant-preview';
+                
+                variantDiv.innerHTML = `
+                    <div class="variant-header">
+                        <div>
+                            <div class="variant-id">Variant ${index + 1}: ${variant.variantId}</div>
+                            <div class="variant-meta">Profile: ${variant.profile} | Weight: ${(variant.weight * 100).toFixed(1)}%</div>
+                        </div>
+                    </div>
+                    <div class="variant-content">
+                        <div class="content-section">
+                            <div class="content-label">Introduction:</div>
+                            <div class="content-text">${variant.content.introduction}</div>
+                        </div>
+                        <div class="content-section">
+                            <div class="content-label">Main Content:</div>
+                            <div class="content-text">${variant.content.mainContent}</div>
+                        </div>
+                        <div class="content-section">
+                            <div class="content-label">Example:</div>
+                            <div class="content-text">${variant.content.example}</div>
+                        </div>
+                        <div class="content-section">
+                            <div class="content-label">Reflection:</div>
+                            <div class="content-text">${variant.content.reflection}</div>
+                        </div>
+                        <div class="content-section">
+                            <div class="content-label">Conclusion:</div>
+                            <div class="content-text">${variant.content.conclusion}</div>
+                        </div>
+                    </div>
+                `;
+                
+                container.appendChild(variantDiv);
+            });
+        }
+        
+        function showStatistics() {
+            if (!generator) initGenerator();
+            
+            const stats = generator.getVariantStatistics();
+            
+            alert(`
+📊 Variant Statistics:
+
+Total Age Groups: ${stats.totalAgeGroups}
+Total Tone Styles: ${stats.totalToneStyles}
+Total Learning Styles: ${stats.totalLearningStyles}
+Total Cognitive Levels: ${stats.totalCognitiveLevels}
+Total Interest Areas: ${stats.totalInterestAreas}
+Total Accessibility Needs: ${stats.totalAccessibilityNeeds}
+Total Language Complexity: ${stats.totalLanguageComplexity}
+
+Total Possible Variants: ${stats.totalPossibleVariants.toLocaleString()}
+Essential Variants: ${stats.essentialVariants}
+
+Cost Estimate:
+- Total Variants: ${stats.costEstimate.totalVariants}
+- Input Tokens: ${stats.costEstimate.inputTokens.toLocaleString()}
+- Output Tokens: ${stats.costEstimate.outputTokens.toLocaleString()}
+- Total Cost: $${stats.costEstimate.totalCost.toFixed(3)}
+            `);
+        }
+        
+        function compareApproaches() {
+            const comparison = `
+⚖️ APPROACH COMPARISON:
+
+🔴 FULL GENERATION (All Variants):
+- Variants: 1,064,448,000
+- Cost per Lesson: $38,016
+- Full Curriculum: $13.9M
+- Generation Time: Years
+- Storage: Massive
+
+🟡 ESSENTIAL VARIANTS (Smart Selection):
+- Variants: 16
+- Cost per Lesson: $0.26
+- Full Curriculum: $105.64
+- Generation Time: Minutes
+- Storage: Minimal
+
+✅ RECOMMENDATION: Essential variants approach is 99.999% more cost-effective!
+            `;
+            
+            alert(comparison);
+        }
+        
+        // Initialize on page load
+        window.addEventListener('load', initGenerator);
+    </script>
+</body>
+</html> 

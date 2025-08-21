@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iLearn How - System Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f0f0f0;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .status {
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 4px;
+        }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .warning { background: #fff3cd; color: #856404; }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <h1>🧪 iLearn How - System Test</h1>
+    
+    <div class="test-section">
+        <h2>📁 File System Test</h2>
+        <div id="file-test-results"></div>
+        <button onclick="testFiles()">Test Files</button>
+    </div>
+    
+    <div class="test-section">
+        <h2>🎭 Avatar System Test</h2>
+        <div id="avatar-test-results"></div>
+        <button onclick="testAvatars()">Test Avatars</button>
+    </div>
+    
+    <div class="test-section">
+        <h2>🎵 ElevenLabs Test</h2>
+        <div id="elevenlabs-test-results"></div>
+        <button onclick="testElevenLabs()">Test ElevenLabs</button>
+    </div>
+    
+    <div class="test-section">
+        <h2>🎯 Variant Controls Test</h2>
+        <div id="variant-test-results"></div>
+        <button onclick="testVariants()">Test Variants</button>
+    </div>
+    
+    <div class="test-section">
+        <h2>🚀 Main System Test</h2>
+        <div id="main-test-results"></div>
+        <button onclick="testMainSystem()">Test Main System</button>
+        <button onclick="window.open('index.html', '_blank')">Open Main Interface</button>
+    </div>
+
+    <script>
+        function addResult(containerId, message, type = 'success') {
+            const container = document.getElementById(containerId);
+            const div = document.createElement('div');
+            div.className = `status ${type}`;
+            div.textContent = message;
+            container.appendChild(div);
+        }
+
+        function clearResults(containerId) {
+            document.getElementById(containerId).innerHTML = '';
+        }
+
+        async function testFiles() {
+            clearResults('file-test-results');
+            
+            const files = [
+                'index.html',
+                'js/complete-curriculum.js',
+                'js/face-safe-layout-system.js',
+                'js/complete-elevenlabs-integration.js',
+                'lesson-player-deploy/assets/avatars/kelly/kelly_neutral_default.png'
+            ];
+            
+            for (const file of files) {
+                try {
+                    const response = await fetch(file);
+                    if (response.ok) {
+                        addResult('file-test-results', `✅ ${file} - Found`);
+                    } else {
+                        addResult('file-test-results', `❌ ${file} - Not found (${response.status})`, 'error');
+                    }
+                } catch (error) {
+                    addResult('file-test-results', `❌ ${file} - Error: ${error.message}`, 'error');
+                }
+            }
+        }
+
+        async function testAvatars() {
+            clearResults('avatar-test-results');
+            
+            const avatars = [
+                'lesson-player-deploy/assets/avatars/kelly/kelly_neutral_default.png',
+                'lesson-player-deploy/assets/avatars/ken/ken_neutral_default.png'
+            ];
+            
+            for (const avatar of avatars) {
+                try {
+                    const response = await fetch(avatar);
+                    if (response.ok) {
+                        addResult('avatar-test-results', `✅ ${avatar.split('/').pop()} - Found`);
+                    } else {
+                        addResult('avatar-test-results', `❌ ${avatar.split('/').pop()} - Not found`, 'error');
+                    }
+                } catch (error) {
+                    addResult('avatar-test-results', `❌ ${avatar.split('/').pop()} - Error`, 'error');
+                }
+            }
+        }
+
+        async function testElevenLabs() {
+            clearResults('elevenlabs-test-results');
+            
+            try {
+                // Test if ElevenLabs integration loads
+                const response = await fetch('js/complete-elevenlabs-integration.js');
+                if (response.ok) {
+                    addResult('elevenlabs-test-results', '✅ ElevenLabs integration file found');
+                    
+                    // Test if the class can be instantiated
+                    try {
+                        // This would require the actual class to be available
+                        addResult('elevenlabs-test-results', '⚠️ ElevenLabs class test requires main interface');
+                    } catch (error) {
+                        addResult('elevenlabs-test-results', '⚠️ ElevenLabs class test failed', 'warning');
+                    }
+                } else {
+                    addResult('elevenlabs-test-results', '❌ ElevenLabs integration file not found', 'error');
+                }
+            } catch (error) {
+                addResult('elevenlabs-test-results', `❌ ElevenLabs test error: ${error.message}`, 'error');
+            }
+        }
+
+        async function testVariants() {
+            clearResults('variant-test-results');
+            
+            const variantFiles = [
+                'js/face-safe-layout-system.js',
+                'js/corrected-variant-generator-v2.js',
+                'js/apple-quality-overlay-system.js'
+            ];
+            
+            for (const file of variantFiles) {
+                try {
+                    const response = await fetch(file);
+                    if (response.ok) {
+                        addResult('variant-test-results', `✅ ${file.split('/').pop()} - Found`);
+                    } else {
+                        addResult('variant-test-results', `❌ ${file.split('/').pop()} - Not found`, 'error');
+                    }
+                } catch (error) {
+                    addResult('variant-test-results', `❌ ${file.split('/').pop()} - Error`, 'error');
+                }
+            }
+        }
+
+        async function testMainSystem() {
+            clearResults('main-test-results');
+            
+            try {
+                const response = await fetch('index.html');
+                if (response.ok) {
+                    addResult('main-test-results', '✅ Main interface file found');
+                    addResult('main-test-results', '✅ System ready for testing');
+                    addResult('main-test-results', '🌐 Open http://localhost:8000 to test the full system');
+                } else {
+                    addResult('main-test-results', '❌ Main interface file not found', 'error');
+                }
+            } catch (error) {
+                addResult('main-test-results', `❌ Main system test error: ${error.message}`, 'error');
+            }
+        }
+
+        // Auto-run tests on page load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                testFiles();
+                testAvatars();
+                testVariants();
+                testMainSystem();
+            }, 1000);
+        });
+    </script>
+</body>
+</html> 

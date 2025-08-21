@@ -1,0 +1,33 @@
+{
+  "slug": "the-sun",
+  "language": "fr",
+  "version": "tts_jobs_v1",
+  "defaultSpeaker": "kelly",
+  "phases": [
+    {
+      "id": "welcome",
+      "text": "Bienvenue. Aujourd’hui, nous allons voir comment le Soleil nous aide chaque jour et comment l’observer. Je te guiderai avec trois courtes questions; j’ajouterai un indice si besoin.",
+      "approxChars": 181
+    },
+    {
+      "id": "beginning",
+      "text": "Question un. Quelle technologie utilise directement l’énergie du Soleil—la géothermie ou le solaire? Choisis quand tu es prêt(e).",
+      "approxChars": 129
+    },
+    {
+      "id": "middle",
+      "text": "Question deux. La lumière du Soleil aide à produire quelle vitamine—la C ou la D? Respire, puis choisis quand tu es prêt(e).",
+      "approxChars": 124
+    },
+    {
+      "id": "end",
+      "text": "Question trois. Le Soleil éclaire tout le monde sans préférés. C’est une métaphore de quoi—la compétition, ou l’équité et l’impartialité? Choisis quand tu es prêt(e).",
+      "approxChars": 166
+    },
+    {
+      "id": "wisdom",
+      "text": "Wisdom to carry: the same light that warms you powers life all around you. Notice it today—then be a little sun for someone else.",
+      "approxChars": 129
+    }
+  ]
+}

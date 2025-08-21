@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 1 Real Lesson Test - The Sun</title>
+    <style>
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 30px;
+            color: #FFD700;
+        }
+        .age-selector {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .age-button {
+            margin: 5px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .age-button:hover, .age-button.active {
+            background: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+        }
+        .lesson-content {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+        .segment {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+        .segment-title {
+            font-weight: bold;
+            color: #FFD700;
+            margin-bottom: 10px;
+        }
+        .status {
+            text-align: center;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+        .success { background: rgba(76, 175, 80, 0.3); }
+        .error { background: rgba(244, 67, 54, 0.3); }
+        .info { background: rgba(33, 150, 243, 0.3); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="lesson-title">🌟 Day 1 Real Lesson Test</h1>
+        <div id="status" class="status info">Loading lesson player...</div>
+        
+        <div class="age-selector">
+            <button class="age-button" onclick="loadAge('age_2')">Age 2</button>
+            <button class="age-button" onclick="loadAge('age_5')">Age 5</button>
+            <button class="age-button" onclick="loadAge('age_25')" id="default-age">Age 25</button>
+            <button class="age-button" onclick="loadAge('age_60')">Age 60</button>
+        </div>
+        
+        <div id="lesson-display" class="lesson-content">
+            <p>Select an age to see the real Day 1 lesson content!</p>
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px;">
+            <button onclick="testLessonPlayer()" style="padding: 15px 30px; background: #FFD700; color: #333; border: none; border-radius: 10px; font-weight: bold; cursor: pointer;">Test Lesson Player Integration</button>
+        </div>
+    </div>
+
+    <!-- Load the curriculum and lesson player -->
+    <script src="complete-curriculum.js"></script>
+    <script>
+        let currentLesson = null;
+
+        function updateStatus(message, type = 'info') {
+            const statusEl = document.getElementById('status');
+            statusEl.textContent = message;
+            statusEl.className = `status ${type}`;
+        }
+
+        function loadAge(age) {
+            // Remove active class from all buttons
+            document.querySelectorAll('.age-button').forEach(btn => btn.classList.remove('active'));
+            // Add active class to clicked button
+            event.target.classList.add('active');
+
+            if (!window.COMPLETE_CURRICULUM) {
+                updateStatus('❌ Curriculum not loaded', 'error');
+                return;
+            }
+
+            const lessonData = window.COMPLETE_CURRICULUM[1];
+            if (!lessonData) {
+                updateStatus('❌ Day 1 lesson not found', 'error');
+                return;
+            }
+
+            if (!lessonData.scripts || !lessonData.scripts[age]) {
+                updateStatus(`❌ ${age} script not found`, 'error');
+                return;
+            }
+
+            const ageScript = lessonData.scripts[age];
+            currentLesson = ageScript;
+
+            // Display the lesson content
+            const displayEl = document.getElementById('lesson-display');
+            displayEl.innerHTML = `
+                <h2>${ageScript.lesson}</h2>
+                <p><strong>Age:</strong> ${age.replace('age_', '')} years old</p>
+                <p><strong>Duration:</strong> ${ageScript.total_duration || '7 minutes'}</p>
+                
+                ${ageScript.segments ? Object.entries(ageScript.segments).map(([key, value]) => `
+                    <div class="segment">
+                        <div class="segment-title">${key.replace('_', ' ').toUpperCase()}</div>
+                        <div>${value}</div>
+                    </div>
+                `).join('') : '<p>No segments found</p>'}
+            `;
+
+            updateStatus(`✅ Loaded ${age} lesson successfully!`, 'success');
+        }
+
+        function testLessonPlayer() {
+            updateStatus('Testing lesson player integration...', 'info');
+            
+            try {
+                // Test basic curriculum access
+                if (!window.COMPLETE_CURRICULUM) {
+                    throw new Error('COMPLETE_CURRICULUM not available');
+                }
+
+                const day1 = window.COMPLETE_CURRICULUM[1];
+                if (!day1) {
+                    throw new Error('Day 1 lesson not found');
+                }
+
+                if (!day1.complete_lesson) {
+                    throw new Error('Day 1 lesson not marked as complete');
+                }
+
+                if (!day1.scripts) {
+                    throw new Error('Day 1 scripts not found');
+                }
+
+                const ageCount = Object.keys(day1.scripts).length;
+                updateStatus(`✅ Integration test passed! Found ${ageCount} age scripts for Day 1`, 'success');
+
+                console.log('✅ Day 1 lesson data:', day1);
+                console.log('✅ Available ages:', Object.keys(day1.scripts));
+                
+            } catch (error) {
+                updateStatus(`❌ Integration test failed: ${error.message}`, 'error');
+                console.error('Integration test error:', error);
+            }
+        }
+
+        // Initialize
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                if (window.COMPLETE_CURRICULUM) {
+                    updateStatus('✅ Curriculum loaded! Click an age to see the lesson.', 'success');
+                    // Auto-load age 25
+                    document.getElementById('default-age').click();
+                } else {
+                    updateStatus('❌ Curriculum failed to load', 'error');
+                }
+            }, 500);
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,209 @@
+{
+  "lesson_template": "5-Phase Interactive Lesson System",
+  "version": "1.0",
+  "description": "Complete lesson template matching the new visual interface with 5 phases: Welcome → Beginning (Q1) → Middle (Q2) → End (Q3) → Wisdom",
+  
+  "lesson_structure": {
+    "total_phases": 5,
+    "phase_sequence": ["welcome", "beginning", "middle", "end", "wisdom"],
+    "estimated_duration": "8-12 minutes",
+    "interaction_points": 3
+  },
+
+  "sample_lesson": {
+    "day": 217,
+    "date": "August 5",
+    "title": "Music Evolution - The Soundtrack of Civilization",
+    "learning_objective": "Explore musical development while understanding how cultural evolution reflects and shapes social values, technology, and global connections.",
+    
+    "phases": {
+      "welcome": {
+        "phase_number": 1,
+        "display_name": "Welcome",
+        "duration": "30-45 seconds",
+        "content_type": "introduction_with_context",
+        "elements": {
+          "date_time_context": "auto-generated",
+          "lesson_preview": "Today's lesson is all about Music Evolution!",
+          "welcome_message": "Welcome to your daily learning journey. Let's explore how music has evolved alongside human civilization.",
+          "visual_elements": {
+            "person_silhouette": "visible",
+            "welcome_note": "positioned top-left",
+            "background": "warm_orange_gradient"
+          }
+        }
+      },
+
+      "beginning": {
+        "phase_number": 2, 
+        "display_name": "Beginning",
+        "duration": "2-3 minutes",
+        "content_type": "foundational_question",
+        "elements": {
+          "question_label": "Q1",
+          "question_text": "What drives the evolution of music across different cultures?",
+          "choices": {
+            "option_a": "Technology and instruments available",
+            "option_b": "Social values and human connections"
+          },
+          "teaching_moments": {
+            "option_a_feedback": "Technology plays a role, but let's explore the deeper human elements that truly drive musical evolution.",
+            "option_b_feedback": "Excellent insight! Music evolves as a reflection of our social bonds and changing values across time and cultures."
+          },
+          "visual_elements": {
+            "question_position": "top-left of silhouette",
+            "choice_buttons": "positioned left and right of silhouette",
+            "feedback_area": "bottom center"
+          }
+        }
+      },
+
+      "middle": {
+        "phase_number": 3,
+        "display_name": "Middle", 
+        "duration": "2-3 minutes",
+        "content_type": "deepening_question",
+        "elements": {
+          "question_label": "Q2",
+          "question_text": "How does music serve as a bridge between different generations and cultures?",
+          "choices": {
+            "option_a": "Through shared rhythms and universal melodies",
+            "option_b": "By carrying stories and emotions across time"
+          },
+          "teaching_moments": {
+            "option_a_feedback": "Rhythms and melodies do connect us, but there's an even deeper layer of connection through music.",
+            "option_b_feedback": "Beautifully understood! Music carries the emotional DNA of human experience, connecting hearts across centuries."
+          }
+        }
+      },
+
+      "end": {
+        "phase_number": 4,
+        "display_name": "End",
+        "duration": "2-3 minutes", 
+        "content_type": "application_question",
+        "elements": {
+          "question_label": "Q3",
+          "question_text": "What can today's music evolution teach us about adapting to rapid technological change?",
+          "choices": {
+            "option_a": "Embrace new tools while preserving human connection",
+            "option_b": "Focus on creating the most technically advanced music"
+          },
+          "teaching_moments": {
+            "option_a_feedback": "Perfect! Music shows us how to evolve with technology while maintaining our essential human connections.",
+            "option_b_feedback": "Technical advancement matters, but music's greatest power lies in maintaining human connection through change."
+          }
+        }
+      },
+
+      "wisdom": {
+        "phase_number": 5,
+        "display_name": "Wisdom",
+        "duration": "1-2 minutes",
+        "content_type": "reflection_and_integration",
+        "elements": {
+          "wisdom_sections": [
+            {
+              "section_1": {
+                "title": "Reflection",
+                "content": "Music evolves as we evolve, carrying forward the essence of human experience."
+              }
+            },
+            {
+              "section_2": {
+                "title": "Insight", 
+                "content": "Every generation adds its voice to the eternal human song."
+              }
+            },
+            {
+              "section_3": {
+                "title": "Growth",
+                "content": "Understanding musical evolution helps us navigate all forms of cultural change."
+              }
+            }
+          ],
+          "daily_fortune": "Your appreciation for cultural evolution will guide you through times of rapid change.",
+          "visual_elements": {
+            "wisdom_cards": "three cards positioned at bottom of silhouette",
+            "completion_indicator": "subtle animation or glow effect"
+          }
+        }
+      }
+    }
+  },
+
+  "customization_options": {
+    "speed_control": {
+      "available_speeds": ["0.5x", "1.0x", "1.5x", "2.0x"],
+      "default_speed": "1.0x",
+      "visual_position": "bottom center of stage"
+    },
+    
+    "age_adaptation": {
+      "age_groups": ["2-5", "6-12", "13-17", "18-30", "31-50", "51-70", "70+"],
+      "adaptation_elements": ["vocabulary", "examples", "complexity", "attention_span"]
+    },
+
+    "language_support": {
+      "supported_languages": ["English", "Spanish", "French", "German", "Chinese", "Japanese", "Portuguese", "Italian", "Russian", "Arabic", "Hindi", "Korean"],
+      "translation_scope": ["questions", "feedback", "wisdom_content", "interface_labels"]
+    },
+
+    "tone_variations": {
+      "neutral_academic": "Clear, concise, professional learning approach",
+      "fun_irreverent": "Playful, engaging, humorous learning with casual language",
+      "grandmother_caring": "Warm, nurturing, wise approach with gentle guidance"
+    },
+
+    "avatar_options": {
+      "kelly": "Warm, encouraging female avatar with expressive gestures",
+      "ken": "Friendly, knowledgeable male avatar with professional demeanor", 
+      "you": "Customizable avatar reflecting the learner's preferences"
+    }
+  },
+
+  "technical_integration": {
+    "html_elements": [
+      ".lesson-stage (main container)",
+      ".person-silhouette (central figure)",
+      ".phase-content (content areas)",
+      ".current-phase-label (phase indicator)",
+      ".welcome-content, .question-content, .wisdom-content (phase-specific areas)",
+      ".speed-controls (playback speed)",
+      ".choice-feedback (response area)"
+    ],
+
+    "javascript_functions": [
+      "startNewLessonSystem()",
+      "showPhase(phase)",
+      "showQuestionPhase(questionLabel)",
+      "handleChoice(choice)",
+      "updateWelcomeContent()",
+      "setSpeed(speed)"
+    ],
+
+    "css_classes": [
+      "lesson-stage, person-silhouette, phase-content",
+      "welcome-content, question-content, wisdom-content",
+      "question-label, choices-container, choice-btn",
+      "speed-controls, speed-btn, current-phase-label",
+      "choice-feedback, wisdom-section, hidden"
+    ]
+  },
+
+  "implementation_notes": {
+    "phase_progression": "Each phase automatically advances or responds to user interaction",
+    "visual_consistency": "Maintains person silhouette throughout all phases as central focus",
+    "responsive_design": "Adapts to different screen sizes while preserving core layout",
+    "accessibility": "Includes keyboard navigation and screen reader support",
+    "performance": "Optimized for smooth transitions between phases",
+    "data_integration": "Compatible with existing curriculum JSON structure"
+  },
+
+  "success_metrics": {
+    "user_engagement": "Time spent in each phase, interaction rates",
+    "learning_effectiveness": "Question response accuracy, reflection quality",
+    "system_performance": "Load times, transition smoothness, error rates",
+    "user_satisfaction": "Completion rates, return engagement, preference feedback"
+  }
+}

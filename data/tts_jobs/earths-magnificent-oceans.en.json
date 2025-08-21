@@ -1,0 +1,33 @@
+{
+  "slug": "earths-magnificent-oceans",
+  "language": "en",
+  "version": "tts_jobs_v1",
+  "defaultSpeaker": "kelly",
+  "phases": [
+    {
+      "id": "welcome",
+      "text": "Welcome. Think of the ocean not as pieces with names, but as one moving body—currents linking every shore. I’ll guide you and offer hints when needed.",
+      "approxChars": 150
+    },
+    {
+      "id": "beginning",
+      "text": "Question one. Which description fits best—separate oceans that don’t affect each other, or one global ocean connected by currents? Choose when you're ready.",
+      "approxChars": 156
+    },
+    {
+      "id": "middle",
+      "text": "Question two. What mainly drives the ocean’s great conveyors—only tides from the Moon, or wind with temperature and salt (density) differences? Choose when you're ready.",
+      "approxChars": 169
+    },
+    {
+      "id": "end",
+      "text": "Question three. Why do healthy oceans matter to you and me—is it mainly about fish and beaches, or about oxygen, climate balance, food, and livelihoods? Choose when you're ready.",
+      "approxChars": 178
+    },
+    {
+      "id": "wisdom",
+      "text": "Wisdom to carry: care for the ocean and it cares for you—each breath, each meal, each calm day. Do one small protective act today.",
+      "approxChars": 130
+    }
+  ]
+}

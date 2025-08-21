@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DNA System Test - Production</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .success { color: green; }
+        .error { color: red; }
+        .info { color: blue; }
+    </style>
+</head>
+<body>
+    <h1>DNA System Test - Production</h1>
+    
+    <div class="test-section">
+        <h2>System Status</h2>
+        <div id="system-status">Testing...</div>
+    </div>
+    
+    <div class="test-section">
+        <h2>DNA File Loader Test</h2>
+        <div id="dna-loader-test">Testing...</div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Variant Generator Test</h2>
+        <div id="variant-generator-test">Testing...</div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Ken Wallpaper Test</h2>
+        <div id="ken-wallpaper-test">Testing...</div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Face-Safe Positioning Test</h2>
+        <div id="face-safe-test">Testing...</div>
+    </div>
+
+    <!-- Import systems -->
+    <script src="dna-file-loader.js"></script>
+    <script src="variant-switcher.js"></script>
+    <script src="face-safe-positioning.js"></script>
+    <script src="ken-wallpaper-system.js"></script>
+    
+    <script>
+        // Test functions
+        function updateTest(id, message, type = 'info') {
+            document.getElementById(id).innerHTML = `<span class="${type}">${message}</span>`;
+        }
+        
+        async function testDNAFileLoader() {
+            try {
+                if (typeof DNAFileLoader !== 'undefined') {
+                    const loader = new DNAFileLoader();
+                    const dna = await loader.loadDNAForDay(1);
+                    updateTest('dna-loader-test', `✅ DNA File Loader: Loaded day 1 successfully`, 'success');
+                    return true;
+                } else {
+                    updateTest('dna-loader-test', `❌ DNA File Loader: Not found`, 'error');
+                    return false;
+                }
+            } catch (error) {
+                updateTest('dna-loader-test', `❌ DNA File Loader: ${error.message}`, 'error');
+                return false;
+            }
+        }
+        
+        function testVariantSwitcher() {
+            try {
+                if (typeof VariantSwitcher !== 'undefined') {
+                    updateTest('variant-generator-test', `✅ Variant Switcher: Found`, 'success');
+                    return true;
+                } else {
+                    updateTest('variant-generator-test', `❌ Variant Switcher: Not found`, 'error');
+                    return false;
+                }
+            } catch (error) {
+                updateTest('variant-generator-test', `❌ Variant Switcher: ${error.message}`, 'error');
+                return false;
+            }
+        }
+        
+        function testKenWallpaper() {
+            try {
+                if (typeof KenWallpaperSystem !== 'undefined') {
+                    updateTest('ken-wallpaper-test', `✅ Ken Wallpaper System: Found`, 'success');
+                    return true;
+                } else {
+                    updateTest('ken-wallpaper-test', `❌ Ken Wallpaper System: Not found`, 'error');
+                    return false;
+                }
+            } catch (error) {
+                updateTest('ken-wallpaper-test', `❌ Ken Wallpaper System: ${error.message}`, 'error');
+                return false;
+            }
+        }
+        
+        function testFaceSafePositioning() {
+            try {
+                if (typeof FaceSafePositioning !== 'undefined') {
+                    updateTest('face-safe-test', `✅ Face-Safe Positioning: Found`, 'success');
+                    return true;
+                } else {
+                    updateTest('face-safe-test', `❌ Face-Safe Positioning: Not found`, 'error');
+                    return false;
+                }
+            } catch (error) {
+                updateTest('face-safe-test', `❌ Face-Safe Positioning: ${error.message}`, 'error');
+                return false;
+            }
+        }
+        
+        // Run all tests
+        async function runAllTests() {
+            updateTest('system-status', '🔄 Running tests...', 'info');
+            
+            const results = await Promise.all([
+                testDNAFileLoader(),
+                testVariantSwitcher(),
+                testKenWallpaper(),
+                testFaceSafePositioning()
+            ]);
+            
+            const successCount = results.filter(r => r).length;
+            const totalCount = results.length;
+            
+            if (successCount === totalCount) {
+                updateTest('system-status', `✅ All ${totalCount} systems working correctly`, 'success');
+            } else {
+                updateTest('system-status', `❌ ${totalCount - successCount} of ${totalCount} systems failed`, 'error');
+            }
+        }
+        
+        // Run tests when page loads
+        document.addEventListener('DOMContentLoaded', runAllTests);
+    </script>
+</body>
+</html> 

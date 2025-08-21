@@ -1,0 +1,1223 @@
+{
+  "lesson_metadata": {
+    "lesson_id": "the-moon",
+    "day": 1,
+    "universal_concept": "AI-synthesized concept for the-moon",
+    "learning_essence": "AI-synthesized essence for the-moon"
+  },
+  "age_expressions": {
+    "2": {
+      "concept_name": {
+        "neutral": {
+          "display_text": "The Gentle Moon",
+          "voice_over_script": "The Gentle Moon"
+        },
+        "fun": {
+          "display_text": "Mr. Moon!",
+          "voice_over_script": "Mr. Moon!"
+        },
+        "grandmother": {
+          "display_text": "The Night-Time Friend",
+          "voice_over_script": "The Night-Time Friend"
+        }
+      }
+    },
+    "5": {
+      "concept_name": {
+        "neutral": {
+          "display_text": "The Moon Changes Shape",
+          "voice_over_script": "The Moon Changes Shape"
+        },
+        "fun": {
+          "display_text": "The Moon's Magic Tricks!",
+          "voice_over_script": "The Moon's Magic Tricks!"
+        },
+        "grandmother": {
+          "display_text": "The Moon's Different Faces",
+          "voice_over_script": "The Moon's Different Faces"
+        }
+      }
+    },
+    "8": {
+      "concept_name": {
+        "neutral": {
+          "display_text": "The Moon and Tides",
+          "voice_over_script": "The Moon and Tides"
+        },
+        "fun": {
+          "display_text": "The Moon's Ocean Superpower!",
+          "voice_over_script": "The Moon's Ocean Superpower!"
+        },
+        "grandmother": {
+          "display_text": "How the Moon Hugs the Ocean",
+          "voice_over_script": "How the Moon Hugs the Ocean"
+        }
+      }
+    },
+    "12": {
+      "concept_name": {
+        "neutral": {
+          "display_text": "The Moon's Craters",
+          "voice_over_script": "The Moon's Craters"
+        },
+        "fun": {
+          "display_text": "Moon Scars!",
+          "voice_over_script": "Moon Scars!"
+        },
+        "grandmother": {
+          "display_text": "The Moon's Ancient Marks",
+          "voice_over_script": "The Moon's Ancient Marks"
+        }
+      }
+    },
+    "16": {
+      "concept_name": {
+        "neutral": {
+          "display_text": "Lunar Phases and Eclipses",
+          "voice_over_script": "Lunar Phases and Eclipses"
+        },
+        "fun": {
+          "display_text": "Cosmic Hide and Seek!",
+          "voice_over_script": "Cosmic Hide and Seek!"
+        },
+        "grandmother": {
+          "display_text": "The Moon's Great Dance",
+          "voice_over_script": "The Moon's Great Dance"
+        }
+      }
+    },
+    "25": {
+      "concept_name": {
+        "neutral": {
+          "display_text": "The Moon's Influence on Culture",
+          "voice_over_script": "The Moon's Influence on Culture"
+        },
+        "fun": {
+          "display_text": "Moonlit Stories!",
+          "voice_over_script": "Moonlit Stories!"
+        },
+        "grandmother": {
+          "display_text": "The Moon in Our Hearts",
+          "voice_over_script": "The Moon in Our Hearts"
+        }
+      }
+    },
+    "40": {
+      "concept_name": {
+        "neutral": {
+          "display_text": "The Moon as a Celestial Body",
+          "voice_over_script": "The Moon as a Celestial Body"
+        },
+        "fun": {
+          "display_text": "Our Giant Space Rock!",
+          "voice_over_script": "Our Giant Space Rock!"
+        },
+        "grandmother": {
+          "display_text": "Our Constant Companion",
+          "voice_over_script": "Our Constant Companion"
+        }
+      }
+    },
+    "60": {
+      "concept_name": {
+        "neutral": {
+          "display_text": "The Moon: A Historical Perspective",
+          "voice_over_script": "The Moon: A Historical Perspective"
+        },
+        "fun": {
+          "display_text": "The Race to the Moon!",
+          "voice_over_script": "The Race to the Moon!"
+        },
+        "grandmother": {
+          "display_text": "Reaching for the Moon",
+          "voice_over_script": "Reaching for the Moon"
+        }
+      }
+    },
+    "80": {
+      "concept_name": {
+        "neutral": {
+          "display_text": "The Moon: A Symbol of cycles",
+          "voice_over_script": "The Moon: A Symbol of cycles"
+        },
+        "fun": {
+          "display_text": "The Ever-Turning Moon!",
+          "voice_over_script": "The Ever-Turning Moon!"
+        },
+        "grandmother": {
+          "display_text": "The Moon's Timeless Rhythm",
+          "voice_over_script": "The Moon's Timeless Rhythm"
+        }
+      }
+    },
+    "102": {
+      "concept_name": {
+        "neutral": {
+          "display_text": "The Moon's Cosmic Significance",
+          "voice_over_script": "The Moon's Cosmic Significance"
+        },
+        "fun": {
+          "display_text": "Our First Step to the Stars!",
+          "voice_over_script": "Our First Step to the Stars!"
+        },
+        "grandmother": {
+          "display_text": "The Moon's Gentle Wisdom",
+          "voice_over_script": "The Moon's Gentle Wisdom"
+        }
+      }
+    }
+  },
+  "core_lesson_structure": {
+    "question_1": {
+      "concept_focus": "The sun's fundamental role for life on Earth.",
+      "ages": {
+        "2": {
+          "question": {
+            "neutral": {
+              "display_text": "What causes the ocean tides to rise and fall?",
+              "voice_over_script": "What causes the ocean tides to rise and fall?"
+            },
+            "fun": {
+              "display_text": "What causes the ocean tides to rise and fall?",
+              "voice_over_script": "What causes the ocean tides to rise and fall?"
+            },
+            "grandmother": {
+              "display_text": "What causes the ocean tides to rise and fall?",
+              "voice_over_script": "What causes the ocean tides to rise and fall?"
+            }
+          },
+          "option_a": {
+            "display_text": "The wind",
+            "voice_over_script": "The wind"
+          },
+          "option_b": {
+            "display_text": "The Moon's gravity",
+            "voice_over_script": "The Moon's gravity"
+          },
+          "teaching_moments": {
+            "option_a_response": {
+              "display_text": "Wind makes waves, but the Moon's pull is strong enough to move the whole ocean!",
+              "voice_over_script": "Wind makes waves, but the Moon's pull is strong enough to move the whole ocean!"
+            },
+            "option_b_response": {
+              "display_text": "Exactly! The Moon's gravity gently pulls on the Earth's oceans, creating tides.",
+              "voice_over_script": "Exactly! The Moon's gravity gently pulls on the Earth's oceans, creating tides."
+            }
+          }
+        },
+        "5": {
+          "question": {
+            "neutral": {
+              "display_text": "What causes the ocean tides to rise and fall?",
+              "voice_over_script": "What causes the ocean tides to rise and fall?"
+            },
+            "fun": {
+              "display_text": "What causes the ocean tides to rise and fall?",
+              "voice_over_script": "What causes the ocean tides to rise and fall?"
+            },
+            "grandmother": {
+              "display_text": "What causes the ocean tides to rise and fall?",
+              "voice_over_script": "What causes the ocean tides to rise and fall?"
+            }
+          },
+          "option_a": {
+            "display_text": "The wind",
+            "voice_over_script": "The wind"
+          },
+          "option_b": {
+            "display_text": "The Moon's gravity",
+            "voice_over_script": "The Moon's gravity"
+          },
+          "teaching_moments": {
+            "option_a_response": {
+              "display_text": "Wind makes waves, but the Moon's pull is strong enough to move the whole ocean!",
+              "voice_over_script": "Wind makes waves, but the Moon's pull is strong enough to move the whole ocean!"
+            },
+            "option_b_response": {
+              "display_text": "Exactly! The Moon's gravity gently pulls on the Earth's oceans, creating tides.",
+              "voice_over_script": "Exactly! The Moon's gravity gently pulls on the Earth's oceans, creating tides."
+            }
+          }
+        },
+        "8": {
+          "question": {
+            "neutral": {
+              "display_text": "What causes the ocean tides to rise and fall?",
+              "voice_over_script": "What causes the ocean tides to rise and fall?"
+            },
+            "fun": {
+              "display_text": "What causes the ocean tides to rise and fall?",
+              "voice_over_script": "What causes the ocean tides to rise and fall?"
+            },
+            "grandmother": {
+              "display_text": "What causes the ocean tides to rise and fall?",
+              "voice_over_script": "What causes the ocean tides to rise and fall?"
+            }
+          },
+          "option_a": {
+            "display_text": "The wind",
+            "voice_over_script": "The wind"
+          },
+          "option_b": {
+            "display_text": "The Moon's gravity",
+            "voice_over_script": "The Moon's gravity"
+          },
+          "teaching_moments": {
+            "option_a_response": {
+              "display_text": "Wind makes waves, but the Moon's pull is strong enough to move the whole ocean!",
+              "voice_over_script": "Wind makes waves, but the Moon's pull is strong enough to move the whole ocean!"
+            },
+            "option_b_response": {
+              "display_text": "Exactly! The Moon's gravity gently pulls on the Earth's oceans, creating tides.",
+              "voice_over_script": "Exactly! The Moon's gravity gently pulls on the Earth's oceans, creating tides."
+            }
+          }
+        },
+        "12": {
+          "question": {
+            "neutral": {
+              "display_text": "What causes the ocean tides to rise and fall?",
+              "voice_over_script": "What causes the ocean tides to rise and fall?"
+            },
+            "fun": {
+              "display_text": "What causes the ocean tides to rise and fall?",
+              "voice_over_script": "What causes the ocean tides to rise and fall?"
+            },
+            "grandmother": {
+              "display_text": "What causes the ocean tides to rise and fall?",
+              "voice_over_script": "What causes the ocean tides to rise and fall?"
+            }
+          },
+          "option_a": {
+            "display_text": "The wind",
+            "voice_over_script": "The wind"
+          },
+          "option_b": {
+            "display_text": "The Moon's gravity",
+            "voice_over_script": "The Moon's gravity"
+          },
+          "teaching_moments": {
+            "option_a_response": {
+              "display_text": "Wind makes waves, but the Moon's pull is strong enough to move the whole ocean!",
+              "voice_over_script": "Wind makes waves, but the Moon's pull is strong enough to move the whole ocean!"
+            },
+            "option_b_response": {
+              "display_text": "Exactly! The Moon's gravity gently pulls on the Earth's oceans, creating tides.",
+              "voice_over_script": "Exactly! The Moon's gravity gently pulls on the Earth's oceans, creating tides."
+            }
+          }
+        },
+        "16": {
+          "question": {
+            "neutral": {
+              "display_text": "What causes the ocean tides to rise and fall?",
+              "voice_over_script": "What causes the ocean tides to rise and fall?"
+            },
+            "fun": {
+              "display_text": "What causes the ocean tides to rise and fall?",
+              "voice_over_script": "What causes the ocean tides to rise and fall?"
+            },
+            "grandmother": {
+              "display_text": "What causes the ocean tides to rise and fall?",
+              "voice_over_script": "What causes the ocean tides to rise and fall?"
+            }
+          },
+          "option_a": {
+            "display_text": "The wind",
+            "voice_over_script": "The wind"
+          },
+          "option_b": {
+            "display_text": "The Moon's gravity",
+            "voice_over_script": "The Moon's gravity"
+          },
+          "teaching_moments": {
+            "option_a_response": {
+              "display_text": "Wind makes waves, but the Moon's pull is strong enough to move the whole ocean!",
+              "voice_over_script": "Wind makes waves, but the Moon's pull is strong enough to move the whole ocean!"
+            },
+            "option_b_response": {
+              "display_text": "Exactly! The Moon's gravity gently pulls on the Earth's oceans, creating tides.",
+              "voice_over_script": "Exactly! The Moon's gravity gently pulls on the Earth's oceans, creating tides."
+            }
+          }
+        },
+        "25": {
+          "question": {
+            "neutral": {
+              "display_text": "What causes the ocean tides to rise and fall?",
+              "voice_over_script": "What causes the ocean tides to rise and fall?"
+            },
+            "fun": {
+              "display_text": "What causes the ocean tides to rise and fall?",
+              "voice_over_script": "What causes the ocean tides to rise and fall?"
+            },
+            "grandmother": {
+              "display_text": "What causes the ocean tides to rise and fall?",
+              "voice_over_script": "What causes the ocean tides to rise and fall?"
+            }
+          },
+          "option_a": {
+            "display_text": "The wind",
+            "voice_over_script": "The wind"
+          },
+          "option_b": {
+            "display_text": "The Moon's gravity",
+            "voice_over_script": "The Moon's gravity"
+          },
+          "teaching_moments": {
+            "option_a_response": {
+              "display_text": "Wind makes waves, but the Moon's pull is strong enough to move the whole ocean!",
+              "voice_over_script": "Wind makes waves, but the Moon's pull is strong enough to move the whole ocean!"
+            },
+            "option_b_response": {
+              "display_text": "Exactly! The Moon's gravity gently pulls on the Earth's oceans, creating tides.",
+              "voice_over_script": "Exactly! The Moon's gravity gently pulls on the Earth's oceans, creating tides."
+            }
+          }
+        },
+        "40": {
+          "question": {
+            "neutral": {
+              "display_text": "What causes the ocean tides to rise and fall?",
+              "voice_over_script": "What causes the ocean tides to rise and fall?"
+            },
+            "fun": {
+              "display_text": "What causes the ocean tides to rise and fall?",
+              "voice_over_script": "What causes the ocean tides to rise and fall?"
+            },
+            "grandmother": {
+              "display_text": "What causes the ocean tides to rise and fall?",
+              "voice_over_script": "What causes the ocean tides to rise and fall?"
+            }
+          },
+          "option_a": {
+            "display_text": "The wind",
+            "voice_over_script": "The wind"
+          },
+          "option_b": {
+            "display_text": "The Moon's gravity",
+            "voice_over_script": "The Moon's gravity"
+          },
+          "teaching_moments": {
+            "option_a_response": {
+              "display_text": "Wind makes waves, but the Moon's pull is strong enough to move the whole ocean!",
+              "voice_over_script": "Wind makes waves, but the Moon's pull is strong enough to move the whole ocean!"
+            },
+            "option_b_response": {
+              "display_text": "Exactly! The Moon's gravity gently pulls on the Earth's oceans, creating tides.",
+              "voice_over_script": "Exactly! The Moon's gravity gently pulls on the Earth's oceans, creating tides."
+            }
+          }
+        },
+        "60": {
+          "question": {
+            "neutral": {
+              "display_text": "What causes the ocean tides to rise and fall?",
+              "voice_over_script": "What causes the ocean tides to rise and fall?"
+            },
+            "fun": {
+              "display_text": "What causes the ocean tides to rise and fall?",
+              "voice_over_script": "What causes the ocean tides to rise and fall?"
+            },
+            "grandmother": {
+              "display_text": "What causes the ocean tides to rise and fall?",
+              "voice_over_script": "What causes the ocean tides to rise and fall?"
+            }
+          },
+          "option_a": {
+            "display_text": "The wind",
+            "voice_over_script": "The wind"
+          },
+          "option_b": {
+            "display_text": "The Moon's gravity",
+            "voice_over_script": "The Moon's gravity"
+          },
+          "teaching_moments": {
+            "option_a_response": {
+              "display_text": "Wind makes waves, but the Moon's pull is strong enough to move the whole ocean!",
+              "voice_over_script": "Wind makes waves, but the Moon's pull is strong enough to move the whole ocean!"
+            },
+            "option_b_response": {
+              "display_text": "Exactly! The Moon's gravity gently pulls on the Earth's oceans, creating tides.",
+              "voice_over_script": "Exactly! The Moon's gravity gently pulls on the Earth's oceans, creating tides."
+            }
+          }
+        },
+        "80": {
+          "question": {
+            "neutral": {
+              "display_text": "What causes the ocean tides to rise and fall?",
+              "voice_over_script": "What causes the ocean tides to rise and fall?"
+            },
+            "fun": {
+              "display_text": "What causes the ocean tides to rise and fall?",
+              "voice_over_script": "What causes the ocean tides to rise and fall?"
+            },
+            "grandmother": {
+              "display_text": "What causes the ocean tides to rise and fall?",
+              "voice_over_script": "What causes the ocean tides to rise and fall?"
+            }
+          },
+          "option_a": {
+            "display_text": "The wind",
+            "voice_over_script": "The wind"
+          },
+          "option_b": {
+            "display_text": "The Moon's gravity",
+            "voice_over_script": "The Moon's gravity"
+          },
+          "teaching_moments": {
+            "option_a_response": {
+              "display_text": "Wind makes waves, but the Moon's pull is strong enough to move the whole ocean!",
+              "voice_over_script": "Wind makes waves, but the Moon's pull is strong enough to move the whole ocean!"
+            },
+            "option_b_response": {
+              "display_text": "Exactly! The Moon's gravity gently pulls on the Earth's oceans, creating tides.",
+              "voice_over_script": "Exactly! The Moon's gravity gently pulls on the Earth's oceans, creating tides."
+            }
+          }
+        },
+        "102": {
+          "question": {
+            "neutral": {
+              "display_text": "What causes the ocean tides to rise and fall?",
+              "voice_over_script": "What causes the ocean tides to rise and fall?"
+            },
+            "fun": {
+              "display_text": "What causes the ocean tides to rise and fall?",
+              "voice_over_script": "What causes the ocean tides to rise and fall?"
+            },
+            "grandmother": {
+              "display_text": "What causes the ocean tides to rise and fall?",
+              "voice_over_script": "What causes the ocean tides to rise and fall?"
+            }
+          },
+          "option_a": {
+            "display_text": "The wind",
+            "voice_over_script": "The wind"
+          },
+          "option_b": {
+            "display_text": "The Moon's gravity",
+            "voice_over_script": "The Moon's gravity"
+          },
+          "teaching_moments": {
+            "option_a_response": {
+              "display_text": "Wind makes waves, but the Moon's pull is strong enough to move the whole ocean!",
+              "voice_over_script": "Wind makes waves, but the Moon's pull is strong enough to move the whole ocean!"
+            },
+            "option_b_response": {
+              "display_text": "Exactly! The Moon's gravity gently pulls on the Earth's oceans, creating tides.",
+              "voice_over_script": "Exactly! The Moon's gravity gently pulls on the Earth's oceans, creating tides."
+            }
+          }
+        }
+      }
+    },
+    "question_2": {
+      "concept_focus": "The sun's practical, daily impact on us.",
+      "ages": {
+        "2": {
+          "question": {
+            "neutral": {
+              "display_text": "How long does it take for the moon to orbit the Earth?",
+              "voice_over_script": "How long does it take for the moon to orbit the Earth?"
+            },
+            "fun": {
+              "display_text": "How long does it take for the moon to orbit the Earth?",
+              "voice_over_script": "How long does it take for the moon to orbit the Earth?"
+            },
+            "grandmother": {
+              "display_text": "How long does it take for the moon to orbit the Earth?",
+              "voice_over_script": "How long does it take for the moon to orbit the Earth?"
+            }
+          },
+          "option_a": {
+            "display_text": "About a day",
+            "voice_over_script": "About a day"
+          },
+          "option_b": {
+            "display_text": "About a month",
+            "voice_over_script": "About a month"
+          },
+          "teaching_moments": {
+            "option_a_response": {
+              "display_text": "It takes about a day for the Earth to spin around once, but the moon takes longer to travel around us.",
+              "voice_over_script": "It takes about a day for the Earth to spin around once, but the moon takes longer to travel around us."
+            },
+            "option_b_response": {
+              "display_text": "That's right! The word \"month\" even comes from the word \"moon\"!",
+              "voice_over_script": "That's right! The word \"month\" even comes from the word \"moon\"!"
+            }
+          }
+        },
+        "5": {
+          "question": {
+            "neutral": {
+              "display_text": "How long does it take for the moon to orbit the Earth?",
+              "voice_over_script": "How long does it take for the moon to orbit the Earth?"
+            },
+            "fun": {
+              "display_text": "How long does it take for the moon to orbit the Earth?",
+              "voice_over_script": "How long does it take for the moon to orbit the Earth?"
+            },
+            "grandmother": {
+              "display_text": "How long does it take for the moon to orbit the Earth?",
+              "voice_over_script": "How long does it take for the moon to orbit the Earth?"
+            }
+          },
+          "option_a": {
+            "display_text": "About a day",
+            "voice_over_script": "About a day"
+          },
+          "option_b": {
+            "display_text": "About a month",
+            "voice_over_script": "About a month"
+          },
+          "teaching_moments": {
+            "option_a_response": {
+              "display_text": "It takes about a day for the Earth to spin around once, but the moon takes longer to travel around us.",
+              "voice_over_script": "It takes about a day for the Earth to spin around once, but the moon takes longer to travel around us."
+            },
+            "option_b_response": {
+              "display_text": "That's right! The word \"month\" even comes from the word \"moon\"!",
+              "voice_over_script": "That's right! The word \"month\" even comes from the word \"moon\"!"
+            }
+          }
+        },
+        "8": {
+          "question": {
+            "neutral": {
+              "display_text": "How long does it take for the moon to orbit the Earth?",
+              "voice_over_script": "How long does it take for the moon to orbit the Earth?"
+            },
+            "fun": {
+              "display_text": "How long does it take for the moon to orbit the Earth?",
+              "voice_over_script": "How long does it take for the moon to orbit the Earth?"
+            },
+            "grandmother": {
+              "display_text": "How long does it take for the moon to orbit the Earth?",
+              "voice_over_script": "How long does it take for the moon to orbit the Earth?"
+            }
+          },
+          "option_a": {
+            "display_text": "About a day",
+            "voice_over_script": "About a day"
+          },
+          "option_b": {
+            "display_text": "About a month",
+            "voice_over_script": "About a month"
+          },
+          "teaching_moments": {
+            "option_a_response": {
+              "display_text": "It takes about a day for the Earth to spin around once, but the moon takes longer to travel around us.",
+              "voice_over_script": "It takes about a day for the Earth to spin around once, but the moon takes longer to travel around us."
+            },
+            "option_b_response": {
+              "display_text": "That's right! The word \"month\" even comes from the word \"moon\"!",
+              "voice_over_script": "That's right! The word \"month\" even comes from the word \"moon\"!"
+            }
+          }
+        },
+        "12": {
+          "question": {
+            "neutral": {
+              "display_text": "How long does it take for the moon to orbit the Earth?",
+              "voice_over_script": "How long does it take for the moon to orbit the Earth?"
+            },
+            "fun": {
+              "display_text": "How long does it take for the moon to orbit the Earth?",
+              "voice_over_script": "How long does it take for the moon to orbit the Earth?"
+            },
+            "grandmother": {
+              "display_text": "How long does it take for the moon to orbit the Earth?",
+              "voice_over_script": "How long does it take for the moon to orbit the Earth?"
+            }
+          },
+          "option_a": {
+            "display_text": "About a day",
+            "voice_over_script": "About a day"
+          },
+          "option_b": {
+            "display_text": "About a month",
+            "voice_over_script": "About a month"
+          },
+          "teaching_moments": {
+            "option_a_response": {
+              "display_text": "It takes about a day for the Earth to spin around once, but the moon takes longer to travel around us.",
+              "voice_over_script": "It takes about a day for the Earth to spin around once, but the moon takes longer to travel around us."
+            },
+            "option_b_response": {
+              "display_text": "That's right! The word \"month\" even comes from the word \"moon\"!",
+              "voice_over_script": "That's right! The word \"month\" even comes from the word \"moon\"!"
+            }
+          }
+        },
+        "16": {
+          "question": {
+            "neutral": {
+              "display_text": "How long does it take for the moon to orbit the Earth?",
+              "voice_over_script": "How long does it take for the moon to orbit the Earth?"
+            },
+            "fun": {
+              "display_text": "How long does it take for the moon to orbit the Earth?",
+              "voice_over_script": "How long does it take for the moon to orbit the Earth?"
+            },
+            "grandmother": {
+              "display_text": "How long does it take for the moon to orbit the Earth?",
+              "voice_over_script": "How long does it take for the moon to orbit the Earth?"
+            }
+          },
+          "option_a": {
+            "display_text": "About a day",
+            "voice_over_script": "About a day"
+          },
+          "option_b": {
+            "display_text": "About a month",
+            "voice_over_script": "About a month"
+          },
+          "teaching_moments": {
+            "option_a_response": {
+              "display_text": "It takes about a day for the Earth to spin around once, but the moon takes longer to travel around us.",
+              "voice_over_script": "It takes about a day for the Earth to spin around once, but the moon takes longer to travel around us."
+            },
+            "option_b_response": {
+              "display_text": "That's right! The word \"month\" even comes from the word \"moon\"!",
+              "voice_over_script": "That's right! The word \"month\" even comes from the word \"moon\"!"
+            }
+          }
+        },
+        "25": {
+          "question": {
+            "neutral": {
+              "display_text": "How long does it take for the moon to orbit the Earth?",
+              "voice_over_script": "How long does it take for the moon to orbit the Earth?"
+            },
+            "fun": {
+              "display_text": "How long does it take for the moon to orbit the Earth?",
+              "voice_over_script": "How long does it take for the moon to orbit the Earth?"
+            },
+            "grandmother": {
+              "display_text": "How long does it take for the moon to orbit the Earth?",
+              "voice_over_script": "How long does it take for the moon to orbit the Earth?"
+            }
+          },
+          "option_a": {
+            "display_text": "About a day",
+            "voice_over_script": "About a day"
+          },
+          "option_b": {
+            "display_text": "About a month",
+            "voice_over_script": "About a month"
+          },
+          "teaching_moments": {
+            "option_a_response": {
+              "display_text": "It takes about a day for the Earth to spin around once, but the moon takes longer to travel around us.",
+              "voice_over_script": "It takes about a day for the Earth to spin around once, but the moon takes longer to travel around us."
+            },
+            "option_b_response": {
+              "display_text": "That's right! The word \"month\" even comes from the word \"moon\"!",
+              "voice_over_script": "That's right! The word \"month\" even comes from the word \"moon\"!"
+            }
+          }
+        },
+        "40": {
+          "question": {
+            "neutral": {
+              "display_text": "How long does it take for the moon to orbit the Earth?",
+              "voice_over_script": "How long does it take for the moon to orbit the Earth?"
+            },
+            "fun": {
+              "display_text": "How long does it take for the moon to orbit the Earth?",
+              "voice_over_script": "How long does it take for the moon to orbit the Earth?"
+            },
+            "grandmother": {
+              "display_text": "How long does it take for the moon to orbit the Earth?",
+              "voice_over_script": "How long does it take for the moon to orbit the Earth?"
+            }
+          },
+          "option_a": {
+            "display_text": "About a day",
+            "voice_over_script": "About a day"
+          },
+          "option_b": {
+            "display_text": "About a month",
+            "voice_over_script": "About a month"
+          },
+          "teaching_moments": {
+            "option_a_response": {
+              "display_text": "It takes about a day for the Earth to spin around once, but the moon takes longer to travel around us.",
+              "voice_over_script": "It takes about a day for the Earth to spin around once, but the moon takes longer to travel around us."
+            },
+            "option_b_response": {
+              "display_text": "That's right! The word \"month\" even comes from the word \"moon\"!",
+              "voice_over_script": "That's right! The word \"month\" even comes from the word \"moon\"!"
+            }
+          }
+        },
+        "60": {
+          "question": {
+            "neutral": {
+              "display_text": "How long does it take for the moon to orbit the Earth?",
+              "voice_over_script": "How long does it take for the moon to orbit the Earth?"
+            },
+            "fun": {
+              "display_text": "How long does it take for the moon to orbit the Earth?",
+              "voice_over_script": "How long does it take for the moon to orbit the Earth?"
+            },
+            "grandmother": {
+              "display_text": "How long does it take for the moon to orbit the Earth?",
+              "voice_over_script": "How long does it take for the moon to orbit the Earth?"
+            }
+          },
+          "option_a": {
+            "display_text": "About a day",
+            "voice_over_script": "About a day"
+          },
+          "option_b": {
+            "display_text": "About a month",
+            "voice_over_script": "About a month"
+          },
+          "teaching_moments": {
+            "option_a_response": {
+              "display_text": "It takes about a day for the Earth to spin around once, but the moon takes longer to travel around us.",
+              "voice_over_script": "It takes about a day for the Earth to spin around once, but the moon takes longer to travel around us."
+            },
+            "option_b_response": {
+              "display_text": "That's right! The word \"month\" even comes from the word \"moon\"!",
+              "voice_over_script": "That's right! The word \"month\" even comes from the word \"moon\"!"
+            }
+          }
+        },
+        "80": {
+          "question": {
+            "neutral": {
+              "display_text": "How long does it take for the moon to orbit the Earth?",
+              "voice_over_script": "How long does it take for the moon to orbit the Earth?"
+            },
+            "fun": {
+              "display_text": "How long does it take for the moon to orbit the Earth?",
+              "voice_over_script": "How long does it take for the moon to orbit the Earth?"
+            },
+            "grandmother": {
+              "display_text": "How long does it take for the moon to orbit the Earth?",
+              "voice_over_script": "How long does it take for the moon to orbit the Earth?"
+            }
+          },
+          "option_a": {
+            "display_text": "About a day",
+            "voice_over_script": "About a day"
+          },
+          "option_b": {
+            "display_text": "About a month",
+            "voice_over_script": "About a month"
+          },
+          "teaching_moments": {
+            "option_a_response": {
+              "display_text": "It takes about a day for the Earth to spin around once, but the moon takes longer to travel around us.",
+              "voice_over_script": "It takes about a day for the Earth to spin around once, but the moon takes longer to travel around us."
+            },
+            "option_b_response": {
+              "display_text": "That's right! The word \"month\" even comes from the word \"moon\"!",
+              "voice_over_script": "That's right! The word \"month\" even comes from the word \"moon\"!"
+            }
+          }
+        },
+        "102": {
+          "question": {
+            "neutral": {
+              "display_text": "How long does it take for the moon to orbit the Earth?",
+              "voice_over_script": "How long does it take for the moon to orbit the Earth?"
+            },
+            "fun": {
+              "display_text": "How long does it take for the moon to orbit the Earth?",
+              "voice_over_script": "How long does it take for the moon to orbit the Earth?"
+            },
+            "grandmother": {
+              "display_text": "How long does it take for the moon to orbit the Earth?",
+              "voice_over_script": "How long does it take for the moon to orbit the Earth?"
+            }
+          },
+          "option_a": {
+            "display_text": "About a day",
+            "voice_over_script": "About a day"
+          },
+          "option_b": {
+            "display_text": "About a month",
+            "voice_over_script": "About a month"
+          },
+          "teaching_moments": {
+            "option_a_response": {
+              "display_text": "It takes about a day for the Earth to spin around once, but the moon takes longer to travel around us.",
+              "voice_over_script": "It takes about a day for the Earth to spin around once, but the moon takes longer to travel around us."
+            },
+            "option_b_response": {
+              "display_text": "That's right! The word \"month\" even comes from the word \"moon\"!",
+              "voice_over_script": "That's right! The word \"month\" even comes from the word \"moon\"!"
+            }
+          }
+        }
+      }
+    },
+    "question_3": {
+      "concept_focus": "The sun's connection to our shared human experience.",
+      "ages": {
+        "2": {
+          "question": {
+            "neutral": {
+              "display_text": "Have people ever walked on the moon?",
+              "voice_over_script": "Have people ever walked on the moon?"
+            },
+            "fun": {
+              "display_text": "Have people ever walked on the moon?",
+              "voice_over_script": "Have people ever walked on the moon?"
+            },
+            "grandmother": {
+              "display_text": "Have people ever walked on the moon?",
+              "voice_over_script": "Have people ever walked on the moon?"
+            }
+          },
+          "option_a": {
+            "display_text": "No, it is too far away",
+            "voice_over_script": "No, it is too far away"
+          },
+          "option_b": {
+            "display_text": "Yes, astronauts have walked on it",
+            "voice_over_script": "Yes, astronauts have walked on it"
+          },
+          "teaching_moments": {
+            "option_a_response": {
+              "display_text": "It is very far, but brave astronauts have traveled there and back!",
+              "voice_over_script": "It is very far, but brave astronauts have traveled there and back!"
+            },
+            "option_b_response": {
+              "display_text": "Correct! The Apollo missions took astronauts to the moon and they even brought back moon rocks!",
+              "voice_over_script": "Correct! The Apollo missions took astronauts to the moon and they even brought back moon rocks!"
+            }
+          }
+        },
+        "5": {
+          "question": {
+            "neutral": {
+              "display_text": "Have people ever walked on the moon?",
+              "voice_over_script": "Have people ever walked on the moon?"
+            },
+            "fun": {
+              "display_text": "Have people ever walked on the moon?",
+              "voice_over_script": "Have people ever walked on the moon?"
+            },
+            "grandmother": {
+              "display_text": "Have people ever walked on the moon?",
+              "voice_over_script": "Have people ever walked on the moon?"
+            }
+          },
+          "option_a": {
+            "display_text": "No, it is too far away",
+            "voice_over_script": "No, it is too far away"
+          },
+          "option_b": {
+            "display_text": "Yes, astronauts have walked on it",
+            "voice_over_script": "Yes, astronauts have walked on it"
+          },
+          "teaching_moments": {
+            "option_a_response": {
+              "display_text": "It is very far, but brave astronauts have traveled there and back!",
+              "voice_over_script": "It is very far, but brave astronauts have traveled there and back!"
+            },
+            "option_b_response": {
+              "display_text": "Correct! The Apollo missions took astronauts to the moon and they even brought back moon rocks!",
+              "voice_over_script": "Correct! The Apollo missions took astronauts to the moon and they even brought back moon rocks!"
+            }
+          }
+        },
+        "8": {
+          "question": {
+            "neutral": {
+              "display_text": "Have people ever walked on the moon?",
+              "voice_over_script": "Have people ever walked on the moon?"
+            },
+            "fun": {
+              "display_text": "Have people ever walked on the moon?",
+              "voice_over_script": "Have people ever walked on the moon?"
+            },
+            "grandmother": {
+              "display_text": "Have people ever walked on the moon?",
+              "voice_over_script": "Have people ever walked on the moon?"
+            }
+          },
+          "option_a": {
+            "display_text": "No, it is too far away",
+            "voice_over_script": "No, it is too far away"
+          },
+          "option_b": {
+            "display_text": "Yes, astronauts have walked on it",
+            "voice_over_script": "Yes, astronauts have walked on it"
+          },
+          "teaching_moments": {
+            "option_a_response": {
+              "display_text": "It is very far, but brave astronauts have traveled there and back!",
+              "voice_over_script": "It is very far, but brave astronauts have traveled there and back!"
+            },
+            "option_b_response": {
+              "display_text": "Correct! The Apollo missions took astronauts to the moon and they even brought back moon rocks!",
+              "voice_over_script": "Correct! The Apollo missions took astronauts to the moon and they even brought back moon rocks!"
+            }
+          }
+        },
+        "12": {
+          "question": {
+            "neutral": {
+              "display_text": "Have people ever walked on the moon?",
+              "voice_over_script": "Have people ever walked on the moon?"
+            },
+            "fun": {
+              "display_text": "Have people ever walked on the moon?",
+              "voice_over_script": "Have people ever walked on the moon?"
+            },
+            "grandmother": {
+              "display_text": "Have people ever walked on the moon?",
+              "voice_over_script": "Have people ever walked on the moon?"
+            }
+          },
+          "option_a": {
+            "display_text": "No, it is too far away",
+            "voice_over_script": "No, it is too far away"
+          },
+          "option_b": {
+            "display_text": "Yes, astronauts have walked on it",
+            "voice_over_script": "Yes, astronauts have walked on it"
+          },
+          "teaching_moments": {
+            "option_a_response": {
+              "display_text": "It is very far, but brave astronauts have traveled there and back!",
+              "voice_over_script": "It is very far, but brave astronauts have traveled there and back!"
+            },
+            "option_b_response": {
+              "display_text": "Correct! The Apollo missions took astronauts to the moon and they even brought back moon rocks!",
+              "voice_over_script": "Correct! The Apollo missions took astronauts to the moon and they even brought back moon rocks!"
+            }
+          }
+        },
+        "16": {
+          "question": {
+            "neutral": {
+              "display_text": "Have people ever walked on the moon?",
+              "voice_over_script": "Have people ever walked on the moon?"
+            },
+            "fun": {
+              "display_text": "Have people ever walked on the moon?",
+              "voice_over_script": "Have people ever walked on the moon?"
+            },
+            "grandmother": {
+              "display_text": "Have people ever walked on the moon?",
+              "voice_over_script": "Have people ever walked on the moon?"
+            }
+          },
+          "option_a": {
+            "display_text": "No, it is too far away",
+            "voice_over_script": "No, it is too far away"
+          },
+          "option_b": {
+            "display_text": "Yes, astronauts have walked on it",
+            "voice_over_script": "Yes, astronauts have walked on it"
+          },
+          "teaching_moments": {
+            "option_a_response": {
+              "display_text": "It is very far, but brave astronauts have traveled there and back!",
+              "voice_over_script": "It is very far, but brave astronauts have traveled there and back!"
+            },
+            "option_b_response": {
+              "display_text": "Correct! The Apollo missions took astronauts to the moon and they even brought back moon rocks!",
+              "voice_over_script": "Correct! The Apollo missions took astronauts to the moon and they even brought back moon rocks!"
+            }
+          }
+        },
+        "25": {
+          "question": {
+            "neutral": {
+              "display_text": "Have people ever walked on the moon?",
+              "voice_over_script": "Have people ever walked on the moon?"
+            },
+            "fun": {
+              "display_text": "Have people ever walked on the moon?",
+              "voice_over_script": "Have people ever walked on the moon?"
+            },
+            "grandmother": {
+              "display_text": "Have people ever walked on the moon?",
+              "voice_over_script": "Have people ever walked on the moon?"
+            }
+          },
+          "option_a": {
+            "display_text": "No, it is too far away",
+            "voice_over_script": "No, it is too far away"
+          },
+          "option_b": {
+            "display_text": "Yes, astronauts have walked on it",
+            "voice_over_script": "Yes, astronauts have walked on it"
+          },
+          "teaching_moments": {
+            "option_a_response": {
+              "display_text": "It is very far, but brave astronauts have traveled there and back!",
+              "voice_over_script": "It is very far, but brave astronauts have traveled there and back!"
+            },
+            "option_b_response": {
+              "display_text": "Correct! The Apollo missions took astronauts to the moon and they even brought back moon rocks!",
+              "voice_over_script": "Correct! The Apollo missions took astronauts to the moon and they even brought back moon rocks!"
+            }
+          }
+        },
+        "40": {
+          "question": {
+            "neutral": {
+              "display_text": "Have people ever walked on the moon?",
+              "voice_over_script": "Have people ever walked on the moon?"
+            },
+            "fun": {
+              "display_text": "Have people ever walked on the moon?",
+              "voice_over_script": "Have people ever walked on the moon?"
+            },
+            "grandmother": {
+              "display_text": "Have people ever walked on the moon?",
+              "voice_over_script": "Have people ever walked on the moon?"
+            }
+          },
+          "option_a": {
+            "display_text": "No, it is too far away",
+            "voice_over_script": "No, it is too far away"
+          },
+          "option_b": {
+            "display_text": "Yes, astronauts have walked on it",
+            "voice_over_script": "Yes, astronauts have walked on it"
+          },
+          "teaching_moments": {
+            "option_a_response": {
+              "display_text": "It is very far, but brave astronauts have traveled there and back!",
+              "voice_over_script": "It is very far, but brave astronauts have traveled there and back!"
+            },
+            "option_b_response": {
+              "display_text": "Correct! The Apollo missions took astronauts to the moon and they even brought back moon rocks!",
+              "voice_over_script": "Correct! The Apollo missions took astronauts to the moon and they even brought back moon rocks!"
+            }
+          }
+        },
+        "60": {
+          "question": {
+            "neutral": {
+              "display_text": "Have people ever walked on the moon?",
+              "voice_over_script": "Have people ever walked on the moon?"
+            },
+            "fun": {
+              "display_text": "Have people ever walked on the moon?",
+              "voice_over_script": "Have people ever walked on the moon?"
+            },
+            "grandmother": {
+              "display_text": "Have people ever walked on the moon?",
+              "voice_over_script": "Have people ever walked on the moon?"
+            }
+          },
+          "option_a": {
+            "display_text": "No, it is too far away",
+            "voice_over_script": "No, it is too far away"
+          },
+          "option_b": {
+            "display_text": "Yes, astronauts have walked on it",
+            "voice_over_script": "Yes, astronauts have walked on it"
+          },
+          "teaching_moments": {
+            "option_a_response": {
+              "display_text": "It is very far, but brave astronauts have traveled there and back!",
+              "voice_over_script": "It is very far, but brave astronauts have traveled there and back!"
+            },
+            "option_b_response": {
+              "display_text": "Correct! The Apollo missions took astronauts to the moon and they even brought back moon rocks!",
+              "voice_over_script": "Correct! The Apollo missions took astronauts to the moon and they even brought back moon rocks!"
+            }
+          }
+        },
+        "80": {
+          "question": {
+            "neutral": {
+              "display_text": "Have people ever walked on the moon?",
+              "voice_over_script": "Have people ever walked on the moon?"
+            },
+            "fun": {
+              "display_text": "Have people ever walked on the moon?",
+              "voice_over_script": "Have people ever walked on the moon?"
+            },
+            "grandmother": {
+              "display_text": "Have people ever walked on the moon?",
+              "voice_over_script": "Have people ever walked on the moon?"
+            }
+          },
+          "option_a": {
+            "display_text": "No, it is too far away",
+            "voice_over_script": "No, it is too far away"
+          },
+          "option_b": {
+            "display_text": "Yes, astronauts have walked on it",
+            "voice_over_script": "Yes, astronauts have walked on it"
+          },
+          "teaching_moments": {
+            "option_a_response": {
+              "display_text": "It is very far, but brave astronauts have traveled there and back!",
+              "voice_over_script": "It is very far, but brave astronauts have traveled there and back!"
+            },
+            "option_b_response": {
+              "display_text": "Correct! The Apollo missions took astronauts to the moon and they even brought back moon rocks!",
+              "voice_over_script": "Correct! The Apollo missions took astronauts to the moon and they even brought back moon rocks!"
+            }
+          }
+        },
+        "102": {
+          "question": {
+            "neutral": {
+              "display_text": "Have people ever walked on the moon?",
+              "voice_over_script": "Have people ever walked on the moon?"
+            },
+            "fun": {
+              "display_text": "Have people ever walked on the moon?",
+              "voice_over_script": "Have people ever walked on the moon?"
+            },
+            "grandmother": {
+              "display_text": "Have people ever walked on the moon?",
+              "voice_over_script": "Have people ever walked on the moon?"
+            }
+          },
+          "option_a": {
+            "display_text": "No, it is too far away",
+            "voice_over_script": "No, it is too far away"
+          },
+          "option_b": {
+            "display_text": "Yes, astronauts have walked on it",
+            "voice_over_script": "Yes, astronauts have walked on it"
+          },
+          "teaching_moments": {
+            "option_a_response": {
+              "display_text": "It is very far, but brave astronauts have traveled there and back!",
+              "voice_over_script": "It is very far, but brave astronauts have traveled there and back!"
+            },
+            "option_b_response": {
+              "display_text": "Correct! The Apollo missions took astronauts to the moon and they even brought back moon rocks!",
+              "voice_over_script": "Correct! The Apollo missions took astronauts to the moon and they even brought back moon rocks!"
+            }
+          }
+        }
+      }
+    }
+  },
+  "wisdom_phase_content": {
+    "fortune": {
+      "neutral": {
+        "display_text": "The moon reminds us that even in darkness, there is light.",
+        "voice_over_script": "The moon reminds us that even in darkness, there is light."
+      },
+      "fun": {
+        "display_text": "The moon is like a giant disco ball in the sky! Shine on!",
+        "voice_over_script": "The moon is like a giant disco ball in the sky! Shine on!"
+      },
+      "grandmother": {
+        "display_text": "Like the moon, you go through phases. Be patient with yourself.",
+        "voice_over_script": "Like the moon, you go through phases. Be patient with yourself."
+      }
+    }
+  }
+}

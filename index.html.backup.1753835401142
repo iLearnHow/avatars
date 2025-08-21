@@ -1,0 +1,2679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iLearn - Complete Learning Experience</title>
+    <meta name="description" content="Personalized learning with Kelly and Ken - Complete lesson experience">
+    <meta name="keywords" content="education, learning, personalized, lessons, avatars">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            overflow: hidden;
+            background: #000;
+            color: white;
+            line-height: 1.6;
+            /* Enhanced background system with slide-by-slide transitions */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            transition: background-image 0.5s ease;
+        }
+
+        .lesson-player {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background: #000;
+            overflow: hidden;
+        }
+
+        /* Browser interface removed - full screen experience */
+
+        /* Glass morphism overlay system with face-safe zone design */
+        .lesson-info {
+            position: absolute;
+            top: 16%;
+            left: 8%;
+            max-width: 40%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            padding: 24px;
+            z-index: 5;
+            animation: fadeIn 0.3s ease;
+            pointer-events: none;
+        }
+
+        .lesson-info .content {
+            pointer-events: auto;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .lesson-info h2 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .lesson-info p {
+            font-size: 14px;
+            color: #ccc;
+            margin-bottom: 16px;
+        }
+
+        .start-lesson-btn {
+            background: #007AFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Enhanced side navigation with glass morphism */
+        .side-navigation {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 5;
+        }
+
+        /* Professional audio controls - lower right, face-safe zone */
+        .audio-controls {
+            position: fixed;
+            bottom: 32px;
+            right: 160px;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(12px);
+            border-radius: 24px;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+            z-index: 30;
+        }
+
+        .audio-controls:hover {
+            opacity: 1;
+        }
+
+        .audio-controls button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .audio-controls button:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.1);
+        }
+
+        .audio-controls input[type="range"] {
+            width: 80px;
+            accent-color: #007AFF;
+        }
+
+        .audio-controls select {
+            background: transparent;
+            color: white;
+            border: none;
+            font-size: 12px;
+            outline: none;
+        }
+
+        /* Enhanced navigation with glass morphism */
+        .nav-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            position: relative;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-icon:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Enhanced calendar overlay with glass morphism */
+        .calendar-overlay {
+            position: fixed;
+            top: 16%;
+            right: 8%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            padding: 24px;
+            z-index: 50;
+            animation: fadeIn 0.3s ease;
+            max-width: 400px;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .calendar-day {
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .calendar-day.today {
+            background: #007AFF;
+            color: white;
+        }
+
+        .calendar-day.available {
+            background: rgba(0, 122, 255, 0.6);
+            color: white;
+        }
+
+        .calendar-day.available:hover {
+            background: rgba(0, 122, 255, 0.8);
+            transform: scale(1.1);
+        }
+
+        .calendar-day.unavailable {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Enhanced variant controls overlay */
+        .variant-overlay {
+            position: fixed;
+            top: 16%;
+            right: 8%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            padding: 24px;
+            z-index: 50;
+            animation: fadeIn 0.3s ease;
+            max-width: 320px;
+        }
+
+        .variant-control {
+            margin-bottom: 16px;
+        }
+
+        .variant-control label {
+            display: block;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .variant-control select {
+            width: 100%;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            color: #333;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .variant-control select:focus {
+            border-color: #007AFF;
+            box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.2);
+        }
+
+        .nav-icon.active {
+            background: #007AFF;
+        }
+
+        /* Dynamic Calendar Icon */
+        #calendar-icon {
+            position: relative;
+        }
+
+        .calendar-emoji {
+            position: absolute;
+            top: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 16px;
+        }
+
+        .calendar-date {
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            font-weight: bold;
+            color: #007AFF;
+        }
+
+        /* Bottom Navigation */
+        .bottom-navigation {
+            position: absolute;
+            bottom: 20px;
+            right: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .calendar-overlay {
+            position: absolute;
+            top: 60px;
+            right: 40px;
+            background: rgba(0, 0, 0, 0.95);
+            padding: 20px;
+            border-radius: 12px;
+            max-width: 300px;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+            display: none;
+        }
+
+        .calendar-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .calendar-nav {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .calendar-nav button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+            margin-bottom: 16px;
+        }
+
+        .calendar-day {
+            width: 32px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .calendar-day:hover {
+            background: #007AFF;
+        }
+
+        .calendar-day.today {
+            background: #007AFF;
+            font-weight: bold;
+        }
+
+        .calendar-day.generated {
+            border: 2px solid #28a745;
+        }
+
+        .calendar-day.generated.today {
+            border: 2px solid #28a745;
+            background: #007AFF;
+        }
+
+        .lesson-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.95);
+            padding: 40px;
+            border-radius: 16px;
+            max-width: 900px;
+            max-height: 85vh;
+            overflow-y: auto;
+            text-align: left;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+            display: block;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .lesson-content.hidden {
+            display: none;
+        }
+
+        /* Panel 3: Overlay Area */
+        .panel-3-overlay {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 400px;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            overflow-y: auto;
+            padding: 20px;
+            pointer-events: none;
+        }
+
+        .panel-3-overlay.active {
+            transform: translateX(0);
+            pointer-events: auto;
+        }
+
+        /* Panel 1 Footer: Variant Status */
+        .variant-status {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.9);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 15px 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .variant-status-content h4 {
+            color: #007AFF;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .variant-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            font-size: 12px;
+        }
+
+        .variant-grid span {
+            color: #ccc;
+        }
+
+        .variant-grid span span {
+            color: #007AFF;
+            font-weight: 500;
+        }
+
+        .lesson-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .lesson-section h3 {
+            color: #007AFF;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .content-box {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 8px;
+        }
+
+        .question-item {
+            margin-bottom: 15px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+        }
+
+        .question-item h5 {
+            color: #007AFF;
+            margin-bottom: 8px;
+        }
+
+        .feedback-preview {
+            margin-top: 10px;
+            padding: 8px;
+            background: rgba(0, 122, 255, 0.1);
+            border-left: 3px solid #007AFF;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #ccc;
+        }
+
+        .options {
+            display: flex;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .option {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .lesson-title {
+            font-size: 24px;
+            margin-bottom: 16px;
+            color: #fff;
+        }
+
+        .lesson-text {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+
+        .lesson-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .action-btn {
+            background: #007AFF;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 20;
+            backdrop-filter: blur(10px);
+        }
+
+        .loading-spinner {
+            width: 48px;
+            height: 48px;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            border-top: 4px solid #007AFF;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 0, 0, 0.9);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            z-index: 30;
+            display: none;
+        }
+
+        .player-controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 5;
+        }
+
+        .avatar-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar-bubble {
+            width: 40px;
+            height: 40px;
+            background: #007AFF;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+        }
+
+        .play-button {
+            background: #007AFF;
+            color: white;
+            border: none;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .progress-bar {
+            flex: 1;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            margin: 0 20px;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #007AFF;
+            border-radius: 2px;
+            width: 0%;
+        }
+
+        .playback-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .speed-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .speed-button.active {
+            background: #007AFF;
+        }
+
+        .autoplay-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            font-size: 12px;
+        }
+
+        .toggle-checkbox {
+            width: 16px;
+            height: 16px;
+        }
+
+        .info-button {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="lesson-player">
+        <!-- Full screen experience - no browser interface -->
+
+        <!-- Enhanced background system with slide-by-slide transitions -->
+        <div class="background-system" id="background-system">
+            <!-- High-resolution Ken/Kelly wallpapers will be set as body background -->
+        </div>
+
+        <!-- Lesson info overlay with glass morphism -->
+        <div class="lesson-info" id="lesson-info">
+            <div class="content">
+                <h2>Welcome to iLearn</h2>
+                <p>Loading your personalized lesson...</p>
+                <button class="start-lesson-btn" id="start-lesson-btn">Start Lesson</button>
+            </div>
+        </div>
+
+        <!-- Side navigation -->
+        <div class="side-navigation">
+            <button class="nav-icon" data-section="calendar" id="calendar-icon">
+                <span class="calendar-emoji">📅</span>
+                <span class="calendar-date" id="calendar-date">29</span>
+            </button>
+            <button class="nav-icon" data-section="format">📋</button>
+            <button class="nav-icon" data-section="age">👶</button>
+            <button class="nav-icon" data-section="tone">🎭</button>
+            <button class="nav-icon" data-section="language">🌍</button>
+            <button class="nav-icon" data-section="controls">🎛️</button>
+            <button class="nav-icon" data-section="avatar">👤</button>
+        </div>
+
+        <!-- Professional audio controls - lower right, face-safe zone -->
+        <div class="audio-controls" id="audio-controls">
+            <button id="play-btn" aria-label="Play/Pause">►</button>
+            <button id="stop-btn" aria-label="Stop">■</button>
+            <button id="mute-btn" aria-label="Mute/Unmute">🔊</button>
+            <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1" aria-label="Volume">
+            <select id="speed-select" aria-label="Playback Speed">
+                <option value="0.5">0.5x</option>
+                <option value="1" selected>1x</option>
+                <option value="1.25">1.25x</option>
+                <option value="1.5">1.5x</option>
+                <option value="2">2x</option>
+            </select>
+            <span style="font-size: 12px; color: rgba(255,255,255,0.7);">Autoplay</span>
+            <input type="checkbox" id="autoplay-toggle" checked>
+        </div>
+
+        <!-- Bottom navigation -->
+        <div class="bottom-navigation">
+            <button class="nav-icon" data-section="menu">☰</button>
+        </div>
+
+        <!-- Enhanced calendar overlay with glass morphism -->
+        <div class="calendar-overlay" id="calendar-overlay" style="display: none;">
+            <div class="calendar-header">
+                <h3 style="color: rgba(255,255,255,0.9); margin-bottom: 16px; font-size: 18px;">April 2025 Lesson Calendar</h3>
+                <div class="calendar-nav">
+                    <button onclick="previousMonth()" style="background: rgba(255,255,255,0.2); border: none; color: white; padding: 4px 8px; border-radius: 4px; cursor: pointer;">‹</button>
+                    <span id="current-month" style="color: rgba(255,255,255,0.9); font-weight: 500;">April 2025</span>
+                    <button onclick="nextMonth()" style="background: rgba(255,255,255,0.2); border: none; color: white; padding: 4px 8px; border-radius: 4px; cursor: pointer;">›</button>
+                </div>
+            </div>
+            <p style="color: rgba(255,255,255,0.7); font-size: 12px; margin-bottom: 16px;">Hover for topic. Click to load lesson.</p>
+            <div class="calendar-grid" id="calendar-grid">
+                <!-- Calendar days will be generated here -->
+            </div>
+            <button onclick="closeCalendar()" style="width: 100%; margin-top: 16px; padding: 8px 16px; background: rgba(0,122,255,0.8); color: white; border: none; border-radius: 8px; font-weight: 500; cursor: pointer;">Close</button>
+        </div>
+
+        <!-- Enhanced variant controls overlay -->
+        <div class="variant-overlay" id="variant-overlay" style="display: none;">
+            <h3 style="color: rgba(255,255,255,0.9); margin-bottom: 16px; font-size: 18px;">Lesson Variants</h3>
+            <div class="variant-control">
+                <label for="age-select">Age</label>
+                <select id="age-select" class="variant-select">
+                    <option value="6">6 years</option>
+                    <option value="12">12 years</option>
+                    <option value="18" selected>18 years</option>
+                    <option value="30">30 years</option>
+                    <option value="50">50 years</option>
+                    <option value="80">80 years</option>
+                </select>
+            </div>
+            <div class="variant-control">
+                <label for="tone-select">Tone</label>
+                <select id="tone-select" class="variant-select">
+                    <option value="neutral" selected>Neutral</option>
+                    <option value="fun">Fun</option>
+                    <option value="grandmother">Grandmother</option>
+                </select>
+            </div>
+            <div class="variant-control">
+                <label for="language-select">Language</label>
+                <select id="language-select" class="variant-select">
+                    <option value="english" selected>English</option>
+                    <option value="spanish">Spanish</option>
+                    <option value="french">French</option>
+                </select>
+            </div>
+            <div class="variant-control">
+                <label for="avatar-select">Avatar</label>
+                <select id="avatar-select" class="variant-select">
+                    <option value="Ken">Ken</option>
+                    <option value="Kelly" selected>Kelly</option>
+                </select>
+            </div>
+            <button onclick="closeVariantOverlay()" style="width: 100%; margin-top: 16px; padding: 8px 16px; background: rgba(0,122,255,0.8); color: white; border: none; border-radius: 8px; font-weight: 500; cursor: pointer;">Close</button>
+        </div>
+
+        <!-- Panel 1: Lesson Content -->
+        <div class="lesson-content" id="lesson-content">
+            <div class="lesson-header">
+                <h2 class="lesson-title" id="lesson-title">Today's Lesson</h2>
+                <p class="lesson-subtitle" id="lesson-subtitle">Personalized for your learning style</p>
+            </div>
+            
+            <!-- Complete Lesson Display -->
+            <div class="complete-lesson-display" id="complete-lesson-display">
+                <!-- Voice Over Script -->
+                <div class="lesson-section">
+                    <h3>📝 Voice Over Script</h3>
+                    <div class="content-box" id="voice-over-content">
+                        <p>Loading voice over script...</p>
+                    </div>
+                </div>
+                
+                <!-- On-Screen Text -->
+                <div class="lesson-section">
+                    <h3>📺 On-Screen Text</h3>
+                    <div class="content-box" id="on-screen-content">
+                        <p>Loading on-screen text...</p>
+                    </div>
+                </div>
+                
+                <!-- Lesson Logic -->
+                <div class="lesson-section">
+                    <h3>🧠 Lesson Logic</h3>
+                    <div class="content-box" id="lesson-logic-content">
+                        <p>Loading lesson logic...</p>
+                    </div>
+                </div>
+                
+                <!-- Questions -->
+                <div class="lesson-section">
+                    <h3>❓ Questions</h3>
+                    <div class="content-box" id="questions-content">
+                        <p>Loading questions...</p>
+                    </div>
+                </div>
+                
+                <!-- Feedback System -->
+                <div class="lesson-section">
+                    <h3>💬 Feedback System</h3>
+                    <div class="content-box" id="feedback-content">
+                        <p>Loading feedback system...</p>
+                    </div>
+                </div>
+                
+                <!-- Daily Fortune -->
+                <div class="lesson-section">
+                    <h3>🔮 Daily Fortune</h3>
+                    <div class="content-box" id="fortune-content">
+                        <p>Loading daily fortune...</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Panel 1 Footer: Variant Status -->
+            <div class="variant-status" id="variant-status">
+                <div class="variant-status-content">
+                    <h4>Current Variants:</h4>
+                    <div class="variant-grid">
+                        <span>📋 Format: <span id="current-format">3x3x3</span></span>
+                        <span>👶 Age: <span id="current-age">young adult</span></span>
+                        <span>🎭 Tone: <span id="current-tone">neutral</span></span>
+                        <span>🌍 Language: <span id="current-language">english</span></span>
+                        <span>👤 Avatar: <span id="current-avatar">Kelly</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel 3: Overlay Area -->
+        <div class="panel-3-overlay" id="panel-3-overlay">
+            <!-- Overlays will be inserted here -->
+        </div>
+
+        <!-- Loading overlay -->
+        <div class="loading-overlay" id="loading-overlay">
+            <div class="loading-spinner"></div>
+        </div>
+
+        <!-- Error message -->
+        <div class="error-message" id="error-message"></div>
+
+        <!-- Player controls -->
+        <!-- Lesson controls moved to panel 3 (🎛️ icon) -->
+    </div>
+
+    <script>
+        // Enhanced background system with slide-by-slide transitions
+        const backgroundSystem = {
+                    // High-resolution Ken/Kelly wallpapers optimized for full-screen backgrounds
+        kenWallpapers: {
+            intro: '/lesson-player-deploy/assets/avatars/ken.jpg',
+            question: '/lesson-player-deploy/assets/avatars/ken-close-up.jpg',
+            feedback: '/lesson-player-deploy/assets/avatars/correct-celebration-mode.png',
+            fortune: '/lesson-player-deploy/assets/avatars/celebrating-with-balloons.jpg'
+        },
+        kellyWallpapers: {
+            intro: '/lesson-player-deploy/assets/avatars/kelly_early_childhood_neutral_day28.jpg',
+            question: '/lesson-player-deploy/assets/avatars/kelly_youth_neutral_day28.jpg',
+            feedback: '/lesson-player-deploy/assets/avatars/kelly_young_adult_neutral_day28.jpg',
+            fortune: '/lesson-player-deploy/assets/avatars/kelly_reflection_day28.jpg'
+        },
+        
+        // Initialize background with fallback handling
+        initializeBackground: () => {
+            try {
+                // Set initial background
+                backgroundSystem.updateBackground('intro', currentAvatar);
+                
+                // Preload all images for smooth transitions
+                const allImages = [
+                    ...Object.values(backgroundSystem.kenWallpapers),
+                    ...Object.values(backgroundSystem.kellyWallpapers)
+                ];
+                
+                allImages.forEach(src => {
+                    const img = new Image();
+                    img.onload = () => console.log(`✅ Preloaded: ${src}`);
+                    img.onerror = () => console.warn(`⚠️ Failed to load: ${src}`);
+                    img.src = src;
+                });
+                
+                console.log('✅ Background system initialized');
+            } catch (error) {
+                console.error('❌ Background initialization failed:', error);
+                // Fallback to solid color
+                document.body.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+            }
+        },
+            
+            // Slide-by-slide transitions
+            updateBackground: (lessonStep, avatar) => {
+                const wallpaper = avatar === 'Ken' ? 
+                    backgroundSystem.kenWallpapers[lessonStep] : 
+                    backgroundSystem.kellyWallpapers[lessonStep];
+                
+                document.body.style.backgroundImage = `url(${wallpaper})`;
+                document.body.style.backgroundSize = 'cover';
+                document.body.style.backgroundPosition = 'center';
+                document.body.style.transition = 'background-image 0.5s ease';
+            }
+        };
+
+        // Professional audio system with ElevenLabs integration
+        const audioSystem = {
+            isPlaying: false,
+            isMuted: false,
+            volume: 1,
+            speed: 1,
+            autoplay: true,
+            currentAudio: null,
+            
+            async synthesizeAudio(text, voiceId, options = {}) {
+                const apiKey = 'sk_3860d1857db72bcc1c01b47609f7af5ed6d61271d6087b81';
+                const url = 'https://api.elevenlabs.io/v1/text-to-speech/' + voiceId;
+                
+                const requestBody = {
+                    text: text,
+                    model_id: 'eleven_monolingual_v1',
+                    voice_settings: {
+                        stability: options.stability || 0.5,
+                        similarity_boost: options.similarity_boost || 0.75,
+                        style: options.style || 0.0,
+                        use_speaker_boost: options.use_speaker_boost || true
+                    }
+                };
+                
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'audio/mpeg',
+                            'Content-Type': 'application/json',
+                            'xi-api-key': apiKey
+                        },
+                        body: JSON.stringify(requestBody)
+                    });
+                    
+                    if (!response.ok) {
+                        throw new Error(`ElevenLabs API error: ${response.status}`);
+                    }
+                    
+                    const audioBlob = await response.blob();
+                    const audioUrl = URL.createObjectURL(audioBlob);
+                    return audioUrl;
+                } catch (error) {
+                    console.error('🎵 Audio synthesis error:', error);
+                    return null;
+                }
+            },
+            
+            async playAudio(text, voiceId, options = {}) {
+                if (this.currentAudio) {
+                    this.currentAudio.pause();
+                    this.currentAudio = null;
+                }
+                
+                const audioUrl = await this.synthesizeAudio(text, voiceId, options);
+                if (audioUrl) {
+                    this.currentAudio = new Audio(audioUrl);
+                    this.currentAudio.volume = this.volume;
+                    this.currentAudio.playbackRate = this.speed;
+                    
+                    if (this.isMuted) {
+                        this.currentAudio.volume = 0;
+                    }
+                    
+                    this.currentAudio.play();
+                    this.isPlaying = true;
+                    
+                    const playBtn = document.getElementById('play-btn');
+                    if (playBtn) {
+                        playBtn.textContent = '❚❚';
+                    }
+                    
+                    console.log('🎵 Playing synthesized audio');
+                }
+            },
+            
+            togglePlay: () => {
+                if (audioSystem.currentAudio) {
+                    if (audioSystem.isPlaying) {
+                        audioSystem.currentAudio.pause();
+                        audioSystem.isPlaying = false;
+                    } else {
+                        audioSystem.currentAudio.play();
+                        audioSystem.isPlaying = true;
+                    }
+                    
+                    const playBtn = document.getElementById('play-btn');
+                    if (playBtn) {
+                        playBtn.textContent = audioSystem.isPlaying ? '❚❚' : '►';
+                    }
+                }
+                console.log('🎵 Audio:', audioSystem.isPlaying ? 'Playing' : 'Paused');
+            },
+            
+            stop: () => {
+                if (audioSystem.currentAudio) {
+                    audioSystem.currentAudio.pause();
+                    audioSystem.currentAudio.currentTime = 0;
+                }
+                audioSystem.isPlaying = false;
+                audioSystem.currentAudio = null;
+                
+                const playBtn = document.getElementById('play-btn');
+                if (playBtn) {
+                    playBtn.textContent = '►';
+                }
+                console.log('🎵 Audio: Stopped');
+            },
+            
+            toggleMute: () => {
+                audioSystem.isMuted = !audioSystem.isMuted;
+                if (audioSystem.currentAudio) {
+                    audioSystem.currentAudio.volume = audioSystem.isMuted ? 0 : audioSystem.volume;
+                }
+                
+                const muteBtn = document.getElementById('mute-btn');
+                if (muteBtn) {
+                    muteBtn.textContent = audioSystem.isMuted ? '🔈' : '🔇';
+                }
+                console.log('🎵 Audio:', audioSystem.isMuted ? 'Muted' : 'Unmuted');
+            },
+            
+            setVolume: (volume) => {
+                audioSystem.volume = volume;
+                if (audioSystem.currentAudio && !audioSystem.isMuted) {
+                    audioSystem.currentAudio.volume = audioSystem.volume;
+                }
+                console.log('🎵 Volume:', audioSystem.volume);
+            },
+            
+            setSpeed: (speed) => {
+                audioSystem.speed = speed;
+                if (audioSystem.currentAudio) {
+                    audioSystem.currentAudio.playbackRate = audioSystem.speed;
+                }
+                console.log('🎵 Speed:', audioSystem.speed);
+            }
+        };
+
+        // Global variables
+        let currentLessonData = null;
+        let currentVariants = {};
+        let currentAvatar = 'Kelly';
+        let correctedVariantGenerator = null;
+
+        // Initialize the system
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Initializing iLearn 2025 with Pre-Generated Content System...');
+            
+            // Initialize background system
+            backgroundSystem.initializeBackground();
+            
+            // Initialize corrected variant generator
+            initializeCorrectedVariantGenerator();
+            
+            // Setup all event listeners
+            setupEventListeners();
+            
+            // Generate calendar with real lesson data
+            generateCalendar();
+            
+            // Update calendar icon with current date
+            updateCalendarIcon();
+            
+            // Preload critical lessons
+            contentCache.preloadCriticalLessons();
+            
+            // Load today's lesson immediately
+            loadTodayLesson();
+            
+            // Initialize variant tracking display
+            updateVariantTracking();
+            
+            console.log('✅ Pre-generated content system initialized successfully');
+        });
+
+        function initializeCorrectedVariantGenerator() {
+            console.log('🔧 Initializing Corrected Variant Generator...');
+            try {
+                // Initialize the corrected variant generator
+                correctedVariantGenerator = new CorrectedVariantGeneratorV2();
+                console.log('✅ Corrected variant generator initialized');
+            } catch (error) {
+                console.error('❌ Error initializing corrected variant generator:', error);
+            }
+        }
+
+        function updateCalendarIcon() {
+            const today = new Date();
+            const currentDay = today.getDate();
+            const calendarDateElement = document.getElementById('calendar-date');
+            if (calendarDateElement) {
+                calendarDateElement.textContent = currentDay;
+            }
+        }
+
+        function setupEventListeners() {
+            // Start lesson button
+            const startBtn = document.getElementById('start-lesson-btn');
+            if (startBtn) {
+                startBtn.addEventListener('click', startLesson);
+            }
+
+            // Enhanced navigation buttons with overlay functionality
+            const navButtons = document.querySelectorAll('.nav-icon');
+            navButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const section = this.dataset.section;
+                    handleEnhancedNavigation(section);
+                });
+            });
+
+            // Professional audio controls
+            const playBtn = document.getElementById('play-btn');
+            const stopBtn = document.getElementById('stop-btn');
+            const muteBtn = document.getElementById('mute-btn');
+            const volumeSlider = document.getElementById('volume-slider');
+            const speedSelect = document.getElementById('speed-select');
+            const autoplayToggle = document.getElementById('autoplay-toggle');
+
+            if (playBtn) playBtn.addEventListener('click', audioSystem.togglePlay);
+            if (stopBtn) stopBtn.addEventListener('click', audioSystem.stop);
+            if (muteBtn) muteBtn.addEventListener('click', audioSystem.toggleMute);
+            if (volumeSlider) volumeSlider.addEventListener('input', (e) => audioSystem.setVolume(e.target.value));
+            if (speedSelect) speedSelect.addEventListener('change', (e) => audioSystem.setSpeed(e.target.value));
+            if (autoplayToggle) autoplayToggle.addEventListener('change', (e) => audioSystem.autoplay = e.target.checked);
+
+            // Enhanced variant controls
+            const ageSelect = document.getElementById('age-select');
+            const toneSelect = document.getElementById('tone-select');
+            const languageSelect = document.getElementById('language-select');
+            const avatarSelect = document.getElementById('avatar-select');
+
+            if (ageSelect) ageSelect.addEventListener('change', updateVariants);
+            if (toneSelect) toneSelect.addEventListener('change', updateVariants);
+            if (languageSelect) languageSelect.addEventListener('change', updateVariants);
+            if (avatarSelect) avatarSelect.addEventListener('change', updateAvatar);
+
+            // Playback controls moved to panel 3 (🎛️ icon)
+        }
+
+        function loadTodayLesson() {
+            console.log('📚 Loading today\'s lesson with enhanced background system...');
+            
+            const today = new Date();
+            const dayOfYear = getDayOfYear(today.getMonth() + 1, today.getDate());
+            const lessonData = getLessonDataForDay(dayOfYear);
+            
+            // Initialize background system with intro state
+            backgroundSystem.updateBackground('intro', currentAvatar);
+            
+            if (lessonData) {
+                currentLessonData = lessonData;
+                generateCompleteLesson(lessonData);
+                updateLessonInfo(lessonData);
+            } else {
+                // Fallback to day 210 (Aging Process) if no lesson found
+                const fallbackLesson = getLessonDataForDay(210);
+                if (fallbackLesson) {
+                    currentLessonData = fallbackLesson;
+                    generateCompleteLesson(fallbackLesson);
+                    updateLessonInfo(fallbackLesson);
+                }
+            }
+        }
+
+        function getDayOfYear(month, day) {
+            const monthDays = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            let dayOfYear = day;
+            for (let i = 1; i < month; i++) {
+                dayOfYear += monthDays[i];
+            }
+            return dayOfYear;
+        }
+
+        function getLessonDataForDay(day) {
+            // Use the existing complete curriculum system
+            if (typeof window.getLessonDataForDay === 'function') {
+                return window.getLessonDataForDay(day);
+            }
+            
+            // Fallback to basic lesson data
+            return {
+                title: "Learning - The Journey Never Ends",
+                learning_objective: "Embrace continuous learning while understanding how knowledge enables personal growth, social progress, and human flourishing.",
+                tooltip: "Continuous learning and human flourishing"
+            };
+        }
+
+        function generateCompleteLesson(lessonData) {
+            console.log('📝 Generating complete lesson content with ElevenLabs integration...');
+            
+            // Generate corrected variant content
+            const correctedContent = generateCorrectedVariantContent(lessonData);
+            
+            // Update lesson display
+            updateLessonDisplay(lessonData);
+            
+            // Update all content sections
+            updateContentSection('voice-over-content', correctedContent.opening);
+            updateContentSection('on-screen-content', correctedContent.question.setup);
+            updateContentSection('lesson-logic-content', correctedContent.lessonLogic);
+            updateContentSection('feedback-content', correctedContent.feedback.message);
+            updateContentSection('fortune-content', correctedContent.fortune.message);
+            
+            // Update questions with corrected structure
+            const questionsElement = document.getElementById('questions-content');
+            if (questionsElement) {
+                questionsElement.innerHTML = `
+                    <div class="question-item">
+                        <h5>Question 1: ${correctedContent.question.question}</h5>
+                        <p>${correctedContent.question.setup}</p>
+                        <div class="options">
+                            ${correctedContent.question.choices.map((choice, index) => 
+                                `<span class="option">${String.fromCharCode(65 + index)}: ${choice}</span>`
+                            ).join('')}
+                        </div>
+                        <div class="feedback-preview">
+                            <strong>Feedback Preview:</strong> ${correctedContent.feedback.message}
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Set up ElevenLabs audio if available
+            if (lessonData.elevenlabs_config && lessonData.variants) {
+                console.log('🎵 Setting up ElevenLabs audio for lesson');
+                setupElevenLabsAudio(lessonData);
+            }
+            
+            console.log('✅ Complete lesson generated with audio integration');
+        }
+        
+        function setupElevenLabsAudio(lessonData) {
+            // Get current variant
+            const currentVariant = getCurrentVariant();
+            const variantKey = `${currentVariant.age}_${currentVariant.tone}_${currentVariant.avatar}_${currentVariant.language}`;
+            
+            if (lessonData.variants[variantKey]) {
+                const variant = lessonData.variants[variantKey];
+                const voiceId = variant.audio?.voice_id || lessonData.elevenlabs_config.voices.kelly;
+                
+                console.log('🎵 Setting up audio for variant:', variantKey, 'with voice:', voiceId);
+                
+                // Store audio info for playback
+                window.currentAudioInfo = {
+                    text: variant.content.voiceOver,
+                    voiceId: voiceId,
+                    options: variant.audio || {}
+                };
+            }
+        }
+        
+        function getCurrentVariant() {
+            return {
+                age: currentVariants.age || 18,
+                tone: currentVariants.tone || 'neutral',
+                language: currentVariants.language || 'english',
+                avatar: currentVariants.avatar || 'Kelly'
+            };
+        }
+
+        function updateLessonDisplay(lessonData) {
+            const lessonTitle = document.getElementById('lesson-title');
+            const lessonSubtitle = document.getElementById('lesson-subtitle');
+            
+            if (lessonTitle) {
+                lessonTitle.textContent = lessonData.title;
+            }
+            if (lessonSubtitle) {
+                lessonSubtitle.textContent = lessonData.learning_objective;
+            }
+        }
+
+        function updateContentSection(elementId, content) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.innerHTML = `<p>${content.replace(/\n/g, '<br>')}</p>`;
+            }
+        }
+
+        function updateLessonInfo(lessonData) {
+            const lessonInfo = document.getElementById('lesson-info');
+            if (lessonInfo) {
+                lessonInfo.innerHTML = `
+                    <h2>${lessonData.title}</h2>
+                    <p>${lessonData.learning_objective}</p>
+                    <button class="start-lesson-btn" id="start-lesson-btn">Start Lesson</button>
+                `;
+                
+                // Re-attach event listener
+                const startBtn = document.getElementById('start-lesson-btn');
+                if (startBtn) {
+                    startBtn.addEventListener('click', startLesson);
+                }
+            }
+        }
+
+        function startLesson() {
+            console.log('🎬 Starting enhanced lesson with slide-by-slide transitions...');
+            
+            // Show lesson content
+            const lessonContent = document.getElementById('lesson-content');
+            if (lessonContent) {
+                lessonContent.style.display = 'block';
+                lessonContent.classList.remove('hidden');
+            }
+            
+            // Hide lesson info
+            const lessonInfo = document.getElementById('lesson-info');
+            if (lessonInfo) {
+                lessonInfo.style.display = 'none';
+            }
+            
+            // Start lesson progression with background transitions
+            startLessonProgression();
+            
+            // Start audio playback (if available)
+            startAudioPlayback();
+        }
+
+        function startLessonProgression() {
+            console.log('🎭 Starting lesson progression with background transitions...');
+            
+            // Step 1: Introduction (already set)
+            setTimeout(() => {
+                // Step 2: Question phase
+                backgroundSystem.updateBackground('question', currentAvatar);
+                console.log('📝 Transitioned to question phase');
+            }, 2000);
+            
+            setTimeout(() => {
+                // Step 3: Feedback phase
+                backgroundSystem.updateBackground('feedback', currentAvatar);
+                console.log('💬 Transitioned to feedback phase');
+            }, 4000);
+            
+            setTimeout(() => {
+                // Step 4: Fortune phase
+                backgroundSystem.updateBackground('fortune', currentAvatar);
+                console.log('🔮 Transitioned to fortune phase');
+            }, 6000);
+        }
+        
+        function startAudioPlayback() {
+            console.log('🎵 Starting ElevenLabs audio playback...');
+            
+            if (window.currentAudioInfo) {
+                const { text, voiceId, options } = window.currentAudioInfo;
+                
+                // Play the voice over
+                audioSystem.playAudio(text, voiceId, options)
+                    .then(() => {
+                        console.log('✅ Audio playback started successfully');
+                    })
+                    .catch(error => {
+                        console.error('❌ Audio playback error:', error);
+                    });
+            } else {
+                console.log('⚠️ No audio info available for playback');
+            }
+        }
+
+        let currentMonth = 7; // July
+        let currentYear = 2025;
+
+        function generateCalendar() {
+            const calendarGrid = document.getElementById('calendar-grid');
+            const monthDisplay = document.getElementById('current-month');
+            
+            if (calendarGrid && monthDisplay) {
+                const monthNames = [
+                    'January', 'February', 'March', 'April', 'May', 'June',
+                    'July', 'August', 'September', 'October', 'November', 'December'
+                ];
+                
+                monthDisplay.textContent = `${monthNames[currentMonth - 1]} ${currentYear}`;
+                
+                let calendarHTML = '';
+                const daysInMonth = getDaysInMonth(currentMonth, currentYear);
+                
+                // Generate calendar days with real lesson data
+                for (let day = 1; day <= daysInMonth; day++) {
+                    const isToday = day === new Date().getDate() && currentMonth === new Date().getMonth() + 1;
+                    const todayClass = isToday ? ' today' : '';
+                    const dayOfYear = getDayOfYear(currentMonth, day);
+                    const lessonData = getLessonDataForDay(dayOfYear);
+                    
+                    let tooltip = '';
+                    let availableClass = ' available';
+                    
+                    if (lessonData && lessonData.title) {
+                        tooltip = `title="${lessonData.title}\n\n${lessonData.learning_objective}"`;
+                        // All lessons are available (pre-generated)
+                        availableClass = ' available';
+                    } else {
+                        availableClass = ' unavailable';
+                        tooltip = 'title="Lesson coming soon!"';
+                    }
+                    
+                    calendarHTML += `<button class="calendar-day${todayClass}${availableClass}" ${tooltip} onclick="loadLessonForDay(${dayOfYear})">${day}</button>`;
+                }
+                
+                calendarGrid.innerHTML = calendarHTML;
+                console.log('✅ Calendar generated with real lesson data');
+            }
+        }
+
+        function getDaysInMonth(month, year) {
+            const monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            if (month === 2 && year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0)) {
+                return 29; // Leap year February
+            }
+            return monthDays[month - 1];
+        }
+
+        function previousMonth() {
+            currentMonth--;
+            if (currentMonth < 1) {
+                currentMonth = 12;
+                currentYear--;
+            }
+            generateCalendar();
+        }
+
+        function nextMonth() {
+            currentMonth++;
+            if (currentMonth > 12) {
+                currentMonth = 1;
+                currentYear++;
+            }
+            generateCalendar();
+        }
+
+        // Lesson generation tracking
+        let generatedLessons = new Set();
+
+        function isLessonGenerated(day) {
+            return generatedLessons.has(day);
+        }
+
+        function markLessonAsGenerated(day) {
+            generatedLessons.add(day);
+            console.log(`✅ Lesson for day ${day} marked as generated`);
+        }
+
+        function loadLessonForDay(day) {
+            console.log(`📅 Loading lesson for day ${day}`);
+            
+            const lessonData = getLessonDataForDay(day);
+            
+            if (lessonData) {
+                currentLessonData = lessonData;
+                generateCompleteLesson(lessonData);
+                updateLessonInfo(lessonData);
+                
+                // Mark lesson as generated
+                markLessonAsGenerated(day);
+                
+                // Show lesson content
+                const lessonContent = document.getElementById('lesson-content');
+                if (lessonContent) {
+                    lessonContent.style.display = 'block';
+                    lessonContent.classList.remove('hidden');
+                }
+                
+                // Hide calendar
+                closeCalendar();
+                
+                // Update variant tracking
+                updateVariantTracking();
+            }
+        }
+
+        function handleEnhancedNavigation(section) {
+            console.log(`🎯 Enhanced navigation to section: ${section}`);
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.nav-icon').forEach(btn => btn.classList.remove('active'));
+            
+            // Add active class to clicked button
+            event.target.closest('.nav-icon').classList.add('active');
+            
+            // Hide all overlays first
+            hideAllOverlays();
+            
+            switch(section) {
+                case 'calendar':
+                    showEnhancedCalendar();
+                    break;
+                case 'format':
+                    showEnhancedVariants();
+                    break;
+                case 'age':
+                    showEnhancedVariants();
+                    break;
+                case 'tone':
+                    showEnhancedVariants();
+                    break;
+                case 'language':
+                    showEnhancedVariants();
+                    break;
+                case 'controls':
+                    showEnhancedControls();
+                    break;
+                case 'avatar':
+                    toggleEnhancedAvatar();
+                    break;
+                case 'menu':
+                    showEnhancedMenu();
+                    break;
+            }
+        }
+
+        function hideAllOverlays() {
+            const calendarOverlay = document.getElementById('calendar-overlay');
+            const variantOverlay = document.getElementById('variant-overlay');
+            
+            if (calendarOverlay) calendarOverlay.style.display = 'none';
+            if (variantOverlay) variantOverlay.style.display = 'none';
+        }
+
+        function showEnhancedCalendar() {
+            const calendarOverlay = document.getElementById('calendar-overlay');
+            if (calendarOverlay) {
+                calendarOverlay.style.display = 'block';
+                // Update background to intro state
+                backgroundSystem.updateBackground('intro', currentAvatar);
+            }
+        }
+
+        function showEnhancedVariants() {
+            const variantOverlay = document.getElementById('variant-overlay');
+            if (variantOverlay) {
+                variantOverlay.style.display = 'block';
+            }
+        }
+
+        function showEnhancedControls() {
+            // Show audio controls (already visible)
+            console.log('Audio controls are always visible in lower-right');
+        }
+
+        function toggleEnhancedAvatar() {
+            currentAvatar = currentAvatar === 'Kelly' ? 'Ken' : 'Kelly';
+            updateAvatarDisplay();
+            // Update background with new avatar
+            backgroundSystem.updateBackground('intro', currentAvatar);
+        }
+
+        function showEnhancedMenu() {
+            // Menu functionality can be added here
+            console.log('Enhanced menu system');
+        }
+
+        function updateAvatarDisplay() {
+            const avatarElement = document.getElementById('current-avatar');
+            if (avatarElement) {
+                avatarElement.textContent = currentAvatar;
+            }
+        }
+
+        function updateVariants() {
+            const ageSelect = document.getElementById('age-select');
+            const toneSelect = document.getElementById('tone-select');
+            const languageSelect = document.getElementById('language-select');
+            
+            if (ageSelect && toneSelect && languageSelect) {
+                currentVariants.age = ageSelect.value;
+                currentVariants.tone = toneSelect.value;
+                currentVariants.language = languageSelect.value;
+                
+                // Update display
+                updateVariantTracking();
+                
+                // Regenerate lesson with new variants
+                if (currentLessonData) {
+                    regenerateLessonWithVariants();
+                }
+            }
+        }
+
+        function updateAvatar() {
+            const avatarSelect = document.getElementById('avatar-select');
+            if (avatarSelect) {
+                currentAvatar = avatarSelect.value;
+                updateAvatarDisplay();
+                backgroundSystem.updateBackground('intro', currentAvatar);
+            }
+        }
+
+        // Pre-generated content cache system with ElevenLabs integration
+        const contentCache = {
+            cache: new Map(),
+            loadedLessons: new Set(),
+            
+            // Load pre-generated lesson content
+            async loadLessonContent(dayOfYear, variants) {
+                console.log(`📚 Loading lesson content for day ${dayOfYear} with variants:`, variants);
+                
+                try {
+                    // Try to load from complete lesson file
+                    const lessonFile = `/complete-lesson-day-${dayOfYear}.json`;
+                    const response = await fetch(lessonFile);
+                    
+                    if (response.ok) {
+                        const lessonData = await response.json();
+                        console.log('✅ Loaded complete lesson:', lessonData);
+                        
+                        // If we have ElevenLabs config, set it up
+                        if (lessonData.elevenlabs_config) {
+                            console.log('🎵 ElevenLabs configuration found:', lessonData.elevenlabs_config);
+                        }
+                        
+                        return lessonData;
+                    } else {
+                        console.log('⚠️ Complete lesson not found, using fallback');
+                        return this.getGracefulFallback(dayOfYear, variants);
+                    }
+                } catch (error) {
+                    console.error('❌ Error loading lesson content:', error);
+                    return this.getGracefulFallback(dayOfYear, variants);
+                }
+            },
+            
+            // Graceful fallback with learner-first language
+            getGracefulFallback(dayOfYear, variants) {
+                console.log('🛡️ Providing graceful fallback for day', dayOfYear);
+                
+                return {
+                    day: dayOfYear,
+                    title: `Day ${dayOfYear} - Learning in Progress`,
+                    learning_objective: "We're preparing your personalized lesson. This content will be available soon!",
+                    elevenlabs_config: {
+                        api_key: "sk_3860d1857db72bcc1c01b47609f7af5ed6d61271d6087b81",
+                        voices: {
+                            kelly: "wAdymQH5YucAkXwmrdL0",
+                            kyle: "fwrgq8CiDS7IPcDlFxgd"
+                        }
+                    },
+                    variants: {
+                        default: {
+                            content: {
+                                voiceOver: "Hello! I'm preparing your personalized lesson for today. This content will be available very soon, and it will be perfect for your learning journey!",
+                                onScreen: `Day ${dayOfYear} - Learning in Progress\n\nWe're preparing your personalized lesson with:\n• Age-appropriate content\n• Your preferred learning style\n• Engaging interactive elements\n• Perfect audio synthesis\n\nThis will be ready soon!`,
+                                lessonLogic: "🧠 Personalized Learning Coming Soon\n\nWe're creating content that's just right for you - matching your age, learning style, and preferences. Every lesson will be unique and engaging!",
+                                questions: [
+                                    {
+                                        question: "What are you most excited to learn about?",
+                                        choices: ["Science and discovery", "History and stories", "Math and patterns", "Art and creativity"],
+                                        feedback: "Great choice! We're preparing amazing content about that topic just for you!"
+                                    }
+                                ],
+                                feedback: {
+                                    message: "You're going to love what we're preparing for you! Your curiosity and enthusiasm make learning so much fun!"
+                                },
+                                fortune: {
+                                    message: "Your learning journey is about to get even more amazing! Stay curious and keep exploring!"
+                                }
+                            },
+                            audio: {
+                                voice_id: "wAdymQH5YucAkXwmrdL0",
+                                stability: 0.5,
+                                similarity_boost: 0.75,
+                                style: 0.0,
+                                use_speaker_boost: true
+                            }
+                        }
+                    }
+                };
+            },
+            
+            // Preload critical lessons
+            async preloadCriticalLessons() {
+                console.log('🚀 Preloading critical lessons...');
+                const criticalDays = [1, 2, 3, 4, 5, 10, 15, 20, 25, 30];
+                
+                for (const day of criticalDays) {
+                    try {
+                        await this.loadLessonContent(day, {});
+                    } catch (error) {
+                        console.log(`⚠️ Could not preload day ${day}:`, error.message);
+                    }
+                }
+                console.log('✅ Critical lessons preloaded');
+            }
+        };
+
+        function regenerateLessonWithVariants() {
+            console.log('🔄 Loading pre-generated content with variants:', currentVariants);
+            
+            // Load pre-generated content instead of regenerating
+            contentCache.loadLessonContent(currentLessonData?.day || 1, currentVariants)
+                .then(lessonData => {
+                    currentLessonData = lessonData;
+                    generateCompleteLesson(lessonData);
+                    updateLessonInfo(lessonData);
+                    console.log('✅ Pre-generated content loaded successfully');
+                })
+                .catch(error => {
+                    console.error('❌ Error loading pre-generated content:', error);
+                    // Show graceful error to user
+                    showGracefulError();
+                });
+        }
+
+        function closeVariantOverlay() {
+            const variantOverlay = document.getElementById('variant-overlay');
+            if (variantOverlay) {
+                variantOverlay.style.display = 'none';
+            }
+        }
+
+        // Graceful error handling with learner-first language
+        function showGracefulError() {
+            const lessonInfo = document.getElementById('lesson-info');
+            if (lessonInfo) {
+                lessonInfo.innerHTML = `
+                    <div class="content">
+                        <h2>Learning Adventure</h2>
+                        <p>We're preparing something amazing for you! Your lesson is being crafted with care.</p>
+                        <button class="start-lesson-btn" onclick="loadTodayLesson()">Try Again</button>
+                    </div>
+                `;
+            }
+            
+            // Update lesson content with graceful message
+            updateContentSection('voice-over-content', 'Welcome! We\'re preparing a wonderful learning experience for you.');
+            updateContentSection('on-screen-content', 'Your lesson is being crafted with care.');
+            updateContentSection('lesson-logic-content', 'Learning is a beautiful journey that never ends.');
+            updateContentSection('questions-content', '<p>What would you like to explore today?</p>');
+            updateContentSection('feedback-content', 'You\'re doing great! Every moment of learning is valuable.');
+            updateContentSection('fortune-content', 'Your curiosity is your greatest teacher.');
+        }
+
+        // Keep original function for backward compatibility
+        function handleNavigation(section) {
+            console.log(`🎯 Navigating to section: ${section}`);
+            
+            switch(section) {
+                case 'calendar':
+                    showCalendar();
+                    break;
+                case 'format':
+                    showVariantOverlay('format');
+                    break;
+                case 'age':
+                    showVariantOverlay('age');
+                    break;
+                case 'tone':
+                    showVariantOverlay('tone');
+                    break;
+                case 'language':
+                    showVariantOverlay('language');
+                    break;
+                case 'controls':
+                    toggleLessonControls();
+                    break;
+                case 'avatar':
+                    showVariantOverlay('avatar');
+                    break;
+                case 'menu':
+                    toggleMenu();
+                    break;
+            }
+        }
+
+        function showCalendar() {
+            const calendarOverlay = document.getElementById('calendar-overlay');
+            if (calendarOverlay) {
+                calendarOverlay.style.display = 'block';
+            }
+        }
+
+        function closeCalendar() {
+            const calendarOverlay = document.getElementById('calendar-overlay');
+            if (calendarOverlay) {
+                calendarOverlay.style.display = 'none';
+            }
+        }
+
+        // Global state
+        let currentFormat = '3x3x3x3';
+        let currentAge = 'young_adult';
+        let currentTone = 'neutral';
+        let currentLanguage = 'english';
+        let lessonControlsVisible = false;
+        let variantPanelVisible = false;
+
+        // Lesson controls panel (panel 3)
+
+        function toggleLessonControls() {
+            lessonControlsVisible = !lessonControlsVisible;
+            console.log(`🎛️ Lesson controls ${lessonControlsVisible ? 'shown' : 'hidden'}`);
+            
+            if (lessonControlsVisible) {
+                showLessonControlsPanel();
+            } else {
+                hideLessonControlsPanel();
+            }
+        }
+
+        function showLessonControlsPanel() {
+            const panel3 = document.getElementById('panel-3-overlay');
+            panel3.innerHTML = '';
+            
+            const panel = document.createElement('div');
+            panel.id = 'lesson-controls-panel';
+            panel.style.cssText = `
+                color: white;
+                text-align: center;
+                width: 100%;
+            `;
+            panel.innerHTML = `
+                <h3>🎛️ Playback Controls</h3>
+                <div style="margin: 20px 0;">
+                    <div style="margin: 15px 0;">
+                        <label style="display: block; margin-bottom: 5px;">🎵 Playback Speed:</label>
+                        <button onclick="setPlaybackSpeed(0.5)" style="background: rgba(255,255,255,0.1); color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; margin: 5px;">0.5x</button>
+                        <button onclick="setPlaybackSpeed(1)" style="background: #007AFF; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; margin: 5px;">1x</button>
+                        <button onclick="setPlaybackSpeed(1.5)" style="background: rgba(255,255,255,0.1); color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; margin: 5px;">1.5x</button>
+                        <button onclick="setPlaybackSpeed(2)" style="background: rgba(255,255,255,0.1); color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; margin: 5px;">2x</button>
+                    </div>
+                    <div style="margin: 15px 0;">
+                        <label style="display: block; margin-bottom: 5px;">⏯️ Autoplay:</label>
+                        <input type="checkbox" id="autoplay-control" style="margin-right: 8px;">
+                        <span>Enable autoplay</span>
+                    </div>
+                    <div style="margin: 15px 0;">
+                        <label style="display: block; margin-bottom: 5px;">🔊 Volume:</label>
+                        <input type="range" min="0" max="100" value="100" style="width: 100%;">
+                    </div>
+                </div>
+                <div style="margin-top: 20px;">
+                    <button onclick="hideLessonControlsPanel()" style="background: rgba(255,255,255,0.2); color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer;">Close</button>
+                </div>
+            `;
+            panel3.appendChild(panel);
+            panel3.classList.add('active');
+        }
+
+        function hideLessonControlsPanel() {
+            const panel3 = document.getElementById('panel-3-overlay');
+            panel3.innerHTML = '';
+            panel3.classList.remove('active');
+            lessonControlsVisible = false;
+        }
+
+        function setPlaybackSpeed(speed) {
+            console.log(`🎵 Playback speed set to: ${speed}x`);
+            showMessage(`Playback speed: ${speed}x`, 'info');
+        }
+
+        function toggleFormat() {
+            currentFormat = currentFormat === '3x3x3' ? '3x2x1' : '3x3x3';
+            updateLessonLogic();
+            updateLessonContent();
+            showMessage(`📋 Format: ${currentFormat}`, 'success');
+        }
+
+        function cycleAge() {
+            const ages = ['early_childhood', 'youth', 'young_adult', 'midlife', 'wisdom_years'];
+            const currentIndex = ages.indexOf(currentAge);
+            const nextIndex = (currentIndex + 1) % ages.length;
+            currentAge = ages[nextIndex];
+            updateLessonContent();
+            showMessage(`👶 Age: ${currentAge.replace('_', ' ')}`, 'success');
+        }
+
+        function cycleTone() {
+            const tones = ['grandmother', 'neutral', 'fun'];
+            const currentIndex = tones.indexOf(currentTone);
+            const nextIndex = (currentIndex + 1) % tones.length;
+            currentTone = tones[nextIndex];
+            updateLessonContent();
+            showMessage(`🎭 Tone: ${currentTone}`, 'success');
+        }
+
+        function cycleLanguage() {
+            const languages = ['english', 'spanish', 'french', 'german', 'chinese', 'japanese'];
+            const currentIndex = languages.indexOf(currentLanguage);
+            const nextIndex = (currentIndex + 1) % languages.length;
+            currentLanguage = languages[nextIndex];
+            updateLessonContent();
+            showMessage(`🌍 Language: ${currentLanguage}`, 'success');
+        }
+
+        // Variant overlay system (panel 3)
+        let currentVariantOverlay = null;
+
+        function showVariantOverlay(variantType) {
+            // Hide any existing overlay
+            hideVariantOverlay();
+            
+            const panel3 = document.getElementById('panel-3-overlay');
+            panel3.innerHTML = '';
+            
+            const overlay = document.createElement('div');
+            overlay.id = 'variant-overlay';
+            overlay.style.cssText = `
+                color: white;
+                text-align: center;
+                width: 100%;
+            `;
+            
+            const variantOptions = getVariantOptions(variantType);
+            const currentValue = getCurrentVariantValue(variantType);
+            
+            overlay.innerHTML = `
+                <h3>${variantOptions.title}</h3>
+                <div style="margin: 20px 0;">
+                    ${variantOptions.options.map(option => `
+                        <button onclick="selectVariant('${variantType}', '${option.value}')" 
+                                style="background: ${option.value === currentValue ? '#007AFF' : 'rgba(255,255,255,0.1)'}; 
+                                       color: white; border: none; padding: 12px 24px; border-radius: 8px; 
+                                       cursor: pointer; margin: 5px; width: 100%; text-align: left;">
+                            ${option.icon} ${option.label}
+                            ${option.value === currentValue ? ' ✓' : ''}
+                        </button>
+                    `).join('')}
+                </div>
+                <div style="margin-top: 20px;">
+                    <button onclick="hideVariantOverlay()" style="background: rgba(255,255,255,0.2); color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer;">Close</button>
+                </div>
+            `;
+            
+            panel3.appendChild(overlay);
+            panel3.classList.add('active');
+            currentVariantOverlay = variantType;
+        }
+
+        function hideVariantOverlay() {
+            const panel3 = document.getElementById('panel-3-overlay');
+            panel3.innerHTML = '';
+            panel3.classList.remove('active');
+            currentVariantOverlay = null;
+        }
+
+        function getVariantOptions(variantType) {
+            const options = {
+                format: {
+                    title: '📋 Lesson Format',
+                    options: [
+                        { value: '3x3x3x3', label: '3x3x3x3 (3 Questions × 3 Choices × 3 Feedback × 3 Fortune)', icon: '📊' },
+                        { value: '3x2x2x2', label: '3x2x2x2 (3 Questions × 2 Choices × 2 Feedback × 2 Fortune)', icon: '📈' }
+                    ]
+                },
+                age: {
+                    title: '👶 Age Group',
+                    options: [
+                        { value: 'early_childhood', label: 'Early Childhood (3-8)', icon: '👶' },
+                        { value: 'youth', label: 'Youth (9-15)', icon: '🧒' },
+                        { value: 'young_adult', label: 'Young Adult (16-25)', icon: '👨‍🎓' },
+                        { value: 'midlife', label: 'Midlife (26-50)', icon: '👨‍💼' },
+                        { value: 'wisdom_years', label: 'Wisdom Years (50+)', icon: '👴' }
+                    ]
+                },
+                tone: {
+                    title: '🎭 Tone Style',
+                    options: [
+                        { value: 'grandmother', label: 'Grandmother (Warm & Nurturing)', icon: '👵' },
+                        { value: 'neutral', label: 'Neutral (Balanced & Clear)', icon: '😐' },
+                        { value: 'fun', label: 'Fun (Exciting & Engaging)', icon: '🎉' }
+                    ]
+                },
+                language: {
+                    title: '🌍 Language',
+                    options: [
+                        { value: 'english', label: 'English', icon: '🇺🇸' },
+                        { value: 'spanish', label: 'Spanish', icon: '🇪🇸' },
+                        { value: 'french', label: 'French', icon: '🇫🇷' },
+                        { value: 'german', label: 'German', icon: '🇩🇪' },
+                        { value: 'chinese', label: 'Chinese', icon: '🇨🇳' },
+                        { value: 'japanese', label: 'Japanese', icon: '🇯🇵' }
+                    ]
+                },
+                avatar: {
+                    title: '👤 Avatar',
+                    options: [
+                        { value: 'Kelly', label: 'Kelly (Female)', icon: '👩' },
+                        { value: 'Ken', label: 'Ken (Male)', icon: '👨' },
+                        { value: 'You', label: 'You (Upload Video/Face Scan)', icon: '📷' }
+                    ]
+                }
+            };
+            return options[variantType] || { title: 'Unknown', options: [] };
+        }
+
+        function getCurrentVariantValue(variantType) {
+            const values = {
+                format: currentFormat,
+                age: currentAge,
+                tone: currentTone,
+                language: currentLanguage,
+                avatar: currentAvatar
+            };
+            return values[variantType] || '';
+        }
+
+        function selectVariant(variantType, value) {
+            console.log(`🎯 Selected ${variantType}: ${value}`);
+            
+            // Update global state
+            switch(variantType) {
+                case 'format':
+                    currentFormat = value;
+                    updateLessonLogic();
+                    // Regenerate lesson with new format
+                    if (currentLessonData) {
+                        generateCompleteLesson(currentLessonData);
+                    }
+                    break;
+                case 'age':
+                    currentAge = value;
+                    break;
+                case 'tone':
+                    currentTone = value;
+                    // Regenerate lesson with new tone
+                    if (currentLessonData) {
+                        generateCompleteLesson(currentLessonData);
+                    }
+                    break;
+                case 'language':
+                    currentLanguage = value;
+                    break;
+                case 'avatar':
+                    currentAvatar = value;
+                    updateAvatarDisplay(value);
+                    break;
+            }
+            
+            // Update lesson content
+            updateLessonContent();
+            
+            // Hide overlay
+            hideVariantOverlay();
+            
+            // Show success message
+            showMessage(`✅ ${variantType} set to: ${value}`, 'success');
+            
+            // Update variant tracking display
+            updateVariantTracking();
+        }
+
+        function updateAvatarDisplay(avatar) {
+            currentAvatar = avatar; // Use the value directly since it's already correct case
+            const avatarBubble = document.querySelector('.avatar-bubble');
+            const avatarText = document.querySelector('.avatar-info span');
+            
+            if (avatarBubble) {
+                avatarBubble.textContent = currentAvatar === 'Kelly' ? 'KL' : 'KN';
+            }
+            if (avatarText) {
+                avatarText.textContent = `My name is ${currentAvatar}`;
+            }
+        }
+
+        function updateLessonLogic() {
+            const lessonLogicElement = document.getElementById('lesson-logic-content');
+            if (!lessonLogicElement) return;
+            
+            if (currentFormat === '3x3x3x3') {
+                lessonLogicElement.innerHTML = `<p>🧠 3x3x3x3 Lesson Structure:<br><br>
+                📚 3 Questions:<br>
+                • Foundation (Basic understanding)<br>
+                • Application (Real-world connection)<br>
+                • Synthesis (Deep integration)<br><br>
+                📝 3 Answer Choices:<br>
+                • Choice A (Primary option)<br>
+                • Choice B (Alternative option)<br>
+                • Choice C (Third option)<br><br>
+                💬 3 Feedback Paths:<br>
+                • Correct Response (Celebration + explanation)<br>
+                • Incorrect A (Gentle correction + guidance)<br>
+                • Incorrect B (Alternative correction + encouragement)<br><br>
+                🔮 3 Fortune Elements:<br>
+                • Wisdom (Core insights)<br>
+                • Discovery Paths (Personalized guidance)<br>
+                • UL Generation (Future learning hooks)<br><br>
+                🔄 Complete Learning Journey:<br>
+                1. Question → Choice → Feedback → Path → Fortune</p>`;
+            } else {
+                lessonLogicElement.innerHTML = `<p>🧠 3x2x2x2 Lesson Structure:<br><br>
+                📚 3 Questions:<br>
+                • Foundation (Basic understanding)<br>
+                • Application (Real-world connection)<br>
+                • Synthesis (Deep integration)<br><br>
+                📝 2 Answer Choices:<br>
+                • True (Correct option)<br>
+                • False (Incorrect option)<br><br>
+                💬 2 Feedback Paths:<br>
+                • Correct Response (Celebration + explanation)<br>
+                • Incorrect Response (Gentle correction + guidance)<br><br>
+                🔮 2 Fortune Elements:<br>
+                • Wisdom (Core insights)<br>
+                • Discovery Paths (Personalized guidance)<br><br>
+                🔄 Simplified Learning Journey:<br>
+                1. Question → Choice → Feedback → Fortune</p>`;
+            }
+        }
+
+        function updateLessonContent() {
+            if (!currentLessonData) return;
+            
+            // Generate content based on current variants
+            const variantContent = generateVariantContent(currentAge, currentTone, currentLanguage);
+            
+            // Update lesson content with new variant
+            updateContentSection('voice-over-content', variantContent.voiceOver);
+            updateContentSection('on-screen-content', variantContent.onScreen);
+            updateLessonLogic();
+            updateContentSection('fortune-content', variantContent.fortune);
+            
+            // Update questions
+            const questionsElement = document.getElementById('questions-content');
+            if (questionsElement) {
+                questionsElement.innerHTML = variantContent.questions.map((q, index) => `
+                    <div class="question-item">
+                        <h5>Question ${index + 1}</h5>
+                        <p>${q.question}</p>
+                        <div class="options">
+                            <span class="option">A: ${q.optionA}</span>
+                            <span class="option">B: ${q.optionB}</span>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function generateCorrectedVariantContent(lessonData) {
+            console.log('🔧 Generating corrected variant content...');
+            
+            if (!correctedVariantGenerator) {
+                console.error('❌ Corrected variant generator not initialized');
+                return {
+                    opening: 'Error: Variant generator not available',
+                    question: { question: 'Error', setup: 'Error', choices: ['Error'] },
+                    lessonLogic: 'Error: Variant generator not available',
+                    feedback: { message: 'Error: Variant generator not available' },
+                    fortune: { message: 'Error: Variant generator not available' }
+                };
+            }
+            
+            try {
+                // Generate a sample variant using the corrected generator
+                const sampleVariant = correctedVariantGenerator.create3x3x3x3Variant(
+                    'question_1', 
+                    'choice_A', 
+                    'correct', 
+                    'wisdom', 
+                    currentTone
+                );
+                
+                return {
+                    opening: sampleVariant.content.opening,
+                    question: sampleVariant.content.question,
+                    lessonLogic: `🧠 ${currentFormat} Lesson Structure with Complete Feedback System`,
+                    feedback: sampleVariant.content.feedback,
+                    fortune: sampleVariant.content.fortune
+                };
+            } catch (error) {
+                console.error('❌ Error generating corrected variant content:', error);
+                return {
+                    opening: 'Error generating content',
+                    question: { question: 'Error', setup: 'Error', choices: ['Error'] },
+                    lessonLogic: 'Error generating content',
+                    feedback: { message: 'Error generating content' },
+                    fortune: { message: 'Error generating content' }
+                };
+            }
+        }
+
+        function generateVariantContent(age, tone, language) {
+            const lessonData = currentLessonData || {
+                title: "Aging Process - How Life Changes Over Time",
+                learning_objective: "Understand biological aging while exploring how gerontology research affects healthcare policy, social support systems, and end-of-life ethics."
+            };
+            
+            // Age-specific content
+            const ageContent = {
+                early_childhood: {
+                    voiceOver: `Hi there, little one! Today we're going to learn about ${lessonData.title} in a fun and simple way. ${lessonData.learning_objective}`,
+                    onScreen: `Today's Topic: ${lessonData.title}\n\nLearning Objective: ${lessonData.learning_objective}\n\nKey Points:\n• Learning is fun!\n• We can understand big things\n• Everything connects together`,
+                    questions: [
+                        {
+                            question: `What is the main topic of today's lesson?`,
+                            optionA: lessonData.title,
+                            optionB: 'A different topic'
+                        },
+                        {
+                            question: `How does this lesson connect to your daily life?`,
+                            optionA: 'It helps me understand the world better',
+                            optionB: 'It is just academic knowledge'
+                        },
+                        {
+                            question: `What would you like to explore further about this topic?`,
+                            optionA: 'More fun examples',
+                            optionB: 'The scientific background'
+                        }
+                    ],
+                    fortune: `Your curiosity is like a superpower! Keep asking questions and exploring the world around you.`
+                },
+                youth: {
+                    voiceOver: `Hey there! Ready to dive into ${lessonData.title}? This is going to be exciting! ${lessonData.learning_objective}`,
+                    onScreen: `Today's Topic: ${lessonData.title}\n\nLearning Objective: ${lessonData.learning_objective}\n\nKey Points:\n• Understanding the fundamentals\n• Exploring real-world applications\n• Connecting to your daily life`,
+                    questions: [
+                        {
+                            question: `What is the main topic of today's lesson?`,
+                            optionA: lessonData.title,
+                            optionB: 'A different topic'
+                        },
+                        {
+                            question: `How does this lesson connect to your daily life?`,
+                            optionA: 'It helps me understand the world better',
+                            optionB: 'It is just academic knowledge'
+                        },
+                        {
+                            question: `What would you like to explore further about this topic?`,
+                            optionA: 'More practical examples',
+                            optionB: 'The scientific background'
+                        }
+                    ],
+                    fortune: `Your curiosity is your greatest teacher. Today's lesson opens new doors of understanding that will guide your journey forward.`
+                },
+                young_adult: {
+                    voiceOver: `Welcome to today's lesson about ${lessonData.title}! ${lessonData.learning_objective} This is your personalized learning experience, tailored just for you.`,
+                    onScreen: `Today's Topic: ${lessonData.title}\n\nLearning Objective: ${lessonData.learning_objective}\n\nKey Points:\n• Understanding the fundamentals\n• Exploring real-world applications\n• Connecting to your daily life`,
+                    questions: [
+                        {
+                            question: `What is the main topic of today's lesson?`,
+                            optionA: lessonData.title,
+                            optionB: 'A different topic'
+                        },
+                        {
+                            question: `How does this lesson connect to your daily life?`,
+                            optionA: 'It helps me understand the world better',
+                            optionB: 'It is just academic knowledge'
+                        },
+                        {
+                            question: `What would you like to explore further about this topic?`,
+                            optionA: 'More practical examples',
+                            optionB: 'The scientific background'
+                        }
+                    ],
+                    fortune: `Your curiosity is your greatest teacher. Today's lesson opens new doors of understanding that will guide your journey forward.`
+                },
+                midlife: {
+                    voiceOver: `Welcome to today's lesson about ${lessonData.title}. ${lessonData.learning_objective} Let's explore how this knowledge applies to your life experience and wisdom.`,
+                    onScreen: `Today's Topic: ${lessonData.title}\n\nLearning Objective: ${lessonData.learning_objective}\n\nKey Points:\n• Understanding the fundamentals\n• Exploring real-world applications\n• Connecting to your life experience\n• Finding deeper meaning`,
+                    questions: [
+                        {
+                            question: `What is the main topic of today's lesson?`,
+                            optionA: lessonData.title,
+                            optionB: 'A different topic'
+                        },
+                        {
+                            question: `How does this lesson connect to your life experience?`,
+                            optionA: 'It helps me understand the world better',
+                            optionB: 'It is just academic knowledge'
+                        },
+                        {
+                            question: `What would you like to explore further about this topic?`,
+                            optionA: 'More practical examples',
+                            optionB: 'The deeper philosophical aspects'
+                        }
+                    ],
+                    fortune: `Your life experience is a treasure. Today's lesson adds another layer of understanding to your journey.`
+                },
+                wisdom_years: {
+                    voiceOver: `Welcome to today's lesson about ${lessonData.title}. ${lessonData.learning_objective} Let's explore the profound wisdom and deeper meanings within this knowledge.`,
+                    onScreen: `Today's Topic: ${lessonData.title}\n\nLearning Objective: ${lessonData.learning_objective}\n\nKey Points:\n• Understanding the fundamentals\n• Exploring real-world applications\n• Finding deeper meaning\n• Connecting to life's wisdom`,
+                    questions: [
+                        {
+                            question: `What is the main topic of today's lesson?`,
+                            optionA: lessonData.title,
+                            optionB: 'A different topic'
+                        },
+                        {
+                            question: `How does this lesson connect to your life wisdom?`,
+                            optionA: 'It helps me understand the world better',
+                            optionB: 'It is just academic knowledge'
+                        },
+                        {
+                            question: `What would you like to explore further about this topic?`,
+                            optionA: 'More practical examples',
+                            optionB: 'The deeper philosophical aspects'
+                        }
+                    ],
+                    fortune: `Your wisdom is a gift to the world. Today's lesson adds another layer of understanding to your profound journey.`
+                }
+            };
+            
+            // Tone-specific modifications
+            const toneModifiers = {
+                grandmother: {
+                    voiceOver: (content) => content.replace('Welcome to', 'Hello dear, welcome to').replace('!', '! 💕'),
+                    onScreen: (content) => content + '\n\n💕 Remember, learning is a gift we give ourselves.',
+                    fortune: (content) => content + ' You are loved and capable of great things.'
+                },
+                neutral: {
+                    voiceOver: (content) => content,
+                    onScreen: (content) => content,
+                    fortune: (content) => content
+                },
+                fun: {
+                    voiceOver: (content) => content.replace('Welcome to', 'Hey there! Ready for some fun learning about').replace('!', '! 🎉'),
+                    onScreen: (content) => content + '\n\n🎉 Learning is an adventure!',
+                    fortune: (content) => content + ' Keep that spark of curiosity alive! ✨'
+                }
+            };
+            
+            // Get base content for age
+            const baseContent = ageContent[age] || ageContent.young_adult;
+            
+            // Apply tone modifications
+            const toneModifier = toneModifiers[tone] || toneModifiers.neutral;
+            
+            // Apply language translations
+            const translatedContent = translateContent({
+                voiceOver: toneModifier.voiceOver(baseContent.voiceOver),
+                onScreen: toneModifier.onScreen(baseContent.onScreen),
+                questions: baseContent.questions,
+                fortune: toneModifier.fortune(baseContent.fortune)
+            }, language);
+            
+            return translatedContent;
+        }
+
+        function translateContent(content, language) {
+            if (language === 'english') {
+                return content;
+            }
+            
+            const translations = {
+                spanish: {
+                    voiceOver: content.voiceOver.replace('Welcome to today\'s lesson about', 'Bienvenido a la lección de hoy sobre').replace('This is your personalized learning experience', 'Esta es tu experiencia de aprendizaje personalizada'),
+                    onScreen: content.onScreen.replace('Today\'s Topic:', 'Tema de Hoy:').replace('Learning Objective:', 'Objetivo de Aprendizaje:').replace('Key Points:', 'Puntos Clave:'),
+                    questions: content.questions.map(q => ({
+                        question: q.question.replace('What is the main topic', '¿Cuál es el tema principal').replace('How does this lesson connect', '¿Cómo se conecta esta lección').replace('What would you like to explore', '¿Qué te gustaría explorar'),
+                        optionA: q.optionA,
+                        optionB: q.optionB
+                    })),
+                    fortune: content.fortune.replace('Your curiosity', 'Tu curiosidad').replace('Keep asking questions', 'Sigue haciendo preguntas')
+                },
+                french: {
+                    voiceOver: content.voiceOver.replace('Welcome to today\'s lesson about', 'Bienvenue à la leçon d\'aujourd\'hui sur').replace('This is your personalized learning experience', 'Ceci est votre expérience d\'apprentissage personnalisée'),
+                    onScreen: content.onScreen.replace('Today\'s Topic:', 'Sujet d\'Aujourd\'hui:').replace('Learning Objective:', 'Objectif d\'Apprentissage:').replace('Key Points:', 'Points Clés:'),
+                    questions: content.questions.map(q => ({
+                        question: q.question.replace('What is the main topic', 'Quel est le sujet principal').replace('How does this lesson connect', 'Comment cette leçon se connecte').replace('What would you like to explore', 'Que voulez-vous explorer'),
+                        optionA: q.optionA,
+                        optionB: q.optionB
+                    })),
+                    fortune: content.fortune.replace('Your curiosity', 'Votre curiosité').replace('Keep asking questions', 'Continuez à poser des questions')
+                },
+                german: {
+                    voiceOver: content.voiceOver.replace('Welcome to today\'s lesson about', 'Willkommen zur heutigen Lektion über').replace('This is your personalized learning experience', 'Dies ist Ihre personalisierte Lernerfahrung'),
+                    onScreen: content.onScreen.replace('Today\'s Topic:', 'Heutiges Thema:').replace('Learning Objective:', 'Lernziel:').replace('Key Points:', 'Hauptpunkte:'),
+                    questions: content.questions.map(q => ({
+                        question: q.question.replace('What is the main topic', 'Was ist das Hauptthema').replace('How does this lesson connect', 'Wie verbindet sich diese Lektion').replace('What would you like to explore', 'Was möchten Sie erkunden'),
+                        optionA: q.optionA,
+                        optionB: q.optionB
+                    })),
+                    fortune: content.fortune.replace('Your curiosity', 'Ihre Neugier').replace('Keep asking questions', 'Stellen Sie weiterhin Fragen')
+                },
+                chinese: {
+                    voiceOver: content.voiceOver.replace('Welcome to today\'s lesson about', '欢迎来到今天关于').replace('This is your personalized learning experience', '这是您的个性化学习体验'),
+                    onScreen: content.onScreen.replace('Today\'s Topic:', '今日主题:').replace('Learning Objective:', '学习目标:').replace('Key Points:', '要点:'),
+                    questions: content.questions.map(q => ({
+                        question: q.question.replace('What is the main topic', '今天课程的主要主题是什么').replace('How does this lesson connect', '这节课如何连接').replace('What would you like to explore', '您想探索什么'),
+                        optionA: q.optionA,
+                        optionB: q.optionB
+                    })),
+                    fortune: content.fortune.replace('Your curiosity', '您的好奇心').replace('Keep asking questions', '继续提问')
+                },
+                japanese: {
+                    voiceOver: content.voiceOver.replace('Welcome to today\'s lesson about', '今日のレッスンへようこそ').replace('This is your personalized learning experience', 'これはあなたのパーソナライズされた学習体験です'),
+                    onScreen: content.onScreen.replace('Today\'s Topic:', '今日のトピック:').replace('Learning Objective:', '学習目標:').replace('Key Points:', '要点:'),
+                    questions: content.questions.map(q => ({
+                        question: q.question.replace('What is the main topic', '今日のレッスンの主なトピックは何ですか').replace('How does this lesson connect', 'このレッスンはどのように接続されますか').replace('What would you like to explore', '何を探求したいですか'),
+                        optionA: q.optionA,
+                        optionB: q.optionB
+                    })),
+                    fortune: content.fortune.replace('Your curiosity', 'あなたの好奇心').replace('Keep asking questions', '質問し続けてください')
+                }
+            };
+            
+            return translations[language] || content;
+        }
+
+        // Menu system (expands/collapses icons)
+        let menuExpanded = false;
+
+        function toggleMenu() {
+            menuExpanded = !menuExpanded;
+            console.log(`☰ Menu ${menuExpanded ? 'expanded' : 'collapsed'}`);
+            
+            const navIcons = document.querySelectorAll('.nav-icon');
+            navIcons.forEach((icon, index) => {
+                if (index > 0) { // Keep calendar always visible
+                    icon.style.display = menuExpanded ? 'block' : 'none';
+                }
+            });
+            
+            showMessage(`Menu ${menuExpanded ? 'expanded' : 'collapsed'}`, 'info');
+        }
+
+        // Variant tracking system - Panel 1 Footer
+        function updateVariantTracking() {
+            const formatElement = document.getElementById('current-format');
+            const ageElement = document.getElementById('current-age');
+            const toneElement = document.getElementById('current-tone');
+            const languageElement = document.getElementById('current-language');
+            const avatarElement = document.getElementById('current-avatar');
+            
+            if (formatElement) formatElement.textContent = currentFormat;
+            if (ageElement) ageElement.textContent = currentAge.replace('_', ' ');
+            if (toneElement) toneElement.textContent = currentTone;
+            if (languageElement) languageElement.textContent = currentLanguage;
+            if (avatarElement) avatarElement.textContent = currentAvatar;
+        }
+
+        function showMenu() {
+            const menu = document.createElement('div');
+            menu.id = 'hamburger-menu';
+            menu.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: rgba(0, 0, 0, 0.95);
+                padding: 30px;
+                border-radius: 16px;
+                z-index: 1000;
+                color: white;
+                min-width: 300px;
+                text-align: center;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+            `;
+            menu.innerHTML = `
+                <h3>☰ Menu</h3>
+                <div style="margin: 20px 0;">
+                    <div style="margin: 10px 0;">
+                        <button onclick="showSettings()" style="background: #007AFF; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; width: 100%; text-align: left;">⚙️ Settings</button>
+                    </div>
+                    <div style="margin: 10px 0;">
+                        <button onclick="showHelp()" style="background: #007AFF; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; width: 100%; text-align: left;">❓ Help</button>
+                    </div>
+                    <div style="margin: 10px 0;">
+                        <button onclick="showAbout()" style="background: #007AFF; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; width: 100%; text-align: left;">ℹ️ About</button>
+                    </div>
+                    <div style="margin: 10px 0;">
+                        <button onclick="showContact()" style="background: #007AFF; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; width: 100%; text-align: left;">📧 Contact</button>
+                    </div>
+                </div>
+                <div style="margin-top: 20px;">
+                    <button onclick="closeMenu()" style="background: rgba(255,255,255,0.2); color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer;">Close</button>
+                </div>
+            `;
+            document.body.appendChild(menu);
+        }
+
+        function closeMenu() {
+            const menu = document.getElementById('hamburger-menu');
+            if (menu) {
+                menu.remove();
+            }
+        }
+
+        function showSettings() {
+            closeMenu();
+            showMessage('⚙️ Settings panel coming soon!', 'info');
+        }
+
+        function showHelp() {
+            closeMenu();
+            showMessage('❓ Help documentation coming soon!', 'info');
+        }
+
+        function showAbout() {
+            closeMenu();
+            showMessage('ℹ️ iLearn 2025 - Complete Learning Experience\n\nPersonalized lessons with Kelly and Ken\n365 days of learning\nMultiple variants and tones\nInteractive calendar navigation', 'info');
+        }
+
+        function showContact() {
+            closeMenu();
+            showMessage('📧 Contact support coming soon!', 'info');
+        }
+
+        function showMessage(message, type = 'info') {
+            const messageDiv = document.createElement('div');
+            messageDiv.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${type === 'success' ? '#28a745' : '#007AFF'};
+                color: white;
+                padding: 15px 20px;
+                border-radius: 8px;
+                z-index: 2000;
+                font-size: 14px;
+            `;
+            messageDiv.textContent = message;
+            document.body.appendChild(messageDiv);
+            
+            setTimeout(() => {
+                messageDiv.remove();
+            }, 3000);
+        }
+
+        function togglePlay() {
+            const playBtn = document.querySelector('.play-button');
+            if (playBtn) {
+                if (playBtn.textContent === '▶️') {
+                    playBtn.textContent = '⏸️';
+                    startProgress();
+                } else {
+                    playBtn.textContent = '▶️';
+                    stopProgress();
+                }
+            }
+        }
+
+        function startProgress() {
+            const progressFill = document.getElementById('progress-fill');
+            if (progressFill) {
+                let progress = 0;
+                const interval = setInterval(() => {
+                    progress += 1;
+                    progressFill.style.width = `${progress}%`;
+                    if (progress >= 100) {
+                        clearInterval(interval);
+                        const playBtn = document.querySelector('.play-button');
+                        if (playBtn) {
+                            playBtn.textContent = '▶️';
+                        }
+                    }
+                }, 100);
+            }
+        }
+
+        function stopProgress() {
+            const progressFill = document.getElementById('progress-fill');
+            if (progressFill) {
+                progressFill.style.width = '0%';
+            }
+        }
+
+        function setPlaybackSpeed(speed) {
+            // Remove active class from all speed buttons
+            document.querySelectorAll('.speed-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+            
+            console.log(`🎵 Playback speed set to ${speed}x`);
+        }
+    </script>
+    
+    <!-- Import complete systems -->
+    <script src="complete-curriculum.js"></script>
+    <script src="corrected-variant-generator-v2.js"></script>
+    <script src="complete-lesson-player.js"></script>
+    <script src="complete-elevenlabs-integration.js"></script>
+    
+    <script>
+        // Initialize the complete lesson player system
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Initializing iLearn Complete System...');
+            
+            // Initialize the lesson player
+            if (typeof CompleteLessonPlayer !== 'undefined') {
+                window.lessonPlayer = new CompleteLessonPlayer();
+                console.log('✅ Complete Lesson Player initialized');
+            } else {
+                console.error('❌ CompleteLessonPlayer not found');
+            }
+            
+            // Initialize audio integration
+            if (typeof ElevenLabsIntegration !== 'undefined') {
+                window.audioIntegration = new ElevenLabsIntegration();
+                console.log('✅ Audio Integration initialized');
+            } else {
+                console.error('❌ ElevenLabsIntegration not found');
+            }
+            
+            // Test system status
+            testSystemStatus();
+        });
+        
+        function testSystemStatus() {
+            console.log('🧪 Testing system components...');
+            
+            // Test lesson content container
+            const lessonContent = document.getElementById('lesson-content');
+            if (lessonContent) {
+                console.log('✅ Lesson content container found');
+            } else {
+                console.error('❌ Lesson content container not found');
+            }
+            
+            // Test curriculum data
+            if (typeof getLessonDataForDay === 'function') {
+                console.log('✅ Curriculum system available');
+            } else {
+                console.error('❌ Curriculum system not available');
+            }
+            
+            // Test variant generator
+            if (typeof CorrectedVariantGeneratorV2 !== 'undefined') {
+                console.log('✅ Variant generator available');
+            } else {
+                console.error('❌ Variant generator not available');
+            }
+            
+            // Test lesson player
+            if (window.lessonPlayer) {
+                console.log('✅ Lesson player initialized');
+            } else {
+                console.error('❌ Lesson player not initialized');
+            }
+        }
+    </script>
+</body>
+</html> 

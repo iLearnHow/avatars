@@ -1,0 +1,33 @@
+{
+  "slug": "earths-magnificent-oceans",
+  "language": "fr",
+  "version": "tts_jobs_v1",
+  "defaultSpeaker": "kelly",
+  "phases": [
+    {
+      "id": "welcome",
+      "text": "Bienvenue. Pense à l’océan non pas comme des morceaux avec des noms, mais comme un seul corps en mouvement—des courants qui relient chaque côte. Je te guiderai et donnerai un indice si besoin.",
+      "approxChars": 192
+    },
+    {
+      "id": "beginning",
+      "text": "Question un. Quelle description convient le mieux—des océans séparés qui ne s’influencent pas, ou un océan mondial relié par des courants? Choisis quand tu es prêt(e).",
+      "approxChars": 167
+    },
+    {
+      "id": "middle",
+      "text": "Question deux. Qu’est‑ce qui entraîne surtout les grandes ‘chaînes’ de l’océan—seulement les marées de la Lune, ou le vent avec les différences de température et de sel (densité)? Choisis quand tu es prêt(e).",
+      "approxChars": 208
+    },
+    {
+      "id": "end",
+      "text": "Question trois. Pourquoi des océans en bonne santé comptent‑ils pour toi et moi—seulement pour les poissons et les plages, ou pour l’oxygène, l’équilibre du climat, la nourriture et les moyens de subsistance? Choisis quand tu es prêt(e).",
+      "approxChars": 237
+    },
+    {
+      "id": "wisdom",
+      "text": "Wisdom to carry: care for the ocean and it cares for you—each breath, each meal, each calm day. Do one small protective act today.",
+      "approxChars": 130
+    }
+  ]
+}

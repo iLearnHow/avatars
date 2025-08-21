@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sun Lesson</title>
+    <style>
+        body { margin: 0; padding: 20px; background: #000; color: white; font-family: Arial, sans-serif; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .phase { margin: 20px 0; padding: 20px; background: #333; border-radius: 10px; }
+        .question { margin: 20px 0; }
+        .choice { display: block; width: 100%; padding: 15px; margin: 10px 0; background: #555; border: none; color: white; border-radius: 5px; cursor: pointer; }
+        .choice:hover { background: #666; }
+        .correct { background: #4CAF50 !important; }
+        .incorrect { background: #f44336 !important; }
+        .feedback { margin: 20px 0; padding: 15px; background: #444; border-radius: 5px; }
+        .controls { text-align: center; margin: 20px 0; }
+        .btn { padding: 15px 30px; margin: 10px; background: #ffd700; color: #000; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
+        .btn:hover { background: #ffed4e; }
+        .progress { width: 100%; height: 20px; background: #555; border-radius: 10px; overflow: hidden; margin: 20px 0; }
+        .progress-fill { height: 100%; background: #ffd700; width: 0%; transition: width 0.5s; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌞 The Sun, Our Star - Interactive Lesson</h1>
+        
+        <div class="controls">
+            <button class="btn" onclick="startLesson()">�� Start Lesson</button>
+            <button class="btn" onclick="nextPhase()" id="nextBtn" style="display:none;">⏭️ Next Phase</button>
+            <button class="btn" onclick="resetLesson()">🔄 Reset</button>
+        </div>
+        
+        <div class="progress">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        
+        <div id="phaseContent"></div>
+    </div>
+
+    <script>
+        let currentPhase = 0;
+        let isPlaying = false;
+        let userAnswers = [];
+        
+        const phases = [
+            {
+                title: "Welcome to The Sun",
+                content: "The Sun's energy warms Earth, powers weather, and fuels life through plants.",
+                voiceover: "Oh hi! I'm so glad to see you! It's such a beautiful day today. And did you know that the Sun is actually what powers everything on Earth? I had no idea it warms our planet AND creates our weather AND fuels all the plants we eat! It's amazing how one star does so much for us."
+            },
+            {
+                title: "What Powers Life?",
+                content: "What mainly powers life on Earth?",
+                question: "What mainly powers life on Earth?",
+                choices: [
+                    { text: "Energy from the Sun", correct: true },
+                    { text: "Light made by Earth itself", correct: false }
+                ],
+                feedback: {
+                    correct: "Yes—plants capture sunlight, then pass energy through food webs.",
+                    incorrect: "Earth glows a bit in ways like heat, but life runs on sunlight captured by plants."
+                }
+            },
+            {
+                title: "Why Do Shadows Change?",
+                content: "Why do shadows change through the day?",
+                question: "Why do shadows change through the day?",
+                choices: [
+                    { text: "The Sun goes around Earth", correct: false },
+                    { text: "Earth spins, changing the Sun's angle", correct: true }
+                ],
+                feedback: {
+                    correct: "Right—Earth's rotation makes the Sun appear to move, changing shadow length and direction.",
+                    incorrect: "It looks like the Sun moves, but it's mostly Earth's spin that changes what we see."
+                }
+            },
+            {
+                title: "Why Do Seasons Differ?",
+                content: "Why do seasons differ?",
+                question: "Why do seasons differ?",
+                choices: [
+                    { text: "Distance from the Sun alone", correct: false },
+                    { text: "Earth's tilt changes sunlight angle and daylight length", correct: true }
+                ],
+                feedback: {
+                    correct: "Yes—tilt changes how direct sunlight is and how long days are.",
+                    incorrect: "Distance changes a little, but it's the tilt that sets seasons by sunlight angle and day length."
+                }
+            },
+            {
+                title: "Lesson Complete!",
+                content: "Notice sunlight today—how it shapes a shadow, warms a place, or feeds a plant.",
+                voiceover: "Isn't it incredible how the Sun touches everything in our lives? It shapes our days, creates our weather, gives us seasons, and even powers our meals through plants. You know what? I'm going to notice sunlight differently today - maybe watch how it creates shadows, or feel how it warms a spot, or see how plants reach for it. The Sun is such a good friend to Earth!"
+            }
+        ];
+        
+        function startLesson() {
+            if (isPlaying) return;
+            
+            isPlaying = true;
+            currentPhase = 0;
+            userAnswers = [];
+            document.getElementById('nextBtn').style.display = 'none';
+            
+            playPhase();
+        }
+        
+        function playPhase() {
+            if (!isPlaying) return;
+            
+            const phase = phases[currentPhase];
+            if (!phase) {
+                completeLesson();
+                return;
+            }
+            
+            // Update progress
+            const progress = ((currentPhase + 1) / phases.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            
+            // Display phase content
+            let html = `<div class="phase"><h2>${phase.title}</h2>`;
+            
+            if (phase.voiceover) {
+                html += `<p><em>🎤 "${phase.voiceover}"</em></p>`;
+            }
+            
+            html += `<p>${phase.content}</p>`;
+            
+            if (phase.question) {
+                html += `<div class="question"><h3>${phase.question}</h3>`;
+                phase.choices.forEach((choice, index) => {
+                    html += `<button class="choice" onclick="answerQuestion(${index})">${choice.text}</button>`;
+                });
+                html += '</div>';
+            }
+            
+            html += '</div>';
+            
+            document.getElementById('phaseContent').innerHTML = html;
+            
+            // Auto-advance if no question
+            if (!phase.question) {
+                setTimeout(() => {
+                    if (isPlaying) nextPhase();
+                }, 3000);
+            }
+        }
+        
+        function answerQuestion(choiceIndex) {
+            const phase = phases[currentPhase];
+            const choice = phase.choices[choiceIndex];
+            
+            // Record answer
+            userAnswers.push({
+                phase: currentPhase,
+                choice: choiceIndex,
+                correct: choice.correct
+            });
+            
+            // Show feedback
+            const feedback = choice.correct ? phase.feedback.correct : phase.feedback.incorrect;
+            
+            // Update buttons
+            const buttons = document.querySelectorAll('.choice');
+            buttons.forEach((btn, index) => {
+                btn.disabled = true;
+                if (index === choiceIndex) {
+                    btn.classList.add(choice.correct ? 'correct' : 'incorrect');
+                }
+            });
+            
+            // Show feedback
+            const feedbackDiv = document.createElement('div');
+            feedbackDiv.className = 'feedback';
+            feedbackDiv.innerHTML = `<strong>${choice.correct ? '✅ Correct!' : '❌ Incorrect'}</strong><br>${feedback}`;
+            document.querySelector('.phase').appendChild(feedbackDiv);
+            
+            // Show next button
+            document.getElementById('nextBtn').style.display = 'inline-block';
+        }
+        
+        function nextPhase() {
+            if (!isPlaying) return;
+            
+            currentPhase++;
+            
+            if (currentPhase >= phases.length) {
+                completeLesson();
+                return;
+            }
+            
+            document.getElementById('nextBtn').style.display = 'none';
+            playPhase();
+        }
+        
+        function completeLesson() {
+            isPlaying = false;
+            
+            const correctAnswers = userAnswers.filter(a => a.correct).length;
+            const totalQuestions = userAnswers.length;
+            
+            const html = `
+                <div class="phase">
+                    <h2>🎉 Lesson Complete!</h2>
+                    <p>Congratulations! You've completed your first lesson about the Sun.</p>
+                    <div class="feedback">
+                        <strong>Your Results:</strong><br>
+                        Phases Completed: ${currentPhase + 1}/5<br>
+                        Questions Answered: ${totalQuestions}<br>
+                        Correct Answers: ${correctAnswers}/${totalQuestions}<br>
+                        Score: ${Math.round((correctAnswers / totalQuestions) * 100)}%
+                    </div>
+                    <p><em>You now understand how the Sun powers life on Earth, how Earth's rotation creates day and night, and how our planet's tilt gives us seasons. Great job!</em></p>
+                </div>
+            `;
+            
+            document.getElementById('phaseContent').innerHTML = html;
+            document.getElementById('nextBtn').style.display = 'none';
+            document.getElementById('progressFill').style.width = '100%';
+        }
+        
+        function resetLesson() {
+            isPlaying = false;
+            currentPhase = 0;
+            userAnswers = [];
+            document.getElementById('phaseContent').innerHTML = '';
+            document.getElementById('progressFill').style.width = '0%';
+            document.getElementById('nextBtn').style.display = 'none';
+        }
+        
+        // Initialize
+        resetLesson();
+    </script>
+</body>
+</html>

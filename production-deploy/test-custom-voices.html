@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Custom Ken & Kelly Voices</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .status {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .voice-test {
+            background: rgba(255,255,255,0.15);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .voice-test h3 {
+            margin-top: 0;
+            color: #ffd700;
+        }
+        
+        .test-input {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 16px;
+            background: rgba(255,255,255,0.9);
+            color: #333;
+        }
+        
+        .test-button {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+            transition: transform 0.2s;
+        }
+        
+        .test-button:hover {
+            transform: translateY(-2px);
+        }
+        
+        .test-button:disabled {
+            background: #666;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .result {
+            background: rgba(0,0,0,0.2);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+        
+        .success { color: #4CAF50; }
+        .error { color: #f44336; }
+        .info { color: #2196F3; }
+        
+        .audio-player {
+            width: 100%;
+            margin-top: 15px;
+        }
+        
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .comparison h3 {
+            text-align: center;
+            color: #ffd700;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎤 Custom Voice TTS Test</h1>
+        <p>Testing your trained Ken & Kelly voices locally</p>
+    </div>
+    
+    <div class="status">
+        <h3>🔍 Server Status</h3>
+        <div id="server-status">Checking server status...</div>
+    </div>
+    
+    <div class="voice-test">
+        <h3>🎯 Test Custom Kelly Voice</h3>
+        <input type="text" class="test-input" id="kelly-text" 
+               value="Hello! I'm Kelly, and this is my custom trained voice. How do I sound?" 
+               placeholder="Enter text for Kelly to speak...">
+        <button class="test-button" onclick="testKellyVoice()" id="kelly-btn">🎤 Test Kelly Voice</button>
+        <div id="kelly-result" class="result"></div>
+        <audio id="kelly-audio" class="audio-player" controls style="display: none;"></audio>
+    </div>
+    
+    <div class="voice-test">
+        <h3>🎯 Test Custom Ken Voice</h3>
+        <input type="text" class="test-input" id="ken-text" 
+               value="Hi there! I'm Ken, and this is my custom trained voice. How do I sound?" 
+               placeholder="Enter text for Ken to speak...">
+        <button class="test-button" onclick="testKenVoice()" id="ken-btn">🎤 Test Ken Voice</button>
+        <div id="ken-result" class="result"></div>
+        <audio id="ken-audio" class="audio-player" controls style="display: none;"></audio>
+    </div>
+    
+    <div class="comparison">
+        <div>
+            <h3>🎵 Kelly's Reference Audio</h3>
+            <audio controls style="width: 100%;">
+                <source src="reference_kelly.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        <div>
+            <h3>🎵 Ken's Reference Audio</h3>
+            <audio controls style="width: 100%;">
+                <source src="reference_ken_mono16k.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+    </div>
+    
+    <script>
+        const SERVER_URL = 'http://localhost:5002';
+        
+        // Check server status on load
+        window.addEventListener('load', checkServerStatus);
+        
+        async function checkServerStatus() {
+            try {
+                const response = await fetch(`${SERVER_URL}/health`);
+                const data = await response.json();
+                
+                document.getElementById('server-status').innerHTML = `
+                    <div class="success">
+                        ✅ Server: ${data.server}<br>
+                        ✅ Status: ${data.status}<br>
+                        ✅ Version: ${data.version}<br>
+                        ✅ Engine: ${data.engine}<br>
+                        ✅ Voices: ${data.voices.join(', ')}<br>
+                        <br>
+                        <strong>Custom Voice Status:</strong><br>
+                        ${Object.entries(data.custom_voices_available).map(([voice, available]) => 
+                            `${voice}: ${available ? '✅ AVAILABLE' : '❌ NOT FOUND'}`
+                        ).join('<br>')}
+                    </div>
+                `;
+                
+                // Enable buttons if custom voices are available
+                if (data.custom_voices_available.kelly) {
+                    document.getElementById('kelly-btn').disabled = false;
+                }
+                if (data.custom_voices_available.ken) {
+                    document.getElementById('ken-btn').disabled = false;
+                }
+                
+            } catch (error) {
+                document.getElementById('server-status').innerHTML = `
+                    <div class="error">
+                        ❌ Server Error: ${error.message}<br>
+                        Make sure the custom voice server is running on port 5002
+                    </div>
+                `;
+            }
+        }
+        
+        async function testKellyVoice() {
+            const text = document.getElementById('kelly-text').value;
+            const resultDiv = document.getElementById('kelly-result');
+            const audioElement = document.getElementById('kelly-audio');
+            const button = document.getElementById('kelly-btn');
+            
+            button.disabled = true;
+            resultDiv.innerHTML = '<div class="info">🎤 Generating Kelly voice...</div>';
+            
+            try {
+                const response = await fetch(`${SERVER_URL}/api/tts`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        text: text,
+                        speaker: 'kelly',
+                        include_phonemes: true
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    resultDiv.innerHTML = `
+                        <div class="success">
+                            ✅ Kelly voice generated successfully!<br>
+                            ✅ Duration: ${data.duration.toFixed(2)}s<br>
+                            ✅ Voice type: ${data.voice_type}<br>
+                            ✅ Model used: ${data.model_used}<br>
+                            ✅ Engine: ${data.engine}
+                        </div>
+                    `;
+                    
+                    // Play the audio
+                    const audioBlob = new Blob([
+                        Uint8Array.from(atob(data.audio), c => c.charCodeAt(0))
+                    ], { type: 'audio/wav' });
+                    
+                    audioElement.src = URL.createObjectURL(audioBlob);
+                    audioElement.style.display = 'block';
+                    
+                } else {
+                    resultDiv.innerHTML = `<div class="error">❌ Error: ${data.error}</div>`;
+                }
+                
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="error">❌ Request failed: ${error.message}</div>`;
+            } finally {
+                button.disabled = false;
+            }
+        }
+        
+        async function testKenVoice() {
+            const text = document.getElementById('ken-text').value;
+            const resultDiv = document.getElementById('ken-result');
+            const audioElement = document.getElementById('ken-audio');
+            const button = document.getElementById('ken-btn');
+            
+            button.disabled = true;
+            resultDiv.innerHTML = '<div class="info">🎤 Generating Ken voice...</div>';
+            
+            try {
+                const response = await fetch(`${SERVER_URL}/api/tts`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        text: text,
+                        speaker: 'ken',
+                        include_phonemes: true
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    resultDiv.innerHTML = `
+                        <div class="success">
+                            ✅ Ken voice generated successfully!<br>
+                            ✅ Duration: ${data.duration.toFixed(2)}s<br>
+                            ✅ Voice type: ${data.voice_type}<br>
+                            ✅ Model used: ${data.model_used}<br>
+                            ✅ Engine: ${data.engine}
+                        </div>
+                    `;
+                    
+                    // Play the audio
+                    const audioBlob = new Blob([
+                        Uint8Array.from(atob(data.audio), c => c.charCodeAt(0))
+                    ], { type: 'audio/wav' });
+                    
+                    audioElement.src = URL.createObjectURL(audioBlob);
+                    audioElement.style.display = 'block';
+                    
+                } else {
+                    resultDiv.innerHTML = `<div class="error">❌ Error: ${data.error}</div>`;
+                }
+                
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="error">❌ Request failed: ${error.message}</div>`;
+            } finally {
+                button.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>

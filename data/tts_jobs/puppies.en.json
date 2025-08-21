@@ -1,0 +1,33 @@
+{
+  "slug": "puppies",
+  "language": "en",
+  "version": "tts_jobs_v1",
+  "defaultSpeaker": "kelly",
+  "phases": [
+    {
+      "id": "welcome",
+      "text": "Welcome. Today we’ll notice how puppies learn, how we teach kindly, and how we build trust. I’ll guide you through three short questions and offer a hint if you need one.",
+      "approxChars": 170
+    },
+    {
+      "id": "beginning",
+      "text": "Question one. What helps a puppy feel safe and ready to learn—endless treats, or steady love and routines? Listen, then choose.",
+      "approxChars": 127
+    },
+    {
+      "id": "middle",
+      "text": "Question two. What teaches a puppy the meaning of ‘sit’—saying the word louder and louder, or pairing the word with a simple hand cue and a reward? Choose when you're ready.",
+      "approxChars": 173
+    },
+    {
+      "id": "end",
+      "text": "Question three. What builds a strong bond—punishing mistakes, or noticing and rewarding tiny good choices? Choose when you're ready.",
+      "approxChars": 132
+    },
+    {
+      "id": "wisdom",
+      "text": "Wisdom to carry: puppies learn what we notice. Catch one small good thing today, mark it with a kind word, and watch trust grow.",
+      "approxChars": 128
+    }
+  ]
+}

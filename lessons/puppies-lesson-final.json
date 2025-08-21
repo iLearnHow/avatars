@@ -1,0 +1,840 @@
+{
+  "day": 15,
+  "title": "Puppies - Understanding Our Four-Legged Friends",
+  "objective": "Explore how puppies learn, grow, and communicate, while understanding the human-dog bond.",
+  "phases": [
+    {
+      "type": "welcome",
+      "display_name": "Welcome",
+      "avatar_expression": "teaching_explaining",
+      "duration": "30-45 seconds",
+      "content": {
+        "lesson_preview": "Oh, my dear, 👵 Today we will discover how puppies learn, grow and communicate! 💕"
+      },
+      "avatar_script": {
+        "neutral": {
+          "infant": "👶 Welcome to our puppy adventure!",
+          "toddler": "👧 Welcome to our puppy adventure!",
+          "early_childhood": "🧒 Welcome to our puppy adventure!",
+          "middle_childhood": "👦 Welcome to our puppy adventure!",
+          "pre_teen": "🙋 Welcome to our puppy adventure!",
+          "teen": "🧑 Welcome to our puppy adventure!",
+          "young_adult": "👨‍🎓 Welcome to our puppy adventure!",
+          "adult": "👩‍💼 Welcome to our puppy adventure!",
+          "middle_age": "👨‍💼 Welcome to our puppy adventure!",
+          "senior": "👴 Welcome to our puppy adventure!",
+          "elder": "👵 Welcome to our puppy adventure!"
+        },
+        "fun": {
+          "infant": "🎉 👶 Welcome to our puppy adventure! 🐕",
+          "toddler": "🎉 👧 Welcome to our puppy adventure! 🐕",
+          "early_childhood": "🎉 🧒 Welcome to our puppy adventure! 🐕",
+          "middle_childhood": "🎉 👦 Welcome to our puppy adventure! 🐕",
+          "pre_teen": "🎉 🙋 Welcome to our puppy adventure! 🐕",
+          "teen": "🎉 🧑 Welcome to our puppy adventure! 🐕",
+          "young_adult": "🎉 👨‍🎓 Welcome to our puppy adventure! 🐕",
+          "adult": "🎉 👩‍💼 Welcome to our puppy adventure! 🐕",
+          "middle_age": "🎉 👨‍💼 Welcome to our puppy adventure! 🐕",
+          "senior": "🎉 👴 Welcome to our puppy adventure! 🐕",
+          "elder": "🎉 👵 Welcome to our puppy adventure! 🐕"
+        },
+        "grandmother": {
+          "infant": "Oh, my dear, 👶 Welcome to our puppy adventure! 💕",
+          "toddler": "Oh, my dear, 👧 Welcome to our puppy adventure! 💕",
+          "early_childhood": "Oh, my dear, 🧒 Welcome to our puppy adventure! 💕",
+          "middle_childhood": "Oh, my dear, 👦 Welcome to our puppy adventure! 💕",
+          "pre_teen": "Oh, my dear, 🙋 Welcome to our puppy adventure! 💕",
+          "teen": "Oh, my dear, 🧑 Welcome to our puppy adventure! 💕",
+          "young_adult": "Oh, my dear, 👨‍🎓 Welcome to our puppy adventure! 💕",
+          "adult": "Oh, my dear, 👩‍💼 Welcome to our puppy adventure! 💕",
+          "middle_age": "Oh, my dear, 👨‍💼 Welcome to our puppy adventure! 💕",
+          "senior": "Oh, my dear, 👴 Welcome to our puppy adventure! 💕",
+          "elder": "Oh, my dear, 👵 Welcome to our puppy adventure! 💕"
+        }
+      }
+    },
+    {
+      "type": "beginning",
+      "display_name": "Beginning",
+      "avatar_expression": "question_curious",
+      "question_number": "Q1",
+      "duration": "2-3 minutes",
+      "question_text": "Oh, my dear, 👵 What is the most important thing a puppy needs to grow up healthy and happy? 💕",
+      "choices": {
+        "option_a": {
+          "text": "Oh, my dear, 👵 Lots of toys and treats 💕",
+          "teaching_moment": {
+            "neutral": {
+              "infant": "👶 Not quite – try the other option!",
+              "toddler": "👧 Not quite – try the other option!",
+              "early_childhood": "🧒 Not quite – try the other option!",
+              "middle_childhood": "👦 Not quite – try the other option!",
+              "pre_teen": "🙋 Not quite – try the other option!",
+              "teen": "🧑 Not quite – try the other option!",
+              "young_adult": "👨‍🎓 Not quite – try the other option!",
+              "adult": "👩‍💼 Not quite – try the other option!",
+              "middle_age": "👨‍💼 Not quite – try the other option!",
+              "senior": "👴 Not quite – try the other option!",
+              "elder": "👵 Not quite – try the other option!"
+            },
+            "fun": {
+              "infant": "🎉 👶 Not quite – try the other option! 🐕",
+              "toddler": "🎉 👧 Not quite – try the other option! 🐕",
+              "early_childhood": "🎉 🧒 Not quite – try the other option! 🐕",
+              "middle_childhood": "🎉 👦 Not quite – try the other option! 🐕",
+              "pre_teen": "🎉 🙋 Not quite – try the other option! 🐕",
+              "teen": "🎉 🧑 Not quite – try the other option! 🐕",
+              "young_adult": "🎉 👨‍🎓 Not quite – try the other option! 🐕",
+              "adult": "🎉 👩‍💼 Not quite – try the other option! 🐕",
+              "middle_age": "🎉 👨‍💼 Not quite – try the other option! 🐕",
+              "senior": "🎉 👴 Not quite – try the other option! 🐕",
+              "elder": "🎉 👵 Not quite – try the other option! 🐕"
+            },
+            "grandmother": {
+              "infant": "Oh, my dear, 👶 Not quite – try the other option! 💕",
+              "toddler": "Oh, my dear, 👧 Not quite – try the other option! 💕",
+              "early_childhood": "Oh, my dear, 🧒 Not quite – try the other option! 💕",
+              "middle_childhood": "Oh, my dear, 👦 Not quite – try the other option! 💕",
+              "pre_teen": "Oh, my dear, 🙋 Not quite – try the other option! 💕",
+              "teen": "Oh, my dear, 🧑 Not quite – try the other option! 💕",
+              "young_adult": "Oh, my dear, 👨‍🎓 Not quite – try the other option! 💕",
+              "adult": "Oh, my dear, 👩‍💼 Not quite – try the other option! 💕",
+              "middle_age": "Oh, my dear, 👨‍💼 Not quite – try the other option! 💕",
+              "senior": "Oh, my dear, 👴 Not quite – try the other option! 💕",
+              "elder": "Oh, my dear, 👵 Not quite – try the other option! 💕"
+            }
+          },
+          "response_script": {
+            "neutral": {
+              "infant": "👶 Let’s think again about what puppies really need.",
+              "toddler": "👧 Let’s think again about what puppies really need.",
+              "early_childhood": "🧒 Let’s think again about what puppies really need.",
+              "middle_childhood": "👦 Let’s think again about what puppies really need.",
+              "pre_teen": "🙋 Let’s think again about what puppies really need.",
+              "teen": "🧑 Let’s think again about what puppies really need.",
+              "young_adult": "👨‍🎓 Let’s think again about what puppies really need.",
+              "adult": "👩‍💼 Let’s think again about what puppies really need.",
+              "middle_age": "👨‍💼 Let’s think again about what puppies really need.",
+              "senior": "👴 Let’s think again about what puppies really need.",
+              "elder": "👵 Let’s think again about what puppies really need."
+            },
+            "fun": {
+              "infant": "🎉 👶 Let’s think again about what puppies really need. 🐕",
+              "toddler": "🎉 👧 Let’s think again about what puppies really need. 🐕",
+              "early_childhood": "🎉 🧒 Let’s think again about what puppies really need. 🐕",
+              "middle_childhood": "🎉 👦 Let’s think again about what puppies really need. 🐕",
+              "pre_teen": "🎉 🙋 Let’s think again about what puppies really need. 🐕",
+              "teen": "🎉 🧑 Let’s think again about what puppies really need. 🐕",
+              "young_adult": "🎉 👨‍🎓 Let’s think again about what puppies really need. 🐕",
+              "adult": "🎉 👩‍💼 Let’s think again about what puppies really need. 🐕",
+              "middle_age": "🎉 👨‍💼 Let’s think again about what puppies really need. 🐕",
+              "senior": "🎉 👴 Let’s think again about what puppies really need. 🐕",
+              "elder": "🎉 👵 Let’s think again about what puppies really need. 🐕"
+            },
+            "grandmother": {
+              "infant": "Oh, my dear, 👶 Let’s think again about what puppies really need. 💕",
+              "toddler": "Oh, my dear, 👧 Let’s think again about what puppies really need. 💕",
+              "early_childhood": "Oh, my dear, 🧒 Let’s think again about what puppies really need. 💕",
+              "middle_childhood": "Oh, my dear, 👦 Let’s think again about what puppies really need. 💕",
+              "pre_teen": "Oh, my dear, 🙋 Let’s think again about what puppies really need. 💕",
+              "teen": "Oh, my dear, 🧑 Let’s think again about what puppies really need. 💕",
+              "young_adult": "Oh, my dear, 👨‍🎓 Let’s think again about what puppies really need. 💕",
+              "adult": "Oh, my dear, 👩‍💼 Let’s think again about what puppies really need. 💕",
+              "middle_age": "Oh, my dear, 👨‍💼 Let’s think again about what puppies really need. 💕",
+              "senior": "Oh, my dear, 👴 Let’s think again about what puppies really need. 💕",
+              "elder": "Oh, my dear, 👵 Let’s think again about what puppies really need. 💕"
+            }
+          }
+        },
+        "option_b": {
+          "text": "Oh, my dear, 👵 Love, care, and consistent training 💕",
+          "teaching_moment": {
+            "neutral": {
+              "infant": "👶 Exactly!",
+              "toddler": "👧 Exactly!",
+              "early_childhood": "🧒 Exactly!",
+              "middle_childhood": "👦 Exactly!",
+              "pre_teen": "🙋 Exactly!",
+              "teen": "🧑 Exactly!",
+              "young_adult": "👨‍🎓 Exactly!",
+              "adult": "👩‍💼 Exactly!",
+              "middle_age": "👨‍💼 Exactly!",
+              "senior": "👴 Exactly!",
+              "elder": "👵 Exactly!"
+            },
+            "fun": {
+              "infant": "🎉 👶 Exactly! 🐕",
+              "toddler": "🎉 👧 Exactly! 🐕",
+              "early_childhood": "🎉 🧒 Exactly! 🐕",
+              "middle_childhood": "🎉 👦 Exactly! 🐕",
+              "pre_teen": "🎉 🙋 Exactly! 🐕",
+              "teen": "🎉 🧑 Exactly! 🐕",
+              "young_adult": "🎉 👨‍🎓 Exactly! 🐕",
+              "adult": "🎉 👩‍💼 Exactly! 🐕",
+              "middle_age": "🎉 👨‍💼 Exactly! 🐕",
+              "senior": "🎉 👴 Exactly! 🐕",
+              "elder": "🎉 👵 Exactly! 🐕"
+            },
+            "grandmother": {
+              "infant": "Oh, my dear, 👶 Exactly! 💕",
+              "toddler": "Oh, my dear, 👧 Exactly! 💕",
+              "early_childhood": "Oh, my dear, 🧒 Exactly! 💕",
+              "middle_childhood": "Oh, my dear, 👦 Exactly! 💕",
+              "pre_teen": "Oh, my dear, 🙋 Exactly! 💕",
+              "teen": "Oh, my dear, 🧑 Exactly! 💕",
+              "young_adult": "Oh, my dear, 👨‍🎓 Exactly! 💕",
+              "adult": "Oh, my dear, 👩‍💼 Exactly! 💕",
+              "middle_age": "Oh, my dear, 👨‍💼 Exactly! 💕",
+              "senior": "Oh, my dear, 👴 Exactly! 💕",
+              "elder": "Oh, my dear, 👵 Exactly! 💕"
+            }
+          },
+          "response_script": {
+            "neutral": {
+              "infant": "👶 Great insight – let’s keep going!",
+              "toddler": "👧 Great insight – let’s keep going!",
+              "early_childhood": "🧒 Great insight – let’s keep going!",
+              "middle_childhood": "👦 Great insight – let’s keep going!",
+              "pre_teen": "🙋 Great insight – let’s keep going!",
+              "teen": "🧑 Great insight – let’s keep going!",
+              "young_adult": "👨‍🎓 Great insight – let’s keep going!",
+              "adult": "👩‍💼 Great insight – let’s keep going!",
+              "middle_age": "👨‍💼 Great insight – let’s keep going!",
+              "senior": "👴 Great insight – let’s keep going!",
+              "elder": "👵 Great insight – let’s keep going!"
+            },
+            "fun": {
+              "infant": "🎉 👶 Great insight – let’s keep going! 🐕",
+              "toddler": "🎉 👧 Great insight – let’s keep going! 🐕",
+              "early_childhood": "🎉 🧒 Great insight – let’s keep going! 🐕",
+              "middle_childhood": "🎉 👦 Great insight – let’s keep going! 🐕",
+              "pre_teen": "🎉 🙋 Great insight – let’s keep going! 🐕",
+              "teen": "🎉 🧑 Great insight – let’s keep going! 🐕",
+              "young_adult": "🎉 👨‍🎓 Great insight – let’s keep going! 🐕",
+              "adult": "🎉 👩‍💼 Great insight – let’s keep going! 🐕",
+              "middle_age": "🎉 👨‍💼 Great insight – let’s keep going! 🐕",
+              "senior": "🎉 👴 Great insight – let’s keep going! 🐕",
+              "elder": "🎉 👵 Great insight – let’s keep going! 🐕"
+            },
+            "grandmother": {
+              "infant": "Oh, my dear, 👶 Great insight – let’s keep going! 💕",
+              "toddler": "Oh, my dear, 👧 Great insight – let’s keep going! 💕",
+              "early_childhood": "Oh, my dear, 🧒 Great insight – let’s keep going! 💕",
+              "middle_childhood": "Oh, my dear, 👦 Great insight – let’s keep going! 💕",
+              "pre_teen": "Oh, my dear, 🙋 Great insight – let’s keep going! 💕",
+              "teen": "Oh, my dear, 🧑 Great insight – let’s keep going! 💕",
+              "young_adult": "Oh, my dear, 👨‍🎓 Great insight – let’s keep going! 💕",
+              "adult": "Oh, my dear, 👩‍💼 Great insight – let’s keep going! 💕",
+              "middle_age": "Oh, my dear, 👨‍💼 Great insight – let’s keep going! 💕",
+              "senior": "Oh, my dear, 👴 Great insight – let’s keep going! 💕",
+              "elder": "Oh, my dear, 👵 Great insight – let’s keep going! 💕"
+            }
+          }
+        }
+      },
+      "avatar_script": {
+        "neutral": {
+          "infant": "👶 Let’s dive in!",
+          "toddler": "👧 Let’s dive in!",
+          "early_childhood": "🧒 Let’s dive in!",
+          "middle_childhood": "👦 Let’s dive in!",
+          "pre_teen": "🙋 Let’s dive in!",
+          "teen": "🧑 Let’s dive in!",
+          "young_adult": "👨‍🎓 Let’s dive in!",
+          "adult": "👩‍💼 Let’s dive in!",
+          "middle_age": "👨‍💼 Let’s dive in!",
+          "senior": "👴 Let’s dive in!",
+          "elder": "👵 Let’s dive in!"
+        },
+        "fun": {
+          "infant": "🎉 👶 Let’s dive in! 🐕",
+          "toddler": "🎉 👧 Let’s dive in! 🐕",
+          "early_childhood": "🎉 🧒 Let’s dive in! 🐕",
+          "middle_childhood": "🎉 👦 Let’s dive in! 🐕",
+          "pre_teen": "🎉 🙋 Let’s dive in! 🐕",
+          "teen": "🎉 🧑 Let’s dive in! 🐕",
+          "young_adult": "🎉 👨‍🎓 Let’s dive in! 🐕",
+          "adult": "🎉 👩‍💼 Let’s dive in! 🐕",
+          "middle_age": "🎉 👨‍💼 Let’s dive in! 🐕",
+          "senior": "🎉 👴 Let’s dive in! 🐕",
+          "elder": "🎉 👵 Let’s dive in! 🐕"
+        },
+        "grandmother": {
+          "infant": "Oh, my dear, 👶 Let’s dive in! 💕",
+          "toddler": "Oh, my dear, 👧 Let’s dive in! 💕",
+          "early_childhood": "Oh, my dear, 🧒 Let’s dive in! 💕",
+          "middle_childhood": "Oh, my dear, 👦 Let’s dive in! 💕",
+          "pre_teen": "Oh, my dear, 🙋 Let’s dive in! 💕",
+          "teen": "Oh, my dear, 🧑 Let’s dive in! 💕",
+          "young_adult": "Oh, my dear, 👨‍🎓 Let’s dive in! 💕",
+          "adult": "Oh, my dear, 👩‍💼 Let’s dive in! 💕",
+          "middle_age": "Oh, my dear, 👨‍💼 Let’s dive in! 💕",
+          "senior": "Oh, my dear, 👴 Let’s dive in! 💕",
+          "elder": "Oh, my dear, 👵 Let’s dive in! 💕"
+        }
+      }
+    },
+    {
+      "type": "middle",
+      "display_name": "Middle",
+      "avatar_expression": "question_curious",
+      "question_number": "Q2",
+      "duration": "2-3 minutes",
+      "question_text": "Oh, my dear, 👵 How do puppies learn to communicate with humans? 💕",
+      "choices": {
+        "option_a": {
+          "text": "Oh, my dear, 👵 Only through barking and whining 💕",
+          "teaching_moment": {
+            "neutral": {
+              "infant": "👶 Not quite – try the other option!",
+              "toddler": "👧 Not quite – try the other option!",
+              "early_childhood": "🧒 Not quite – try the other option!",
+              "middle_childhood": "👦 Not quite – try the other option!",
+              "pre_teen": "🙋 Not quite – try the other option!",
+              "teen": "🧑 Not quite – try the other option!",
+              "young_adult": "👨‍🎓 Not quite – try the other option!",
+              "adult": "👩‍💼 Not quite – try the other option!",
+              "middle_age": "👨‍💼 Not quite – try the other option!",
+              "senior": "👴 Not quite – try the other option!",
+              "elder": "👵 Not quite – try the other option!"
+            },
+            "fun": {
+              "infant": "🎉 👶 Not quite – try the other option! 🐕",
+              "toddler": "🎉 👧 Not quite – try the other option! 🐕",
+              "early_childhood": "🎉 🧒 Not quite – try the other option! 🐕",
+              "middle_childhood": "🎉 👦 Not quite – try the other option! 🐕",
+              "pre_teen": "🎉 🙋 Not quite – try the other option! 🐕",
+              "teen": "🎉 🧑 Not quite – try the other option! 🐕",
+              "young_adult": "🎉 👨‍🎓 Not quite – try the other option! 🐕",
+              "adult": "🎉 👩‍💼 Not quite – try the other option! 🐕",
+              "middle_age": "🎉 👨‍💼 Not quite – try the other option! 🐕",
+              "senior": "🎉 👴 Not quite – try the other option! 🐕",
+              "elder": "🎉 👵 Not quite – try the other option! 🐕"
+            },
+            "grandmother": {
+              "infant": "Oh, my dear, 👶 Not quite – try the other option! 💕",
+              "toddler": "Oh, my dear, 👧 Not quite – try the other option! 💕",
+              "early_childhood": "Oh, my dear, 🧒 Not quite – try the other option! 💕",
+              "middle_childhood": "Oh, my dear, 👦 Not quite – try the other option! 💕",
+              "pre_teen": "Oh, my dear, 🙋 Not quite – try the other option! 💕",
+              "teen": "Oh, my dear, 🧑 Not quite – try the other option! 💕",
+              "young_adult": "Oh, my dear, 👨‍🎓 Not quite – try the other option! 💕",
+              "adult": "Oh, my dear, 👩‍💼 Not quite – try the other option! 💕",
+              "middle_age": "Oh, my dear, 👨‍💼 Not quite – try the other option! 💕",
+              "senior": "Oh, my dear, 👴 Not quite – try the other option! 💕",
+              "elder": "Oh, my dear, 👵 Not quite – try the other option! 💕"
+            }
+          },
+          "response_script": {
+            "neutral": {
+              "infant": "👶 Let’s think again about what puppies really need.",
+              "toddler": "👧 Let’s think again about what puppies really need.",
+              "early_childhood": "🧒 Let’s think again about what puppies really need.",
+              "middle_childhood": "👦 Let’s think again about what puppies really need.",
+              "pre_teen": "🙋 Let’s think again about what puppies really need.",
+              "teen": "🧑 Let’s think again about what puppies really need.",
+              "young_adult": "👨‍🎓 Let’s think again about what puppies really need.",
+              "adult": "👩‍💼 Let’s think again about what puppies really need.",
+              "middle_age": "👨‍💼 Let’s think again about what puppies really need.",
+              "senior": "👴 Let’s think again about what puppies really need.",
+              "elder": "👵 Let’s think again about what puppies really need."
+            },
+            "fun": {
+              "infant": "🎉 👶 Let’s think again about what puppies really need. 🐕",
+              "toddler": "🎉 👧 Let’s think again about what puppies really need. 🐕",
+              "early_childhood": "🎉 🧒 Let’s think again about what puppies really need. 🐕",
+              "middle_childhood": "🎉 👦 Let’s think again about what puppies really need. 🐕",
+              "pre_teen": "🎉 🙋 Let’s think again about what puppies really need. 🐕",
+              "teen": "🎉 🧑 Let’s think again about what puppies really need. 🐕",
+              "young_adult": "🎉 👨‍🎓 Let’s think again about what puppies really need. 🐕",
+              "adult": "🎉 👩‍💼 Let’s think again about what puppies really need. 🐕",
+              "middle_age": "🎉 👨‍💼 Let’s think again about what puppies really need. 🐕",
+              "senior": "🎉 👴 Let’s think again about what puppies really need. 🐕",
+              "elder": "🎉 👵 Let’s think again about what puppies really need. 🐕"
+            },
+            "grandmother": {
+              "infant": "Oh, my dear, 👶 Let’s think again about what puppies really need. 💕",
+              "toddler": "Oh, my dear, 👧 Let’s think again about what puppies really need. 💕",
+              "early_childhood": "Oh, my dear, 🧒 Let’s think again about what puppies really need. 💕",
+              "middle_childhood": "Oh, my dear, 👦 Let’s think again about what puppies really need. 💕",
+              "pre_teen": "Oh, my dear, 🙋 Let’s think again about what puppies really need. 💕",
+              "teen": "Oh, my dear, 🧑 Let’s think again about what puppies really need. 💕",
+              "young_adult": "Oh, my dear, 👨‍🎓 Let’s think again about what puppies really need. 💕",
+              "adult": "Oh, my dear, 👩‍💼 Let’s think again about what puppies really need. 💕",
+              "middle_age": "Oh, my dear, 👨‍💼 Let’s think again about what puppies really need. 💕",
+              "senior": "Oh, my dear, 👴 Let’s think again about what puppies really need. 💕",
+              "elder": "Oh, my dear, 👵 Let’s think again about what puppies really need. 💕"
+            }
+          }
+        },
+        "option_b": {
+          "text": "Oh, my dear, 👵 Through body language, sounds and facial expressions 💕",
+          "teaching_moment": {
+            "neutral": {
+              "infant": "👶 Exactly!",
+              "toddler": "👧 Exactly!",
+              "early_childhood": "🧒 Exactly!",
+              "middle_childhood": "👦 Exactly!",
+              "pre_teen": "🙋 Exactly!",
+              "teen": "🧑 Exactly!",
+              "young_adult": "👨‍🎓 Exactly!",
+              "adult": "👩‍💼 Exactly!",
+              "middle_age": "👨‍💼 Exactly!",
+              "senior": "👴 Exactly!",
+              "elder": "👵 Exactly!"
+            },
+            "fun": {
+              "infant": "🎉 👶 Exactly! 🐕",
+              "toddler": "🎉 👧 Exactly! 🐕",
+              "early_childhood": "🎉 🧒 Exactly! 🐕",
+              "middle_childhood": "🎉 👦 Exactly! 🐕",
+              "pre_teen": "🎉 🙋 Exactly! 🐕",
+              "teen": "🎉 🧑 Exactly! 🐕",
+              "young_adult": "🎉 👨‍🎓 Exactly! 🐕",
+              "adult": "🎉 👩‍💼 Exactly! 🐕",
+              "middle_age": "🎉 👨‍💼 Exactly! 🐕",
+              "senior": "🎉 👴 Exactly! 🐕",
+              "elder": "🎉 👵 Exactly! 🐕"
+            },
+            "grandmother": {
+              "infant": "Oh, my dear, 👶 Exactly! 💕",
+              "toddler": "Oh, my dear, 👧 Exactly! 💕",
+              "early_childhood": "Oh, my dear, 🧒 Exactly! 💕",
+              "middle_childhood": "Oh, my dear, 👦 Exactly! 💕",
+              "pre_teen": "Oh, my dear, 🙋 Exactly! 💕",
+              "teen": "Oh, my dear, 🧑 Exactly! 💕",
+              "young_adult": "Oh, my dear, 👨‍🎓 Exactly! 💕",
+              "adult": "Oh, my dear, 👩‍💼 Exactly! 💕",
+              "middle_age": "Oh, my dear, 👨‍💼 Exactly! 💕",
+              "senior": "Oh, my dear, 👴 Exactly! 💕",
+              "elder": "Oh, my dear, 👵 Exactly! 💕"
+            }
+          },
+          "response_script": {
+            "neutral": {
+              "infant": "👶 Great insight – let’s keep going!",
+              "toddler": "👧 Great insight – let’s keep going!",
+              "early_childhood": "🧒 Great insight – let’s keep going!",
+              "middle_childhood": "👦 Great insight – let’s keep going!",
+              "pre_teen": "🙋 Great insight – let’s keep going!",
+              "teen": "🧑 Great insight – let’s keep going!",
+              "young_adult": "👨‍🎓 Great insight – let’s keep going!",
+              "adult": "👩‍💼 Great insight – let’s keep going!",
+              "middle_age": "👨‍💼 Great insight – let’s keep going!",
+              "senior": "👴 Great insight – let’s keep going!",
+              "elder": "👵 Great insight – let’s keep going!"
+            },
+            "fun": {
+              "infant": "🎉 👶 Great insight – let’s keep going! 🐕",
+              "toddler": "🎉 👧 Great insight – let’s keep going! 🐕",
+              "early_childhood": "🎉 🧒 Great insight – let’s keep going! 🐕",
+              "middle_childhood": "🎉 👦 Great insight – let’s keep going! 🐕",
+              "pre_teen": "🎉 🙋 Great insight – let’s keep going! 🐕",
+              "teen": "🎉 🧑 Great insight – let’s keep going! 🐕",
+              "young_adult": "🎉 👨‍🎓 Great insight – let’s keep going! 🐕",
+              "adult": "🎉 👩‍💼 Great insight – let’s keep going! 🐕",
+              "middle_age": "🎉 👨‍💼 Great insight – let’s keep going! 🐕",
+              "senior": "🎉 👴 Great insight – let’s keep going! 🐕",
+              "elder": "🎉 👵 Great insight – let’s keep going! 🐕"
+            },
+            "grandmother": {
+              "infant": "Oh, my dear, 👶 Great insight – let’s keep going! 💕",
+              "toddler": "Oh, my dear, 👧 Great insight – let’s keep going! 💕",
+              "early_childhood": "Oh, my dear, 🧒 Great insight – let’s keep going! 💕",
+              "middle_childhood": "Oh, my dear, 👦 Great insight – let’s keep going! 💕",
+              "pre_teen": "Oh, my dear, 🙋 Great insight – let’s keep going! 💕",
+              "teen": "Oh, my dear, 🧑 Great insight – let’s keep going! 💕",
+              "young_adult": "Oh, my dear, 👨‍🎓 Great insight – let’s keep going! 💕",
+              "adult": "Oh, my dear, 👩‍💼 Great insight – let’s keep going! 💕",
+              "middle_age": "Oh, my dear, 👨‍💼 Great insight – let’s keep going! 💕",
+              "senior": "Oh, my dear, 👴 Great insight – let’s keep going! 💕",
+              "elder": "Oh, my dear, 👵 Great insight – let’s keep going! 💕"
+            }
+          }
+        }
+      },
+      "avatar_script": {
+        "neutral": {
+          "infant": "👶 Let’s dive in!",
+          "toddler": "👧 Let’s dive in!",
+          "early_childhood": "🧒 Let’s dive in!",
+          "middle_childhood": "👦 Let’s dive in!",
+          "pre_teen": "🙋 Let’s dive in!",
+          "teen": "🧑 Let’s dive in!",
+          "young_adult": "👨‍🎓 Let’s dive in!",
+          "adult": "👩‍💼 Let’s dive in!",
+          "middle_age": "👨‍💼 Let’s dive in!",
+          "senior": "👴 Let’s dive in!",
+          "elder": "👵 Let’s dive in!"
+        },
+        "fun": {
+          "infant": "🎉 👶 Let’s dive in! 🐕",
+          "toddler": "🎉 👧 Let’s dive in! 🐕",
+          "early_childhood": "🎉 🧒 Let’s dive in! 🐕",
+          "middle_childhood": "🎉 👦 Let’s dive in! 🐕",
+          "pre_teen": "🎉 🙋 Let’s dive in! 🐕",
+          "teen": "🎉 🧑 Let’s dive in! 🐕",
+          "young_adult": "🎉 👨‍🎓 Let’s dive in! 🐕",
+          "adult": "🎉 👩‍💼 Let’s dive in! 🐕",
+          "middle_age": "🎉 👨‍💼 Let’s dive in! 🐕",
+          "senior": "🎉 👴 Let’s dive in! 🐕",
+          "elder": "🎉 👵 Let’s dive in! 🐕"
+        },
+        "grandmother": {
+          "infant": "Oh, my dear, 👶 Let’s dive in! 💕",
+          "toddler": "Oh, my dear, 👧 Let’s dive in! 💕",
+          "early_childhood": "Oh, my dear, 🧒 Let’s dive in! 💕",
+          "middle_childhood": "Oh, my dear, 👦 Let’s dive in! 💕",
+          "pre_teen": "Oh, my dear, 🙋 Let’s dive in! 💕",
+          "teen": "Oh, my dear, 🧑 Let’s dive in! 💕",
+          "young_adult": "Oh, my dear, 👨‍🎓 Let’s dive in! 💕",
+          "adult": "Oh, my dear, 👩‍💼 Let’s dive in! 💕",
+          "middle_age": "Oh, my dear, 👨‍💼 Let’s dive in! 💕",
+          "senior": "Oh, my dear, 👴 Let’s dive in! 💕",
+          "elder": "Oh, my dear, 👵 Let’s dive in! 💕"
+        }
+      }
+    },
+    {
+      "type": "end",
+      "display_name": "End",
+      "avatar_expression": "question_curious",
+      "question_number": "Q3",
+      "duration": "2-3 minutes",
+      "question_text": "Oh, my dear, 👵 What can we learn from the way puppies explore the world? 💕",
+      "choices": {
+        "option_a": {
+          "text": "Oh, my dear, 👵 To be cautious and avoid new things 💕",
+          "teaching_moment": {
+            "neutral": {
+              "infant": "👶 Not quite – try the other option!",
+              "toddler": "👧 Not quite – try the other option!",
+              "early_childhood": "🧒 Not quite – try the other option!",
+              "middle_childhood": "👦 Not quite – try the other option!",
+              "pre_teen": "🙋 Not quite – try the other option!",
+              "teen": "🧑 Not quite – try the other option!",
+              "young_adult": "👨‍🎓 Not quite – try the other option!",
+              "adult": "👩‍💼 Not quite – try the other option!",
+              "middle_age": "👨‍💼 Not quite – try the other option!",
+              "senior": "👴 Not quite – try the other option!",
+              "elder": "👵 Not quite – try the other option!"
+            },
+            "fun": {
+              "infant": "🎉 👶 Not quite – try the other option! 🐕",
+              "toddler": "🎉 👧 Not quite – try the other option! 🐕",
+              "early_childhood": "🎉 🧒 Not quite – try the other option! 🐕",
+              "middle_childhood": "🎉 👦 Not quite – try the other option! 🐕",
+              "pre_teen": "🎉 🙋 Not quite – try the other option! 🐕",
+              "teen": "🎉 🧑 Not quite – try the other option! 🐕",
+              "young_adult": "🎉 👨‍🎓 Not quite – try the other option! 🐕",
+              "adult": "🎉 👩‍💼 Not quite – try the other option! 🐕",
+              "middle_age": "🎉 👨‍💼 Not quite – try the other option! 🐕",
+              "senior": "🎉 👴 Not quite – try the other option! 🐕",
+              "elder": "🎉 👵 Not quite – try the other option! 🐕"
+            },
+            "grandmother": {
+              "infant": "Oh, my dear, 👶 Not quite – try the other option! 💕",
+              "toddler": "Oh, my dear, 👧 Not quite – try the other option! 💕",
+              "early_childhood": "Oh, my dear, 🧒 Not quite – try the other option! 💕",
+              "middle_childhood": "Oh, my dear, 👦 Not quite – try the other option! 💕",
+              "pre_teen": "Oh, my dear, 🙋 Not quite – try the other option! 💕",
+              "teen": "Oh, my dear, 🧑 Not quite – try the other option! 💕",
+              "young_adult": "Oh, my dear, 👨‍🎓 Not quite – try the other option! 💕",
+              "adult": "Oh, my dear, 👩‍💼 Not quite – try the other option! 💕",
+              "middle_age": "Oh, my dear, 👨‍💼 Not quite – try the other option! 💕",
+              "senior": "Oh, my dear, 👴 Not quite – try the other option! 💕",
+              "elder": "Oh, my dear, 👵 Not quite – try the other option! 💕"
+            }
+          },
+          "response_script": {
+            "neutral": {
+              "infant": "👶 Let’s think again about what puppies really need.",
+              "toddler": "👧 Let’s think again about what puppies really need.",
+              "early_childhood": "🧒 Let’s think again about what puppies really need.",
+              "middle_childhood": "👦 Let’s think again about what puppies really need.",
+              "pre_teen": "🙋 Let’s think again about what puppies really need.",
+              "teen": "🧑 Let’s think again about what puppies really need.",
+              "young_adult": "👨‍🎓 Let’s think again about what puppies really need.",
+              "adult": "👩‍💼 Let’s think again about what puppies really need.",
+              "middle_age": "👨‍💼 Let’s think again about what puppies really need.",
+              "senior": "👴 Let’s think again about what puppies really need.",
+              "elder": "👵 Let’s think again about what puppies really need."
+            },
+            "fun": {
+              "infant": "🎉 👶 Let’s think again about what puppies really need. 🐕",
+              "toddler": "🎉 👧 Let’s think again about what puppies really need. 🐕",
+              "early_childhood": "🎉 🧒 Let’s think again about what puppies really need. 🐕",
+              "middle_childhood": "🎉 👦 Let’s think again about what puppies really need. 🐕",
+              "pre_teen": "🎉 🙋 Let’s think again about what puppies really need. 🐕",
+              "teen": "🎉 🧑 Let’s think again about what puppies really need. 🐕",
+              "young_adult": "🎉 👨‍🎓 Let’s think again about what puppies really need. 🐕",
+              "adult": "🎉 👩‍💼 Let’s think again about what puppies really need. 🐕",
+              "middle_age": "🎉 👨‍💼 Let’s think again about what puppies really need. 🐕",
+              "senior": "🎉 👴 Let’s think again about what puppies really need. 🐕",
+              "elder": "🎉 👵 Let’s think again about what puppies really need. 🐕"
+            },
+            "grandmother": {
+              "infant": "Oh, my dear, 👶 Let’s think again about what puppies really need. 💕",
+              "toddler": "Oh, my dear, 👧 Let’s think again about what puppies really need. 💕",
+              "early_childhood": "Oh, my dear, 🧒 Let’s think again about what puppies really need. 💕",
+              "middle_childhood": "Oh, my dear, 👦 Let’s think again about what puppies really need. 💕",
+              "pre_teen": "Oh, my dear, 🙋 Let’s think again about what puppies really need. 💕",
+              "teen": "Oh, my dear, 🧑 Let’s think again about what puppies really need. 💕",
+              "young_adult": "Oh, my dear, 👨‍🎓 Let’s think again about what puppies really need. 💕",
+              "adult": "Oh, my dear, 👩‍💼 Let’s think again about what puppies really need. 💕",
+              "middle_age": "Oh, my dear, 👨‍💼 Let’s think again about what puppies really need. 💕",
+              "senior": "Oh, my dear, 👴 Let’s think again about what puppies really need. 💕",
+              "elder": "Oh, my dear, 👵 Let’s think again about what puppies really need. 💕"
+            }
+          }
+        },
+        "option_b": {
+          "text": "Oh, my dear, 👵 To be curious, playful and open to new experiences 💕",
+          "teaching_moment": {
+            "neutral": {
+              "infant": "👶 Exactly!",
+              "toddler": "👧 Exactly!",
+              "early_childhood": "🧒 Exactly!",
+              "middle_childhood": "👦 Exactly!",
+              "pre_teen": "🙋 Exactly!",
+              "teen": "🧑 Exactly!",
+              "young_adult": "👨‍🎓 Exactly!",
+              "adult": "👩‍💼 Exactly!",
+              "middle_age": "👨‍💼 Exactly!",
+              "senior": "👴 Exactly!",
+              "elder": "👵 Exactly!"
+            },
+            "fun": {
+              "infant": "🎉 👶 Exactly! 🐕",
+              "toddler": "🎉 👧 Exactly! 🐕",
+              "early_childhood": "🎉 🧒 Exactly! 🐕",
+              "middle_childhood": "🎉 👦 Exactly! 🐕",
+              "pre_teen": "🎉 🙋 Exactly! 🐕",
+              "teen": "🎉 🧑 Exactly! 🐕",
+              "young_adult": "🎉 👨‍🎓 Exactly! 🐕",
+              "adult": "🎉 👩‍💼 Exactly! 🐕",
+              "middle_age": "🎉 👨‍💼 Exactly! 🐕",
+              "senior": "🎉 👴 Exactly! 🐕",
+              "elder": "🎉 👵 Exactly! 🐕"
+            },
+            "grandmother": {
+              "infant": "Oh, my dear, 👶 Exactly! 💕",
+              "toddler": "Oh, my dear, 👧 Exactly! 💕",
+              "early_childhood": "Oh, my dear, 🧒 Exactly! 💕",
+              "middle_childhood": "Oh, my dear, 👦 Exactly! 💕",
+              "pre_teen": "Oh, my dear, 🙋 Exactly! 💕",
+              "teen": "Oh, my dear, 🧑 Exactly! 💕",
+              "young_adult": "Oh, my dear, 👨‍🎓 Exactly! 💕",
+              "adult": "Oh, my dear, 👩‍💼 Exactly! 💕",
+              "middle_age": "Oh, my dear, 👨‍💼 Exactly! 💕",
+              "senior": "Oh, my dear, 👴 Exactly! 💕",
+              "elder": "Oh, my dear, 👵 Exactly! 💕"
+            }
+          },
+          "response_script": {
+            "neutral": {
+              "infant": "👶 Great insight – let’s keep going!",
+              "toddler": "👧 Great insight – let’s keep going!",
+              "early_childhood": "🧒 Great insight – let’s keep going!",
+              "middle_childhood": "👦 Great insight – let’s keep going!",
+              "pre_teen": "🙋 Great insight – let’s keep going!",
+              "teen": "🧑 Great insight – let’s keep going!",
+              "young_adult": "👨‍🎓 Great insight – let’s keep going!",
+              "adult": "👩‍💼 Great insight – let’s keep going!",
+              "middle_age": "👨‍💼 Great insight – let’s keep going!",
+              "senior": "👴 Great insight – let’s keep going!",
+              "elder": "👵 Great insight – let’s keep going!"
+            },
+            "fun": {
+              "infant": "🎉 👶 Great insight – let’s keep going! 🐕",
+              "toddler": "🎉 👧 Great insight – let’s keep going! 🐕",
+              "early_childhood": "🎉 🧒 Great insight – let’s keep going! 🐕",
+              "middle_childhood": "🎉 👦 Great insight – let’s keep going! 🐕",
+              "pre_teen": "🎉 🙋 Great insight – let’s keep going! 🐕",
+              "teen": "🎉 🧑 Great insight – let’s keep going! 🐕",
+              "young_adult": "🎉 👨‍🎓 Great insight – let’s keep going! 🐕",
+              "adult": "🎉 👩‍💼 Great insight – let’s keep going! 🐕",
+              "middle_age": "🎉 👨‍💼 Great insight – let’s keep going! 🐕",
+              "senior": "🎉 👴 Great insight – let’s keep going! 🐕",
+              "elder": "🎉 👵 Great insight – let’s keep going! 🐕"
+            },
+            "grandmother": {
+              "infant": "Oh, my dear, 👶 Great insight – let’s keep going! 💕",
+              "toddler": "Oh, my dear, 👧 Great insight – let’s keep going! 💕",
+              "early_childhood": "Oh, my dear, 🧒 Great insight – let’s keep going! 💕",
+              "middle_childhood": "Oh, my dear, 👦 Great insight – let’s keep going! 💕",
+              "pre_teen": "Oh, my dear, 🙋 Great insight – let’s keep going! 💕",
+              "teen": "Oh, my dear, 🧑 Great insight – let’s keep going! 💕",
+              "young_adult": "Oh, my dear, 👨‍🎓 Great insight – let’s keep going! 💕",
+              "adult": "Oh, my dear, 👩‍💼 Great insight – let’s keep going! 💕",
+              "middle_age": "Oh, my dear, 👨‍💼 Great insight – let’s keep going! 💕",
+              "senior": "Oh, my dear, 👴 Great insight – let’s keep going! 💕",
+              "elder": "Oh, my dear, 👵 Great insight – let’s keep going! 💕"
+            }
+          }
+        }
+      },
+      "avatar_script": {
+        "neutral": {
+          "infant": "👶 Let’s dive in!",
+          "toddler": "👧 Let’s dive in!",
+          "early_childhood": "🧒 Let’s dive in!",
+          "middle_childhood": "👦 Let’s dive in!",
+          "pre_teen": "🙋 Let’s dive in!",
+          "teen": "🧑 Let’s dive in!",
+          "young_adult": "👨‍🎓 Let’s dive in!",
+          "adult": "👩‍💼 Let’s dive in!",
+          "middle_age": "👨‍💼 Let’s dive in!",
+          "senior": "👴 Let’s dive in!",
+          "elder": "👵 Let’s dive in!"
+        },
+        "fun": {
+          "infant": "🎉 👶 Let’s dive in! 🐕",
+          "toddler": "🎉 👧 Let’s dive in! 🐕",
+          "early_childhood": "🎉 🧒 Let’s dive in! 🐕",
+          "middle_childhood": "🎉 👦 Let’s dive in! 🐕",
+          "pre_teen": "🎉 🙋 Let’s dive in! 🐕",
+          "teen": "🎉 🧑 Let’s dive in! 🐕",
+          "young_adult": "🎉 👨‍🎓 Let’s dive in! 🐕",
+          "adult": "🎉 👩‍💼 Let’s dive in! 🐕",
+          "middle_age": "🎉 👨‍💼 Let’s dive in! 🐕",
+          "senior": "🎉 👴 Let’s dive in! 🐕",
+          "elder": "🎉 👵 Let’s dive in! 🐕"
+        },
+        "grandmother": {
+          "infant": "Oh, my dear, 👶 Let’s dive in! 💕",
+          "toddler": "Oh, my dear, 👧 Let’s dive in! 💕",
+          "early_childhood": "Oh, my dear, 🧒 Let’s dive in! 💕",
+          "middle_childhood": "Oh, my dear, 👦 Let’s dive in! 💕",
+          "pre_teen": "Oh, my dear, 🙋 Let’s dive in! 💕",
+          "teen": "Oh, my dear, 🧑 Let’s dive in! 💕",
+          "young_adult": "Oh, my dear, 👨‍🎓 Let’s dive in! 💕",
+          "adult": "Oh, my dear, 👩‍💼 Let’s dive in! 💕",
+          "middle_age": "Oh, my dear, 👨‍💼 Let’s dive in! 💕",
+          "senior": "Oh, my dear, 👴 Let’s dive in! 💕",
+          "elder": "Oh, my dear, 👵 Let’s dive in! 💕"
+        }
+      }
+    },
+    {
+      "type": "wisdom",
+      "display_name": "Wisdom",
+      "avatar_expression": "happy_celebrating",
+      "duration": "1-2 minutes",
+      "content": {
+        "daily_fortune": {
+          "neutral": {
+            "infant": "👶 Stay curious and spread joy like a puppy today!",
+            "toddler": "👧 Stay curious and spread joy like a puppy today!",
+            "early_childhood": "🧒 Stay curious and spread joy like a puppy today!",
+            "middle_childhood": "👦 Stay curious and spread joy like a puppy today!",
+            "pre_teen": "🙋 Stay curious and spread joy like a puppy today!",
+            "teen": "🧑 Stay curious and spread joy like a puppy today!",
+            "young_adult": "👨‍🎓 Stay curious and spread joy like a puppy today!",
+            "adult": "👩‍💼 Stay curious and spread joy like a puppy today!",
+            "middle_age": "👨‍💼 Stay curious and spread joy like a puppy today!",
+            "senior": "👴 Stay curious and spread joy like a puppy today!",
+            "elder": "👵 Stay curious and spread joy like a puppy today!"
+          },
+          "fun": {
+            "infant": "🎉 👶 Stay curious and spread joy like a puppy today! 🐕",
+            "toddler": "🎉 👧 Stay curious and spread joy like a puppy today! 🐕",
+            "early_childhood": "🎉 🧒 Stay curious and spread joy like a puppy today! 🐕",
+            "middle_childhood": "🎉 👦 Stay curious and spread joy like a puppy today! 🐕",
+            "pre_teen": "🎉 🙋 Stay curious and spread joy like a puppy today! 🐕",
+            "teen": "🎉 🧑 Stay curious and spread joy like a puppy today! 🐕",
+            "young_adult": "🎉 👨‍🎓 Stay curious and spread joy like a puppy today! 🐕",
+            "adult": "🎉 👩‍💼 Stay curious and spread joy like a puppy today! 🐕",
+            "middle_age": "🎉 👨‍💼 Stay curious and spread joy like a puppy today! 🐕",
+            "senior": "🎉 👴 Stay curious and spread joy like a puppy today! 🐕",
+            "elder": "🎉 👵 Stay curious and spread joy like a puppy today! 🐕"
+          },
+          "grandmother": {
+            "infant": "Oh, my dear, 👶 Stay curious and spread joy like a puppy today! 💕",
+            "toddler": "Oh, my dear, 👧 Stay curious and spread joy like a puppy today! 💕",
+            "early_childhood": "Oh, my dear, 🧒 Stay curious and spread joy like a puppy today! 💕",
+            "middle_childhood": "Oh, my dear, 👦 Stay curious and spread joy like a puppy today! 💕",
+            "pre_teen": "Oh, my dear, 🙋 Stay curious and spread joy like a puppy today! 💕",
+            "teen": "Oh, my dear, 🧑 Stay curious and spread joy like a puppy today! 💕",
+            "young_adult": "Oh, my dear, 👨‍🎓 Stay curious and spread joy like a puppy today! 💕",
+            "adult": "Oh, my dear, 👩‍💼 Stay curious and spread joy like a puppy today! 💕",
+            "middle_age": "Oh, my dear, 👨‍💼 Stay curious and spread joy like a puppy today! 💕",
+            "senior": "Oh, my dear, 👴 Stay curious and spread joy like a puppy today! 💕",
+            "elder": "Oh, my dear, 👵 Stay curious and spread joy like a puppy today! 💕"
+          }
+        }
+      },
+      "avatar_script": {
+        "neutral": {
+          "infant": "👶 Here’s today’s puppy-inspired fortune:",
+          "toddler": "👧 Here’s today’s puppy-inspired fortune:",
+          "early_childhood": "🧒 Here’s today’s puppy-inspired fortune:",
+          "middle_childhood": "👦 Here’s today’s puppy-inspired fortune:",
+          "pre_teen": "🙋 Here’s today’s puppy-inspired fortune:",
+          "teen": "🧑 Here’s today’s puppy-inspired fortune:",
+          "young_adult": "👨‍🎓 Here’s today’s puppy-inspired fortune:",
+          "adult": "👩‍💼 Here’s today’s puppy-inspired fortune:",
+          "middle_age": "👨‍💼 Here’s today’s puppy-inspired fortune:",
+          "senior": "👴 Here’s today’s puppy-inspired fortune:",
+          "elder": "👵 Here’s today’s puppy-inspired fortune:"
+        },
+        "fun": {
+          "infant": "🎉 👶 Here’s today’s puppy-inspired fortune: 🐕",
+          "toddler": "🎉 👧 Here’s today’s puppy-inspired fortune: 🐕",
+          "early_childhood": "🎉 🧒 Here’s today’s puppy-inspired fortune: 🐕",
+          "middle_childhood": "🎉 👦 Here’s today’s puppy-inspired fortune: 🐕",
+          "pre_teen": "🎉 🙋 Here’s today’s puppy-inspired fortune: 🐕",
+          "teen": "🎉 🧑 Here’s today’s puppy-inspired fortune: 🐕",
+          "young_adult": "🎉 👨‍🎓 Here’s today’s puppy-inspired fortune: 🐕",
+          "adult": "🎉 👩‍💼 Here’s today’s puppy-inspired fortune: 🐕",
+          "middle_age": "🎉 👨‍💼 Here’s today’s puppy-inspired fortune: 🐕",
+          "senior": "🎉 👴 Here’s today’s puppy-inspired fortune: 🐕",
+          "elder": "🎉 👵 Here’s today’s puppy-inspired fortune: 🐕"
+        },
+        "grandmother": {
+          "infant": "Oh, my dear, 👶 Here’s today’s puppy-inspired fortune: 💕",
+          "toddler": "Oh, my dear, 👧 Here’s today’s puppy-inspired fortune: 💕",
+          "early_childhood": "Oh, my dear, 🧒 Here’s today’s puppy-inspired fortune: 💕",
+          "middle_childhood": "Oh, my dear, 👦 Here’s today’s puppy-inspired fortune: 💕",
+          "pre_teen": "Oh, my dear, 🙋 Here’s today’s puppy-inspired fortune: 💕",
+          "teen": "Oh, my dear, 🧑 Here’s today’s puppy-inspired fortune: 💕",
+          "young_adult": "Oh, my dear, 👨‍🎓 Here’s today’s puppy-inspired fortune: 💕",
+          "adult": "Oh, my dear, 👩‍💼 Here’s today’s puppy-inspired fortune: 💕",
+          "middle_age": "Oh, my dear, 👨‍💼 Here’s today’s puppy-inspired fortune: 💕",
+          "senior": "Oh, my dear, 👴 Here’s today’s puppy-inspired fortune: 💕",
+          "elder": "Oh, my dear, 👵 Here’s today’s puppy-inspired fortune: 💕"
+        }
+      }
+    }
+  ],
+  "variants": {
+    "age_groups": [
+      "infant",
+      "toddler",
+      "early_childhood",
+      "middle_childhood",
+      "pre_teen",
+      "teen",
+      "young_adult",
+      "adult",
+      "middle_age",
+      "senior",
+      "elder"
+    ],
+    "tones": [
+      "neutral",
+      "fun",
+      "grandmother"
+    ],
+    "languages": [
+      "english"
+    ],
+    "avatars": [
+      "kelly",
+      "ken"
+    ]
+  },
+  "metadata": {
+    "generated": "2025-08-06T19:00:45.514Z"
+  }
+}

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Railway Audio Playback</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #fff;
+        }
+        .debug-section {
+            background: #2a2a2a;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid #444;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        .log {
+            background: #000;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 12px;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 10px;
+        }
+        .success { color: #4CAF50; }
+        .error { color: #f44336; }
+        .info { color: #2196F3; }
+        .warning { color: #ff9800; }
+    </style>
+</head>
+<body>
+    <h1>🔍 Debug Railway Audio Playback</h1>
+    
+    <div class="debug-section">
+        <h2>Test 1: Direct Audio Element (No Web Audio API)</h2>
+        <p>This bypasses the AudioService and plays directly</p>
+        <button onclick="testDirectAudio()">Test Direct Audio</button>
+        <div id="directLog" class="log"></div>
+    </div>
+    
+    <div class="debug-section">
+        <h2>Test 2: AudioService (Current Implementation)</h2>
+        <p>Uses the current AudioService with analyser</p>
+        <button onclick="testAudioService()">Test AudioService</button>
+        <div id="serviceLog" class="log"></div>
+    </div>
+    
+    <div class="debug-section">
+        <h2>Test 3: Fixed AudioService (Connected to Output)</h2>
+        <p>Modified version that connects to audio output</p>
+        <button onclick="testFixedAudioService()">Test Fixed AudioService</button>
+        <div id="fixedLog" class="log"></div>
+    </div>
+    
+    <div class="debug-section">
+        <h2>Test 4: Raw Fetch Test</h2>
+        <p>Tests the Railway TTS API directly</p>
+        <button onclick="testRawFetch()">Test Raw API</button>
+        <div id="rawLog" class="log"></div>
+    </div>
+
+    <!-- Load Railway TTS Integration -->
+    <script src="railway-tts-integration.js"></script>
+    <script src="audio-service.js"></script>
+    
+    <script>
+        const RAILWAY_URL = 'https://mynextlesson-synthesis-production.up.railway.app';
+        
+        function log(elementId, message, type = 'info') {
+            const logEl = document.getElementById(elementId);
+            const timestamp = new Date().toLocaleTimeString();
+            const colorClass = type;
+            logEl.innerHTML += `<span class="${colorClass}">[${timestamp}] ${message}</span>\n`;
+            logEl.scrollTop = logEl.scrollHeight;
+        }
+        
+        // Test 1: Direct Audio
+        async function testDirectAudio() {
+            const logId = 'directLog';
+            log(logId, 'Starting direct audio test...', 'info');
+            
+            try {
+                const tts = new RailwayTTS(RAILWAY_URL);
+                log(logId, 'Created RailwayTTS instance', 'success');
+                
+                const result = await tts.generateSpeech('Testing direct audio playback', 'kelly');
+                log(logId, `Generated speech: Duration ${result.duration}s`, 'success');
+                log(logId, `Audio URL: ${result.audioUrl.substring(0, 50)}...`, 'info');
+                
+                const audio = new Audio(result.audioUrl);
+                log(logId, 'Created Audio element', 'success');
+                
+                audio.addEventListener('play', () => log(logId, '▶️ Audio started playing', 'success'));
+                audio.addEventListener('ended', () => log(logId, '⏹️ Audio ended', 'success'));
+                audio.addEventListener('error', (e) => log(logId, `Audio error: ${e.type}`, 'error'));
+                
+                audio.volume = 1.0;
+                await audio.play();
+                log(logId, 'Called audio.play() - you should hear audio!', 'success');
+                
+            } catch (error) {
+                log(logId, `Error: ${error.message}`, 'error');
+                console.error(error);
+            }
+        }
+        
+        // Test 2: Current AudioService
+        async function testAudioService() {
+            const logId = 'serviceLog';
+            log(logId, 'Testing current AudioService...', 'info');
+            
+            try {
+                const tts = new RailwayTTS(RAILWAY_URL);
+                const audioService = new AudioService(new Audio(), tts);
+                log(logId, 'Created AudioService with analyser', 'success');
+                
+                const result = await audioService.playText('Testing audio service playback', 'ken');
+                log(logId, `Played text: Duration ${result.duration}s`, 'success');
+                log(logId, 'If you hear nothing, the analyser connection is the issue!', 'warning');
+                
+            } catch (error) {
+                log(logId, `Error: ${error.message}`, 'error');
+                console.error(error);
+            }
+        }
+        
+        // Test 3: Fixed AudioService
+        async function testFixedAudioService() {
+            const logId = 'fixedLog';
+            log(logId, 'Testing fixed audio implementation...', 'info');
+            
+            try {
+                // Create a fixed version that connects to output
+                class FixedAudioService {
+                    constructor(audioElement, railwayTTS) {
+                        this.audioEl = audioElement || new Audio();
+                        this.railway = railwayTTS || null;
+                        this._setupWebAudio();
+                    }
+                    
+                    _setupWebAudio() {
+                        try {
+                            const Ctx = window.AudioContext || window.webkitAudioContext;
+                            if (!Ctx) return;
+                            
+                            this.ctx = new Ctx();
+                            this.source = null;
+                            
+                            // Important: We'll create the source when playing
+                            log(logId, 'Web Audio context created', 'info');
+                        } catch (e) {
+                            log(logId, `Web Audio setup error: ${e.message}`, 'warning');
+                        }
+                    }
+                    
+                    async playText(text, speaker) {
+                        const sp = (String(speaker||'kelly').toLowerCase()==='ken') ? 'ken' : 'kelly';
+                        if (!this.railway) throw new Error('Railway TTS not available');
+                        
+                        const res = await this.railway.generateSpeech(String(text||''), sp, true);
+                        if (!res || !res.audioUrl) throw new Error('No audioUrl from TTS');
+                        
+                        // Use simple audio playback
+                        this.audioEl.src = res.audioUrl;
+                        this.audioEl.volume = 1.0;
+                        
+                        // Resume context if needed
+                        if (this.ctx && this.ctx.state === 'suspended') {
+                            await this.ctx.resume();
+                            log(logId, 'Resumed audio context', 'info');
+                        }
+                        
+                        await this.audioEl.play();
+                        return res;
+                    }
+                }
+                
+                const tts = new RailwayTTS(RAILWAY_URL);
+                const fixedService = new FixedAudioService(new Audio(), tts);
+                log(logId, 'Created fixed AudioService', 'success');
+                
+                const result = await fixedService.playText('Testing fixed audio implementation', 'kelly');
+                log(logId, `Played with fixed service: Duration ${result.duration}s`, 'success');
+                log(logId, 'This should play audio correctly!', 'success');
+                
+            } catch (error) {
+                log(logId, `Error: ${error.message}`, 'error');
+                console.error(error);
+            }
+        }
+        
+        // Test 4: Raw API
+        async function testRawFetch() {
+            const logId = 'rawLog';
+            log(logId, 'Testing raw Railway API...', 'info');
+            
+            try {
+                const response = await fetch(`${RAILWAY_URL}/api/tts`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        text: 'Testing raw API',
+                        speaker: 'ken',
+                        include_phonemes: false
+                    })
+                });
+                
+                log(logId, `Response status: ${response.status}`, response.ok ? 'success' : 'error');
+                
+                const data = await response.json();
+                log(logId, `Response keys: ${Object.keys(data).join(', ')}`, 'info');
+                log(logId, `Audio data length: ${data.audio?.length || 0} chars`, 'info');
+                log(logId, `Duration: ${data.duration}s`, 'info');
+                
+                if (data.audio) {
+                    // Test base64 decode
+                    try {
+                        const decoded = atob(data.audio);
+                        log(logId, `Decoded audio: ${decoded.length} bytes`, 'success');
+                        
+                        // Create and play audio
+                        const audioData = `data:audio/wav;base64,${data.audio}`;
+                        const audio = new Audio(audioData);
+                        audio.volume = 1.0;
+                        await audio.play();
+                        log(logId, 'Playing raw audio data URL', 'success');
+                    } catch (e) {
+                        log(logId, `Base64 decode error: ${e.message}`, 'error');
+                    }
+                }
+                
+            } catch (error) {
+                log(logId, `Fetch error: ${error.message}`, 'error');
+                console.error(error);
+            }
+        }
+        
+        // Auto-run connection test on load
+        window.addEventListener('load', async () => {
+            try {
+                const health = await fetch(`${RAILWAY_URL}/health`);
+                const data = await health.json();
+                console.log('Railway TTS Health:', data);
+            } catch (e) {
+                console.error('Health check failed:', e);
+            }
+        });
+    </script>
+</body>
+</html>

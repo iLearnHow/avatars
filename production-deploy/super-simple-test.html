@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Super Simple Test</title>
+</head>
+<body>
+    <h1>🔍 Super Simple Image Test</h1>
+    
+    <p>Testing: <code>assets/avatars/kelly/2d/full/kelly_REST.png</code></p>
+    
+    <img src="assets/avatars/kelly/2d/full/kelly_REST.png" 
+         alt="Kelly REST" 
+         style="width: 200px; height: 200px; border: 2px solid red;"
+         onload="console.log('✅ Image loaded successfully')"
+         onerror="console.log('❌ Image failed to load')">
+    
+    <p>Check browser console for results.</p>
+    
+    <script>
+        console.log('🔍 Debug Info:');
+        console.log('Page URL:', window.location.href);
+        console.log('Image path:', 'assets/avatars/kelly/2d/full/kelly_REST.png');
+        console.log('Full image URL:', new URL('assets/avatars/kelly/2d/full/kelly_REST.png', window.location.href).href);
+        
+        // Test fetch
+        fetch('assets/avatars/kelly/2d/full/kelly_REST.png')
+            .then(response => {
+                console.log('📡 Fetch response:', response.status, response.statusText);
+                if (response.ok) {
+                    console.log('✅ Fetch successful');
+                } else {
+                    console.log('❌ Fetch failed');
+                }
+            })
+            .catch(error => {
+                console.log('❌ Fetch error:', error.message);
+            });
+    </script>
+</body>
+</html>

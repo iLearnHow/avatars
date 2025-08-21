@@ -1,0 +1,59 @@
+{
+  "day": 216,
+  "title": "Calculus - The Mathematics of Change",
+  "objective": "Master mathematical analysis while understanding how calculus enables engineering, economics, and scientific modeling of dynamic systems.",
+  "phases": {
+    "1": {
+      "type": "welcome",
+      "content": "Welcome to today's lesson on Calculus - The Mathematics of Change. We'll explore how calculus helps us understand and model dynamic systems in the real world.",
+      "avatar_expression": "teaching_explaining"
+    },
+    "2": {
+      "type": "question_1",
+      "content": "What is the primary purpose of calculus in real-world applications?",
+      "choices": [
+        "A) To make math more complicated",
+        "B) To model and understand change and rates of change",
+        "C) To replace basic arithmetic",
+        "D) To confuse students"
+      ],
+      "correct_answer": "B",
+      "avatar_expression": "question_curious"
+    },
+    "3": {
+      "type": "question_2",
+      "content": "Which field benefits most from calculus?",
+      "choices": [
+        "A) Only mathematics",
+        "B) Engineering, physics, economics, and many sciences",
+        "C) Only physics",
+        "D) Only economics"
+      ],
+      "correct_answer": "B",
+      "avatar_expression": "question_curious"
+    },
+    "4": {
+      "type": "question_3",
+      "content": "What does a derivative represent?",
+      "choices": [
+        "A) The area under a curve",
+        "B) The rate of change at a specific point",
+        "C) The total distance traveled",
+        "D) The average value"
+      ],
+      "correct_answer": "B",
+      "avatar_expression": "question_curious"
+    },
+    "5": {
+      "type": "daily_fortune",
+      "content": "Your daily fortune: Today you will discover that understanding change is the key to mastering any dynamic system. Like calculus, your ability to adapt and grow will be your greatest strength.",
+      "avatar_expression": "happy_celebrating"
+    }
+  },
+  "variants": {
+    "age_groups": ["age_2", "age_5", "age_8", "age_12", "age_16", "age_25", "age_40", "age_60", "age_80", "age_102"],
+    "tones": ["grandmother", "fun", "neutral"],
+    "languages": ["english", "spanish", "french", "german", "chinese", "japanese"],
+    "avatars": ["kelly", "ken"]
+  }
+} 

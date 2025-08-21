@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOCAL TEST SUITE - iLearn How</title>
+    <link rel="stylesheet" href="index.html" />
+    <style>
+        body, html {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+            background-color: #f0f0f0;
+        }
+        #test-harness-controls {
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.7);
+            padding: 10px 20px;
+            border-radius: 12px;
+            z-index: 9999;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        #test-harness-controls a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: background-color 0.2s;
+        }
+        #test-harness-controls a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div id="test-harness-controls">
+        <a href="?lesson=the-sun">The Sun</a>
+        <a href="?lesson=the-moon">The Moon</a>
+        <a href="?lesson=the-ocean">The Ocean</a>
+    </div>
+    <div id="player-container"></div>
+    <script>
+        // Fetch and inject the player HTML, then run the player script
+        fetch('index.html')
+            .then(response => response.text())
+            .then(html => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const playerBody = doc.body.innerHTML;
+                document.getElementById('player-container').innerHTML = playerBody;
+
+                const script = document.createElement('script');
+                script.type = 'module';
+                script.src = '/src/player.js';
+                document.body.appendChild(script);
+            });
+    </script>
+</body>
+</html>

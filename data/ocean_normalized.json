@@ -1,0 +1,987 @@
+{
+  "lesson_metadata": {
+    "lesson_id": "earths-magnificent-oceans",
+    "day": 24,
+    "universal_concept": "Earth's Magnificent Oceans - The Blue Heart of Our Living Planet",
+    "learning_essence": "Understand the ocean as one global system, how currents move water and life, and how our choices protect this shared home."
+  },
+  "age_expressions": {
+    "2": {
+      "concept_name": {
+        "neutral": {
+          "display_text": "Earth's Magnificent Oceans",
+          "voice_over_script": "Earth's Magnificent Oceans"
+        },
+        "fun": {
+          "display_text": "Earth's Magnificent Oceans",
+          "voice_over_script": "Earth's Magnificent Oceans"
+        },
+        "grandmother": {
+          "display_text": "Earth's Magnificent Oceans",
+          "voice_over_script": "Earth's Magnificent Oceans"
+        }
+      }
+    },
+    "5": {
+      "concept_name": {
+        "neutral": {
+          "display_text": "Earth's Magnificent Oceans",
+          "voice_over_script": "Earth's Magnificent Oceans"
+        },
+        "fun": {
+          "display_text": "Earth's Magnificent Oceans",
+          "voice_over_script": "Earth's Magnificent Oceans"
+        },
+        "grandmother": {
+          "display_text": "Earth's Magnificent Oceans",
+          "voice_over_script": "Earth's Magnificent Oceans"
+        }
+      }
+    },
+    "8": {
+      "concept_name": {
+        "neutral": {
+          "display_text": "Earth's Magnificent Oceans",
+          "voice_over_script": "Earth's Magnificent Oceans"
+        },
+        "fun": {
+          "display_text": "Earth's Magnificent Oceans",
+          "voice_over_script": "Earth's Magnificent Oceans"
+        },
+        "grandmother": {
+          "display_text": "Earth's Magnificent Oceans",
+          "voice_over_script": "Earth's Magnificent Oceans"
+        }
+      }
+    },
+    "12": {
+      "concept_name": {
+        "neutral": {
+          "display_text": "Earth's Magnificent Oceans",
+          "voice_over_script": "Earth's Magnificent Oceans"
+        },
+        "fun": {
+          "display_text": "Earth's Magnificent Oceans",
+          "voice_over_script": "Earth's Magnificent Oceans"
+        },
+        "grandmother": {
+          "display_text": "Earth's Magnificent Oceans",
+          "voice_over_script": "Earth's Magnificent Oceans"
+        }
+      }
+    },
+    "16": {
+      "concept_name": {
+        "neutral": {
+          "display_text": "Earth's Magnificent Oceans",
+          "voice_over_script": "Earth's Magnificent Oceans"
+        },
+        "fun": {
+          "display_text": "Earth's Magnificent Oceans",
+          "voice_over_script": "Earth's Magnificent Oceans"
+        },
+        "grandmother": {
+          "display_text": "Earth's Magnificent Oceans",
+          "voice_over_script": "Earth's Magnificent Oceans"
+        }
+      }
+    },
+    "25": {
+      "concept_name": {
+        "neutral": {
+          "display_text": "Earth's Ocean: One Moving System",
+          "voice_over_script": "Today you'll see the ocean as one moving system that connects every coast and living thing."
+        },
+        "fun": {
+          "display_text": "The Big Blue Engine",
+          "voice_over_script": "Welcome to the Big Blue—one giant engine that moves water, heat, and life around our planet!"
+        },
+        "grandmother": {
+          "display_text": "The Ocean That Hugs the World",
+          "voice_over_script": "Come close, dear. The ocean is like a warm hug around the world—always moving, always caring."
+        }
+      }
+    },
+    "40": {
+      "concept_name": {
+        "neutral": {
+          "display_text": "Earth's Magnificent Oceans",
+          "voice_over_script": "Earth's Magnificent Oceans"
+        },
+        "fun": {
+          "display_text": "Earth's Magnificent Oceans",
+          "voice_over_script": "Earth's Magnificent Oceans"
+        },
+        "grandmother": {
+          "display_text": "Earth's Magnificent Oceans",
+          "voice_over_script": "Earth's Magnificent Oceans"
+        }
+      }
+    },
+    "60": {
+      "concept_name": {
+        "neutral": {
+          "display_text": "Earth's Magnificent Oceans",
+          "voice_over_script": "Earth's Magnificent Oceans"
+        },
+        "fun": {
+          "display_text": "Earth's Magnificent Oceans",
+          "voice_over_script": "Earth's Magnificent Oceans"
+        },
+        "grandmother": {
+          "display_text": "Earth's Magnificent Oceans",
+          "voice_over_script": "Earth's Magnificent Oceans"
+        }
+      }
+    },
+    "80": {
+      "concept_name": {
+        "neutral": {
+          "display_text": "Earth's Magnificent Oceans",
+          "voice_over_script": "Earth's Magnificent Oceans"
+        },
+        "fun": {
+          "display_text": "Earth's Magnificent Oceans",
+          "voice_over_script": "Earth's Magnificent Oceans"
+        },
+        "grandmother": {
+          "display_text": "Earth's Magnificent Oceans",
+          "voice_over_script": "Earth's Magnificent Oceans"
+        }
+      }
+    },
+    "102": {
+      "concept_name": {
+        "neutral": {
+          "display_text": "Earth's Magnificent Oceans",
+          "voice_over_script": "Earth's Magnificent Oceans"
+        },
+        "fun": {
+          "display_text": "Earth's Magnificent Oceans",
+          "voice_over_script": "Earth's Magnificent Oceans"
+        },
+        "grandmother": {
+          "display_text": "Earth's Magnificent Oceans",
+          "voice_over_script": "Earth's Magnificent Oceans"
+        }
+      }
+    }
+  },
+  "core_lesson_structure": {
+    "question_1": {
+      "concept_focus": "One Global Ocean",
+      "ages": {
+        "2": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "5": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "8": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "12": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "16": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "25": {
+          "question": {
+            "neutral": {
+              "display_text": "What best describes Earth's oceans?"
+            },
+            "fun": {
+              "display_text": "Which is true about the Big Blue?"
+            },
+            "grandmother": {
+              "display_text": "How would you describe our oceans, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "Separate oceans that don't affect each other"
+          },
+          "option_b": {
+            "display_text": "One global ocean connected by currents"
+          },
+          "teaching_moments": {
+            "option_a_response": "They have names, yes—but water, heat, salt, and life constantly mix. The ocean acts as one connected system.",
+            "option_b_response": "Exactly. We name parts, but currents link them into one body—energy and life flow around the world."
+          },
+          "correct_option": "b"
+        },
+        "40": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "60": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "80": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "102": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        }
+      }
+    },
+    "question_2": {
+      "concept_focus": "What Moves the Ocean",
+      "ages": {
+        "2": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "5": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "8": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "12": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "16": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "25": {
+          "question": {
+            "neutral": {
+              "display_text": "What mainly drives ocean currents?"
+            },
+            "fun": {
+              "display_text": "What powers the ocean's conveyor belts?"
+            },
+            "grandmother": {
+              "display_text": "What makes the ocean keep on moving, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "Only the tides from the Moon"
+          },
+          "option_b": {
+            "display_text": "Wind, heat differences, and salt (density)"
+          },
+          "teaching_moments": {
+            "option_a_response": "Tides matter near coasts, but big global flows need more than a gentle tug—temperature and salt make water sink and rise.",
+            "option_b_response": "Right. Wind pushes the surface, the Sun makes temperature differences, and salt changes density—together they steer great conveyors."
+          },
+          "correct_option": "b"
+        },
+        "40": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "60": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "80": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "102": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        }
+      }
+    },
+    "question_3": {
+      "concept_focus": "Why It Matters",
+      "ages": {
+        "2": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "5": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "8": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "12": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "16": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "25": {
+          "question": {
+            "neutral": {
+              "display_text": "Why are healthy oceans essential for people?"
+            },
+            "fun": {
+              "display_text": "Why does the Big Blue matter to you?"
+            },
+            "grandmother": {
+              "display_text": "Why should we care for the ocean, love?"
+            }
+          },
+          "option_a": {
+            "display_text": "It's mainly about fish and beaches"
+          },
+          "option_b": {
+            "display_text": "Oxygen, climate balance, food, and livelihoods"
+          },
+          "teaching_moments": {
+            "option_a_response": "Yes, and so much more—the ocean makes oxygen, feeds families, and keeps our climate steady.",
+            "option_b_response": "Exactly. The ocean breathes with us, feeds us, carries ships and stories—our daily life depends on it."
+          },
+          "correct_option": "b"
+        },
+        "40": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "60": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "80": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "102": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        }
+      }
+    }
+  },
+  "wisdom_phase_content": {
+    "fortune": {
+      "neutral": {
+        "display_text": "Care for the ocean, and it will keep caring for you—every breath, every meal, every calm day.",
+        "voice_over_script": "Care for the ocean, and it will keep caring for you—every breath, every meal, every calm day."
+      },
+      "fun": {
+        "display_text": "Care for the ocean, and it will keep caring for you—every breath, every meal, every calm day.",
+        "voice_over_script": "Care for the ocean, and it will keep caring for you—every breath, every meal, every calm day."
+      },
+      "grandmother": {
+        "display_text": "Care for the ocean, and it will keep caring for you—every breath, every meal, every calm day.",
+        "voice_over_script": "Care for the ocean, and it will keep caring for you—every breath, every meal, every calm day."
+      }
+    }
+  },
+  "language_translations": {
+    "english": {
+      "key_phrases": {
+        "greeting": "Hello!",
+        "question_intro": "Here's a question:",
+        "validation_positive": "Excellent!"
+      }
+    },
+    "spanish": {
+      "key_phrases": {
+        "greeting": "¡Hola!",
+        "question_intro": "Una pregunta:",
+        "validation_positive": "¡Excelente!"
+      }
+    },
+    "french": {
+      "key_phrases": {
+        "greeting": "Bonjour!",
+        "question_intro": "Une question :",
+        "validation_positive": "Excellent !"
+      }
+    }
+  },
+  "tone_delivery_dna": {
+    "neutral": {
+      "language_patterns": {
+        "openings": [
+          "Welcome to today's lesson."
+        ],
+        "encouragements": [
+          "Good thinking."
+        ],
+        "closings": [
+          "Nice work today."
+        ]
+      }
+    },
+    "fun": {
+      "language_patterns": {
+        "openings": [
+          "This is going to be fun!"
+        ],
+        "encouragements": [
+          "Great energy—keep going!"
+        ],
+        "closings": [
+          "Awesome work—see you next time!"
+        ]
+      }
+    },
+    "grandmother": {
+      "language_patterns": {
+        "openings": [
+          "I'm so happy you're here today."
+        ],
+        "encouragements": [
+          "You're doing wonderfully."
+        ],
+        "closings": [
+          "I'm proud of you, dear."
+        ]
+      }
+    }
+  }
+}

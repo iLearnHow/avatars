@@ -1,0 +1,987 @@
+{
+  "lesson_metadata": {
+    "lesson_id": "puppies",
+    "day": 0,
+    "universal_concept": "Puppies - Understanding Our Four-Legged Friends",
+    "learning_essence": "Explore how puppies learn, grow, and communicate, while understanding the human-dog bond."
+  },
+  "age_expressions": {
+    "2": {
+      "concept_name": {
+        "neutral": {
+          "display_text": "Puppies",
+          "voice_over_script": "Puppies"
+        },
+        "fun": {
+          "display_text": "Puppies",
+          "voice_over_script": "Puppies"
+        },
+        "grandmother": {
+          "display_text": "Puppies",
+          "voice_over_script": "Puppies"
+        }
+      }
+    },
+    "5": {
+      "concept_name": {
+        "neutral": {
+          "display_text": "Puppies",
+          "voice_over_script": "Puppies"
+        },
+        "fun": {
+          "display_text": "Puppies",
+          "voice_over_script": "Puppies"
+        },
+        "grandmother": {
+          "display_text": "Puppies",
+          "voice_over_script": "Puppies"
+        }
+      }
+    },
+    "8": {
+      "concept_name": {
+        "neutral": {
+          "display_text": "Puppies",
+          "voice_over_script": "Puppies"
+        },
+        "fun": {
+          "display_text": "Puppies",
+          "voice_over_script": "Puppies"
+        },
+        "grandmother": {
+          "display_text": "Puppies",
+          "voice_over_script": "Puppies"
+        }
+      }
+    },
+    "12": {
+      "concept_name": {
+        "neutral": {
+          "display_text": "Puppies",
+          "voice_over_script": "Puppies"
+        },
+        "fun": {
+          "display_text": "Puppies",
+          "voice_over_script": "Puppies"
+        },
+        "grandmother": {
+          "display_text": "Puppies",
+          "voice_over_script": "Puppies"
+        }
+      }
+    },
+    "16": {
+      "concept_name": {
+        "neutral": {
+          "display_text": "Puppies",
+          "voice_over_script": "Puppies"
+        },
+        "fun": {
+          "display_text": "Puppies",
+          "voice_over_script": "Puppies"
+        },
+        "grandmother": {
+          "display_text": "Puppies",
+          "voice_over_script": "Puppies"
+        }
+      }
+    },
+    "25": {
+      "concept_name": {
+        "neutral": {
+          "display_text": "Puppies - Understanding Our Four-Legged Friends",
+          "voice_over_script": "Puppies - Understanding Our Four-Legged Friends"
+        },
+        "fun": {
+          "display_text": "Puppies - Understanding Our Four-Legged Friends",
+          "voice_over_script": "Puppies - Understanding Our Four-Legged Friends"
+        },
+        "grandmother": {
+          "display_text": "Puppies - Understanding Our Four-Legged Friends",
+          "voice_over_script": "Puppies - Understanding Our Four-Legged Friends"
+        }
+      }
+    },
+    "40": {
+      "concept_name": {
+        "neutral": {
+          "display_text": "Puppies",
+          "voice_over_script": "Puppies"
+        },
+        "fun": {
+          "display_text": "Puppies",
+          "voice_over_script": "Puppies"
+        },
+        "grandmother": {
+          "display_text": "Puppies",
+          "voice_over_script": "Puppies"
+        }
+      }
+    },
+    "60": {
+      "concept_name": {
+        "neutral": {
+          "display_text": "Puppies",
+          "voice_over_script": "Puppies"
+        },
+        "fun": {
+          "display_text": "Puppies",
+          "voice_over_script": "Puppies"
+        },
+        "grandmother": {
+          "display_text": "Puppies",
+          "voice_over_script": "Puppies"
+        }
+      }
+    },
+    "80": {
+      "concept_name": {
+        "neutral": {
+          "display_text": "Puppies",
+          "voice_over_script": "Puppies"
+        },
+        "fun": {
+          "display_text": "Puppies",
+          "voice_over_script": "Puppies"
+        },
+        "grandmother": {
+          "display_text": "Puppies",
+          "voice_over_script": "Puppies"
+        }
+      }
+    },
+    "102": {
+      "concept_name": {
+        "neutral": {
+          "display_text": "Puppies",
+          "voice_over_script": "Puppies"
+        },
+        "fun": {
+          "display_text": "Puppies",
+          "voice_over_script": "Puppies"
+        },
+        "grandmother": {
+          "display_text": "Puppies",
+          "voice_over_script": "Puppies"
+        }
+      }
+    }
+  },
+  "core_lesson_structure": {
+    "question_1": {
+      "concept_focus": "Core Idea",
+      "ages": {
+        "2": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "5": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "8": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "12": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "16": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "25": {
+          "question": {
+            "neutral": {
+              "display_text": "Oh, my dear, 👵 What is the most important thing a puppy needs to grow up healthy and happy? 💕"
+            },
+            "fun": {
+              "display_text": "Oh, my dear, 👵 What is the most important thing a puppy needs to grow up healthy and happy? 💕"
+            },
+            "grandmother": {
+              "display_text": "Oh, my dear, 👵 What is the most important thing a puppy needs to grow up healthy and happy? 💕"
+            }
+          },
+          "option_a": {
+            "display_text": "Oh, my dear, 👵 Lots of toys and treats 💕"
+          },
+          "option_b": {
+            "display_text": "Oh, my dear, 👵 Love, care, and consistent training 💕"
+          },
+          "teaching_moments": {
+            "option_a_response": "👨‍🎓 Not quite – try the other option!",
+            "option_b_response": "👨‍🎓 Exactly!"
+          },
+          "correct_option": "b"
+        },
+        "40": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "60": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "80": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "102": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        }
+      }
+    },
+    "question_2": {
+      "concept_focus": "Core Idea",
+      "ages": {
+        "2": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "5": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "8": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "12": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "16": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "25": {
+          "question": {
+            "neutral": {
+              "display_text": "Oh, my dear, 👵 How do puppies learn to communicate with humans? 💕"
+            },
+            "fun": {
+              "display_text": "Oh, my dear, 👵 How do puppies learn to communicate with humans? 💕"
+            },
+            "grandmother": {
+              "display_text": "Oh, my dear, 👵 How do puppies learn to communicate with humans? 💕"
+            }
+          },
+          "option_a": {
+            "display_text": "Oh, my dear, 👵 Only through barking and whining 💕"
+          },
+          "option_b": {
+            "display_text": "Oh, my dear, 👵 Through body language, sounds and facial expressions 💕"
+          },
+          "teaching_moments": {
+            "option_a_response": "👨‍🎓 Not quite – try the other option!",
+            "option_b_response": "👨‍🎓 Exactly!"
+          },
+          "correct_option": "b"
+        },
+        "40": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "60": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "80": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "102": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        }
+      }
+    },
+    "question_3": {
+      "concept_focus": "Core Idea",
+      "ages": {
+        "2": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "5": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "8": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "12": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "16": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "25": {
+          "question": {
+            "neutral": {
+              "display_text": "Oh, my dear, 👵 What can we learn from the way puppies explore the world? 💕"
+            },
+            "fun": {
+              "display_text": "Oh, my dear, 👵 What can we learn from the way puppies explore the world? 💕"
+            },
+            "grandmother": {
+              "display_text": "Oh, my dear, 👵 What can we learn from the way puppies explore the world? 💕"
+            }
+          },
+          "option_a": {
+            "display_text": "Oh, my dear, 👵 To be cautious and avoid new things 💕"
+          },
+          "option_b": {
+            "display_text": "Oh, my dear, 👵 To be curious, playful and open to new experiences 💕"
+          },
+          "teaching_moments": {
+            "option_a_response": "👨‍🎓 Not quite – try the other option!",
+            "option_b_response": "👨‍🎓 Exactly!"
+          },
+          "correct_option": "b"
+        },
+        "40": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "60": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "80": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        },
+        "102": {
+          "question": {
+            "neutral": {
+              "display_text": "What do you think is the most important part?"
+            },
+            "fun": {
+              "display_text": "Which one seems right to you?"
+            },
+            "grandmother": {
+              "display_text": "What would you choose, dear?"
+            }
+          },
+          "option_a": {
+            "display_text": "A"
+          },
+          "option_b": {
+            "display_text": "B"
+          },
+          "teaching_moments": {
+            "option_a_response": "Good try—let's check the other choice.",
+            "option_b_response": "Exactly—nice reasoning!"
+          },
+          "correct_option": "b"
+        }
+      }
+    }
+  },
+  "wisdom_phase_content": {
+    "fortune": {
+      "neutral": {
+        "display_text": "Great job today.",
+        "voice_over_script": "Great job today."
+      },
+      "fun": {
+        "display_text": "Great job today.",
+        "voice_over_script": "Great job today."
+      },
+      "grandmother": {
+        "display_text": "Great job today.",
+        "voice_over_script": "Great job today."
+      }
+    }
+  },
+  "language_translations": {
+    "english": {
+      "key_phrases": {
+        "greeting": "Hello!",
+        "question_intro": "Here's a question:",
+        "validation_positive": "Excellent!"
+      }
+    },
+    "spanish": {
+      "key_phrases": {
+        "greeting": "¡Hola!",
+        "question_intro": "Una pregunta:",
+        "validation_positive": "¡Excelente!"
+      }
+    },
+    "french": {
+      "key_phrases": {
+        "greeting": "Bonjour!",
+        "question_intro": "Une question :",
+        "validation_positive": "Excellent !"
+      }
+    }
+  },
+  "tone_delivery_dna": {
+    "neutral": {
+      "language_patterns": {
+        "openings": [
+          "Welcome to today's lesson."
+        ],
+        "encouragements": [
+          "Good thinking."
+        ],
+        "closings": [
+          "Nice work today."
+        ]
+      }
+    },
+    "fun": {
+      "language_patterns": {
+        "openings": [
+          "This is going to be fun!"
+        ],
+        "encouragements": [
+          "Great energy—keep going!"
+        ],
+        "closings": [
+          "Awesome work—see you next time!"
+        ]
+      }
+    },
+    "grandmother": {
+      "language_patterns": {
+        "openings": [
+          "I'm so happy you're here today."
+        ],
+        "encouragements": [
+          "You're doing wonderfully."
+        ],
+        "closings": [
+          "I'm proud of you, dear."
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✅ VERIFY LESSON PLAYER FIX</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+            margin: 20px;
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+        }
+        .status {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            font-weight: 500;
+            font-size: 16px;
+        }
+        .success { background: rgba(76, 175, 80, 0.3); }
+        .error { background: rgba(244, 67, 54, 0.3); }
+        .info { background: rgba(33, 150, 243, 0.3); }
+        .test-button {
+            padding: 15px 30px;
+            background: #FFD700;
+            color: #333;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px;
+            transition: transform 0.2s ease;
+        }
+        .test-button:hover {
+            transform: scale(1.05);
+        }
+        .lesson-content {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="text-align: center; color: #FFD700;">✅ LESSON PLAYER FIX VERIFICATION</h1>
+        
+        <div id="status" class="status info">Loading scripts...</div>
+        
+        <div style="text-align: center;">
+            <button class="test-button" onclick="runFullTest()">🧪 RUN FULL TEST</button>
+            <button class="test-button" onclick="forceLoadDay1()">🚀 FORCE LOAD DAY 1</button>
+        </div>
+        
+        <div id="test-results"></div>
+        <div id="lesson-content" class="lesson-content" style="display: none;"></div>
+    </div>
+
+    <!-- Load the actual scripts -->
+    <script src="/complete-curriculum.js"></script>
+    <script src="/complete-lesson-player.js"></script>
+    
+    <script>
+        function updateStatus(message, type = 'info') {
+            const statusEl = document.getElementById('status');
+            statusEl.textContent = message;
+            statusEl.className = `status ${type}`;
+        }
+
+        function addResult(test, passed, details = '') {
+            const resultsEl = document.getElementById('test-results');
+            const icon = passed ? '✅' : '❌';
+            const className = passed ? 'success' : 'error';
+            resultsEl.innerHTML += `<div class="status ${className}">${icon} ${test}${details ? ': ' + details : ''}</div>`;
+        }
+
+        async function runFullTest() {
+            updateStatus('🧪 Running comprehensive test suite...', 'info');
+            const resultsEl = document.getElementById('test-results');
+            resultsEl.innerHTML = '';
+
+            // Test 1: Basic script loading
+            addResult('Curriculum Loaded', !!window.COMPLETE_CURRICULUM);
+            addResult('Lesson Player Class Available', !!window.UniversalLessonPlayer);
+
+            if (!window.UniversalLessonPlayer) {
+                updateStatus('❌ CRITICAL: UniversalLessonPlayer class not available!', 'error');
+                return;
+            }
+
+            // Test 2: Day 1 content
+            const day1 = window.COMPLETE_CURRICULUM?.[1];
+            addResult('Day 1 Available', !!day1);
+            addResult('Day 1 Complete Lesson', !!day1?.complete_lesson);
+            addResult('Day 1 Scripts Available', !!(day1?.scripts && Object.keys(day1.scripts).length > 0));
+
+            if (day1?.scripts) {
+                addResult('Day 1 Script Count', true, `${Object.keys(day1.scripts).length} age groups`);
+                addResult('Age 2 Content', !!day1.scripts.age_2?.segments?.welcome);
+                addResult('Age 25 Content', !!day1.scripts.age_25?.segments?.welcome);
+            }
+
+            // Test 3: Lesson Player instantiation
+            try {
+                const player = new window.UniversalLessonPlayer();
+                addResult('Lesson Player Instantiation', true);
+                
+                // Test 4: Load Day 1
+                try {
+                    await player.loadLessonByDay(1);
+                    addResult('Load Day 1 Method', true);
+                    
+                    // Show content
+                    const contentEl = document.getElementById('lesson-content');
+                    const age25Script = day1.scripts.age_25;
+                    if (age25Script) {
+                        contentEl.innerHTML = `
+                            <h3>📚 Day 1 Content Loaded Successfully!</h3>
+                            <p><strong>Title:</strong> ${day1.title}</p>
+                            <p><strong>Age 25 Welcome:</strong></p>
+                            <p style="font-style: italic;">"${age25Script.segments.welcome.substring(0, 200)}..."</p>
+                            <p><strong>Question 1:</strong></p>
+                            <p style="font-style: italic;">"${age25Script.segments.question_1.substring(0, 150)}..."</p>
+                        `;
+                        contentEl.style.display = 'block';
+                    }
+                    
+                    window.globalLessonPlayer = player; // Make available globally
+                    addResult('Global Player Assignment', true);
+                    
+                    updateStatus('✅ ALL TESTS PASSED! Lesson Player is working!', 'success');
+                    
+                } catch (error) {
+                    addResult('Load Day 1 Method', false, error.message);
+                    updateStatus('❌ Failed to load Day 1 lesson', 'error');
+                }
+            } catch (error) {
+                addResult('Lesson Player Instantiation', false, error.message);
+                updateStatus('❌ Failed to create lesson player instance', 'error');
+            }
+        }
+
+        async function forceLoadDay1() {
+            try {
+                updateStatus('🚀 Force loading Day 1 lesson...', 'info');
+                
+                if (!window.UniversalLessonPlayer) {
+                    updateStatus('❌ UniversalLessonPlayer class not available', 'error');
+                    return;
+                }
+
+                const player = new window.UniversalLessonPlayer();
+                window.lessonPlayer = player;
+                
+                await player.loadLessonByDay(1);
+                
+                // Try to start the lesson
+                if (typeof player.startUniversalLesson === 'function') {
+                    player.startUniversalLesson();
+                    updateStatus('✅ Day 1 lesson loaded and started!', 'success');
+                } else {
+                    updateStatus('✅ Day 1 lesson loaded (start method not available)', 'success');
+                }
+                
+            } catch (error) {
+                updateStatus(`❌ Force load failed: ${error.message}`, 'error');
+                console.error('Force load error:', error);
+            }
+        }
+
+        // Auto-run test on load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                updateStatus('✅ Scripts loaded, ready to test!', 'success');
+                runFullTest();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
+

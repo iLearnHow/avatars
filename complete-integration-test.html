@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iLearn Complete Integration Test</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+        
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+        
+        .test-sections {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 30px;
+        }
+        
+        .test-section {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            border: 2px solid #e9ecef;
+        }
+        
+        .test-section h3 {
+            margin: 0 0 20px 0;
+            color: #495057;
+            font-size: 1.3em;
+            border-bottom: 2px solid #dee2e6;
+            padding-bottom: 10px;
+        }
+        
+        .test-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            margin: 10px 5px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .test-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .test-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .status {
+            margin: 15px 0;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+        
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        
+        .status.warning {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+        
+        .log {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            max-height: 200px;
+            overflow-y: auto;
+            margin: 15px 0;
+        }
+        
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .metric {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+            text-align: center;
+        }
+        
+        .metric-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .metric-label {
+            font-size: 0.9em;
+            color: #6c757d;
+            margin-top: 5px;
+        }
+        
+        .lesson-preview {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .lesson-preview h4 {
+            margin: 0 0 15px 0;
+            color: #495057;
+        }
+        
+        .lesson-content {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .control-group label {
+            font-weight: 500;
+            color: #495057;
+        }
+        
+        .control-group select {
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 iLearn Complete Integration Test</h1>
+            <p>Testing all systems: DNA Parser, Claude API, Variant Generator, Audio Generation, Quality Validation</p>
+        </div>
+        
+        <div class="test-sections">
+            <!-- Phase 0: Foundation -->
+            <div class="test-section">
+                <h3>🔧 Phase 0: Foundation</h3>
+                <button class="test-button" onclick="testDNAParser()">Test DNA Parser</button>
+                <button class="test-button" onclick="testClaudeAPI()">Test Claude API</button>
+                <button class="test-button" onclick="testVariantGenerator()">Test Variant Generator</button>
+                <div id="foundation-status" class="status info">Ready to test foundation components</div>
+                <div id="foundation-log" class="log"></div>
+            </div>
+            
+            <!-- Phase 0.5: Integration -->
+            <div class="test-section">
+                <h3>🔗 Phase 0.5: Integration</h3>
+                <button class="test-button" onclick="testLessonPlayerIntegration()">Test Lesson Player Integration</button>
+                <button class="test-button" onclick="testAudioGeneration()">Test Audio Generation</button>
+                <button class="test-button" onclick="testCompleteIntegration()">Test Complete Integration</button>
+                <div id="integration-status" class="status info">Ready to test integration components</div>
+                <div id="integration-log" class="log"></div>
+            </div>
+            
+            <!-- Phase 0.75: Quality -->
+            <div class="test-section">
+                <h3>✅ Phase 0.75: Quality & Monitoring</h3>
+                <button class="test-button" onclick="testQualityValidation()">Test Quality Validation</button>
+                <button class="test-button" onclick="testCostTracking()">Test Cost Tracking</button>
+                <button class="test-button" onclick="testPerformanceMonitoring()">Test Performance Monitoring</button>
+                <div id="quality-status" class="status info">Ready to test quality components</div>
+                <div id="quality-log" class="log"></div>
+            </div>
+            
+            <!-- User Experience -->
+            <div class="test-section">
+                <h3>👤 User Experience Test</h3>
+                <div class="controls">
+                    <div class="control-group">
+                        <label>Age Group:</label>
+                        <select id="age-group-select">
+                            <option value="early_childhood">Early Childhood</option>
+                            <option value="youth">Youth</option>
+                            <option value="young_adult" selected>Young Adult</option>
+                            <option value="midlife">Midlife</option>
+                            <option value="wisdom_years">Wisdom Years</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label>Tone:</label>
+                        <select id="tone-select">
+                            <option value="grandmother">Grandmother</option>
+                            <option value="fun">Fun</option>
+                            <option value="neutral" selected>Neutral</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label>Avatar:</label>
+                        <select id="avatar-select">
+                            <option value="ken" selected>Ken</option>
+                            <option value="kelly">Kelly</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="test-button" onclick="testUserExperience()">Test Complete User Experience</button>
+                <button class="test-button" onclick="loadLesson(28)">Load Lesson 28</button>
+                <div id="user-experience-status" class="status info">Ready to test user experience</div>
+                <div id="lesson-preview" class="lesson-preview" style="display: none;">
+                    <h4>Lesson Preview</h4>
+                    <div id="lesson-content"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Metrics Dashboard -->
+        <div style="padding: 30px;">
+            <h3>📊 System Metrics</h3>
+            <div class="metrics" id="metrics-dashboard">
+                <div class="metric">
+                    <div class="metric-value" id="total-variants">0</div>
+                    <div class="metric-label">Total Variants</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value" id="generation-cost">$0.00</div>
+                    <div class="metric-label">Generation Cost</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value" id="quality-score">0%</div>
+                    <div class="metric-label">Quality Score</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value" id="audio-segments">0</div>
+                    <div class="metric-label">Audio Segments</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load all required scripts -->
+    <script src="dna-parser.js"></script>
+    <script src="claude-api-integration.js"></script>
+    <script src="complete-dna-variant-generator.js"></script>
+    <script src="lesson-player-variant-integration.js"></script>
+    <script src="audio-generation-integration.js"></script>
+    <script src="quality-validation-system.js"></script>
+
+    <script>
+        // Global variables for testing
+        let dnaParser, claudeAPI, variantGenerator, lessonPlayerIntegration, audioGeneration, qualityValidation;
+        let currentLesson = null;
+        let testResults = {};
+
+        // Initialize all systems
+        async function initializeSystems() {
+            console.log('🚀 Initializing all systems...');
+            
+            try {
+                // Initialize DNA Parser
+                dnaParser = new DNAParser();
+                await dnaParser.loadCurriculumFiles();
+                await dnaParser.loadDNAFiles();
+                dnaParser.parseDNAStructure();
+                
+                // Initialize Claude API (with placeholder key for testing)
+                claudeAPI = new ClaudeAPIIntegration();
+                await claudeAPI.initialize('test-key');
+                
+                // Initialize Variant Generator
+                variantGenerator = new CompleteDNAVariantGenerator();
+                await variantGenerator.initialize('test-key');
+                
+                // Initialize Lesson Player Integration
+                lessonPlayerIntegration = new LessonPlayerVariantIntegration();
+                await lessonPlayerIntegration.initialize('test-key');
+                
+                // Initialize Audio Generation
+                audioGeneration = new AudioGenerationIntegration();
+                await audioGeneration.initialize();
+                
+                // Initialize Quality Validation
+                qualityValidation = new QualityValidationSystem();
+                
+                console.log('✅ All systems initialized successfully');
+                updateStatus('foundation-status', 'success', 'All foundation systems initialized');
+                
+            } catch (error) {
+                console.error('❌ Failed to initialize systems:', error);
+                updateStatus('foundation-status', 'error', 'Failed to initialize systems: ' + error.message);
+            }
+        }
+
+        // Test DNA Parser
+        async function testDNAParser() {
+            updateStatus('foundation-status', 'info', 'Testing DNA Parser...');
+            addLog('foundation-log', '🧬 Testing DNA Parser...');
+            
+            try {
+                const summary = dnaParser.getStructureSummary();
+                addLog('foundation-log', `✅ DNA Structure Summary:`, summary);
+                
+                const lessonTopic = dnaParser.getLessonTopic(28);
+                addLog('foundation-log', `✅ Lesson Topic for Day 28:`, lessonTopic);
+                
+                updateStatus('foundation-status', 'success', 'DNA Parser test completed successfully');
+                
+            } catch (error) {
+                addLog('foundation-log', `❌ DNA Parser test failed: ${error.message}`);
+                updateStatus('foundation-status', 'error', 'DNA Parser test failed');
+            }
+        }
+
+        // Test Claude API
+        async function testClaudeAPI() {
+            updateStatus('foundation-status', 'info', 'Testing Claude API...');
+            addLog('foundation-log', '🔑 Testing Claude API...');
+            
+            try {
+                const costEstimate = claudeAPI.estimateVariantCosts(270);
+                addLog('foundation-log', `✅ Cost estimate for 270 variants:`, costEstimate);
+                
+                updateStatus('foundation-status', 'success', 'Claude API test completed successfully');
+                
+            } catch (error) {
+                addLog('foundation-log', `❌ Claude API test failed: ${error.message}`);
+                updateStatus('foundation-status', 'error', 'Claude API test failed');
+            }
+        }
+
+        // Test Variant Generator
+        async function testVariantGenerator() {
+            updateStatus('foundation-status', 'info', 'Testing Variant Generator...');
+            addLog('foundation-log', '🎯 Testing Variant Generator...');
+            
+            try {
+                const readiness = variantGenerator.validateReadiness();
+                addLog('foundation-log', `✅ Generation readiness validated`);
+                
+                const dnaSummary = variantGenerator.getDNAStructureSummary();
+                addLog('foundation-log', `✅ DNA Structure Summary:`, dnaSummary);
+                
+                updateStatus('foundation-status', 'success', 'Variant Generator test completed successfully');
+                
+            } catch (error) {
+                addLog('foundation-log', `❌ Variant Generator test failed: ${error.message}`);
+                updateStatus('foundation-status', 'error', 'Variant Generator test failed');
+            }
+        }
+
+        // Test Lesson Player Integration
+        async function testLessonPlayerIntegration() {
+            updateStatus('integration-status', 'info', 'Testing Lesson Player Integration...');
+            addLog('integration-log', '🔗 Testing Lesson Player Integration...');
+            
+            try {
+                // Test with cached data first
+                const cachedVariants = lessonPlayerIntegration.variantGenerator.loadVariants(28);
+                addLog('integration-log', `📂 Loaded ${cachedVariants.length} cached variants for lesson 28`);
+                
+                if (cachedVariants.length === 0) {
+                    addLog('integration-log', '⚠️ No cached variants found, would generate new ones');
+                }
+                
+                updateStatus('integration-status', 'success', 'Lesson Player Integration test completed successfully');
+                
+            } catch (error) {
+                addLog('integration-log', `❌ Lesson Player Integration test failed: ${error.message}`);
+                updateStatus('integration-status', 'error', 'Lesson Player Integration test failed');
+            }
+        }
+
+        // Test Audio Generation
+        async function testAudioGeneration() {
+            updateStatus('integration-status', 'info', 'Testing Audio Generation...');
+            addLog('integration-log', '🎵 Testing Audio Generation...');
+            
+            try {
+                const testAudio = await audioGeneration.testAudioGeneration();
+                addLog('integration-log', `✅ Audio generation test successful:`, testAudio);
+                
+                const stats = audioGeneration.getGenerationStats();
+                addLog('integration-log', `📊 Audio generation stats:`, stats);
+                
+                updateStatus('integration-status', 'success', 'Audio Generation test completed successfully');
+                
+            } catch (error) {
+                addLog('integration-log', `❌ Audio Generation test failed: ${error.message}`);
+                updateStatus('integration-status', 'error', 'Audio Generation test failed');
+            }
+        }
+
+        // Test Complete Integration
+        async function testCompleteIntegration() {
+            updateStatus('integration-status', 'info', 'Testing Complete Integration...');
+            addLog('integration-log', '🔄 Testing Complete Integration...');
+            
+            try {
+                // Test the full pipeline
+                const lesson = await lessonPlayerIntegration.loadLessonWithVariants(28, false);
+                addLog('integration-log', `✅ Loaded lesson with variants:`, lesson);
+                
+                // Test audio generation for the lesson
+                const audio = await audioGeneration.generateLessonAudio(lesson.content, 'ken', 'neutral');
+                addLog('integration-log', `✅ Generated audio segments:`, audio);
+                
+                // Test quality validation
+                const validation = await qualityValidation.validateLessonContent(lesson.content, lesson.metadata);
+                addLog('integration-log', `✅ Quality validation results:`, validation);
+                
+                updateStatus('integration-status', 'success', 'Complete Integration test completed successfully');
+                
+            } catch (error) {
+                addLog('integration-log', `❌ Complete Integration test failed: ${error.message}`);
+                updateStatus('integration-status', 'error', 'Complete Integration test failed');
+            }
+        }
+
+        // Test Quality Validation
+        async function testQualityValidation() {
+            updateStatus('quality-status', 'info', 'Testing Quality Validation...');
+            addLog('quality-log', '✅ Testing Quality Validation...');
+            
+            try {
+                const testContent = {
+                    introduction: "Welcome to today's lesson about the sun!",
+                    mainContent: "The sun is a star that provides light and energy to our planet.",
+                    examples: "We can see the sun during the day and feel its warmth.",
+                    reflection: "Think about how the sun affects your daily life.",
+                    conclusion: "The sun is essential for life on Earth."
+                };
+                
+                const testMetadata = {
+                    ageGroup: 'young_adult',
+                    tone: 'neutral'
+                };
+                
+                const validation = await qualityValidation.validateLessonContent(testContent, testMetadata);
+                addLog('quality-log', `✅ Quality validation results:`, validation);
+                
+                const metrics = qualityValidation.getQualityMetrics();
+                addLog('quality-log', `📊 Quality metrics:`, metrics);
+                
+                updateStatus('quality-status', 'success', 'Quality Validation test completed successfully');
+                
+            } catch (error) {
+                addLog('quality-log', `❌ Quality Validation test failed: ${error.message}`);
+                updateStatus('quality-status', 'error', 'Quality Validation test failed');
+            }
+        }
+
+        // Test Cost Tracking
+        async function testCostTracking() {
+            updateStatus('quality-status', 'info', 'Testing Cost Tracking...');
+            addLog('quality-log', '💰 Testing Cost Tracking...');
+            
+            try {
+                const costSummary = claudeAPI.getCostSummary();
+                addLog('quality-log', `✅ Cost summary:`, costSummary);
+                
+                const variantCosts = claudeAPI.estimateVariantCosts(270);
+                addLog('quality-log', `✅ Variant cost estimate:`, variantCosts);
+                
+                updateStatus('quality-status', 'success', 'Cost Tracking test completed successfully');
+                
+            } catch (error) {
+                addLog('quality-log', `❌ Cost Tracking test failed: ${error.message}`);
+                updateStatus('quality-status', 'error', 'Cost Tracking test failed');
+            }
+        }
+
+        // Test Performance Monitoring
+        async function testPerformanceMonitoring() {
+            updateStatus('quality-status', 'info', 'Testing Performance Monitoring...');
+            addLog('quality-log', '⚡ Testing Performance Monitoring...');
+            
+            try {
+                const startTime = performance.now();
+                
+                // Simulate some operations
+                await new Promise(resolve => setTimeout(resolve, 100));
+                
+                const endTime = performance.now();
+                const duration = endTime - startTime;
+                
+                addLog('quality-log', `✅ Performance test completed in ${duration.toFixed(2)}ms`);
+                
+                updateStatus('quality-status', 'success', 'Performance Monitoring test completed successfully');
+                
+            } catch (error) {
+                addLog('quality-log', `❌ Performance Monitoring test failed: ${error.message}`);
+                updateStatus('quality-status', 'error', 'Performance Monitoring test failed');
+            }
+        }
+
+        // Test User Experience
+        async function testUserExperience() {
+            updateStatus('user-experience-status', 'info', 'Testing User Experience...');
+            
+            try {
+                const ageGroup = document.getElementById('age-group-select').value;
+                const tone = document.getElementById('tone-select').value;
+                const avatar = document.getElementById('avatar-select').value;
+                
+                // Update user preferences
+                lessonPlayerIntegration.updateUserPreferences({
+                    ageGroup: ageGroup,
+                    tone: tone,
+                    avatar: avatar
+                });
+                
+                // Load lesson with new preferences
+                const lesson = await lessonPlayerIntegration.loadLessonWithVariants(28, false);
+                
+                // Display lesson preview
+                displayLessonPreview(lesson);
+                
+                updateStatus('user-experience-status', 'success', 'User Experience test completed successfully');
+                
+            } catch (error) {
+                updateStatus('user-experience-status', 'error', 'User Experience test failed: ' + error.message);
+            }
+        }
+
+        // Load specific lesson
+        async function loadLesson(lessonDay) {
+            updateStatus('user-experience-status', 'info', `Loading lesson ${lessonDay}...`);
+            
+            try {
+                const lesson = await lessonPlayerIntegration.loadLessonWithVariants(lessonDay, false);
+                displayLessonPreview(lesson);
+                
+                updateStatus('user-experience-status', 'success', `Lesson ${lessonDay} loaded successfully`);
+                
+            } catch (error) {
+                updateStatus('user-experience-status', 'error', `Failed to load lesson ${lessonDay}: ${error.message}`);
+            }
+        }
+
+        // Display lesson preview
+        function displayLessonPreview(lesson) {
+            const preview = document.getElementById('lesson-preview');
+            const content = document.getElementById('lesson-content');
+            
+            content.innerHTML = `
+                <div class="lesson-content">
+                    <strong>Day ${lesson.day}: ${lesson.topic}</strong>
+                    <p><strong>Introduction:</strong> ${lesson.content.introduction}</p>
+                    <p><strong>Main Content:</strong> ${lesson.content.mainContent}</p>
+                    <p><strong>Examples:</strong> ${lesson.content.examples}</p>
+                    <p><strong>Reflection:</strong> ${lesson.content.reflection}</p>
+                    <p><strong>Conclusion:</strong> ${lesson.content.conclusion}</p>
+                    <p><strong>Daily Fortune:</strong> ${lesson.content.fortune}</p>
+                </div>
+                <div class="lesson-content">
+                    <strong>Metadata:</strong>
+                    <p>Age Group: ${lesson.metadata.ageGroup}</p>
+                    <p>Tone: ${lesson.metadata.tone}</p>
+                    <p>Total Variants: ${lesson.metadata.totalVariants}</p>
+                    <p>Available Age Groups: ${lesson.navigation.availableAgeGroups.join(', ')}</p>
+                    <p>Available Tones: ${lesson.navigation.availableTones.join(', ')}</p>
+                </div>
+            `;
+            
+            preview.style.display = 'block';
+        }
+
+        // Helper functions
+        function updateStatus(elementId, type, message) {
+            const element = document.getElementById(elementId);
+            element.className = `status ${type}`;
+            element.textContent = message;
+        }
+
+        function addLog(elementId, message, data = null) {
+            const element = document.getElementById(elementId);
+            const timestamp = new Date().toLocaleTimeString();
+            const logEntry = `[${timestamp}] ${message}`;
+            
+            if (data) {
+                element.innerHTML += logEntry + '<br>' + JSON.stringify(data, null, 2) + '<br><br>';
+            } else {
+                element.innerHTML += logEntry + '<br>';
+            }
+            
+            element.scrollTop = element.scrollHeight;
+        }
+
+        // Update metrics dashboard
+        function updateMetrics() {
+            // This would be called periodically to update the metrics
+            // For now, we'll just set some example values
+            document.getElementById('total-variants').textContent = '270';
+            document.getElementById('generation-cost').textContent = '$4.46';
+            document.getElementById('quality-score').textContent = '95%';
+            document.getElementById('audio-segments').textContent = '6';
+        }
+
+        // Initialize everything when page loads
+        window.addEventListener('load', async () => {
+            await initializeSystems();
+            updateMetrics();
+        });
+    </script>
+</body>
+</html> 

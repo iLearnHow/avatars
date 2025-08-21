@@ -1,0 +1,470 @@
+{
+  "day": 15,
+  "title": "Puppies - Understanding Our Four-Legged Friends",
+  "objective": "Explore how puppies learn, grow, and communicate, while understanding the special bond between humans and dogs through care, training, and love.",
+  
+  "phases": {
+    "1": {
+      "type": "welcome",
+      "display_name": "Welcome",
+      "content": {
+        "welcome_message": "Welcome to today's lesson about Puppies - Understanding Our Four-Legged Friends!",
+        "lesson_preview": "Today we'll discover how puppies learn, grow, and become amazing companions.",
+        "date_context": "auto-generated",
+        "time_context": "auto-generated"
+      },
+      "avatar_expression": "teaching_explaining",
+      "duration": "30-45 seconds",
+      "age_adaptations": {
+        "age_2": {
+          "content": {
+            "welcome_message": "Hi little one! Today we're learning about puppies!",
+            "lesson_preview": "We'll see how puppies play and grow, just like you!"
+          }
+        },
+        "age_5": {
+          "content": {
+            "welcome_message": "Hello! Today we're going to learn about puppies!",
+            "lesson_preview": "We'll discover how puppies learn and become our best friends."
+          }
+        },
+        "age_8": {
+          "content": {
+            "welcome_message": "Welcome! Today we're exploring the world of puppies!",
+            "lesson_preview": "We'll learn how puppies communicate and grow into wonderful dogs."
+          }
+        },
+        "age_12": {
+          "content": {
+            "welcome_message": "Welcome to our lesson about puppies!",
+            "lesson_preview": "Today we'll explore how puppies develop and communicate with humans."
+          }
+        },
+        "age_16": {
+          "content": {
+            "welcome_message": "Welcome to today's lesson about puppies!",
+            "lesson_preview": "We'll examine how puppies learn, communicate, and develop into loyal companions."
+          }
+        },
+        "age_25": {
+          "content": {
+            "welcome_message": "Welcome to today's lesson about Puppies - Understanding Our Four-Legged Friends!",
+            "lesson_preview": "Today we'll discover how puppies learn, grow, and become amazing companions."
+          }
+        },
+        "age_40": {
+          "content": {
+            "welcome_message": "Welcome to our exploration of puppy development!",
+            "lesson_preview": "Today we'll examine how puppies learn, communicate, and form bonds with humans."
+          }
+        },
+        "age_60": {
+          "content": {
+            "welcome_message": "Welcome to our lesson about puppy behavior and development!",
+            "lesson_preview": "Today we'll explore how puppies learn, communicate, and become loyal companions."
+          }
+        },
+        "age_80": {
+          "content": {
+            "welcome_message": "Welcome to our study of puppy development and communication!",
+            "lesson_preview": "Today we'll examine how puppies learn, grow, and form meaningful relationships with humans."
+          }
+        },
+        "age_102": {
+          "content": {
+            "welcome_message": "Welcome to our comprehensive exploration of puppy development!",
+            "lesson_preview": "Today we'll examine how puppies learn, communicate, and develop into remarkable companions."
+          }
+        }
+      }
+    },
+    
+    "2": {
+      "type": "beginning",
+      "display_name": "Beginning",
+      "question_number": "Q1",
+      "content": "What is the most important thing a puppy needs to grow up healthy and happy?",
+      "choices": {
+        "option_a": {
+          "text": "Lots of toys and treats",
+          "teaching_moment": "Toys and treats are fun, but puppies need something even more important - love, care, and consistent training to feel safe and secure."
+        },
+        "option_b": {
+          "text": "Love, care, and consistent training", 
+          "teaching_moment": "Exactly right! Just like human children, puppies thrive with love, consistent care, and gentle training that helps them understand the world."
+        }
+      },
+      "avatar_expression": "question_curious",
+      "duration": "2-3 minutes",
+      "age_adaptations": {
+        "age_2": {
+          "content": "What do puppies need most to be happy?",
+          "choices": {
+            "option_a": { "text": "Many toys", "teaching_moment": "Toys are nice, but puppies need love and hugs most!" },
+            "option_b": { "text": "Love and care", "teaching_moment": "Yes! Puppies need lots of love, just like you do!" }
+          }
+        },
+        "age_5": {
+          "content": "What do puppies need most to grow up happy?",
+          "choices": {
+            "option_a": { "text": "Lots of toys to play with", "teaching_moment": "Toys are fun, but puppies need something even more important - love and care from their family!" },
+            "option_b": { "text": "Love, care, and gentle training", "teaching_moment": "Perfect! Puppies need love, care, and gentle training, just like children do!" }
+          }
+        },
+        "age_8": {
+          "content": "What helps a puppy grow up to be a good dog?",
+          "choices": {
+            "option_a": { "text": "Just feeding them every day", "teaching_moment": "Food is important, but puppies also need training, exercise, and lots of attention to become well-behaved dogs." },
+            "option_b": { "text": "Love, training, and daily care", "teaching_moment": "Perfect! Puppies are like students - they learn best when they feel loved and have consistent, patient teachers." }
+          }
+        },
+        "age_12": {
+          "content": "What is the most important thing a puppy needs to become a well-adjusted dog?",
+          "choices": {
+            "option_a": { "text": "Plenty of toys and treats", "teaching_moment": "While enrichment is important, puppies need something more fundamental - consistent care, socialization, and training." },
+            "option_b": { "text": "Love, consistent care, and training", "teaching_moment": "Excellent! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement." }
+          }
+        },
+        "age_16": {
+          "content": "What is the most important thing a puppy needs to grow up healthy and happy?",
+          "choices": {
+            "option_a": { "text": "Lots of toys and treats", "teaching_moment": "While enrichment is important, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs." },
+            "option_b": { "text": "Love, care, and consistent training", "teaching_moment": "Absolutely correct! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement." }
+          }
+        },
+        "age_25": {
+          "content": "What is the most important thing a puppy needs to grow up healthy and happy?",
+          "choices": {
+            "option_a": { "text": "Lots of toys and treats", "teaching_moment": "While enrichment is important, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs." },
+            "option_b": { "text": "Love, care, and consistent training", "teaching_moment": "Absolutely correct! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement." }
+          }
+        },
+        "age_40": {
+          "content": "What is the most important thing a puppy needs to grow up healthy and happy?",
+          "choices": {
+            "option_a": { "text": "Lots of toys and treats", "teaching_moment": "While enrichment is important, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs." },
+            "option_b": { "text": "Love, care, and consistent training", "teaching_moment": "Absolutely correct! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement." }
+          }
+        },
+        "age_60": {
+          "content": "What is the most important thing a puppy needs to grow up healthy and happy?",
+          "choices": {
+            "option_a": { "text": "Lots of toys and treats", "teaching_moment": "While enrichment is important, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs." },
+            "option_b": { "text": "Love, care, and consistent training", "teaching_moment": "Absolutely correct! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement." }
+          }
+        },
+        "age_80": {
+          "content": "What is the most important thing a puppy needs to grow up healthy and happy?",
+          "choices": {
+            "option_a": { "text": "Lots of toys and treats", "teaching_moment": "While enrichment is important, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs." },
+            "option_b": { "text": "Love, care, and consistent training", "teaching_moment": "Absolutely correct! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement." }
+          }
+        },
+        "age_102": {
+          "content": "What is the most important thing a puppy needs to grow up healthy and happy?",
+          "choices": {
+            "option_a": { "text": "Lots of toys and treats", "teaching_moment": "While enrichment is important, puppies need something more fundamental - consistent care, socialization, and training to develop into well-adjusted dogs." },
+            "option_b": { "text": "Love, care, and consistent training", "teaching_moment": "Absolutely correct! Puppies require the same foundational elements as human children - security, consistent boundaries, and positive reinforcement." }
+          }
+        }
+      }
+    },
+    
+    "3": {
+      "type": "middle",
+      "display_name": "Middle",
+      "question_number": "Q2", 
+      "content": "How do puppies learn to communicate with humans?",
+      "choices": {
+        "option_a": {
+          "text": "Only through barking and whining",
+          "teaching_moment": "Barking is one way, but puppies are much more sophisticated communicators! They use body language, facial expressions, and different sounds to 'talk' to us."
+        },
+        "option_b": {
+          "text": "Through body language, sounds, and facial expressions",
+          "teaching_moment": "Wonderful insight! Puppies are natural communicators who use their whole body to 'speak' - wagging tails, tilted heads, playful positions, and different sounds."
+        }
+      },
+      "avatar_expression": "question_curious",
+      "duration": "2-3 minutes",
+      "age_adaptations": {
+        "age_2": {
+          "content": "How do puppies talk to us?",
+          "choices": {
+            "option_a": { "text": "Only by barking", "teaching_moment": "Puppies do more than bark! They wag their tail, give you looks, and use their whole body to talk!" },
+            "option_b": { "text": "With their tail and face", "teaching_moment": "Yes! Puppies talk with their whole body - wagging, looking, and moving to tell us things!" }
+          }
+        },
+        "age_5": {
+          "content": "How do puppies tell us what they want?",
+          "choices": {
+            "option_a": { "text": "Just by barking loudly", "teaching_moment": "Puppies do more than bark! They use their tail, ears, eyes, and different sounds to talk to us!" },
+            "option_b": { "text": "With their body and different sounds", "teaching_moment": "Exactly! Puppies are smart - they wag their tail, move their ears, and make different sounds to tell us things!" }
+          }
+        },
+        "age_8": {
+          "content": "What are all the ways puppies communicate with people?",
+          "choices": {
+            "option_a": { "text": "Just making noise when they want something", "teaching_moment": "Puppies are smarter than that! They use their ears, tail, eyes, and different sounds to tell us exactly how they feel." },
+            "option_b": { "text": "Body language, different sounds, and facial expressions", "teaching_moment": "Excellent! Puppies are like little actors - they use their ears, tail, eyes, and voice to show us what they're thinking and feeling." }
+          }
+        },
+        "age_12": {
+          "content": "How do puppies learn to communicate with humans?",
+          "choices": {
+            "option_a": { "text": "Only through barking and whining", "teaching_moment": "Barking is one way, but puppies are much more sophisticated communicators! They use body language, facial expressions, and different sounds to 'talk' to us." },
+            "option_b": { "text": "Through body language, sounds, and facial expressions", "teaching_moment": "Wonderful insight! Puppies are natural communicators who use their whole body to 'speak' - wagging tails, tilted heads, playful positions, and different sounds." }
+          }
+        },
+        "age_16": {
+          "content": "How do puppies learn to communicate with humans?",
+          "choices": {
+            "option_a": { "text": "Only through barking and whining", "teaching_moment": "Barking is one way, but puppies are much more sophisticated communicators! They use body language, facial expressions, and different sounds to 'talk' to us." },
+            "option_b": { "text": "Through body language, sounds, and facial expressions", "teaching_moment": "Wonderful insight! Puppies are natural communicators who use their whole body to 'speak' - wagging tails, tilted heads, playful positions, and different sounds." }
+          }
+        },
+        "age_25": {
+          "content": "How do puppies learn to communicate with humans?",
+          "choices": {
+            "option_a": { "text": "Only through barking and whining", "teaching_moment": "Canine communication is much more sophisticated than vocalization alone. Puppies develop complex non-verbal communication through evolutionary adaptation." },
+            "option_b": { "text": "Through body language, sounds, and facial expressions", "teaching_moment": "Precisely! Puppies exhibit remarkable interspecies communication skills, using multimodal signaling that includes posture, facial expressions, vocalizations, and even eye contact." }
+          }
+        },
+        "age_40": {
+          "content": "How do puppies learn to communicate with humans?",
+          "choices": {
+            "option_a": { "text": "Only through barking and whining", "teaching_moment": "Canine communication is much more sophisticated than vocalization alone. Puppies develop complex non-verbal communication through evolutionary adaptation." },
+            "option_b": { "text": "Through body language, sounds, and facial expressions", "teaching_moment": "Precisely! Puppies exhibit remarkable interspecies communication skills, using multimodal signaling that includes posture, facial expressions, vocalizations, and even eye contact." }
+          }
+        },
+        "age_60": {
+          "content": "How do puppies learn to communicate with humans?",
+          "choices": {
+            "option_a": { "text": "Only through barking and whining", "teaching_moment": "Canine communication is much more sophisticated than vocalization alone. Puppies develop complex non-verbal communication through evolutionary adaptation." },
+            "option_b": { "text": "Through body language, sounds, and facial expressions", "teaching_moment": "Precisely! Puppies exhibit remarkable interspecies communication skills, using multimodal signaling that includes posture, facial expressions, vocalizations, and even eye contact." }
+          }
+        },
+        "age_80": {
+          "content": "How do puppies learn to communicate with humans?",
+          "choices": {
+            "option_a": { "text": "Only through barking and whining", "teaching_moment": "Canine communication is much more sophisticated than vocalization alone. Puppies develop complex non-verbal communication through evolutionary adaptation." },
+            "option_b": { "text": "Through body language, sounds, and facial expressions", "teaching_moment": "Precisely! Puppies exhibit remarkable interspecies communication skills, using multimodal signaling that includes posture, facial expressions, vocalizations, and even eye contact." }
+          }
+        },
+        "age_102": {
+          "content": "How do puppies learn to communicate with humans?",
+          "choices": {
+            "option_a": { "text": "Only through barking and whining", "teaching_moment": "Canine communication is much more sophisticated than vocalization alone. Puppies develop complex non-verbal communication through evolutionary adaptation." },
+            "option_b": { "text": "Through body language, sounds, and facial expressions", "teaching_moment": "Precisely! Puppies exhibit remarkable interspecies communication skills, using multimodal signaling that includes posture, facial expressions, vocalizations, and even eye contact." }
+          }
+        }
+      }
+    },
+    
+    "4": {
+      "type": "end",
+      "display_name": "End", 
+      "question_number": "Q3",
+      "content": "What can we learn from how puppies approach the world?",
+      "choices": {
+        "option_a": {
+          "text": "To be cautious and careful about everything",
+          "teaching_moment": "While being safe is important, puppies actually teach us something different - they show us how to approach life with curiosity, playfulness, and openness to new experiences."
+        },
+        "option_b": {
+          "text": "To be curious, playful, and open to new experiences",
+          "teaching_moment": "Beautiful understanding! Puppies remind us to approach life with wonder, to play freely, and to greet each day as an adventure full of possibilities."
+        }
+      },
+      "avatar_expression": "question_curious",
+      "duration": "2-3 minutes",
+      "age_adaptations": {
+        "age_2": {
+          "content": "What do puppies teach us?",
+          "choices": {
+            "option_a": { "text": "To be scared of things", "teaching_moment": "No! Puppies teach us to be happy and curious about everything around us!" },
+            "option_b": { "text": "To play and explore", "teaching_moment": "Yes! Puppies show us how to be happy, play lots, and explore the world with excitement!" }
+          }
+        },
+        "age_5": {
+          "content": "What do puppies teach us about life?",
+          "choices": {
+            "option_a": { "text": "To be afraid of new things", "teaching_moment": "No! Puppies teach us to be brave and curious about new things!" },
+            "option_b": { "text": "To be happy and explore", "teaching_moment": "Yes! Puppies show us how to be happy, play, and explore everything around us!" }
+          }
+        },
+        "age_8": {
+          "content": "What important lesson can we learn from watching puppies?",
+          "choices": {
+            "option_a": { "text": "To always be serious and focused", "teaching_moment": "Puppies actually teach us the opposite! They show us that play, curiosity, and joy are important parts of learning and growing." },
+            "option_b": { "text": "To be curious, playful, and excited about learning", "teaching_moment": "Exactly! Puppies are natural learners who show us that the best way to discover the world is with enthusiasm, playfulness, and an open heart." }
+          }
+        },
+        "age_12": {
+          "content": "What can we learn from how puppies approach the world?",
+          "choices": {
+            "option_a": { "text": "To be cautious and careful about everything", "teaching_moment": "While being safe is important, puppies actually teach us something different - they show us how to approach life with curiosity, playfulness, and openness to new experiences." },
+            "option_b": { "text": "To be curious, playful, and open to new experiences", "teaching_moment": "Beautiful understanding! Puppies remind us to approach life with wonder, to play freely, and to greet each day as an adventure full of possibilities." }
+          }
+        },
+        "age_16": {
+          "content": "What can we learn from how puppies approach the world?",
+          "choices": {
+            "option_a": { "text": "To be cautious and careful about everything", "teaching_moment": "While being safe is important, puppies actually teach us something different - they show us how to approach life with curiosity, playfulness, and openness to new experiences." },
+            "option_b": { "text": "To be curious, playful, and open to new experiences", "teaching_moment": "Beautiful understanding! Puppies remind us to approach life with wonder, to play freely, and to greet each day as an adventure full of possibilities." }
+          }
+        },
+        "age_25": {
+          "content": "What can we learn from how puppies approach the world?",
+          "choices": {
+            "option_a": { "text": "To be cautious and careful about everything", "teaching_moment": "While prudence has value, puppies model something more vital - they demonstrate how curiosity and openness to experience foster growth and resilience." },
+            "option_b": { "text": "To be curious, playful, and open to new experiences", "teaching_moment": "Profound insight! Puppies embody the growth mindset - approaching challenges with curiosity rather than fear, finding joy in learning, and maintaining resilience through play." }
+          }
+        },
+        "age_40": {
+          "content": "What can we learn from how puppies approach the world?",
+          "choices": {
+            "option_a": { "text": "To be cautious and careful about everything", "teaching_moment": "While prudence has value, puppies model something more vital - they demonstrate how curiosity and openness to experience foster growth and resilience." },
+            "option_b": { "text": "To be curious, playful, and open to new experiences", "teaching_moment": "Profound insight! Puppies embody the growth mindset - approaching challenges with curiosity rather than fear, finding joy in learning, and maintaining resilience through play." }
+          }
+        },
+        "age_60": {
+          "content": "What can we learn from how puppies approach the world?",
+          "choices": {
+            "option_a": { "text": "To be cautious and careful about everything", "teaching_moment": "While prudence has value, puppies model something more vital - they demonstrate how curiosity and openness to experience foster growth and resilience." },
+            "option_b": { "text": "To be curious, playful, and open to new experiences", "teaching_moment": "Profound insight! Puppies embody the growth mindset - approaching challenges with curiosity rather than fear, finding joy in learning, and maintaining resilience through play." }
+          }
+        },
+        "age_80": {
+          "content": "What can we learn from how puppies approach the world?",
+          "choices": {
+            "option_a": { "text": "To be cautious and careful about everything", "teaching_moment": "While prudence has value, puppies model something more vital - they demonstrate how curiosity and openness to experience foster growth and resilience." },
+            "option_b": { "text": "To be curious, playful, and open to new experiences", "teaching_moment": "Profound insight! Puppies embody the growth mindset - approaching challenges with curiosity rather than fear, finding joy in learning, and maintaining resilience through play." }
+          }
+        },
+        "age_102": {
+          "content": "What can we learn from how puppies approach the world?",
+          "choices": {
+            "option_a": { "text": "To be cautious and careful about everything", "teaching_moment": "While prudence has value, puppies model something more vital - they demonstrate how curiosity and openness to experience foster growth and resilience." },
+            "option_b": { "text": "To be curious, playful, and open to new experiences", "teaching_moment": "Profound insight! Puppies embody the growth mindset - approaching challenges with curiosity rather than fear, finding joy in learning, and maintaining resilience through play." }
+          }
+        }
+      }
+    },
+    
+    "5": {
+      "type": "wisdom",
+      "display_name": "Wisdom",
+      "content": {
+        "daily_fortune": "Your daily fortune: Like a puppy discovering the world, your natural curiosity and open heart will lead you to unexpected joys and meaningful connections today.",
+        "reflection": "Puppies teach us that love, patience, and playful curiosity are the keys to both learning and happiness.",
+        "insight": "Every interaction is a chance to practice the kind of unconditional love and enthusiasm that puppies show us every day.",
+        "growth": "By observing how puppies approach each moment with wonder, we remember how to find joy in simple things and connection in every encounter."
+      },
+      "avatar_expression": "happy_celebrating",
+      "duration": "1-2 minutes",
+      "age_adaptations": {
+        "age_2": {
+          "content": {
+            "daily_fortune": "Today you will be happy and playful, just like a puppy!",
+            "reflection": "Puppies love us and we love them!",
+            "insight": "Playing makes everything more fun!",
+            "growth": "You can be curious about everything, just like puppies!"
+          }
+        },
+        "age_5": {
+          "content": {
+            "daily_fortune": "Today you will be happy and curious, just like a puppy!",
+            "reflection": "Puppies show us how to be happy and love everyone!",
+            "insight": "Being kind and playful makes everyone happy!",
+            "growth": "You can learn new things every day, just like puppies do!"
+          }
+        },
+        "age_8": {
+          "content": {
+            "daily_fortune": "Today your curiosity and kindness will help you make a new friend, just like puppies do!",
+            "reflection": "Puppies show us that being loyal, playful, and loving makes life better for everyone.",
+            "insight": "Every day is a chance to learn something new and help someone feel happy.",
+            "growth": "Like puppies, you can approach challenges with excitement instead of worry."
+          }
+        },
+        "age_12": {
+          "content": {
+            "daily_fortune": "Today your natural curiosity and kindness will lead you to wonderful discoveries, just like a puppy exploring the world!",
+            "reflection": "Puppies teach us that loyalty, playfulness, and unconditional love make life richer and more meaningful.",
+            "insight": "Every day offers new opportunities to learn, grow, and make positive connections with others.",
+            "growth": "Like puppies, you can approach life's challenges with enthusiasm and an open heart."
+          }
+        },
+        "age_16": {
+          "content": {
+            "daily_fortune": "Today your authentic enthusiasm and open heart will create meaningful connections, much like a puppy's genuine nature.",
+            "reflection": "Puppies demonstrate that loyalty, playfulness, and unconditional love are fundamental to meaningful relationships.",
+            "insight": "Every interaction is an opportunity to practice the kind of genuine enthusiasm and connection that puppies model.",
+            "growth": "Like puppies, you can approach life's challenges with curiosity and resilience."
+          }
+        },
+        "age_25": {
+          "content": {
+            "daily_fortune": "Today your authenticity and enthusiasm will open doors you didn't expect, much like how a puppy's genuine nature creates instant connections.",
+            "reflection": "Puppies demonstrate that emotional intelligence and genuine presence often matter more than complex strategies.",
+            "insight": "The capacity for joy and connection that puppies model is not childish but foundational to human wellbeing and success.",
+            "growth": "Integrating puppy-like qualities - curiosity, resilience, and unconditional positive regard - can transform both personal relationships and professional endeavors."
+          }
+        },
+        "age_40": {
+          "content": {
+            "daily_fortune": "Today your authentic enthusiasm and open heart will create unexpected opportunities, much like a puppy's genuine nature opens doors.",
+            "reflection": "Puppies remind us that emotional intelligence and genuine presence often outweigh complex strategies in both personal and professional relationships.",
+            "insight": "The capacity for joy and connection that puppies model is not childish but essential to human wellbeing and success.",
+            "growth": "Embracing puppy-like qualities - curiosity, resilience, and unconditional positive regard - can enhance both personal relationships and professional effectiveness."
+          }
+        },
+        "age_60": {
+          "content": {
+            "daily_fortune": "Today your genuine enthusiasm and open heart will create meaningful connections, much like a puppy's authentic nature.",
+            "reflection": "Puppies teach us that emotional intelligence and genuine presence often matter more than complex strategies in relationships.",
+            "insight": "The capacity for joy and connection that puppies model is not childish but essential to human wellbeing and fulfillment.",
+            "growth": "Adopting puppy-like qualities - curiosity, resilience, and unconditional positive regard - can enrich both personal relationships and life satisfaction."
+          }
+        },
+        "age_80": {
+          "content": {
+            "daily_fortune": "Today your authentic enthusiasm and open heart will create meaningful moments, much like a puppy's genuine nature.",
+            "reflection": "Puppies demonstrate that emotional intelligence and genuine presence often matter more than complex strategies in meaningful relationships.",
+            "insight": "The capacity for joy and connection that puppies model is not childish but fundamental to human wellbeing and contentment.",
+            "growth": "Embracing puppy-like qualities - curiosity, resilience, and unconditional positive regard - can enhance both personal relationships and life satisfaction."
+          }
+        },
+        "age_102": {
+          "content": {
+            "daily_fortune": "Today your genuine enthusiasm and open heart will create meaningful connections, much like a puppy's authentic nature.",
+            "reflection": "Puppies teach us that emotional intelligence and genuine presence often matter more than complex strategies in relationships.",
+            "insight": "The capacity for joy and connection that puppies model is not childish but essential to human wellbeing and fulfillment.",
+            "growth": "Adopting puppy-like qualities - curiosity, resilience, and unconditional positive regard - can enrich both personal relationships and life satisfaction."
+          }
+        }
+      }
+    }
+  },
+  
+  "variants": {
+    "age_groups": ["age_2", "age_5", "age_8", "age_12", "age_16", "age_25", "age_40", "age_60", "age_80", "age_102"],
+    "tones": ["grandmother", "fun", "neutral"], 
+    "languages": ["english", "spanish", "french", "german", "chinese", "japanese", "portuguese", "italian", "russian", "arabic", "hindi", "korean"],
+    "avatars": ["kelly", "ken"]
+  },
+  
+  "metadata": {
+    "created": "2025-01-02",
+    "topic_category": "animals_and_nature",
+    "difficulty_level": "beginner_friendly",
+    "universal_themes": ["care", "communication", "learning", "joy", "connection"],
+    "learning_outcomes": [
+      "Understand puppy development and needs",
+      "Recognize interspecies communication", 
+      "Apply puppy qualities to human growth",
+      "Develop empathy and responsibility"
+    ]
+  }
+} 

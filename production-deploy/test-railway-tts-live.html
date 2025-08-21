@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Railway TTS Test - iLearnHow.com</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .test-section {
+            background: rgba(255, 255, 255, 0.1);
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .voice-test {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        input[type="text"] {
+            flex: 1;
+            min-width: 200px;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+        }
+        button {
+            padding: 12px 24px;
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+        button:hover {
+            transform: translateY(-2px);
+        }
+        button:disabled {
+            background: #666;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .status {
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        .status.success { background: rgba(76, 175, 80, 0.3); border-left: 4px solid #4CAF50; }
+        .status.error { background: rgba(244, 67, 54, 0.3); border-left: 4px solid #F44336; }
+        .status.info { background: rgba(33, 150, 243, 0.3); border-left: 4px solid #2196F3; }
+        .audio-player {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        audio {
+            width: 100%;
+            margin: 10px 0;
+        }
+        .integration-status {
+            background: rgba(255, 193, 7, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #FFC107;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚂 Railway TTS Test - iLearnHow.com</h1>
+            <p>Testing Custom Ken & Kelly Voices on Your Live Domain</p>
+        </div>
+
+        <div class="integration-status">
+            <h3>🔗 Integration Status</h3>
+            <p><strong>Domain:</strong> ilearnhow.com</p>
+            <p><strong>Railway TTS:</strong> <span id="integrationStatus">Checking...</span></p>
+            <p><strong>Custom Voices:</strong> Ken & Kelly (your trained models)</p>
+        </div>
+
+        <div class="test-section">
+            <h3>🔍 Railway TTS Connection Test</h3>
+            <div id="connectionStatus" class="status info">Testing connection to Railway TTS...</div>
+            <button onclick="testConnection()">Test Connection</button>
+        </div>
+
+        <div class="test-section">
+            <h3>🎤 Kelly Voice Test (Custom Trained)</h3>
+            <div class="voice-test">
+                <input type="text" id="kellyText" value="Hello! I am Kelly, your friendly teacher. Welcome to today's lesson about the Sun!" placeholder="Enter text for Kelly to speak">
+                <button onclick="testVoice('kelly')">Generate Kelly Voice</button>
+            </div>
+            <div id="kellyStatus" class="status"></div>
+            <div id="kellyAudio" class="audio-player" style="display: none;"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>🎤 Ken Voice Test (Custom Trained)</h3>
+            <div class="voice-test">
+                <input type="text" id="kenText" value="Hi there! I'm Ken, and I'm excited to explore the fascinating world of science with you today!" placeholder="Enter text for Ken to speak">
+                <button onclick="testVoice('ken')">Generate Ken Voice</button>
+            </div>
+            <div id="kenStatus" class="status"></div>
+            <div id="kenAudio" class="audio-player" style="display: none;"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>🧪 Integration Test</h3>
+            <p>Test if Railway TTS is properly integrated with your lesson player:</p>
+            <button onclick="testIntegration()">Test Integration</button>
+            <div id="integrationTestStatus" class="status"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>💡 Next Steps</h3>
+            <p><strong>If everything works:</strong> Your custom Ken & Kelly voices are ready for lessons!</p>
+            <p><strong>If there are errors:</strong> Check the browser console and Railway deployment status.</p>
+            <p><strong>Integration:</strong> This Railway TTS will automatically work with your lesson player.</p>
+        </div>
+    </div>
+
+    <!-- Railway TTS Integration -->
+    <script src="/railway-tts-integration.js"></script>
+    
+    <script>
+        let railwayTTS = null;
+        
+        // Wait for Railway TTS to be ready
+        window.addEventListener('railway-tts-ready', (event) => {
+            console.log('✅ Railway TTS Ready:', event.detail);
+            railwayTTS = window.railwayTTS;
+            updateIntegrationStatus('✅ Connected to Railway TTS');
+            updateConnectionStatus('✅ Railway TTS server is healthy and ready!', 'success');
+        });
+
+        // Check if Railway TTS is already available
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                if (window.railwayTTS && window.railwayTTS.isReady) {
+                    railwayTTS = window.railwayTTS;
+                    updateIntegrationStatus('✅ Railway TTS already loaded');
+                    updateConnectionStatus('✅ Railway TTS server is healthy and ready!', 'success');
+                } else {
+                    updateIntegrationStatus('⏳ Waiting for Railway TTS...');
+                    updateConnectionStatus('⏳ Railway TTS not yet ready, waiting...', 'info');
+                }
+            }, 1000);
+        });
+
+        function updateIntegrationStatus(message) {
+            document.getElementById('integrationStatus').textContent = message;
+        }
+
+        function updateConnectionStatus(message, type = 'info') {
+            const statusDiv = document.getElementById('connectionStatus');
+            statusDiv.className = `status ${type}`;
+            statusDiv.textContent = message;
+        }
+
+        async function testConnection() {
+            if (!railwayTTS) {
+                updateConnectionStatus('❌ Railway TTS not loaded yet', 'error');
+                return;
+            }
+
+            try {
+                const isConnected = await railwayTTS.testConnection();
+                if (isConnected) {
+                    updateConnectionStatus('✅ Railway TTS connection successful!', 'success');
+                } else {
+                    updateConnectionStatus('❌ Railway TTS connection failed', 'error');
+                }
+            } catch (error) {
+                updateConnectionStatus(`❌ Connection error: ${error.message}`, 'error');
+            }
+        }
+
+        async function testVoice(speaker) {
+            if (!railwayTTS) {
+                updateStatus(`${speaker}Status`, '❌ Railway TTS not loaded yet', 'error');
+                return;
+            }
+
+            const textInput = document.getElementById(`${speaker}Text`);
+            const statusDiv = document.getElementById(`${speaker}Status`);
+            const audioDiv = document.getElementById(`${speaker}Audio`);
+            
+            const text = textInput.value.trim();
+            if (!text) {
+                updateStatus(`${speaker}Status`, 'Please enter some text to test', 'error');
+                return;
+            }
+            
+            statusDiv.className = 'status info';
+            statusDiv.textContent = `🎤 Generating ${speaker} voice with Railway TTS...`;
+            
+            try {
+                const result = await railwayTTS.speak(text, speaker);
+                
+                if (result.success) {
+                    statusDiv.className = 'status success';
+                    statusDiv.innerHTML = `
+                        ✅ ${speaker} voice generated successfully!<br>
+                        <strong>Duration:</strong> ${result.duration?.toFixed(2)}s<br>
+                        <strong>Phonemes:</strong> ${result.phonemes?.length || 0} entries
+                    `;
+                    
+                    // Show audio player (audio is already playing)
+                    audioDiv.style.display = 'block';
+                    audioDiv.innerHTML = `
+                        <p>🎵 Audio is playing automatically</p>
+                        <p><strong>Voice:</strong> ${speaker}</p>
+                        <p><strong>Text:</strong> "${text}"</p>
+                    `;
+                } else {
+                    throw new Error('Voice generation failed');
+                }
+                
+            } catch (error) {
+                statusDiv.className = 'status error';
+                statusDiv.textContent = `❌ Error generating ${speaker} voice: ${error.message}`;
+                console.error('TTS Error:', error);
+            }
+        }
+
+        async function testIntegration() {
+            const statusDiv = document.getElementById('integrationTestStatus');
+            statusDiv.className = 'status info';
+            statusDiv.textContent = '🧪 Testing Railway TTS integration...';
+            
+            try {
+                // Test if Railway TTS is available globally
+                if (!window.railwayTTS) {
+                    throw new Error('Railway TTS not available globally');
+                }
+                
+                // Test if it's integrated with lesson player
+                if (window.UniversalLessonPlayer && window.UniversalLessonPlayer.prototype.speak) {
+                    statusDiv.innerHTML = `
+                        ✅ Integration test passed!<br>
+                        <strong>Railway TTS:</strong> Available globally<br>
+                        <strong>Lesson Player:</strong> Integrated with Railway TTS<br>
+                        <strong>Custom Voices:</strong> Ken & Kelly ready for lessons
+                    `;
+                    statusDiv.className = 'status success';
+                } else {
+                    statusDiv.innerHTML = `
+                        ⚠️ Partial integration<br>
+                        <strong>Railway TTS:</strong> Available globally<br>
+                        <strong>Lesson Player:</strong> Not detected<br>
+                        <strong>Status:</strong> TTS will work independently
+                    `;
+                    statusDiv.className = 'status info';
+                }
+                
+            } catch (error) {
+                statusDiv.className = 'status error';
+                statusDiv.textContent = `❌ Integration test failed: ${error.message}`;
+            }
+        }
+
+        function updateStatus(elementId, message, type) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.className = `status ${type}`;
+                element.textContent = message;
+            }
+        }
+    </script>
+</body>
+</html>

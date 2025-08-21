@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Working Universal Learning System</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .lesson-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .lesson-info {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px;
+            max-width: 400px;
+            color: #333;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .avatar-section {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 500;
+            text-align: center;
+        }
+
+        .avatar-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            min-width: 300px;
+            color: #333;
+        }
+
+        .avatar-image {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            color: white;
+        }
+
+        .controls {
+            position: fixed;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 600;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .control-button {
+            padding: 15px 20px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: transform 0.2s, box-shadow 0.2s;
+            min-width: 120px;
+            text-align: left;
+        }
+
+        .control-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .phase-content {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 25px;
+            z-index: 700;
+            max-width: 700px;
+            text-align: center;
+            color: #333;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .choice-button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 20px;
+            border: 2px solid #667eea;
+            border-radius: 15px;
+            background: white;
+            color: #333;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: left;
+            transition: all 0.2s;
+        }
+
+        .choice-button:hover {
+            background: #667eea;
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .continue-button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: transform 0.2s;
+        }
+
+        .continue-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            z-index: 2000;
+            transition: width 0.3s ease;
+        }
+
+        .status-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 10px 15px;
+            color: #333;
+            font-size: 14px;
+            z-index: 1000;
+        }
+
+        .keyboard-hints {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            padding: 15px;
+            color: white;
+            font-size: 12px;
+            z-index: 800;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progress-bar"></div>
+
+    <!-- Status Indicator -->
+    <div class="status-indicator" id="status-indicator">
+        <span id="status-text">Loading...</span>
+    </div>
+
+    <!-- Header -->
+    <div class="header">
+        <h1 style="margin: 0; font-size: 24px;">🧬 Universal Learning System</h1>
+        <div style="display: flex; gap: 10px; align-items: center;">
+            <span id="current-phase">Phase 1 of 6</span>
+            <span id="lesson-title">Calculus - The Mathematics of Change</span>
+        </div>
+    </div>
+
+    <!-- Lesson Info -->
+    <div class="lesson-info" id="lesson-info">
+        <h3 id="lesson-title-display">Calculus - The Mathematics of Change</h3>
+        <p id="lesson-objective">Master mathematical analysis while understanding how calculus enables engineering, economics, and scientific modeling of dynamic systems.</p>
+    </div>
+
+    <!-- Avatar Section -->
+    <div class="avatar-section">
+        <div class="avatar-container" id="avatar-container">
+            <div class="avatar-image" id="avatar-image">👩‍🏫</div>
+            <h3 id="avatar-name">Kelly</h3>
+            <p id="avatar-expression">Expression: teaching_explaining</p>
+            <p id="phase-info">Phase 1 of 6</p>
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+        <button class="control-button" id="continue-btn">▶️ Continue</button>
+        <button class="control-button" id="louder-btn">🔊 Louder</button>
+        <button class="control-button" id="softer-btn">🔉 Softer</button>
+        <button class="control-button" id="slower-btn">🐌 Slower</button>
+        <button class="control-button" id="faster-btn">⚡ Faster</button>
+        <button class="control-button" id="repeat-btn">🔄 Repeat</button>
+        <button class="control-button" id="hold-btn">✋ Hold</button>
+    </div>
+
+    <!-- Phase Content -->
+    <div class="phase-content" id="phase-content">
+        <h3 id="phase-title">Welcome to Calculus</h3>
+        <p id="phase-text">Hello! I'm Kelly, and today we're going to explore one of the most powerful tools in mathematics: calculus. It's the mathematics of change, and it helps us understand how things move, grow, and transform.</p>
+    </div>
+
+    <!-- Keyboard Hints -->
+    <div class="keyboard-hints">
+        <div>⌨️ Keyboard Shortcuts:</div>
+        <div>Space: Pause/Resume</div>
+        <div>→: Next Phase</div>
+        <div>←: Previous Phase</div>
+        <div>Esc: Close Overlays</div>
+    </div>
+
+    <!-- Load all system components -->
+    <script src="complete-curriculum.js"></script>
+    <script src="corrected-variant-generator-v2.js"></script>
+    <script src="homegrown-tts-system.js"></script>
+    <script src="ai-content-generator.js"></script>
+    <script src="complete-lesson-player.js"></script>
+    <script src="main_orchestrator.js"></script>
+    <script src="complete-dummy-lesson.js"></script>
+    <script src="flask-integration.js"></script>
+
+    <script>
+        // Enhanced lesson system with full functionality
+        class CompleteWorkingLessonSystem {
+            constructor() {
+                this.currentPhase = 0;
+                this.isPlaying = true;
+                this.lessonDuration = 0;
+                this.currentTime = 0;
+                
+                this.initializeSystem();
+            }
+
+            initializeSystem() {
+                console.log('🚀 Initializing Complete Working Lesson System...');
+                
+                // Wait for dummy lesson system to be ready
+                setTimeout(() => {
+                    if (window.dummyLessonSystem) {
+                        this.enhanceSystem();
+                        this.startLesson();
+                    } else {
+                        console.error('❌ Dummy lesson system not available');
+                    }
+                }, 1000);
+            }
+
+            enhanceSystem() {
+                console.log('🔧 Enhancing lesson system...');
+                
+                // Override the dummy system's showPhase method
+                const originalShowPhase = window.dummyLessonSystem.showPhase;
+                window.dummyLessonSystem.showPhase = (phaseIndex) => {
+                    originalShowPhase.call(window.dummyLessonSystem, phaseIndex);
+                    this.updateProgressBar();
+                    this.updateStatus();
+                };
+
+                // Add enhanced controls
+                this.setupEnhancedControls();
+                
+                console.log('✅ System enhanced');
+            }
+
+            setupEnhancedControls() {
+                // Enhanced control button handlers
+                const buttons = {
+                    'continue-btn': () => window.dummyLessonSystem.nextPhase(),
+                    'louder-btn': () => this.adjustVolume(1.2),
+                    'softer-btn': () => this.adjustVolume(0.8),
+                    'slower-btn': () => this.adjustSpeed(0.8),
+                    'faster-btn': () => this.adjustSpeed(1.2),
+                    'repeat-btn': () => window.dummyLessonSystem.repeatCurrentPhase(),
+                    'hold-btn': () => window.dummyLessonSystem.togglePause()
+                };
+
+                Object.entries(buttons).forEach(([id, handler]) => {
+                    const button = document.getElementById(id);
+                    if (button) {
+                        button.addEventListener('click', handler);
+                    }
+                });
+
+                // Enhanced keyboard shortcuts
+                document.addEventListener('keydown', (e) => {
+                    switch (e.key) {
+                        case ' ':
+                            e.preventDefault();
+                            window.dummyLessonSystem.togglePause();
+                            break;
+                        case 'ArrowRight':
+                            e.preventDefault();
+                            window.dummyLessonSystem.nextPhase();
+                            break;
+                        case 'ArrowLeft':
+                            e.preventDefault();
+                            window.dummyLessonSystem.previousPhase();
+                            break;
+                        case 'Escape':
+                            window.dummyLessonSystem.closeAllOverlays();
+                            break;
+                    }
+                });
+            }
+
+            startLesson() {
+                console.log('🎬 Starting complete working lesson...');
+                
+                // Update initial display
+                this.updateProgressBar();
+                this.updateStatus();
+                
+                // Add visual enhancements
+                this.addVisualEnhancements();
+                
+                console.log('✅ Complete working lesson started');
+            }
+
+            updateProgressBar() {
+                const progressBar = document.getElementById('progress-bar');
+                if (progressBar && window.dummyLessonSystem.currentLesson) {
+                    const totalPhases = window.dummyLessonSystem.currentLesson.phases.length;
+                    const currentPhase = window.dummyLessonSystem.currentPhase;
+                    const progress = ((currentPhase + 1) / totalPhases) * 100;
+                    progressBar.style.width = `${progress}%`;
+                }
+            }
+
+            updateStatus() {
+                const statusText = document.getElementById('status-text');
+                const currentPhase = document.getElementById('current-phase');
+                const lessonTitle = document.getElementById('lesson-title');
+                
+                if (window.dummyLessonSystem.currentLesson) {
+                    const lesson = window.dummyLessonSystem.currentLesson;
+                    const phase = lesson.phases[window.dummyLessonSystem.currentPhase];
+                    
+                    if (statusText) {
+                        statusText.textContent = `${phase.title} (${window.dummyLessonSystem.currentPhase + 1}/${lesson.phases.length})`;
+                    }
+                    
+                    if (currentPhase) {
+                        currentPhase.textContent = `Phase ${window.dummyLessonSystem.currentPhase + 1} of ${lesson.phases.length}`;
+                    }
+                    
+                    if (lessonTitle) {
+                        lessonTitle.textContent = lesson.title;
+                    }
+                }
+            }
+
+            adjustVolume(factor) {
+                console.log(`🔊 Volume adjusted by factor: ${factor}`);
+                // Visual feedback
+                const avatarImage = document.getElementById('avatar-image');
+                if (avatarImage) {
+                    avatarImage.style.transform = `scale(${factor})`;
+                    setTimeout(() => {
+                        avatarImage.style.transform = 'scale(1)';
+                    }, 200);
+                }
+            }
+
+            adjustSpeed(factor) {
+                console.log(`⚡ Speed adjusted by factor: ${factor}`);
+                // Visual feedback
+                const phaseContent = document.getElementById('phase-content');
+                if (phaseContent) {
+                    phaseContent.style.animation = `pulse ${2/factor}s infinite`;
+                    setTimeout(() => {
+                        phaseContent.style.animation = '';
+                    }, 1000);
+                }
+            }
+
+            addVisualEnhancements() {
+                // Add fade-in animation to phase content
+                const phaseContent = document.getElementById('phase-content');
+                if (phaseContent) {
+                    phaseContent.classList.add('fade-in');
+                }
+
+                // Add pulse animation to avatar
+                const avatarImage = document.getElementById('avatar-image');
+                if (avatarImage) {
+                    avatarImage.classList.add('pulse');
+                }
+            }
+        }
+
+        // Initialize the complete working lesson system
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('🎯 Initializing Complete Working Lesson System...');
+            window.completeWorkingSystem = new CompleteWorkingLessonSystem();
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌞 The Sun, Our Star - Interactive Lesson</title>
+    <link rel="stylesheet" href="cdn-config.js">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .lesson-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .lesson-title {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #ffd700, #ff6b35);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .lesson-subtitle {
+            font-size: 1.2em;
+            opacity: 0.8;
+        }
+
+        .avatar-section {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .avatar-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            min-width: 200px;
+        }
+
+        .avatar-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .avatar-card.selected {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: #ffd700;
+        }
+
+        .avatar-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            object-fit: cover;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .avatar-name {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .avatar-role {
+            font-size: 0.9em;
+            opacity: 0.7;
+        }
+
+        .controls-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .control-btn {
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            margin: 0 10px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 107, 53, 0.3);
+        }
+
+        .control-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .lesson-content {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 30px;
+        }
+
+        .phase-title {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #ffd700;
+            text-align: center;
+        }
+
+        .phase-content {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .question-section {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .question-text {
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #ffd700;
+        }
+
+        .choices {
+            display: grid;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .choice-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1em;
+            text-align: left;
+        }
+
+        .choice-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .choice-btn.correct {
+            background: rgba(76, 175, 80, 0.3);
+            border-color: #4caf50;
+        }
+
+        .choice-btn.incorrect {
+            background: rgba(244, 67, 54, 0.3);
+            border-color: #f44336;
+        }
+
+        .feedback {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1.1em;
+        }
+
+        .feedback.correct {
+            background: rgba(76, 175, 80, 0.2);
+            border: 1px solid #4caf50;
+        }
+
+        .feedback.incorrect {
+            background: rgba(244, 67, 54, 0.2);
+            border: 1px solid #f44336;
+        }
+
+        .progress-section {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(45deg, #ffd700, #ff6b35);
+            transition: width 0.5s ease;
+            width: 0%;
+        }
+
+        .progress-text {
+            font-size: 1.1em;
+            opacity: 0.8;
+        }
+
+        .student-responses {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+
+        .student-response {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #ffd700;
+        }
+
+        .student-name {
+            font-weight: 600;
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+
+        .response-text {
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .lesson-container {
+                padding: 10px;
+            }
+            
+            .avatar-section {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .control-btn {
+                margin: 5px;
+                padding: 12px 20px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="lesson-container">
+        <div class="header">
+            <h1 class="lesson-title">🌞 The Sun, Our Star</h1>
+            <p class="lesson-subtitle">Discover how the Sun powers everything on Earth</p>
+        </div>
+
+        <div class="avatar-section">
+            <div class="avatar-card" data-avatar="kelly">
+                <img src="assets/avatars/kelly/kelly_neutral_default.png" alt="Kelly" class="avatar-image">
+                <div class="avatar-name">Teacher Kelly</div>
+                <div class="avatar-role">Your Guide</div>
+            </div>
+            <div class="avatar-card" data-avatar="ken">
+                <img src="assets/avatars/ken/ken_neutral_default.png" alt="Ken" class="avatar-card">
+                <div class="avatar-name">Teacher Ken</div>
+                <div class="avatar-role">Your Guide</div>
+            </div>
+            <div class="avatar-card" data-avatar="luna">
+                <img src="assets/avatars/kelly/kelly_happy_celebrating.png" alt="Luna" class="avatar-image">
+                <div class="avatar-name">Luna</div>
+                <div class="avatar-role">Intuitive Student</div>
+            </div>
+            <div class="avatar-card" data-avatar="max">
+                <img src="assets/avatars/ken/ken_teaching_explaining.png" alt="Max" class="avatar-image">
+                <div class="avatar-name">Max</div>
+                <div class="avatar-role">Logical Student</div>
+            </div>
+        </div>
+
+        <div class="controls-section">
+            <button class="control-btn" id="start-btn">🚀 Start Lesson</button>
+            <button class="control-btn hidden" id="pause-btn">⏸️ Pause</button>
+            <button class="control-btn hidden" id="resume-btn">▶️ Resume</button>
+            <button class="control-btn" id="stop-btn">⏹️ Stop</button>
+        </div>
+
+        <div class="progress-section">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <div class="progress-text" id="progress-text">Ready to begin</div>
+        </div>
+
+        <div class="lesson-content" id="lesson-content">
+            <div class="phase-title">Welcome to The Sun Lesson!</div>
+            <div class="phase-content">
+                Choose an avatar and click "Start Lesson" to begin exploring how the Sun powers our world.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class SunLessonSystem {
+            constructor() {
+                this.currentPhase = 'welcome';
+                this.isPlaying = false;
+                this.isPaused = false;
+                this.currentAvatar = 'kelly';
+                this.userAnswers = [];
+                
+                this.init();
+            }
+
+            init() {
+                this.setupEventListeners();
+                this.setupAvatarSelection();
+                console.log('Sun Lesson System initialized');
+            }
+
+            setupEventListeners() {
+                document.getElementById('start-btn').addEventListener('click', () => this.startLesson());
+                document.getElementById('pause-btn').addEventListener('click', () => this.pauseLesson());
+                document.getElementById('resume-btn').addEventListener('click', () => this.resumeLesson());
+                document.getElementById('stop-btn').addEventListener('click', () => this.stopLesson());
+            }
+
+            setupAvatarSelection() {
+                const avatarCards = document.querySelectorAll('.avatar-card');
+                avatarCards.forEach(card => {
+                    card.addEventListener('click', () => {
+                        this.selectAvatar(card.dataset.avatar);
+                    });
+                });
+            }
+
+            selectAvatar(avatar) {
+                // Remove previous selection
+                document.querySelectorAll('.avatar-card').forEach(card => {
+                    card.classList.remove('selected');
+                });
+                
+                // Select new avatar
+                document.querySelector(`[data-avatar="${avatar}"]`).classList.add('selected');
+                this.currentAvatar = avatar;
+                
+                console.log(`Selected avatar: ${avatar}`);
+            }
+
+            startLesson() {
+                if (this.isPlaying) return;
+                
+                this.isPlaying = true;
+                this.isPaused = false;
+                this.currentPhase = 'welcome';
+                this.userAnswers = [];
+                
+                this.updateControls();
+                this.playCurrentPhase();
+                console.log('Lesson started');
+            }
+
+            pauseLesson() {
+                if (!this.isPlaying || this.isPaused) return;
+                
+                this.isPaused = true;
+                this.updateControls();
+                console.log('Lesson paused');
+            }
+
+            resumeLesson() {
+                if (!this.isPlaying || !this.isPaused) return;
+                
+                this.isPaused = false;
+                this.updateControls();
+                this.playCurrentPhase();
+                console.log('Lesson resumed');
+            }
+
+            stopLesson() {
+                this.isPlaying = false;
+                this.isPaused = false;
+                this.currentPhase = 'welcome';
+                this.userAnswers = [];
+                
+                this.updateControls();
+                this.showWelcomePhase();
+                console.log('Lesson stopped');
+            }
+
+            updateControls() {
+                const startBtn = document.getElementById('start-btn');
+                const pauseBtn = document.getElementById('pause-btn');
+                const resumeBtn = document.getElementById('resume-btn');
+
+                if (this.isPlaying && !this.isPaused) {
+                    startBtn.classList.add('hidden');
+                    pauseBtn.classList.remove('hidden');
+                    resumeBtn.classList.add('hidden');
+                } else if (this.isPlaying && this.isPaused) {
+                    startBtn.classList.add('hidden');
+                    pauseBtn.classList.add('hidden');
+                    resumeBtn.classList.remove('hidden');
+                } else {
+                    startBtn.classList.remove('hidden');
+                    pauseBtn.classList.add('hidden');
+                    resumeBtn.classList.add('hidden');
+                }
+            }
+
+            async playCurrentPhase() {
+                if (!this.isPlaying || this.isPaused) return;
+                
+                const phase = this.lessonData.phases[this.currentPhase];
+                if (!phase) {
+                    this.completeLesson();
+                    return;
+                }
+
+                console.log(`Playing phase: ${this.currentPhase}`);
+                this.updatePhaseContent(phase);
+                this.updateProgress(this.getPhaseProgress());
+                
+                // Simulate speaking duration
+                await this.simulateSpeaking(phase.content);
+                
+                if (phase.question) {
+                    this.showQuestion(phase);
+                } else {
+                    this.onPhaseComplete();
+                }
+            }
+
+            async simulateSpeaking(text) {
+                const duration = Math.max(text.length * 50, 2000); // Minimum 2 seconds
+                await new Promise(resolve => setTimeout(resolve, duration));
+            }
+
+            updatePhaseContent(phase) {
+                const content = document.getElementById('lesson-content');
+                content.innerHTML = `
+                    <div class="phase-title">${phase.title}</div>
+                    <div class="phase-content">${phase.content}</div>
+                `;
+            }
+
+            showQuestion(phase) {
+                const content = document.getElementById('lesson-content');
+                content.innerHTML = `
+                    <div class="phase-title">${phase.title}</div>
+                    <div class="question-section">
+                        <div class="question-text">${phase.question}</div>
+                        <div class="choices">
+                            ${phase.choices.map((choice, index) => `
+                                <button class="choice-btn" data-choice="${index}" onclick="sunLessonSystem.selectAnswer(${index})">
+                                    ${choice.text}
+                                </button>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+
+            selectAnswer(choiceIndex) {
+                const phase = this.lessonData.phases[this.currentPhase];
+                const choice = phase.choices[choiceIndex];
+                const isCorrect = choice.correct;
+                
+                this.userAnswers.push({
+                    phase: this.currentPhase,
+                    choice: choiceIndex,
+                    correct: isCorrect
+                });
+
+                // Show feedback
+                this.showFeedback(choice, isCorrect);
+                
+                // Wait and move to next phase
+                setTimeout(() => {
+                    this.onPhaseComplete();
+                }, 3000);
+            }
+
+            showFeedback(choice, isCorrect) {
+                const content = document.getElementById('lesson-content');
+                const feedbackHtml = `
+                    <div class="feedback ${isCorrect ? 'correct' : 'incorrect'}">
+                        <strong>${isCorrect ? '✅ Correct!' : '❌ Not quite right'}</strong><br>
+                        ${choice.explanation}
+                    </div>
+                `;
+                
+                content.insertAdjacentHTML('beforeend', feedbackHtml);
+            }
+
+            onPhaseComplete() {
+                const phase = this.lessonData.phases[this.currentPhase];
+                if (phase.nextPhase) {
+                    this.currentPhase = phase.nextPhase;
+                    this.playCurrentPhase();
+                } else {
+                    this.completeLesson();
+                }
+            }
+
+            completeLesson() {
+                this.isPlaying = false;
+                this.isPaused = false;
+                
+                const content = document.getElementById('lesson-content');
+                content.innerHTML = `
+                    <div class="phase-title">🎉 Lesson Complete!</div>
+                    <div class="phase-content">
+                        <p>Congratulations! You've learned so much about the Sun today:</p>
+                        <ul style="text-align: left; margin: 20px 0; padding-left: 20px;">
+                            <li>The Sun is Earth's primary energy source</li>
+                            <li>Earth's rotation creates day/night and changing shadows</li>
+                            <li>Earth's tilt causes seasons</li>
+                            <li>The Sun's energy powers all life through plants</li>
+                        </ul>
+                        <p>You're becoming a brilliant scientist! 🌟</p>
+                    </div>
+                `;
+                
+                this.updateProgress(100);
+                this.updateControls();
+                console.log('Lesson completed successfully!');
+            }
+
+            showWelcomePhase() {
+                const content = document.getElementById('lesson-content');
+                content.innerHTML = `
+                    <div class="phase-title">Welcome to The Sun Lesson!</div>
+                    <div class="phase-content">
+                        Choose an avatar and click "Start Lesson" to begin exploring how the Sun powers our world.
+                    </div>
+                `;
+                
+                this.updateProgress(0);
+            }
+
+            getPhaseProgress() {
+                const phases = Object.keys(this.lessonData.phases);
+                const currentIndex = phases.indexOf(this.currentPhase);
+                return Math.round((currentIndex / (phases.length - 1)) * 100);
+            }
+
+            updateProgress(percentage) {
+                const progressFill = document.getElementById('progress-fill');
+                const progressText = document.getElementById('progress-text');
+                
+                if (progressFill) progressFill.style.width = `${percentage}%`;
+                if (progressText) {
+                    if (percentage === 0) progressText.textContent = 'Ready to begin';
+                    else if (percentage >= 100) progressText.textContent = 'Lesson complete!';
+                    else progressText.textContent = `${Math.round(percentage)}% complete`;
+                }
+            }
+
+            // Lesson data structure
+            lessonData = {
+                phases: {
+                    welcome: {
+                        title: "Welcome to The Sun",
+                        content: "The Sun's energy warms Earth, powers weather, and fuels life through plants. Let's explore how this amazing star works!",
+                        nextPhase: 'beginning'
+                    },
+                    beginning: {
+                        title: "What Powers Life?",
+                        content: "Think about what mainly powers life on Earth. Is it the Sun's energy, or does Earth make its own power?",
+                        question: "What mainly powers life on Earth?",
+                        choices: [
+                            { text: "Energy from the Sun", correct: true, explanation: "Yes—plants capture sunlight, then pass energy through food webs." },
+                            { text: "Light made by Earth itself", correct: false, explanation: "Earth glows a bit in ways like heat, but life runs on sunlight captured by plants." }
+                        ],
+                        nextPhase: 'middle'
+                    },
+                    middle: {
+                        title: "Why Do Shadows Change?",
+                        content: "Have you noticed how shadows change throughout the day? What do you think causes this?",
+                        question: "Why do shadows change through the day?",
+                        choices: [
+                            { text: "The Sun goes around Earth", correct: false, explanation: "It looks like the Sun moves, but it's mostly Earth's spin that changes what we see." },
+                            { text: "Earth spins, changing the Sun's angle", correct: true, explanation: "Right—Earth's rotation makes the Sun appear to move, changing shadow length and direction." }
+                        ],
+                        nextPhase: 'end'
+                    },
+                    end: {
+                        title: "Why Do Seasons Differ?",
+                        content: "Seasons are so different from each other. What do you think causes these changes?",
+                        question: "Why do seasons differ?",
+                        choices: [
+                            { text: "Distance from the Sun alone", correct: false, explanation: "Distance changes a little, but it's the tilt that sets seasons by sunlight angle and day length." },
+                            { text: "Earth's tilt changes sunlight angle and daylight length", correct: true, explanation: "Yes—tilt changes how direct sunlight is and how long days are." }
+                        ],
+                        nextPhase: 'wisdom'
+                    },
+                    wisdom: {
+                        title: "Lesson Complete!",
+                        content: "Notice sunlight today—how it shapes a shadow, warms a place, or feeds a plant. The Sun is truly amazing!",
+                        nextPhase: null
+                    }
+                }
+            };
+        }
+
+        // Initialize the lesson system
+        let sunLessonSystem;
+        document.addEventListener('DOMContentLoaded', () => {
+            sunLessonSystem = new SunLessonSystem();
+        });
+    </script>
+</body>
+</html>

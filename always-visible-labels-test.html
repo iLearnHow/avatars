@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Always-Visible Labels Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f0f0f0; }
+        .test { background: white; padding: 20px; margin: 15px 0; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .success { background: #d4edda; color: #155724; padding: 10px; border-radius: 4px; margin: 10px 0; }
+        .error { background: #f8d7da; color: #721c24; padding: 10px; border-radius: 4px; margin: 10px 0; }
+        .warning { background: #fff3cd; color: #856404; padding: 10px; border-radius: 4px; margin: 10px 0; }
+        button { background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; margin: 5px; }
+        button:hover { background: #0056b3; }
+        iframe { width: 100%; height: 600px; border: 1px solid #ccc; border-radius: 4px; }
+        .demo { display: flex; gap: 20px; margin: 20px 0; }
+        .demo-section { background: #f8f9fa; padding: 20px; border-radius: 8px; }
+        .demo-icon { width: 50px; height: 50px; background: white; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 18px; margin: 10px 0; position: relative; gap: 2px; padding: 4px; }
+        .demo-icon .icon-emoji { font-size: 18px; }
+        .demo-icon .icon-label { font-size: 8px; color: #666; font-weight: 500; text-align: center; line-height: 1; }
+        .language-test { display: flex; gap: 10px; flex-wrap: wrap; margin: 15px 0; }
+        .lang-btn { background: #28a745; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; }
+        .lang-btn:hover { background: #218838; }
+    </style>
+</head>
+<body>
+    <h1>🏷️ Always-Visible Labels Test</h1>
+    
+    <div class="test">
+        <h2>✅ Test 1: Always-Visible Labels Implementation</h2>
+        <p><strong>Status:</strong> <span id="labels-status">Checking...</span></p>
+        <p><strong>Expected:</strong> Labels are always visible inside icons, not just on hover</p>
+    </div>
+    
+    <div class="test">
+        <h2>✅ Test 2: Multi-Language Labels</h2>
+        <p><strong>Status:</strong> <span id="language-status">Checking...</span></p>
+        <p><strong>Expected:</strong> Labels change when language is switched</p>
+    </div>
+    
+    <div class="test">
+        <h2>✅ Test 3: Icon Structure</h2>
+        <p><strong>Status:</strong> <span id="structure-status">Checking...</span></p>
+        <p><strong>Expected:</strong> Icons have emoji + label structure</p>
+    </div>
+    
+    <div class="test">
+        <h2>✅ Test 4: CSS Layout</h2>
+        <p><strong>Status:</strong> <span id="css-status">Checking...</span></p>
+        <p><strong>Expected:</strong> Proper flex layout with labels below emojis</p>
+    </div>
+    
+    <div class="test">
+        <h2>🧪 Demo: Always-Visible Labels</h2>
+        <p>These demo icons show the always-visible label structure:</p>
+        <div class="demo">
+            <div class="demo-section">
+                <h3>Control Buttons</h3>
+                <div class="demo-icon">
+                    <div class="icon-emoji">🗣️</div>
+                    <div class="icon-label">Talk</div>
+                </div>
+                <div class="demo-icon">
+                    <div class="icon-emoji">✋</div>
+                    <div class="icon-label">Hold</div>
+                </div>
+                <div class="demo-icon">
+                    <div class="icon-emoji">🔊</div>
+                    <div class="icon-label">Louder</div>
+                </div>
+                <div class="demo-icon">
+                    <div class="icon-emoji">🔇</div>
+                    <div class="icon-label">Softer</div>
+                </div>
+            </div>
+            <div class="demo-section">
+                <h3>Navigation Icons</h3>
+                <div class="demo-icon">
+                    <div class="icon-emoji">📅</div>
+                    <div class="icon-label">Calendar</div>
+                </div>
+                <div class="demo-icon">
+                    <div class="icon-emoji">😊</div>
+                    <div class="icon-label">Tone</div>
+                </div>
+                <div class="demo-icon">
+                    <div class="icon-emoji">🎭</div>
+                    <div class="icon-label">Avatar</div>
+                </div>
+                <div class="demo-icon">
+                    <div class="icon-emoji">🌍</div>
+                    <div class="icon-label">Language</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="test">
+        <h2>🧪 Language Switching Test</h2>
+        <p>Test language switching in the live interface:</p>
+        <div class="language-test">
+            <button class="lang-btn" onclick="testLanguage('en')">English</button>
+            <button class="lang-btn" onclick="testLanguage('es')">Español</button>
+            <button class="lang-btn" onclick="testLanguage('fr')">Français</button>
+            <button class="lang-btn" onclick="testLanguage('de')">Deutsch</button>
+            <button class="lang-btn" onclick="testLanguage('zh')">中文</button>
+            <button class="lang-btn" onclick="testLanguage('ja')">日本語</button>
+        </div>
+        <button onclick="openLiveTest()">Open Live Interface Test</button>
+        <div id="live-test"></div>
+    </div>
+
+    <script>
+        async function runTests() {
+            console.log('🏷️ Running always-visible labels tests...');
+            
+            // Test 1: Check for always-visible labels implementation
+            try {
+                const response = await fetch('http://localhost:8000/');
+                const html = await response.text();
+                
+                const hasIconEmoji = html.includes('icon-emoji');
+                const hasIconLabel = html.includes('icon-label');
+                const hasDataLabels = html.includes('data-en=') && html.includes('data-es=');
+                const hasUpdateFunction = html.includes('updateIconLabels');
+                
+                if (hasIconEmoji && hasIconLabel && hasDataLabels && hasUpdateFunction) {
+                    document.getElementById('labels-status').textContent = '✅ PASSED - Always-visible labels implemented';
+                    document.getElementById('labels-status').className = 'success';
+                } else {
+                    document.getElementById('labels-status').textContent = '❌ FAILED - Always-visible labels missing';
+                    document.getElementById('labels-status').className = 'error';
+                }
+            } catch (error) {
+                document.getElementById('labels-status').textContent = '❌ ERROR - ' + error.message;
+                document.getElementById('labels-status').className = 'error';
+            }
+            
+            // Test 2: Check for multi-language labels
+            try {
+                const response = await fetch('http://localhost:8000/');
+                const html = await response.text();
+                
+                const hasEnglish = html.includes('data-en="Talk"');
+                const hasSpanish = html.includes('data-es="Hablar"');
+                const hasFrench = html.includes('data-fr="Parler"');
+                const hasGerman = html.includes('data-de="Sprechen"');
+                const hasChinese = html.includes('data-zh="说话"');
+                const hasJapanese = html.includes('data-ja="話す"');
+                
+                if (hasEnglish && hasSpanish && hasFrench && hasGerman && hasChinese && hasJapanese) {
+                    document.getElementById('language-status').textContent = '✅ PASSED - Multi-language labels present';
+                    document.getElementById('language-status').className = 'success';
+                } else {
+                    document.getElementById('language-status').textContent = '❌ FAILED - Multi-language labels missing';
+                    document.getElementById('language-status').className = 'error';
+                }
+            } catch (error) {
+                document.getElementById('language-status').textContent = '❌ ERROR - ' + error.message;
+                document.getElementById('language-status').className = 'error';
+            }
+            
+            // Test 3: Check for icon structure
+            try {
+                const response = await fetch('http://localhost:8000/');
+                const html = await response.text();
+                
+                const hasControlStructure = html.includes('<div class="icon-emoji">🗣️</div>') && html.includes('<div class="icon-label"');
+                const hasNavStructure = html.includes('<div class="icon-emoji">📅</div>') && html.includes('<div class="icon-label"');
+                
+                if (hasControlStructure && hasNavStructure) {
+                    document.getElementById('structure-status').textContent = '✅ PASSED - Icon structure correct';
+                    document.getElementById('structure-status').className = 'success';
+                } else {
+                    document.getElementById('structure-status').textContent = '❌ FAILED - Icon structure incorrect';
+                    document.getElementById('structure-status').className = 'error';
+                }
+            } catch (error) {
+                document.getElementById('structure-status').textContent = '❌ ERROR - ' + error.message;
+                document.getElementById('structure-status').className = 'error';
+            }
+            
+            // Test 4: Check for CSS layout
+            try {
+                const response = await fetch('http://localhost:8000/');
+                const html = await response.text();
+                
+                const hasFlexDirection = html.includes('flex-direction: column');
+                const hasGap = html.includes('gap: 2px');
+                const hasIconLabelCSS = html.includes('.icon-label');
+                const hasIconEmojiCSS = html.includes('.icon-emoji');
+                
+                if (hasFlexDirection && hasGap && hasIconLabelCSS && hasIconEmojiCSS) {
+                    document.getElementById('css-status').textContent = '✅ PASSED - CSS layout correct';
+                    document.getElementById('css-status').className = 'success';
+                } else {
+                    document.getElementById('css-status').textContent = '❌ FAILED - CSS layout incorrect';
+                    document.getElementById('css-status').className = 'error';
+                }
+            } catch (error) {
+                document.getElementById('css-status').textContent = '❌ ERROR - ' + error.message;
+                document.getElementById('css-status').className = 'error';
+            }
+        }
+        
+        function testLanguage(language) {
+            console.log(`🧪 Testing language switch to ${language}`);
+            
+            // Test the language switch in the live interface
+            const iframe = document.querySelector('iframe');
+            if (iframe && iframe.contentWindow) {
+                try {
+                    iframe.contentWindow.setLanguage(language);
+                    console.log(`✅ Language "${language}" switched successfully`);
+                } catch (error) {
+                    console.error(`❌ Error testing language "${language}":`, error);
+                }
+            } else {
+                console.warn('⚠️ No live interface available for testing');
+            }
+        }
+        
+        function openLiveTest() {
+            const testDiv = document.getElementById('live-test');
+            testDiv.innerHTML = `
+                <h3>🧪 Live Interface Test</h3>
+                <p><strong>Test Instructions:</strong></p>
+                <ol>
+                    <li>Wait for the page to load completely</li>
+                    <li>Look for always-visible labels inside all icons</li>
+                    <li>Try switching languages using the buttons above</li>
+                    <li>Verify labels change instantly when language changes</li>
+                    <li>Check that labels are always visible (not just on hover)</li>
+                </ol>
+                <p><strong>Expected Behavior:</strong></p>
+                <ul>
+                    <li>All icons have labels visible at all times</li>
+                    <li>Labels change language when language is switched</li>
+                    <li>Labels are positioned below emojis inside icons</li>
+                    <li>Labels use small, gray, clean typography</li>
+                </ul>
+                <iframe src="http://localhost:8000/" title="Always-Visible Labels Test"></iframe>
+            `;
+        }
+        
+        // Run tests on page load
+        window.addEventListener('load', runTests);
+    </script>
+</body>
+</html> 

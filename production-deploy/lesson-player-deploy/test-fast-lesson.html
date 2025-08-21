@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast Lesson Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .info { background: #d1ecf1; color: #0c5460; }
+        .content-preview {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>⚡ Fast Lesson Test</h1>
+        <p>This test will verify that the fast lesson generation is working correctly.</p>
+        
+        <button onclick="testFastLesson()">Test Fast Lesson Generation</button>
+        
+        <div id="status" class="status info">Ready to test...</div>
+        <div id="content-preview" class="content-preview" style="display: none;"></div>
+    </div>
+
+    <script src="complete-lesson-generator.js"></script>
+    <script>
+        function updateStatus(message, type = 'info') {
+            const status = document.getElementById('status');
+            status.textContent = message;
+            status.className = `status ${type}`;
+        }
+        
+        function showContentPreview(lesson) {
+            const preview = document.getElementById('content-preview');
+            const enContent = lesson.languages.en.content;
+            
+            preview.innerHTML = `
+                <h3>📝 Generated Content Preview:</h3>
+                <p><strong>Introduction:</strong> ${enContent.introduction}</p>
+                <p><strong>Main Content:</strong> ${enContent.young_adult_neutral}</p>
+                <p><strong>Conclusion:</strong> ${enContent.conclusion}</p>
+                <p><strong>Reflection:</strong> ${enContent.reflection}</p>
+                <p><strong>Stats:</strong> ${lesson.generationStats.totalPieces} total pieces generated</p>
+            `;
+            preview.style.display = 'block';
+        }
+        
+        async function testFastLesson() {
+            try {
+                updateStatus('Starting fast lesson generation test...', 'info');
+                console.log('🚀 Starting fast lesson generation test...');
+                
+                // Create generator instance
+                const generator = new CompleteLessonGenerator();
+                
+                // Test with a timeout
+                console.log('⏱️ Starting fast lesson generation with 10-second timeout...');
+                updateStatus('Generating fast lesson (10s timeout)...', 'info');
+                
+                const timeoutPromise = new Promise((_, reject) => {
+                    setTimeout(() => reject(new Error('Lesson generation timed out after 10 seconds')), 10000);
+                });
+                
+                const lessonPromise = generator.generateCompleteLesson(28, 'The Sun', true); // Use fast mode
+                
+                const lesson = await Promise.race([lessonPromise, timeoutPromise]);
+                
+                console.log('✅ Fast lesson generated successfully!');
+                console.log(`📊 Lesson stats:`, lesson.generationStats);
+                
+                updateStatus('✅ Fast lesson generation test PASSED!', 'success');
+                showContentPreview(lesson);
+                
+            } catch (error) {
+                console.error('❌ Test failed:', error);
+                updateStatus(`❌ Test failed: ${error.message}`, 'error');
+            }
+        }
+        
+        // Auto-run test after page load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                console.log('🔄 Auto-running fast test in 2 seconds...');
+                setTimeout(testFastLesson, 2000);
+            }, 1000);
+        });
+    </script>
+</body>
+</html> 

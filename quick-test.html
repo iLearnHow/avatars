@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick iLearn Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test { background: #f8f9fa; padding: 15px; margin: 10px 0; border-radius: 5px; }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        iframe { width: 100%; height: 500px; border: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+    <h1>🚀 Quick iLearn Test</h1>
+    
+    <div class="test">
+        <h3>✅ System Status</h3>
+        <p><strong>Lesson Player:</strong> <span id="player-status">Checking...</span></p>
+        <p><strong>Curriculum Data:</strong> <span id="curriculum-status">Checking...</span></p>
+        <p><strong>Start Button:</strong> <span id="button-status">Checking...</span></p>
+        <p><strong>Dynamic Content:</strong> <span id="content-status">Checking...</span></p>
+    </div>
+    
+    <div class="test">
+        <h3>🧪 Live Interface Test</h3>
+        <p>Click the button below to open the actual interface and test it manually:</p>
+        <button onclick="openInterface()">Open iLearn Interface</button>
+        <div id="interface-test"></div>
+    </div>
+    
+    <div class="test">
+        <h3>📋 Test Instructions</h3>
+        <ol>
+            <li>Wait for the interface to load completely</li>
+            <li>Check if lesson info shows real content (not "Electromagnetic Spectrum")</li>
+            <li>Click "Start Lesson" button</li>
+            <li>Verify lesson content overlay appears</li>
+            <li>Try changing variants (tone, avatar, age, language)</li>
+            <li>Test calendar navigation</li>
+        </ol>
+    </div>
+
+    <script>
+        async function checkSystem() {
+            try {
+                // Check lesson player
+                const playerResponse = await fetch('http://localhost:8000/complete-lesson-player.js');
+                if (playerResponse.ok) {
+                    document.getElementById('player-status').textContent = '✅ Working';
+                    document.getElementById('player-status').className = 'success';
+                } else {
+                    throw new Error('Lesson player not found');
+                }
+                
+                // Check curriculum data
+                const curriculumResponse = await fetch('http://localhost:8000/data/january_curriculum.json');
+                if (curriculumResponse.ok) {
+                    document.getElementById('curriculum-status').textContent = '✅ Available';
+                    document.getElementById('curriculum-status').className = 'success';
+                } else {
+                    throw new Error('Curriculum data not found');
+                }
+                
+                // Check main interface
+                const interfaceResponse = await fetch('http://localhost:8000/');
+                if (interfaceResponse.ok) {
+                    const html = await interfaceResponse.text();
+                    const hasStartButton = html.includes('startLesson()');
+                    const hasDynamicContent = html.includes('lesson-info-title');
+                    
+                    document.getElementById('button-status').textContent = hasStartButton ? '✅ Working' : '❌ Missing';
+                    document.getElementById('button-status').className = hasStartButton ? 'success' : 'error';
+                    
+                    document.getElementById('content-status').textContent = hasDynamicContent ? '✅ Dynamic' : '❌ Static';
+                    document.getElementById('content-status').className = hasDynamicContent ? 'success' : 'error';
+                } else {
+                    throw new Error('Main interface not found');
+                }
+                
+            } catch (error) {
+                console.error('Test failed:', error);
+                document.getElementById('player-status').textContent = '❌ Error';
+                document.getElementById('player-status').className = 'error';
+            }
+        }
+        
+        function openInterface() {
+            const testDiv = document.getElementById('interface-test');
+            testDiv.innerHTML = `
+                <h4>Live Interface:</h4>
+                <iframe src="http://localhost:8000/" title="iLearn Interface"></iframe>
+            `;
+        }
+        
+        // Run tests on page load
+        window.addEventListener('load', checkSystem);
+    </script>
+</body>
+</html> 

@@ -1,0 +1,17 @@
+name = "ilearnhow"
+compatibility_date = "2024-01-01"
+
+[build]
+command = "npm run build"
+publish = "production-deploy"
+
+[env.production]
+name = "ilearnhow-production"
+
+[[env.production.routes]]
+pattern = "undefined/*"
+zone_name = "undefined"
+custom_domain = true
+
+[env.production.vars]
+NODE_VERSION = "18"

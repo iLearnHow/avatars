@@ -1,0 +1,144 @@
+{
+  "calendar_id": "calendar_system_dna",
+  "system_type": "calendar_navigation",
+  "views": {
+    "year_view": {
+      "title": "Year 2024",
+      "description": "Select a month to view lessons",
+      "months": [
+        {
+          "month": 1,
+          "name": "January",
+          "lessons_count": 31,
+          "completed_lessons": 0,
+          "current_day": 1
+        },
+        {
+          "month": 2,
+          "name": "February", 
+          "lessons_count": 29,
+          "completed_lessons": 0,
+          "current_day": 1
+        },
+        {
+          "month": 3,
+          "name": "March",
+          "lessons_count": 31,
+          "completed_lessons": 0,
+          "current_day": 1
+        },
+        {
+          "month": 4,
+          "name": "April",
+          "lessons_count": 30,
+          "completed_lessons": 0,
+          "current_day": 1
+        },
+        {
+          "month": 5,
+          "name": "May",
+          "lessons_count": 31,
+          "completed_lessons": 0,
+          "current_day": 1
+        },
+        {
+          "month": 6,
+          "name": "June",
+          "lessons_count": 30,
+          "completed_lessons": 0,
+          "current_day": 1
+        },
+        {
+          "month": 7,
+          "name": "July",
+          "lessons_count": 31,
+          "completed_lessons": 0,
+          "current_day": 1
+        },
+        {
+          "month": 8,
+          "name": "August",
+          "lessons_count": 31,
+          "completed_lessons": 0,
+          "current_day": 1
+        },
+        {
+          "month": 9,
+          "name": "September",
+          "lessons_count": 30,
+          "completed_lessons": 0,
+          "current_day": 1
+        },
+        {
+          "month": 10,
+          "name": "October",
+          "lessons_count": 31,
+          "completed_lessons": 0,
+          "current_day": 1
+        },
+        {
+          "month": 11,
+          "name": "November",
+          "lessons_count": 30,
+          "completed_lessons": 0,
+          "current_day": 1
+        },
+        {
+          "month": 12,
+          "name": "December",
+          "lessons_count": 31,
+          "completed_lessons": 0,
+          "current_day": 1
+        }
+      ]
+    },
+    "month_view": {
+      "current_month": 1,
+      "month_name": "January",
+      "year": 2024,
+      "days": [
+        {
+          "day": 1,
+          "lesson_id": "001_dance_expression",
+          "status": "available",
+          "completed": false
+        },
+        {
+          "day": 2,
+          "lesson_id": "002_movement_basics", 
+          "status": "available",
+          "completed": false
+        },
+        {
+          "day": 3,
+          "lesson_id": "003_rhythm_fundamentals",
+          "status": "available", 
+          "completed": false
+        }
+      ]
+    },
+    "day_view": {
+      "current_day": 1,
+      "current_month": 1,
+      "current_year": 2024,
+      "lesson_info": {
+        "lesson_id": "001_dance_expression",
+        "title": "Dance Expression",
+        "duration": "5 minutes",
+        "difficulty": "beginner",
+        "topics": ["movement", "expression", "creativity"]
+      }
+    }
+  },
+  "navigation": {
+    "previous_month": "December 2023",
+    "next_month": "February 2024",
+    "current_date": "January 1, 2024"
+  },
+  "progress": {
+    "total_lessons": 366,
+    "completed_lessons": 0,
+    "current_streak": 0,
+    "longest_streak": 0
+  }
+} 

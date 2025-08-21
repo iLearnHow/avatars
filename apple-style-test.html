@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apple-Style Labels Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f0f0f0; }
+        .test { background: white; padding: 20px; margin: 15px 0; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .success { background: #d4edda; color: #155724; padding: 10px; border-radius: 4px; margin: 10px 0; }
+        .error { background: #f8d7da; color: #721c24; padding: 10px; border-radius: 4px; margin: 10px 0; }
+        .warning { background: #fff3cd; color: #856404; padding: 10px; border-radius: 4px; margin: 10px 0; }
+        button { background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; margin: 5px; }
+        button:hover { background: #0056b3; }
+        iframe { width: 100%; height: 600px; border: 1px solid #ccc; border-radius: 4px; }
+        .demo { display: flex; gap: 20px; margin: 20px 0; }
+        .demo-section { background: #f8f9fa; padding: 20px; border-radius: 8px; }
+        .demo-icon { width: 44px; height: 44px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; margin: 10px 0; position: relative; }
+        .demo-icon::after { content: attr(data-label); position: absolute; bottom: -24px; left: 50%; transform: translateX(-50%); font-size: 10px; color: #666; font-weight: 500; white-space: nowrap; opacity: 0; transition: opacity 0.2s ease; }
+        .demo-icon:hover::after { opacity: 1; }
+    </style>
+</head>
+<body>
+    <h1>🍎 Apple-Style Labels Test</h1>
+    
+    <div class="test">
+        <h2>✅ Test 1: Apple-Style Labels Implementation</h2>
+        <p><strong>Status:</strong> <span id="labels-status">Checking...</span></p>
+        <p><strong>Expected:</strong> Labels appear on hover for all icons</p>
+    </div>
+    
+    <div class="test">
+        <h2>✅ Test 2: Control Button Labels</h2>
+        <p><strong>Status:</strong> <span id="controls-status">Checking...</span></p>
+        <p><strong>Expected:</strong> Talk, Hold, Louder, Softer, Slower, Faster, Repeat</p>
+    </div>
+    
+    <div class="test">
+        <h2>✅ Test 3: Navigation Icon Labels</h2>
+        <p><strong>Status:</strong> <span id="nav-status">Checking...</span></p>
+        <p><strong>Expected:</strong> Calendar, Variants, Tone, Avatar, Language, Age, New, Menu</p>
+    </div>
+    
+    <div class="test">
+        <h2>✅ Test 4: CSS Implementation</h2>
+        <p><strong>Status:</strong> <span id="css-status">Checking...</span></p>
+        <p><strong>Expected:</strong> Apple-style CSS with proper positioning and transitions</p>
+    </div>
+    
+    <div class="test">
+        <h2>🧪 Demo: Apple-Style Labels</h2>
+        <p>Hover over these demo icons to see the Apple-style labels:</p>
+        <div class="demo">
+            <div class="demo-section">
+                <h3>Control Buttons</h3>
+                <div class="demo-icon" data-label="Talk">🗣️</div>
+                <div class="demo-icon" data-label="Hold">✋</div>
+                <div class="demo-icon" data-label="Louder">🔊</div>
+                <div class="demo-icon" data-label="Softer">🔇</div>
+                <div class="demo-icon" data-label="Slower">🐌</div>
+                <div class="demo-icon" data-label="Faster">⚡</div>
+                <div class="demo-icon" data-label="Repeat">🔄</div>
+            </div>
+            <div class="demo-section">
+                <h3>Navigation Icons</h3>
+                <div class="demo-icon" data-label="Calendar">📅</div>
+                <div class="demo-icon" data-label="Variants">📋</div>
+                <div class="demo-icon" data-label="Tone">😊</div>
+                <div class="demo-icon" data-label="Avatar">🎭</div>
+                <div class="demo-icon" data-label="Language">🌍</div>
+                <div class="demo-icon" data-label="Age">👶</div>
+                <div class="demo-icon" data-label="New">➕</div>
+                <div class="demo-icon" data-label="Menu">☰</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="test">
+        <h2>🧪 Live Interface Test</h2>
+        <p>Test the Apple-style labels in the live interface:</p>
+        <button onclick="openLiveTest()">Open Live Interface Test</button>
+        <div id="live-test"></div>
+    </div>
+
+    <script>
+        async function runTests() {
+            console.log('🍎 Running Apple-style labels tests...');
+            
+            // Test 1: Check for Apple-style labels implementation
+            try {
+                const response = await fetch('http://localhost:8000/');
+                const html = await response.text();
+                
+                const hasDataLabels = html.includes('data-label');
+                const hasControlLabels = html.includes('data-label="Talk"') && html.includes('data-label="Hold"');
+                const hasNavLabels = html.includes('data-label="Calendar"') && html.includes('data-label="Tone"');
+                const hasCSSAfter = html.includes('::after') && html.includes('attr(data-label)');
+                
+                if (hasDataLabels && hasControlLabels && hasNavLabels && hasCSSAfter) {
+                    document.getElementById('labels-status').textContent = '✅ PASSED - Apple-style labels implemented';
+                    document.getElementById('labels-status').className = 'success';
+                } else {
+                    document.getElementById('labels-status').textContent = '❌ FAILED - Apple-style labels missing';
+                    document.getElementById('labels-status').className = 'error';
+                }
+            } catch (error) {
+                document.getElementById('labels-status').textContent = '❌ ERROR - ' + error.message;
+                document.getElementById('labels-status').className = 'error';
+            }
+            
+            // Test 2: Check for control button labels
+            try {
+                const response = await fetch('http://localhost:8000/');
+                const html = await response.text();
+                
+                const hasTalk = html.includes('data-label="Talk"');
+                const hasHold = html.includes('data-label="Hold"');
+                const hasLouder = html.includes('data-label="Louder"');
+                const hasSofter = html.includes('data-label="Softer"');
+                const hasSlower = html.includes('data-label="Slower"');
+                const hasFaster = html.includes('data-label="Faster"');
+                const hasRepeat = html.includes('data-label="Repeat"');
+                
+                if (hasTalk && hasHold && hasLouder && hasSofter && hasSlower && hasFaster && hasRepeat) {
+                    document.getElementById('controls-status').textContent = '✅ PASSED - All control button labels present';
+                    document.getElementById('controls-status').className = 'success';
+                } else {
+                    document.getElementById('controls-status').textContent = '❌ FAILED - Control button labels missing';
+                    document.getElementById('controls-status').className = 'error';
+                }
+            } catch (error) {
+                document.getElementById('controls-status').textContent = '❌ ERROR - ' + error.message;
+                document.getElementById('controls-status').className = 'error';
+            }
+            
+            // Test 3: Check for navigation icon labels
+            try {
+                const response = await fetch('http://localhost:8000/');
+                const html = await response.text();
+                
+                const hasCalendar = html.includes('data-label="Calendar"');
+                const hasVariants = html.includes('data-label="Variants"');
+                const hasTone = html.includes('data-label="Tone"');
+                const hasAvatar = html.includes('data-label="Avatar"');
+                const hasLanguage = html.includes('data-label="Language"');
+                const hasAge = html.includes('data-label="Age"');
+                const hasNew = html.includes('data-label="New"');
+                const hasMenu = html.includes('data-label="Menu"');
+                
+                if (hasCalendar && hasVariants && hasTone && hasAvatar && hasLanguage && hasAge && hasNew && hasMenu) {
+                    document.getElementById('nav-status').textContent = '✅ PASSED - All navigation icon labels present';
+                    document.getElementById('nav-status').className = 'success';
+                } else {
+                    document.getElementById('nav-status').textContent = '❌ FAILED - Navigation icon labels missing';
+                    document.getElementById('nav-status').className = 'error';
+                }
+            } catch (error) {
+                document.getElementById('nav-status').textContent = '❌ ERROR - ' + error.message;
+                document.getElementById('nav-status').className = 'error';
+            }
+            
+            // Test 4: Check for CSS implementation
+            try {
+                const response = await fetch('http://localhost:8000/');
+                const html = await response.text();
+                
+                const hasCSSAfter = html.includes('::after');
+                const hasDataLabel = html.includes('attr(data-label)');
+                const hasOpacity = html.includes('opacity: 0');
+                const hasTransition = html.includes('transition: opacity');
+                const hasHoverOpacity = html.includes('opacity: 1');
+                
+                if (hasCSSAfter && hasDataLabel && hasOpacity && hasTransition && hasHoverOpacity) {
+                    document.getElementById('css-status').textContent = '✅ PASSED - Apple-style CSS implemented';
+                    document.getElementById('css-status').className = 'success';
+                } else {
+                    document.getElementById('css-status').textContent = '❌ FAILED - Apple-style CSS missing';
+                    document.getElementById('css-status').className = 'error';
+                }
+            } catch (error) {
+                document.getElementById('css-status').textContent = '❌ ERROR - ' + error.message;
+                document.getElementById('css-status').className = 'error';
+            }
+        }
+        
+        function openLiveTest() {
+            const testDiv = document.getElementById('live-test');
+            testDiv.innerHTML = `
+                <h3>🧪 Live Interface Test</h3>
+                <p><strong>Test Instructions:</strong></p>
+                <ol>
+                    <li>Wait for the page to load completely</li>
+                    <li>Hover over the control buttons at the bottom to see labels</li>
+                    <li>Hover over the navigation icons on the right to see labels</li>
+                    <li>Verify labels appear smoothly and are properly positioned</li>
+                    <li>Check that labels use Apple-style typography (small, gray, clean)</li>
+                </ol>
+                <p><strong>Expected Labels:</strong></p>
+                <ul>
+                    <li><strong>Controls:</strong> Talk, Hold, Louder, Softer, Slower, Faster, Repeat</li>
+                    <li><strong>Navigation:</strong> Calendar, Variants, Tone, Avatar, Language, Age, New, Menu</li>
+                </ul>
+                <iframe src="http://localhost:8000/" title="Apple-Style Labels Test"></iframe>
+            `;
+        }
+        
+        // Run tests on page load
+        window.addEventListener('load', runTests);
+    </script>
+</body>
+</html> 

@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iLearn How - 5-Phase Lesson System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .app-container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top Controls */
+        .top-controls {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .age-selector {
+            display: flex;
+            gap: 8px;
+            background: rgba(255,255,255,0.9);
+            padding: 6px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .age-btn {
+            background: transparent;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .age-btn.active {
+            background: #007AFF;
+            color: white;
+        }
+
+        .settings-panel {
+            display: flex;
+            gap: 12px;
+        }
+
+        .settings-group {
+            background: rgba(255,255,255,0.9);
+            padding: 8px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            display: flex;
+            gap: 6px;
+        }
+
+        .setting-btn {
+            background: transparent;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .setting-btn.active {
+            background: #007AFF;
+            color: white;
+        }
+
+        /* Main Lesson Stage */
+        .lesson-stage {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #FFC947 0%, #FFB347 100%);
+            margin: 80px 20px 20px 20px;
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Person Silhouette */
+        .person-silhouette {
+            width: 300px;
+            height: 400px;
+            background: #4A5568;
+            border-radius: 150px 150px 40px 40px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Phase Indicator */
+        .phase-indicator {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: #68D391;
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 16px;
+            color: #1A202C;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Content Areas */
+        .content-area {
+            position: absolute;
+            transition: all 0.3s ease;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .content-area.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Welcome Content */
+        .welcome-content {
+            top: 60px;
+            left: 60px;
+        }
+
+        .welcome-card {
+            background: #68D391;
+            padding: 20px;
+            border-radius: 12px;
+            max-width: 280px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            color: #1A202C;
+        }
+
+        /* Question Content */
+        .question-content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .question-label {
+            position: absolute;
+            top: 80px;
+            left: 80px;
+            background: #68D391;
+            padding: 12px 18px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 18px;
+            color: #1A202C;
+        }
+
+        .choices {
+            display: flex;
+            gap: 40px;
+            position: relative;
+            top: -20px;
+        }
+
+        .choice-btn {
+            background: #68D391;
+            border: none;
+            border-radius: 12px;
+            padding: 20px 30px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #1A202C;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-width: 80px;
+        }
+
+        .choice-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        }
+
+        /* Wisdom Content */
+        .wisdom-content {
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+        }
+
+        .wisdom-card {
+            background: #68D391;
+            padding: 20px;
+            border-radius: 12px;
+            width: 120px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-weight: 600;
+            color: #1A202C;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Speed Controls */
+        .speed-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            background: #FFD700;
+            padding: 8px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .speed-btn {
+            background: #FF6B35;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 12px;
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .speed-btn.active {
+            background: #4299E1;
+        }
+
+        /* Feedback */
+        .feedback {
+            position: absolute;
+            bottom: 140px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255,255,255,0.95);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .feedback.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Start Screen */
+        .start-screen {
+            position: absolute;
+            inset: 0;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(15px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .start-screen h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1A202C;
+            margin-bottom: 16px;
+        }
+
+        .start-screen p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 32px;
+            max-width: 400px;
+            line-height: 1.5;
+        }
+
+        .start-btn {
+            background: #007AFF;
+            color: white;
+            border: none;
+            border-radius: 16px;
+            padding: 16px 32px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .start-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0,122,255,0.3);
+        }
+
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Top Controls -->
+        <div class="top-controls">
+            <div class="age-selector">
+                <button class="age-btn" onclick="setAge(2)">2</button>
+                <button class="age-btn active" onclick="setAge(30)">30</button>
+                <button class="age-btn" onclick="setAge(50)">50</button>
+            </div>
+
+            <div class="settings-panel">
+                <!-- Language -->
+                <div class="settings-group">
+                    <button class="setting-btn" onclick="setLanguage('as')">AS</button>
+                    <button class="setting-btn" onclick="setLanguage('es')">ES</button>
+                    <button class="setting-btn active" onclick="setLanguage('en')">EN</button>
+                </div>
+
+                <!-- Tone -->
+                <div class="settings-group">
+                    <button class="setting-btn active" onclick="setTone('neutral')">Neutral</button>
+                    <button class="setting-btn" onclick="setTone('fun')">Fun</button>
+                    <button class="setting-btn" onclick="setTone('grandmother')">Wise</button>
+                </div>
+
+                <!-- Avatar -->
+                <div class="settings-group">
+                    <button class="setting-btn active" onclick="setAvatar('kelly')">Kelly</button>
+                    <button class="setting-btn" onclick="setAvatar('ken')">Ken</button>
+                    <button class="setting-btn" onclick="setAvatar('you')">You</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Lesson Stage -->
+        <div class="lesson-stage">
+            <!-- Start Screen -->
+            <div class="start-screen" id="start-screen">
+                <h1>Music Evolution</h1>
+                <p>Discover how cultural evolution reflects and shapes social values, technology, and global connections through the soundtrack of human experience.</p>
+                <button class="start-btn" onclick="startLesson()">Start Learning Journey</button>
+            </div>
+
+            <!-- Phase Indicator -->
+            <div class="phase-indicator" id="phase-indicator">Welcome</div>
+
+            <!-- Person Silhouette -->
+            <div class="person-silhouette">
+                <!-- Welcome Phase -->
+                <div class="content-area welcome-content" id="welcome-phase">
+                    <div class="welcome-card">
+                        <p><strong>Today is August 5, 2025</strong></p>
+                        <p>Your local time is <span id="current-time">10:00 AM</span></p>
+                        <p style="margin-top: 12px;">Today's lesson is all about <strong>Music Evolution</strong>!</p>
+                    </div>
+                </div>
+
+                <!-- Question Phases -->
+                <div class="content-area question-content" id="question-phase">
+                    <div class="question-label" id="question-label">Q1</div>
+                    <div class="choices">
+                        <button class="choice-btn" onclick="selectChoice('A')">A</button>
+                        <button class="choice-btn" onclick="selectChoice('B')">B</button>
+                    </div>
+                </div>
+
+                <!-- Wisdom Phase -->
+                <div class="content-area wisdom-content" id="wisdom-phase">
+                    <div class="wisdom-card">Reflection</div>
+                    <div class="wisdom-card">Insight</div>
+                    <div class="wisdom-card">Growth</div>
+                </div>
+            </div>
+
+            <!-- Speed Controls -->
+            <div class="speed-controls">
+                <button class="speed-btn" onclick="setSpeed(0.5)">0.5x</button>
+                <button class="speed-btn active" onclick="setSpeed(1.0)">1.0x</button>
+                <button class="speed-btn" onclick="setSpeed(1.5)">1.5x</button>
+                <button class="speed-btn" onclick="setSpeed(2.0)">2.0x</button>
+            </div>
+
+            <!-- Feedback -->
+            <div class="feedback" id="feedback">
+                <p><strong>Great choice!</strong></p>
+                <p>Let's continue exploring...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Clean, Modern JavaScript
+        class LessonPlayer {
+            constructor() {
+                this.currentPhase = 0;
+                this.phases = ['welcome', 'beginning', 'middle', 'end', 'wisdom'];
+                this.phaseLabels = ['Welcome', 'Beginning', 'Middle', 'End', 'Wisdom'];
+                this.questionLabels = ['Q1', 'Q2', 'Q3'];
+                this.settings = {
+                    age: 30,
+                    language: 'en',
+                    tone: 'neutral',
+                    avatar: 'kelly',
+                    speed: 1.0
+                };
+                this.updateTime();
+                setInterval(() => this.updateTime(), 60000);
+            }
+
+            updateTime() {
+                const now = new Date();
+                const timeStr = now.toLocaleTimeString('en-US', { 
+                    hour: 'numeric', 
+                    minute: '2-digit',
+                    hour12: true 
+                });
+                const timeEl = document.getElementById('current-time');
+                if (timeEl) timeEl.textContent = timeStr;
+            }
+
+            start() {
+                document.getElementById('start-screen').classList.add('hidden');
+                this.showPhase(0);
+                this.autoProgress();
+            }
+
+            showPhase(phaseIndex) {
+                this.currentPhase = phaseIndex;
+                
+                // Update phase indicator
+                document.getElementById('phase-indicator').textContent = this.phaseLabels[phaseIndex];
+                
+                // Hide all content areas
+                document.querySelectorAll('.content-area').forEach(el => {
+                    el.classList.remove('active');
+                });
+
+                // Show current phase
+                const phase = this.phases[phaseIndex];
+                switch(phase) {
+                    case 'welcome':
+                        document.getElementById('welcome-phase').classList.add('active');
+                        break;
+                    case 'beginning':
+                    case 'middle': 
+                    case 'end':
+                        this.showQuestion(phaseIndex - 1);
+                        break;
+                    case 'wisdom':
+                        document.getElementById('wisdom-phase').classList.add('active');
+                        break;
+                }
+            }
+
+            showQuestion(questionIndex) {
+                document.getElementById('question-phase').classList.add('active');
+                document.getElementById('question-label').textContent = this.questionLabels[questionIndex];
+            }
+
+            selectChoice(choice) {
+                console.log(`Selected choice: ${choice}`);
+                this.showFeedback(`Great choice ${choice}!`);
+                
+                setTimeout(() => {
+                    this.hideFeedback();
+                    this.nextPhase();
+                }, 2000);
+            }
+
+            showFeedback(message) {
+                const feedback = document.getElementById('feedback');
+                feedback.querySelector('p').innerHTML = `<strong>${message}</strong>`;
+                feedback.classList.add('show');
+            }
+
+            hideFeedback() {
+                document.getElementById('feedback').classList.remove('show');
+            }
+
+            nextPhase() {
+                if (this.currentPhase < this.phases.length - 1) {
+                    this.showPhase(this.currentPhase + 1);
+                } else {
+                    console.log('Lesson completed!');
+                }
+            }
+
+            autoProgress() {
+                // Auto-progress welcome phase
+                if (this.currentPhase === 0) {
+                    setTimeout(() => this.nextPhase(), 3000);
+                }
+            }
+        }
+
+        // Global instance
+        let player = new LessonPlayer();
+
+        // Interface functions
+        function startLesson() {
+            player.start();
+        }
+
+        function selectChoice(choice) {
+            player.selectChoice(choice);
+        }
+
+        function setAge(age) {
+            player.settings.age = age;
+            updateActiveButton('.age-btn', age);
+            console.log(`Age set to ${age}`);
+        }
+
+        function setLanguage(lang) {
+            player.settings.language = lang;
+            updateActiveButton('.settings-group:nth-child(1) .setting-btn', lang);
+            console.log(`Language set to ${lang}`);
+        }
+
+        function setTone(tone) {
+            player.settings.tone = tone;
+            updateActiveButton('.settings-group:nth-child(2) .setting-btn', tone);
+            console.log(`Tone set to ${tone}`);
+        }
+
+        function setAvatar(avatar) {
+            player.settings.avatar = avatar;
+            updateActiveButton('.settings-group:nth-child(3) .setting-btn', avatar);
+            console.log(`Avatar set to ${avatar}`);
+        }
+
+        function setSpeed(speed) {
+            player.settings.speed = speed;
+            updateActiveButton('.speed-btn', speed);
+            console.log(`Speed set to ${speed}x`);
+        }
+
+        function updateActiveButton(selector, value) {
+            document.querySelectorAll(selector).forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.toLowerCase().includes(value.toString().toLowerCase()) || 
+                    btn.getAttribute('onclick').includes(value)) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

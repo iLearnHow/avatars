@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iLearn How - Production Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .status {
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .status.success { background: #d4edda; color: #155724; }
+        .status.error { background: #f8d7da; color: #721c24; }
+        .status.warning { background: #fff3cd; color: #856404; }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+        button:hover { background: #0056b3; }
+        button:disabled { background: #cccccc; cursor: not-allowed; }
+        .avatar-container {
+            width: 300px;
+            height: 300px;
+            margin: 20px auto;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            background-size: cover;
+            background-position: center;
+        }
+        .results {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 iLearn How - Production Test</h1>
+        
+        <div id="status" class="status warning">
+            Checking system status...
+        </div>
+
+        <div class="avatar-container" id="avatar"></div>
+
+        <div style="text-align: center;">
+            <button onclick="testLocal()">Test Local TTS</button>
+            <button onclick="testProduction()">Test Production TTS</button>
+            <button onclick="testRailway()">Test Railway TTS</button>
+        </div>
+
+        <div id="results" class="results"></div>
+    </div>
+
+    <script>
+        const log = (msg) => {
+            const results = document.getElementById('results');
+            results.textContent += `${new Date().toLocaleTimeString()}: ${msg}\n`;
+            console.log(msg);
+        };
+
+        const setStatus = (msg, type = 'warning') => {
+            const status = document.getElementById('status');
+            status.textContent = msg;
+            status.className = `status ${type}`;
+        };
+
+        const setAvatar = (speaker) => {
+            const avatar = document.getElementById('avatar');
+            if (speaker === 'ken') {
+                avatar.style.backgroundImage = 'url(https://pub-16cb321dba5c429a8acbbacbc2f64d64.r2.dev/avatars/ken/full/REST/frame_01.webp)';
+            } else {
+                avatar.style.backgroundImage = 'url(https://pub-16cb321dba5c429a8acbbacbc2f64d64.r2.dev/avatars/kelly/full/REST/frame_01.webp)';
+            }
+        };
+
+        async function testEndpoint(url, name) {
+            log(`\n🔍 Testing ${name} at ${url}`);
+            
+            try {
+                // Test health endpoint
+                const healthResponse = await fetch(`${url}/health`);
+                if (!healthResponse.ok) throw new Error(`Health check failed: ${healthResponse.status}`);
+                
+                const health = await healthResponse.json();
+                log(`✅ Health check passed: ${JSON.stringify(health)}`);
+                
+                // Test TTS endpoint
+                const ttsResponse = await fetch(`${url}/api/tts`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        text: 'Hello, this is a test of the iLearn How system.',
+                        speaker: 'kelly',
+                        include_phonemes: true
+                    })
+                });
+                
+                if (!ttsResponse.ok) throw new Error(`TTS failed: ${ttsResponse.status}`);
+                
+                const ttsData = await ttsResponse.json();
+                log(`✅ TTS response received`);
+                log(`   Speaker: ${ttsData.speaker}`);
+                log(`   Duration: ${ttsData.duration}s`);
+                log(`   Phonemes: ${ttsData.phonemes?.length || 0}`);
+                
+                // Play audio if available
+                if (ttsData.audio) {
+                    const audio = new Audio(`data:audio/wav;base64,${ttsData.audio}`);
+                    audio.play().catch(e => log(`⚠️ Audio playback failed: ${e.message}`));
+                }
+                
+                setStatus(`${name} is working!`, 'success');
+                setAvatar(ttsData.speaker);
+                
+                // Animate avatar with phonemes
+                if (ttsData.phonemes && ttsData.phonemes.length > 0) {
+                    animateAvatar(ttsData.phonemes, ttsData.speaker);
+                }
+                
+                return true;
+            } catch (error) {
+                log(`❌ ${name} failed: ${error.message}`);
+                setStatus(`${name} failed: ${error.message}`, 'error');
+                return false;
+            }
+        }
+
+        function animateAvatar(phonemes, speaker) {
+            const avatar = document.getElementById('avatar');
+            const baseUrl = 'https://pub-16cb321dba5c429a8acbbacbc2f64d64.r2.dev';
+            
+            phonemes.forEach(phoneme => {
+                setTimeout(() => {
+                    const url = `${baseUrl}/avatars/${speaker}/full/${phoneme.phoneme}/frame_01.webp`;
+                    avatar.style.backgroundImage = `url(${url})`;
+                    log(`🎭 Showing viseme: ${phoneme.phoneme}`);
+                }, phoneme.start * 1000);
+            });
+        }
+
+        async function testLocal() {
+            await testEndpoint('http://localhost:5002', 'Local TTS');
+        }
+
+        async function testProduction() {
+            await testEndpoint('https://tts.ilearnhow.com', 'Production TTS');
+        }
+
+        async function testRailway() {
+            await testEndpoint('https://tts-server-production-61b7.up.railway.app', 'Railway TTS');
+        }
+
+        // Initial setup
+        window.onload = () => {
+            setAvatar('kelly');
+            log('🚀 iLearn How Production Test Ready');
+            log('Click a button to test each endpoint');
+        };
+    </script>
+</body>
+</html>

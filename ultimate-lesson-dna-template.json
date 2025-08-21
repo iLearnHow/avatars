@@ -1,0 +1,44 @@
+{
+  "lesson_metadata": {
+    "lesson_id": "unique_lesson_identifier",
+    "day": 0,
+    "universal_concept": "A high-level, one-sentence description of the core concept.",
+    "learning_essence": "A slightly more detailed sentence on what the learner will gain from this experience."
+  },
+  "age_expressions": {
+    "2": { "concept_name": { "neutral": { "display_text": "", "voice_over_script": "" }, "fun": { "display_text": "", "voice_over_script": "" }, "grandmother": { "display_text": "", "voice_over_script": "" } } },
+    "5": { "concept_name": { "neutral": { "display_text": "", "voice_over_script": "" }, "fun": { "display_text": "", "voice_over_script": "" }, "grandmother": { "display_text": "", "voice_over_script": "" } } },
+    "8": { "concept_name": { "neutral": { "display_text": "", "voice_over_script": "" }, "fun": { "display_text": "", "voice_over_script": "" }, "grandmother": { "display_text": "", "voice_over_script": "" } } },
+    "12": { "concept_name": { "neutral": { "display_text": "", "voice_over_script": "" }, "fun": { "display_text": "", "voice_over_script": "" }, "grandmother": { "display_text": "", "voice_over_script": "" } } },
+    "16": { "concept_name": { "neutral": { "display_text": "", "voice_over_script": "" }, "fun": { "display_text": "", "voice_over_script": "" }, "grandmother": { "display_text": "", "voice_over_script": "" } } },
+    "25": { "concept_name": { "neutral": { "display_text": "", "voice_over_script": "" }, "fun": { "display_text": "", "voice_over_script": "" }, "grandmother": { "display_text": "", "voice_over_script": "" } } },
+    "40": { "concept_name": { "neutral": { "display_text": "", "voice_over_script": "" }, "fun": { "display_text": "", "voice_over_script": "" }, "grandmother": { "display_text": "", "voice_over_script": "" } } },
+    "60": { "concept_name": { "neutral": { "display_text": "", "voice_over_script": "" }, "fun": { "display_text": "", "voice_over_script": "" }, "grandmother": { "display_text": "", "voice_over_script": "" } } },
+    "80": { "concept_name": { "neutral": { "display_text": "", "voice_over_script": "" }, "fun": { "display_text": "", "voice_over_script": "" }, "grandmother": { "display_text": "", "voice_over_script": "" } } },
+    "102":{ "concept_name": { "neutral": { "display_text": "", "voice_over_script": "" }, "fun": { "display_text": "", "voice_over_script": "" }, "grandmother": { "display_text": "", "voice_over_script": "" } } }
+  },
+  "core_lesson_structure": {
+    "question_1": {
+      "concept_focus": "The core learning objective for this question.",
+      "ages": {
+        "2":   { "question": { "neutral": { "display_text": "" }, "fun": { "display_text": "" }, "grandmother": { "display_text": "" } }, "option_a": { "display_text": "", "voice_over_script": "" }, "option_b": { "display_text": "", "voice_over_script": "" }, "teaching_moments": {"option_a_response": { "display_text": "", "voice_over_script": "" }, "option_b_response": { "display_text": "", "voice_over_script": "" }}},
+        "5":   { "question": { "neutral": { "display_text": "" }, "fun": { "display_text": "" }, "grandmother": { "display_text": "" } }, "option_a": { "display_text": "", "voice_over_script": "" }, "option_b": { "display_text": "", "voice_over_script": "" }, "teaching_moments": {"option_a_response": { "display_text": "", "voice_over_script": "" }, "option_b_response": { "display_text": "", "voice_over_script": "" }}},
+        "8":   { "question": { "neutral": { "display_text": "" }, "fun": { "display_text": "" }, "grandmother": { "display_text": "" } }, "option_a": { "display_text": "", "voice_over_script": "" }, "option_b": { "display_text": "", "voice_over_script": "" }, "teaching_moments": {"option_a_response": { "display_text": "", "voice_over_script": "" }, "option_b_response": { "display_text": "", "voice_over_script": "" }}},
+        "12":  { "question": { "neutral": { "display_text": "" }, "fun": { "display_text": "" }, "grandmother": { "display_text": "" } }, "option_a": { "display_text": "", "voice_over_script": "" }, "option_b": { "display_text": "", "voice_over_script": "" }, "teaching_moments": {"option_a_response": { "display_text": "", "voice_over_script": "" }, "option_b_response": { "display_text": "", "voice_over_script": "" }}},
+        "16":  { "question": { "neutral": { "display_text": "" }, "fun": { "display_text": "" }, "grandmother": { "display_text": "" } }, "option_a": { "display_text": "", "voice_over_script": "" }, "option_b": { "display_text": "", "voice_over_script": "" }, "teaching_moments": {"option_a_response": { "display_text": "", "voice_over_script": "" }, "option_b_response": { "display_text": "", "voice_over_script": "" }}},
+        "25":  { "question": { "neutral": { "display_text": "" }, "fun": { "display_text": "" }, "grandmother": { "display_text": "" } }, "option_a": { "display_text": "", "voice_over_script": "" }, "option_b": { "display_text": "", "voice_over_script": "" }, "teaching_moments": {"option_a_response": { "display_text": "", "voice_over_script": "" }, "option_b_response": { "display_text": "", "voice_over_script": "" }}},
+        "40":  { "question": { "neutral": { "display_text": "" }, "fun": { "display_text": "" }, "grandmother": { "display_text": "" } }, "option_a": { "display_text": "", "voice_over_script": "" }, "option_b": { "display_text": "", "voice_over_script": "" }, "teaching_moments": {"option_a_response": { "display_text": "", "voice_over_script": "" }, "option_b_response": { "display_text": "", "voice_over_script": "" }}},
+        "60":  { "question": { "neutral": { "display_text": "" }, "fun": { "display_text": "" }, "grandmother": { "display_text": "" } }, "option_a": { "display_text": "", "voice_over_script": "" }, "option_b": { "display_text": "", "voice_over_script": "" }, "teaching_moments": {"option_a_response": { "display_text": "", "voice_over_script": "" }, "option_b_response": { "display_text": "", "voice_over_script": "" }}},
+        "80":  { "question": { "neutral": { "display_text": "" }, "fun": { "display_text": "" }, "grandmother": { "display_text": "" } }, "option_a": { "display_text": "", "voice_over_script": "" }, "option_b": { "display_text": "", "voice_over_script": "" }, "teaching_moments": {"option_a_response": { "display_text": "", "voice_over_script": "" }, "option_b_response": { "display_text": "", "voice_over_script": "" }}},
+        "102": { "question": { "neutral": { "display_text": "" }, "fun": { "display_text": "" }, "grandmother": { "display_text": "" } }, "option_a": { "display_text": "", "voice_over_script": "" }, "option_b": { "display_text": "", "voice_over_script": "" }, "teaching_moments": {"option_a_response": { "display_text": "", "voice_over_script": "" }, "option_b_response": { "display_text": "", "voice_over_script": "" }}}
+      }
+    }
+  },
+  "wisdom_phase_content": {
+      "fortune": {
+          "neutral": { "display_text": "", "voice_over_script": "" },
+          "fun": { "display_text": "", "voice_over_script": "" },
+          "grandmother": { "display_text": "", "voice_over_script": "" }
+      }
+  }
+}

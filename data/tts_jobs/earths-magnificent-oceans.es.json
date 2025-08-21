@@ -1,0 +1,33 @@
+{
+  "slug": "earths-magnificent-oceans",
+  "language": "es",
+  "version": "tts_jobs_v1",
+  "defaultSpeaker": "kelly",
+  "phases": [
+    {
+      "id": "welcome",
+      "text": "Bienvenido. Piensa en el océano no como partes con nombre, sino como un solo cuerpo en movimiento—corrientes que unen todas las costas. Te guiaré y daré pistas cuando haga falta.",
+      "approxChars": 178
+    },
+    {
+      "id": "beginning",
+      "text": "Pregunta uno. ¿Qué descripción encaja mejor—océanos separados que no se afectan, o un océano global conectado por corrientes? Elige cuando estés listo/a.",
+      "approxChars": 153
+    },
+    {
+      "id": "middle",
+      "text": "Pregunta dos. ¿Qué impulsa principalmente las grandes cintas del océano—solo las mareas de la Luna, o el viento con diferencias de temperatura y sal (densidad)? Elige cuando estés listo/a.",
+      "approxChars": 188
+    },
+    {
+      "id": "end",
+      "text": "Pregunta tres. ¿Por qué los océanos sanos importan para ti y para mí—solo por peces y playas, o por oxígeno, clima estable, alimento y trabajos? Elige cuando estés listo/a.",
+      "approxChars": 172
+    },
+    {
+      "id": "wisdom",
+      "text": "Wisdom to carry: care for the ocean and it cares for you—each breath, each meal, each calm day. Do one small protective act today.",
+      "approxChars": 130
+    }
+  ]
+}

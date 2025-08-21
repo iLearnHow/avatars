@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulletproof Universal Learning System</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .lesson-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .avatar-section {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 500;
+            text-align: center;
+        }
+
+        .avatar-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            min-width: 300px;
+            color: #333;
+        }
+
+        .avatar-image {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            color: white;
+        }
+
+        .controls {
+            position: fixed;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 600;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .control-button {
+            padding: 15px 20px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: transform 0.2s, box-shadow 0.2s;
+            min-width: 120px;
+            text-align: left;
+        }
+
+        .control-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .phase-content {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 25px;
+            z-index: 700;
+            max-width: 700px;
+            text-align: center;
+            color: #333;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .choice-button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 20px;
+            border: 2px solid #667eea;
+            border-radius: 15px;
+            background: white;
+            color: #333;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: left;
+            transition: all 0.2s;
+        }
+
+        .choice-button:hover {
+            background: #667eea;
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .continue-button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: transform 0.2s;
+        }
+
+        .continue-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            z-index: 2000;
+            transition: width 0.3s ease;
+        }
+
+        .status-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 10px 15px;
+            color: #333;
+            font-size: 14px;
+            z-index: 1000;
+        }
+
+        .lesson-info {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+            color: #333;
+            max-width: 400px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progress-bar"></div>
+
+    <!-- Status Indicator -->
+    <div class="status-indicator" id="status-indicator">
+        <span id="status-text">Loading...</span>
+    </div>
+
+    <!-- Header -->
+    <div class="header">
+        <h1 style="margin: 0; font-size: 24px;">🧬 Universal Learning System</h1>
+        <div style="display: flex; gap: 10px; align-items: center;">
+            <span id="current-phase">Phase 1 of 6</span>
+            <span id="lesson-title">Calculus - The Mathematics of Change</span>
+        </div>
+    </div>
+
+    <!-- Lesson Info -->
+    <div class="lesson-info" id="lesson-info">
+        <h3 id="lesson-title-display">Calculus - The Mathematics of Change</h3>
+        <p id="lesson-objective">Master mathematical analysis while understanding how calculus enables engineering, economics, and scientific modeling of dynamic systems.</p>
+    </div>
+
+    <!-- Avatar Section -->
+    <div class="avatar-section">
+        <div class="avatar-container" id="avatar-container">
+            <div class="avatar-image" id="avatar-image">👩‍🏫</div>
+            <h3 id="avatar-name">Kelly</h3>
+            <p id="avatar-expression">Expression: teaching_explaining</p>
+            <p id="phase-info">Phase 1 of 6</p>
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+        <button class="control-button" id="continue-btn">▶️ Continue</button>
+        <button class="control-button" id="louder-btn">🔊 Louder</button>
+        <button class="control-button" id="softer-btn">🔉 Softer</button>
+        <button class="control-button" id="slower-btn">🐌 Slower</button>
+        <button class="control-button" id="faster-btn">⚡ Faster</button>
+        <button class="control-button" id="repeat-btn">🔄 Repeat</button>
+        <button class="control-button" id="hold-btn">✋ Hold</button>
+    </div>
+
+    <!-- Phase Content -->
+    <div class="phase-content" id="phase-content">
+        <h3 id="phase-title">Welcome to Calculus</h3>
+        <p id="phase-text">Hello! I'm Kelly, and today we're going to explore one of the most powerful tools in mathematics: calculus. It's the mathematics of change, and it helps us understand how things move, grow, and transform.</p>
+    </div>
+
+    <script>
+        // Bulletproof Universal Learning System
+        class BulletproofLessonSystem {
+            constructor() {
+                this.currentPhase = 0;
+                this.isPlaying = true;
+                this.lesson = this.createLesson();
+                
+                this.initializeSystem();
+            }
+
+            createLesson() {
+                return {
+                    title: "Calculus - The Mathematics of Change",
+                    objective: "Master mathematical analysis while understanding how calculus enables engineering, economics, and scientific modeling of dynamic systems.",
+                    phases: [
+                        {
+                            title: "Welcome to Calculus",
+                            content: "Hello! I'm Kelly, and today we're going to explore one of the most powerful tools in mathematics: calculus. It's the mathematics of change, and it helps us understand how things move, grow, and transform.",
+                            expression: "teaching_explaining",
+                            type: "opening"
+                        },
+                        {
+                            title: "What is Calculus?",
+                            content: "Before we dive in, let me ask you: What do you think calculus is? Is it just advanced math, or something more?",
+                            choices: [
+                                "It's advanced algebra and geometry",
+                                "It's the study of how things change over time",
+                                "It's just really hard math"
+                            ],
+                            feedback: "Excellent! Calculus is indeed the study of how things change over time. It's like having a mathematical microscope that lets us zoom in on the moment of change.",
+                            expression: "question_curious",
+                            type: "question"
+                        },
+                        {
+                            title: "Real-World Applications",
+                            content: "Now, think about this: Where do you see calculus being used in the real world?",
+                            choices: [
+                                "Only in advanced science and engineering",
+                                "In everyday things like driving and cooking",
+                                "I'm not sure where it's used"
+                            ],
+                            feedback: "Great thinking! Calculus is everywhere - from the speedometer in your car to the way your coffee cools down. It's the hidden mathematics of our world.",
+                            expression: "teaching_explaining",
+                            type: "question"
+                        },
+                        {
+                            title: "Your Learning Journey",
+                            content: "What aspect of calculus interests you most?",
+                            choices: [
+                                "Understanding the mathematical concepts",
+                                "Seeing how it applies to real problems",
+                                "Learning the computational techniques"
+                            ],
+                            feedback: "Perfect! Understanding the concepts is the foundation. Once you grasp the ideas, the applications and techniques will make much more sense.",
+                            expression: "concerned_thinking",
+                            type: "question"
+                        },
+                        {
+                            title: "What We Learned",
+                            content: "Today we discovered that calculus is the mathematics of change. It helps us understand how things move, grow, and transform. From the speed of your car to the growth of plants, calculus is the language of change.",
+                            expression: "happy_celebrating",
+                            type: "closing"
+                        },
+                        {
+                            title: "Your Daily Fortune",
+                            content: "Your curiosity about how things work is your greatest strength. Like calculus, you have the power to understand the patterns of change in your world. Keep asking questions and exploring the mathematics of life!",
+                            expression: "happy_celebrating",
+                            type: "fortune"
+                        }
+                    ]
+                };
+            }
+
+            initializeSystem() {
+                console.log('🚀 Initializing Bulletproof Lesson System...');
+                
+                this.setupEventListeners();
+                this.showPhase(0);
+                this.updateProgressBar();
+                this.updateStatus();
+                
+                console.log('✅ Bulletproof Lesson System initialized');
+            }
+
+            setupEventListeners() {
+                // Control buttons
+                const buttons = {
+                    'continue-btn': () => this.nextPhase(),
+                    'louder-btn': () => this.adjustVolume(1.2),
+                    'softer-btn': () => this.adjustVolume(0.8),
+                    'slower-btn': () => this.adjustSpeed(0.8),
+                    'faster-btn': () => this.adjustSpeed(1.2),
+                    'repeat-btn': () => this.repeatCurrentPhase(),
+                    'hold-btn': () => this.togglePause()
+                };
+
+                Object.entries(buttons).forEach(([id, handler]) => {
+                    const button = document.getElementById(id);
+                    if (button) {
+                        button.addEventListener('click', handler);
+                    }
+                });
+
+                // Keyboard shortcuts
+                document.addEventListener('keydown', (e) => {
+                    switch (e.key) {
+                        case ' ':
+                            e.preventDefault();
+                            this.togglePause();
+                            break;
+                        case 'ArrowRight':
+                            e.preventDefault();
+                            this.nextPhase();
+                            break;
+                        case 'ArrowLeft':
+                            e.preventDefault();
+                            this.previousPhase();
+                            break;
+                        case 'Escape':
+                            this.closeAllOverlays();
+                            break;
+                    }
+                });
+            }
+
+            showPhase(phaseIndex) {
+                if (phaseIndex >= this.lesson.phases.length) {
+                    this.onLessonComplete();
+                    return;
+                }
+
+                this.currentPhase = phaseIndex;
+                const phase = this.lesson.phases[phaseIndex];
+                
+                console.log(`🎭 Showing phase ${phaseIndex + 1}: ${phase.title}`);
+                
+                // Update avatar
+                this.updateAvatar(phase);
+                
+                // Update phase content
+                this.updatePhaseContent(phase);
+                
+                // Update progress and status
+                this.updateProgressBar();
+                this.updateStatus();
+                
+                // Add visual effects
+                this.addVisualEffects();
+            }
+
+            updateAvatar(phase) {
+                const avatarImage = document.getElementById('avatar-image');
+                const avatarExpression = document.getElementById('avatar-expression');
+                const phaseInfo = document.getElementById('phase-info');
+                
+                if (avatarImage) {
+                    avatarImage.textContent = '👩‍🏫';
+                    avatarImage.classList.add('pulse');
+                }
+                
+                if (avatarExpression) {
+                    avatarExpression.textContent = `Expression: ${phase.expression}`;
+                }
+                
+                if (phaseInfo) {
+                    phaseInfo.textContent = `Phase ${this.currentPhase + 1} of ${this.lesson.phases.length}`;
+                }
+            }
+
+            updatePhaseContent(phase) {
+                const phaseTitle = document.getElementById('phase-title');
+                const phaseText = document.getElementById('phase-text');
+                const phaseContent = document.getElementById('phase-content');
+                
+                if (phaseTitle) {
+                    phaseTitle.textContent = phase.title;
+                }
+                
+                if (phaseText) {
+                    phaseText.textContent = phase.content;
+                }
+                
+                // Add choices for questions
+                if (phase.type === 'question' && phase.choices) {
+                    let choicesHTML = '';
+                    phase.choices.forEach((choice, index) => {
+                        choicesHTML += `
+                            <button class="choice-button" onclick="window.bulletproofSystem.selectChoice(${index})">
+                                ${choice}
+                            </button>
+                        `;
+                    });
+                    
+                    if (phaseContent) {
+                        phaseContent.innerHTML = `
+                            <h3 id="phase-title">${phase.title}</h3>
+                            <p id="phase-text">${phase.content}</p>
+                            <div style="margin-top: 20px;">
+                                ${choicesHTML}
+                            </div>
+                        `;
+                    }
+                } else {
+                    if (phaseContent) {
+                        phaseContent.innerHTML = `
+                            <h3 id="phase-title">${phase.title}</h3>
+                            <p id="phase-text">${phase.content}</p>
+                        `;
+                    }
+                }
+                
+                // Add fade-in effect
+                if (phaseContent) {
+                    phaseContent.classList.add('fade-in');
+                    setTimeout(() => {
+                        phaseContent.classList.remove('fade-in');
+                    }, 500);
+                }
+            }
+
+            selectChoice(choiceIndex) {
+                const phase = this.lesson.phases[this.currentPhase];
+                
+                console.log(`✅ Choice selected: ${choiceIndex}`);
+                
+                // Show feedback
+                const phaseContent = document.getElementById('phase-content');
+                if (phaseContent) {
+                    phaseContent.innerHTML = `
+                        <h3 id="phase-title">${phase.title}</h3>
+                        <p id="phase-text">${phase.feedback}</p>
+                        <button class="continue-button" onclick="window.bulletproofSystem.nextPhase()">
+                            Continue →
+                        </button>
+                    `;
+                }
+            }
+
+            nextPhase() {
+                console.log(`➡️ Moving to next phase`);
+                this.showPhase(this.currentPhase + 1);
+            }
+
+            previousPhase() {
+                if (this.currentPhase > 0) {
+                    console.log(`⬅️ Moving to previous phase`);
+                    this.showPhase(this.currentPhase - 1);
+                }
+            }
+
+            repeatCurrentPhase() {
+                console.log(`🔄 Repeating current phase`);
+                this.showPhase(this.currentPhase);
+            }
+
+            togglePause() {
+                this.isPlaying = !this.isPlaying;
+                console.log(`⏸️ Playback ${this.isPlaying ? 'resumed' : 'paused'}`);
+                
+                // Update UI
+                const continueBtn = document.getElementById('continue-btn');
+                if (continueBtn) {
+                    continueBtn.innerHTML = this.isPlaying ? '⏸️ Pause' : '▶️ Continue';
+                }
+            }
+
+            adjustVolume(factor) {
+                console.log(`🔊 Volume adjusted by factor: ${factor}`);
+                const avatarImage = document.getElementById('avatar-image');
+                if (avatarImage) {
+                    avatarImage.style.transform = `scale(${factor})`;
+                    setTimeout(() => {
+                        avatarImage.style.transform = 'scale(1)';
+                    }, 200);
+                }
+            }
+
+            adjustSpeed(factor) {
+                console.log(`⚡ Speed adjusted by factor: ${factor}`);
+                const phaseContent = document.getElementById('phase-content');
+                if (phaseContent) {
+                    phaseContent.style.animation = `pulse ${2/factor}s infinite`;
+                    setTimeout(() => {
+                        phaseContent.style.animation = '';
+                    }, 1000);
+                }
+            }
+
+            updateProgressBar() {
+                const progressBar = document.getElementById('progress-bar');
+                if (progressBar) {
+                    const progress = ((this.currentPhase + 1) / this.lesson.phases.length) * 100;
+                    progressBar.style.width = `${progress}%`;
+                }
+            }
+
+            updateStatus() {
+                const statusText = document.getElementById('status-text');
+                const currentPhase = document.getElementById('current-phase');
+                const lessonTitle = document.getElementById('lesson-title');
+                
+                const phase = this.lesson.phases[this.currentPhase];
+                
+                if (statusText) {
+                    statusText.textContent = `${phase.title} (${this.currentPhase + 1}/${this.lesson.phases.length})`;
+                }
+                
+                if (currentPhase) {
+                    currentPhase.textContent = `Phase ${this.currentPhase + 1} of ${this.lesson.phases.length}`;
+                }
+                
+                if (lessonTitle) {
+                    lessonTitle.textContent = this.lesson.title;
+                }
+            }
+
+            addVisualEffects() {
+                const phaseContent = document.getElementById('phase-content');
+                if (phaseContent) {
+                    phaseContent.classList.add('fade-in');
+                }
+            }
+
+            closeAllOverlays() {
+                console.log('❌ All overlays closed');
+            }
+
+            onLessonComplete() {
+                console.log('🎉 Lesson completed!');
+                
+                const phaseContent = document.getElementById('phase-content');
+                if (phaseContent) {
+                    phaseContent.innerHTML = `
+                        <h3 style="margin: 0 0 15px 0; color: #333;">🎉 Lesson Complete!</h3>
+                        <p style="margin: 0 0 20px 0; color: #666; line-height: 1.5;">
+                            Congratulations! You've completed today's lesson on Calculus. 
+                            You've learned about the mathematics of change and how it applies to the real world.
+                        </p>
+                        <button class="continue-button" onclick="window.bulletproofSystem.restartLesson()">
+                            Restart Lesson
+                        </button>
+                    `;
+                }
+            }
+
+            restartLesson() {
+                console.log('🔄 Restarting lesson');
+                this.currentPhase = 0;
+                this.isPlaying = true;
+                this.showPhase(0);
+            }
+        }
+
+        // Initialize the bulletproof system
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('🎯 Initializing Bulletproof Lesson System...');
+            window.bulletproofSystem = new BulletproofLessonSystem();
+        });
+    </script>
+</body>
+</html> 
