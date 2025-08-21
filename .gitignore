@@ -1,0 +1,36 @@
+# Large avatar assets (will be served from CDN)
+production-deploy/assets/avatars/kelly/2d/full/
+production-deploy/assets/avatars/ken/2d/full/
+
+# Video source files
+*.mp4
+*.mov
+*.avi
+
+# Node modules
+node_modules/
+
+# Logs
+*.log
+
+# Environment files
+.env
+.env.local
+
+# Build artifacts
+dist/
+build/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary files
+*.tmp
+*.temp

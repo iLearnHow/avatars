@@ -1,0 +1,23 @@
+# Avatar asset caching rules
+/assets/avatars/*
+  Cache-Control: public, max-age=31536000, immutable
+  
+/assets/avatars/*/2d/full/*
+  Cache-Control: public, max-age=2592000
+  
+/assets/avatars/*/kelly_neutral_default.png
+  Cache-Control: public, max-age=31536000, immutable
+  Link: </assets/avatars/kelly/kelly_neutral_default.png>; rel=preload; as=image
+  
+/assets/avatars/*/ken_neutral_default.png
+  Cache-Control: public, max-age=31536000, immutable
+  Link: </assets/avatars/ken/ken_neutral_default.png>; rel=preload; as=image
+
+/*.html
+  Cache-Control: no-cache
+  
+/*.js
+  Cache-Control: public, max-age=3600
+  
+/*.css
+  Cache-Control: public, max-age=3600

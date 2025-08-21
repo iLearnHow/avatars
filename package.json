@@ -1,0 +1,36 @@
+{
+  "name": "ilearnhow",
+  "version": "1.0.0",
+  "description": "iLearn How - Interactive Learning Platform with AI Teachers",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "node scripts/prepare-cloud-deployment.js",
+    "dev": "node server.js",
+    "verify": "node scripts/verify-avatar-inventory.js",
+    "extract-frames": "python3 scripts/extract-frames-ffmpeg.py",
+    "optimize": "python3 scripts/ultra-optimize-frames.py"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/ilearnhow.git"
+  },
+  "keywords": [
+    "education",
+    "ai",
+    "learning",
+    "avatars",
+    "tts"
+  ],
+  "author": "iLearn How Team",
+  "license": "MIT"
+}

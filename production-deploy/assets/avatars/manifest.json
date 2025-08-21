@@ -1,0 +1,66 @@
+{
+  "kelly": {
+    "selected_sources": {
+      "REST": "production-deploy/assets/avatars/kelly/2d/full/kelly_frame_0000.png",
+      "A": "production-deploy/assets/avatars/kelly/2d/mouth_A_TEACH.png",
+      "E": "production-deploy/assets/avatars/kelly/2d/mouth_E_TEACH.png",
+      "I": "production-deploy/assets/avatars/kelly/2d/mouth_I_TEACH.png",
+      "O": "production-deploy/assets/avatars/kelly/2d/full/kelly_O.png",
+      "MBP": "production-deploy/assets/avatars/kelly/2d/full/kelly_frame_0001.png",
+      "FV": "production-deploy/assets/avatars/kelly/2d/mouth_AY.png",
+      "TH": "production-deploy/assets/avatars/kelly/2d/full/kelly_frame_0000.png",
+      "DNTL": "production-deploy/assets/avatars/kelly/2d/mouth_L.png",
+      "KG": "production-deploy/assets/avatars/kelly/2d/mouth_NG.png",
+      "S": "production-deploy/assets/avatars/kelly/2d/mouth_SH.png",
+      "WQ": "production-deploy/assets/avatars/kelly/2d/mouth_OO.png",
+      "R": "production-deploy/assets/avatars/kelly/2d/mouth_UH.png"
+    },
+    "flattened": {
+      "REST": "production-deploy/assets/avatars/kelly/2d/visemes_flat/kelly_REST.png",
+      "A": "production-deploy/assets/avatars/kelly/2d/visemes_flat/kelly_A.png",
+      "E": "production-deploy/assets/avatars/kelly/2d/visemes_flat/kelly_E.png",
+      "I": "production-deploy/assets/avatars/kelly/2d/visemes_flat/kelly_I.png",
+      "O": "production-deploy/assets/avatars/kelly/2d/visemes_flat/kelly_O.png",
+      "MBP": "production-deploy/assets/avatars/kelly/2d/visemes_flat/kelly_MBP.png",
+      "FV": "production-deploy/assets/avatars/kelly/2d/visemes_flat/kelly_FV.png",
+      "TH": "production-deploy/assets/avatars/kelly/2d/visemes_flat/kelly_TH.png",
+      "DNTL": "production-deploy/assets/avatars/kelly/2d/visemes_flat/kelly_DNTL.png",
+      "KG": "production-deploy/assets/avatars/kelly/2d/visemes_flat/kelly_KG.png",
+      "S": "production-deploy/assets/avatars/kelly/2d/visemes_flat/kelly_S.png",
+      "WQ": "production-deploy/assets/avatars/kelly/2d/visemes_flat/kelly_WQ.png",
+      "R": "production-deploy/assets/avatars/kelly/2d/visemes_flat/kelly_R.png"
+    }
+  },
+  "ken": {
+    "selected_sources": {
+      "REST": "production-deploy/assets/avatars/ken/2d/full/ken_frame_0000.png",
+      "A": "production-deploy/assets/avatars/ken/2d/mouth_A_TEACH.png",
+      "E": "production-deploy/assets/avatars/ken/2d/mouth_E_TEACH.png",
+      "I": "production-deploy/assets/avatars/ken/2d/mouth_I_TEACH.png",
+      "O": "production-deploy/assets/avatars/ken/2d/full/ken_O.png",
+      "MBP": "production-deploy/assets/avatars/ken/2d/full/ken_frame_0001.png",
+      "FV": "production-deploy/assets/avatars/ken/2d/mouth_AY.png",
+      "TH": "production-deploy/assets/avatars/ken/2d/full/ken_frame_0000.png",
+      "DNTL": "production-deploy/assets/avatars/ken/2d/mouth_L.png",
+      "KG": "production-deploy/assets/avatars/ken/2d/mouth_NG.png",
+      "S": "production-deploy/assets/avatars/ken/2d/mouth_SH.png",
+      "WQ": "production-deploy/assets/avatars/ken/2d/mouth_OO.png",
+      "R": "production-deploy/assets/avatars/ken/2d/mouth_UH.png"
+    },
+    "flattened": {
+      "REST": "production-deploy/assets/avatars/ken/2d/visemes_flat/ken_REST.png",
+      "A": "production-deploy/assets/avatars/ken/2d/visemes_flat/ken_A.png",
+      "E": "production-deploy/assets/avatars/ken/2d/visemes_flat/ken_E.png",
+      "I": "production-deploy/assets/avatars/ken/2d/visemes_flat/ken_I.png",
+      "O": "production-deploy/assets/avatars/ken/2d/visemes_flat/ken_O.png",
+      "MBP": "production-deploy/assets/avatars/ken/2d/visemes_flat/ken_MBP.png",
+      "FV": "production-deploy/assets/avatars/ken/2d/visemes_flat/ken_FV.png",
+      "TH": "production-deploy/assets/avatars/ken/2d/visemes_flat/ken_TH.png",
+      "DNTL": "production-deploy/assets/avatars/ken/2d/visemes_flat/ken_DNTL.png",
+      "KG": "production-deploy/assets/avatars/ken/2d/visemes_flat/ken_KG.png",
+      "S": "production-deploy/assets/avatars/ken/2d/visemes_flat/ken_S.png",
+      "WQ": "production-deploy/assets/avatars/ken/2d/visemes_flat/ken_WQ.png",
+      "R": "production-deploy/assets/avatars/ken/2d/visemes_flat/ken_R.png"
+    }
+  }
+}
