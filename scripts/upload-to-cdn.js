@@ -11,6 +11,14 @@ const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 
+// Try to load AWS SDK (optional dependency)
+let AWS;
+try {
+    AWS = require('aws-sdk');
+} catch (error) {
+    console.log('AWS SDK not installed. Install with: npm install aws-sdk');
+}
+
 // Configuration
 const CONFIG = {
     // Local paths
@@ -23,8 +31,8 @@ const CONFIG = {
     cdn: {
         // Cloudflare R2
         r2: {
-            bucket: 'your-avatar-bucket',
-            endpoint: 'https://your-account-id.r2.cloudflarestorage.com',
+            bucket: process.env.R2_BUCKET_NAME || 'your-avatar-bucket',
+            endpoint: process.env.R2_ENDPOINT || 'https://your-account-id.r2.cloudflarestorage.com',
             accessKeyId: process.env.R2_ACCESS_KEY_ID,
             secretAccessKey: process.env.R2_SECRET_ACCESS_KEY,
             region: 'auto'
@@ -32,15 +40,15 @@ const CONFIG = {
         
         // AWS S3 (alternative)
         s3: {
-            bucket: 'your-avatar-bucket',
-            region: 'us-east-1',
+            bucket: process.env.AWS_BUCKET_NAME || 'your-avatar-bucket',
+            region: process.env.AWS_REGION || 'us-east-1',
             accessKeyId: process.env.AWS_ACCESS_KEY_ID,
             secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
         },
         
         // Generic HTTP upload (for any CDN with HTTP API)
         http: {
-            baseUrl: 'https://your-cdn-domain.com/upload',
+            baseUrl: process.env.CDN_BASE_URL || 'https://your-cdn-domain.com/upload',
             apiKey: process.env.CDN_API_KEY,
             headers: {
                 'Authorization': `Bearer ${process.env.CDN_API_KEY}`,
@@ -69,6 +77,10 @@ class CDNUploader {
         this.failedFiles = [];
         this.totalFiles = 0;
         this.uploadedBytes = 0;
+        this.s3Client = null;
+        this.r2Client = null;
+        
+        this.init();
     }
 
     async init() {
@@ -76,6 +88,9 @@ class CDNUploader {
         
         // Check environment variables
         this.checkEnvironment();
+        
+        // Initialize CDN clients
+        await this.initializeCDNClients();
         
         // Verify local assets
         await this.verifyLocalAssets();
@@ -93,6 +108,34 @@ class CDNUploader {
         if (missing.length > 0) {
             console.warn('⚠️  Missing environment variables:', missing.join(', '));
             console.log('Please set these variables or update the CONFIG object with your CDN credentials.\n');
+        }
+    }
+
+    async initializeCDNClients() {
+        // Initialize AWS S3 client
+        if (AWS && CONFIG.cdn.s3.accessKeyId && CONFIG.cdn.s3.secretAccessKey) {
+            this.s3Client = new AWS.S3({
+                accessKeyId: CONFIG.cdn.s3.accessKeyId,
+                secretAccessKey: CONFIG.cdn.s3.secretAccessKey,
+                region: CONFIG.cdn.s3.region
+            });
+            console.log('✅ AWS S3 client initialized');
+        }
+
+        // Initialize R2 client (using S3 compatibility)
+        if (AWS && CONFIG.cdn.r2.accessKeyId && CONFIG.cdn.r2.secretAccessKey) {
+            this.r2Client = new AWS.S3({
+                accessKeyId: CONFIG.cdn.r2.accessKeyId,
+                secretAccessKey: CONFIG.cdn.r2.secretAccessKey,
+                endpoint: CONFIG.cdn.r2.endpoint,
+                region: CONFIG.cdn.r2.region,
+                s3ForcePathStyle: true
+            });
+            console.log('✅ Cloudflare R2 client initialized');
+        }
+
+        if (!this.s3Client && !this.r2Client) {
+            console.warn('⚠️  No CDN clients initialized. Please check your credentials.');
         }
     }
 
@@ -121,16 +164,16 @@ class CDNUploader {
         console.log('🌐 Checking CDN connectivity...');
         
         try {
-            // Test R2 connectivity
-            if (process.env.R2_ACCESS_KEY_ID) {
-                const testResult = await this.testR2Connection();
-                console.log(`✅ Cloudflare R2: ${testResult ? 'Connected' : 'Failed'}`);
-            }
-            
             // Test S3 connectivity
-            if (process.env.AWS_ACCESS_KEY_ID) {
+            if (this.s3Client) {
                 const testResult = await this.testS3Connection();
                 console.log(`✅ AWS S3: ${testResult ? 'Connected' : 'Failed'}`);
+            }
+            
+            // Test R2 connectivity
+            if (this.r2Client) {
+                const testResult = await this.testR2Connection();
+                console.log(`✅ Cloudflare R2: ${testResult ? 'Connected' : 'Failed'}`);
             }
             
         } catch (error) {
@@ -140,18 +183,18 @@ class CDNUploader {
         console.log('');
     }
 
-    async testR2Connection() {
+    async testS3Connection() {
         try {
-            // Simple test - you might want to implement actual R2 test
+            await this.s3Client.headBucket({ Bucket: CONFIG.cdn.s3.bucket }).promise();
             return true;
         } catch (error) {
             return false;
         }
     }
 
-    async testS3Connection() {
+    async testR2Connection() {
         try {
-            // Simple test - you might want to implement actual S3 test
+            await this.r2Client.headBucket({ Bucket: CONFIG.cdn.r2.bucket }).promise();
             return true;
         } catch (error) {
             return false;
@@ -214,12 +257,12 @@ class CDNUploader {
         const fileStats = fs.statSync(filePath);
         
         try {
-            // Choose upload method based on available credentials
+            // Choose upload method based on available clients
             let uploadResult = false;
             
-            if (process.env.R2_ACCESS_KEY_ID) {
+            if (this.r2Client) {
                 uploadResult = await this.uploadToR2(avatar, filename, filePath);
-            } else if (process.env.AWS_ACCESS_KEY_ID) {
+            } else if (this.s3Client) {
                 uploadResult = await this.uploadToS3(avatar, filename, filePath);
             } else {
                 uploadResult = await this.uploadViaHTTP(avatar, filename, filePath);
@@ -253,11 +296,27 @@ class CDNUploader {
     }
 
     async uploadToR2(avatar, filename, filePath) {
-        // Implement R2 upload using AWS SDK
         try {
-            // This is a placeholder - implement actual R2 upload
+            const fileStream = fs.createReadStream(filePath);
+            const key = `avatars/${avatar}/frames/${filename}`;
+            
+            const params = {
+                Bucket: CONFIG.cdn.r2.bucket,
+                Key: key,
+                Body: fileStream,
+                ContentType: 'image/png',
+                CacheControl: 'public, max-age=31536000',
+                Metadata: {
+                    'avatar': avatar,
+                    'type': 'frame',
+                    'uploaded': new Date().toISOString()
+                }
+            };
+            
+            await this.r2Client.upload(params).promise();
             console.log(`    📤 R2: ${avatar}/${filename}`);
             return true;
+            
         } catch (error) {
             console.error(`    ❌ R2 upload failed for ${filename}:`, error.message);
             return false;
@@ -265,11 +324,27 @@ class CDNUploader {
     }
 
     async uploadToS3(avatar, filename, filePath) {
-        // Implement S3 upload
         try {
-            // This is a placeholder - implement actual S3 upload
+            const fileStream = fs.createReadStream(filePath);
+            const key = `avatars/${avatar}/frames/${filename}`;
+            
+            const params = {
+                Bucket: CONFIG.cdn.s3.bucket,
+                Key: key,
+                Body: fileStream,
+                ContentType: 'image/png',
+                CacheControl: 'public, max-age=31536000',
+                Metadata: {
+                    'avatar': avatar,
+                    'type': 'frame',
+                    'uploaded': new Date().toISOString()
+                }
+            };
+            
+            await this.s3Client.upload(params).promise();
             console.log(`    📤 S3: ${avatar}/${filename}`);
             return true;
+            
         } catch (error) {
             console.error(`    ❌ S3 upload failed for ${filename}:`, error.message);
             return false;
@@ -277,9 +352,8 @@ class CDNUploader {
     }
 
     async uploadViaHTTP(avatar, filename, filePath) {
-        // Implement HTTP upload for generic CDN
         try {
-            // This is a placeholder - implement actual HTTP upload
+            // This is a placeholder - implement actual HTTP upload for generic CDN
             console.log(`    📤 HTTP: ${avatar}/${filename}`);
             return true;
         } catch (error) {
@@ -306,10 +380,20 @@ class CDNUploader {
         
         if (this.uploadedFiles.length > 0) {
             console.log('\n✅ Successfully uploaded files are now available at:');
-            console.log(`   CDN Base URL: ${CONFIG.cdn.r2.endpoint || CONFIG.cdn.s3.bucket || CONFIG.cdn.http.baseUrl}`);
-            console.log('   Example frame URLs:');
-            console.log(`   - Kelly: ${CONFIG.cdn.r2.endpoint || 'your-cdn'}/avatars/kelly/frames/kelly_frame_0000.png`);
-            console.log(`   - Ken: ${CONFIG.cdn.r2.endpoint || 'your-cdn'}/avatars/ken/frames/ken_frame_0000.png`);
+            
+            if (this.r2Client) {
+                console.log(`   Cloudflare R2: ${CONFIG.cdn.r2.endpoint}/${CONFIG.cdn.r2.bucket}`);
+                console.log('   Example frame URLs:');
+                console.log(`   - Kelly: ${CONFIG.cdn.r2.endpoint}/${CONFIG.cdn.r2.bucket}/avatars/kelly/frames/kelly_frame_0000.png`);
+                console.log(`   - Ken: ${CONFIG.cdn.r2.endpoint}/${CONFIG.cdn.r2.bucket}/avatars/ken/frames/ken_frame_0000.png`);
+            }
+            
+            if (this.s3Client) {
+                console.log(`   AWS S3: https://${CONFIG.cdn.s3.bucket}.s3.${CONFIG.cdn.s3.region}.amazonaws.com`);
+                console.log('   Example frame URLs:');
+                console.log(`   - Kelly: https://${CONFIG.cdn.s3.bucket}.s3.${CONFIG.cdn.s3.region}.amazonaws.com/avatars/kelly/frames/kelly_frame_0000.png`);
+                console.log(`   - Ken: https://${CONFIG.cdn.s3.bucket}.s3.${CONFIG.cdn.s3.region}.amazonaws.com/avatars/ken/frames/ken_frame_0000.png`);
+            }
         }
     }
 
@@ -341,9 +425,10 @@ class CDNUploader {
         const manifest = {
             generated: new Date().toISOString(),
             cdn: {
-                baseUrl: CONFIG.cdn.r2.endpoint || CONFIG.cdn.s3.bucket || CONFIG.cdn.http.baseUrl,
-                type: process.env.R2_ACCESS_KEY_ID ? 'cloudflare-r2' : 
-                      process.env.AWS_ACCESS_KEY_ID ? 'aws-s3' : 'http-cdn'
+                type: this.r2Client ? 'cloudflare-r2' : 
+                      this.s3Client ? 'aws-s3' : 'http-cdn',
+                endpoint: this.r2Client ? CONFIG.cdn.r2.endpoint : 
+                          this.s3Client ? `https://${CONFIG.cdn.s3.bucket}.s3.${CONFIG.cdn.s3.region}.amazonaws.com` : CONFIG.cdn.http.baseUrl
             },
             avatars: {}
         };
@@ -360,7 +445,7 @@ class CDNUploader {
                 framePattern: `${avatar}_frame_{0000-${String(files.length - 1).padStart(4, '0')}}.png`,
                 frames: files.map(file => ({
                     filename: file,
-                    cdnUrl: `${manifest.cdn.baseUrl}/avatars/${avatar}/frames/${file}`,
+                    cdnUrl: `${manifest.cdn.endpoint}/avatars/${avatar}/frames/${file}`,
                     localPath: path.join(localPath, file)
                 }))
             };

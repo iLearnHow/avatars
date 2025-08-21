@@ -1,50 +1,64 @@
 // CDN Configuration for Full Lip-Sync Experience
+// This file configures your CDN for optimal avatar frame delivery
+
 const CDN_CONFIG = {
     // Base CDN URLs (update these with your actual CDN details)
-    baseUrl: 'https://your-cdn-domain.com/avatars',
+    baseUrl: 'https://cdn.ilearnhow.com/avatars', // Update this to your actual CDN domain
     
     // Avatar frame sequences for full lip-sync
     avatars: {
         kelly: {
             // Full frame sequence (365 frames for smooth lip-sync)
             frames: {
-                baseUrl: 'https://your-cdn-domain.com/avatars/kelly/frames',
+                baseUrl: 'https://cdn.ilearnhow.com/avatars/kelly/frames',
                 totalFrames: 365,
                 framePattern: 'kelly_frame_{0000-0364}.png',
                 frameRate: 30, // fps
                 dimensions: { width: 1920, height: 1080 },
-                totalSize: '~450MB'
+                totalSize: '~450MB',
+                compression: 'webp',
+                quality: 85
             },
             // Visemes for phoneme-based lip-sync
             visemes: {
-                baseUrl: 'https://your-cdn-domain.com/avatars/kelly/visemes',
-                phonemes: ['A', 'E', 'I', 'O', 'U', 'M', 'P', 'B', 'F', 'V', 'L', 'S', 'T', 'D', 'N', 'K', 'G', 'H', 'R', 'W', 'Y', 'TH', 'SH', 'CH', 'J', 'NG', 'ZH']
+                baseUrl: 'https://cdn.ilearnhow.com/avatars/kelly/visemes',
+                phonemes: ['A', 'E', 'I', 'O', 'U', 'M', 'P', 'B', 'F', 'V', 'L', 'S', 'T', 'D', 'N', 'K', 'G', 'H', 'R', 'W', 'Y', 'TH', 'SH', 'CH', 'J', 'NG', 'ZH'],
+                format: 'png',
+                dimensions: { width: 512, height: 512 }
             },
             // Base states and expressions
             expressions: {
-                baseUrl: 'https://your-cdn-domain.com/avatars/kelly/expressions',
-                states: ['neutral', 'happy', 'excited', 'concerned', 'teaching', 'questioning', 'celebrating']
+                baseUrl: 'https://cdn.ilearnhow.com/avatars/kelly/expressions',
+                states: ['neutral', 'happy', 'excited', 'concerned', 'teaching', 'questioning', 'celebrating'],
+                format: 'png',
+                dimensions: { width: 1024, height: 1024 }
             }
         },
         ken: {
             // Full frame sequence (347 frames for smooth lip-sync)
             frames: {
-                baseUrl: 'https://your-cdn-domain.com/avatars/ken/frames',
+                baseUrl: 'https://cdn.ilearnhow.com/avatars/ken/frames',
                 totalFrames: 347,
                 framePattern: 'ken_frame_{0000-0346}.png',
                 frameRate: 30, // fps
                 dimensions: { width: 1920, height: 1080 },
-                totalSize: '~420MB'
+                totalSize: '~420MB',
+                compression: 'webp',
+                quality: 85
             },
             // Visemes for phoneme-based lip-sync
             visemes: {
-                baseUrl: 'https://your-cdn-domain.com/avatars/ken/visemes',
-                phonemes: ['A', 'E', 'I', 'O', 'U', 'M', 'P', 'B', 'F', 'V', 'L', 'S', 'T', 'D', 'N', 'K', 'G', 'H', 'R', 'W', 'Y', 'TH', 'SH', 'CH', 'J', 'NG', 'ZH']
+                baseUrl: 'https://cdn.ilearnhow.com/avatars/ken/visemes',
+                phonemes: ['A', 'E', 'I', 'O', 'U', 'M', 'P', 'B', 'F', 'V', 'L', 'S', 'T', 'D', 'N', 'K', 'G', 'H', 'R', 'W', 'Y', 'TH', 'SH', 'CH', 'J', 'NG', 'ZH'],
+                format: 'png',
+                dimensions: { width: 512, height: 512 }
             },
             // Base states and expressions
             expressions: {
-                baseUrl: 'https://your-cdn-domain.com/avatars/ken/expressions',
-                states: ['neutral', 'happy', 'excited', 'concerned', 'teaching', 'questioning', 'celebrating']
+                baseUrl: 'https://cdn.ilearnhow.com/avatars/ken/expressions',
+                states: ['neutral', 'happy', 'excited', 'concerned', 'teaching', 'questioning', 'celebrating'],
+                format: 'png',
+                dimensions: { width: 1024, height: 1024 }
             }
         }
     },
@@ -81,15 +95,76 @@ const CDN_CONFIG = {
                 'J': ['j', 'jj'],
                 'NG': ['ng'],
                 'ZH': ['zh']
+            },
+            es: {
+                'A': ['a', 'á'],
+                'E': ['e', 'é'],
+                'I': ['i', 'í'],
+                'O': ['o', 'ó'],
+                'U': ['u', 'ú'],
+                'M': ['m'],
+                'P': ['p'],
+                'B': ['b', 'v'],
+                'F': ['f'],
+                'V': ['v', 'b'],
+                'L': ['l'],
+                'S': ['s'],
+                'T': ['t'],
+                'D': ['d'],
+                'N': ['n', 'ñ'],
+                'K': ['k', 'c', 'qu'],
+                'G': ['g'],
+                'H': ['h'],
+                'R': ['r', 'rr'],
+                'W': ['w'],
+                'Y': ['y', 'll'],
+                'TH': ['z'],
+                'SH': ['ch'],
+                'CH': ['ch'],
+                'J': ['j', 'g'],
+                'NG': ['ng'],
+                'ZH': ['j']
+            },
+            fr: {
+                'A': ['a', 'â'],
+                'E': ['e', 'é', 'è', 'ê'],
+                'I': ['i', 'î'],
+                'O': ['o', 'ô'],
+                'U': ['u', 'û'],
+                'M': ['m'],
+                'P': ['p'],
+                'B': ['b'],
+                'F': ['f'],
+                'V': ['v'],
+                'L': ['l'],
+                'S': ['s'],
+                'T': ['t'],
+                'D': ['d'],
+                'N': ['n'],
+                'K': ['k', 'c', 'qu'],
+                'G': ['g'],
+                'H': ['h'],
+                'R': ['r'],
+                'W': ['w'],
+                'Y': ['y'],
+                'TH': ['t'],
+                'SH': ['ch'],
+                'CH': ['ch'],
+                'J': ['j'],
+                'NG': ['ng'],
+                'ZH': ['j']
             }
         },
         
         // Frame selection strategy
         frameSelection: {
             strategy: 'phoneme_based', // 'phoneme_based' or 'time_based'
-            fallbackFrames: 30, // frames per second if phoneme detection fails
+            fallbackFrames: 30, // fps if phoneme detection fails
             interpolation: true, // smooth transitions between frames
-            preloadFrames: 10 // number of frames to preload ahead
+            preloadFrames: 10, // number of frames to preload ahead
+            adaptiveFrameRate: true, // adjust frame rate based on device performance
+            minFrameRate: 24,
+            maxFrameRate: 60
         }
     },
     
@@ -103,7 +178,14 @@ const CDN_CONFIG = {
             format: 'webp', // 'webp', 'png', 'jpg'
             quality: 85,
             maxWidth: 1920,
-            maxHeight: 1080
+            maxHeight: 1080,
+            enableProgressive: true
+        },
+        caching: {
+            strategy: 'aggressive', // 'conservative', 'balanced', 'aggressive'
+            maxAge: 31536000, // 1 year in seconds
+            staleWhileRevalidate: 86400, // 1 day in seconds
+            cacheControl: 'public, max-age=31536000, stale-while-revalidate=86400'
         }
     },
     
@@ -113,7 +195,22 @@ const CDN_CONFIG = {
         useVisemes: true, // fallback to visemes if frames fail
         useStaticImages: true, // fallback to static images if everything fails
         retryAttempts: 3,
-        retryDelay: 1000
+        retryDelay: 1000,
+        circuitBreaker: {
+            enabled: true,
+            failureThreshold: 5,
+            recoveryTimeout: 30000
+        }
+    },
+    
+    // Analytics and monitoring
+    analytics: {
+        enabled: true,
+        trackFrameLoads: true,
+        trackPerformance: true,
+        trackErrors: true,
+        metricsEndpoint: 'https://analytics.ilearnhow.com/metrics',
+        samplingRate: 0.1 // 10% of users
     }
 };
 
@@ -142,7 +239,8 @@ const CDN_HELPERS = {
         if (!config) return null;
         
         const baseUrl = config.visemes.baseUrl;
-        return `${baseUrl}/${phoneme.toUpperCase()}.png`;
+        const format = options.format || config.visemes.format || 'png';
+        return `${baseUrl}/${phoneme.toUpperCase()}.${format}`;
     },
     
     // Get expression URL for a specific state
@@ -151,7 +249,8 @@ const CDN_HELPERS = {
         if (!config) return null;
         
         const baseUrl = config.expressions.baseUrl;
-        return `${baseUrl}/${avatar}_${expression}.png`;
+        const format = options.format || config.expressions.format || 'png';
+        return `${baseUrl}/${avatar}_${expression}.${format}`;
     },
     
     // Preload frames for smooth playback
@@ -195,10 +294,43 @@ const CDN_HELPERS = {
         // Simple performance detection
         const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
         const hasHighPerformance = navigator.hardwareConcurrency > 4;
+        const hasGoodGPU = navigator.gpu || false;
         
         if (isMobile) return 24; // Lower frame rate for mobile
-        if (hasHighPerformance) return 30; // Full frame rate for high-end devices
+        if (hasHighPerformance && hasGoodGPU) return 60; // High frame rate for powerful devices
+        if (hasHighPerformance) return 30; // Standard frame rate for good devices
         return 24; // Default to 24 fps
+    },
+    
+    // Get compression settings for device
+    getCompressionSettings: () => {
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+        
+        if (isMobile && connection && connection.effectiveType === 'slow-2g') {
+            return { format: 'jpg', quality: 60, maxWidth: 960, maxHeight: 540 };
+        } else if (isMobile) {
+            return { format: 'webp', quality: 75, maxWidth: 1280, maxHeight: 720 };
+        } else {
+            return { format: 'webp', quality: 85, maxWidth: 1920, maxHeight: 1080 };
+        }
+    },
+    
+    // Performance monitoring
+    trackPerformance: (metric, value) => {
+        if (CDN_CONFIG.analytics.enabled && CDN_CONFIG.analytics.trackPerformance) {
+            // Send performance metric to analytics endpoint
+            fetch(CDN_CONFIG.analytics.metricsEndpoint, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    metric,
+                    value,
+                    timestamp: Date.now(),
+                    userAgent: navigator.userAgent
+                })
+            }).catch(console.warn);
+        }
     }
 };
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌞 The Sun, Our Star - Interactive Lesson</title>
+    <title>🌞 The Sun, Our Star - Interactive Lesson with Full Lip-Sync</title>
     <link rel="stylesheet" href="cdn-config.js">
     <style>
         * {
@@ -273,6 +273,56 @@
             display: none;
         }
 
+        /* Lip-sync specific styles */
+        .lip-sync-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .avatar-display {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .avatar-frame {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: all 0.1s ease;
+        }
+
+        .lip-sync-status {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8em;
+        }
+
+        .performance-info {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8em;
+            text-align: right;
+        }
+
         @media (max-width: 768px) {
             .lesson-container {
                 padding: 10px;
@@ -288,6 +338,10 @@
                 padding: 12px 20px;
                 font-size: 1em;
             }
+            
+            .lip-sync-container {
+                height: 300px;
+            }
         }
     </style>
 </head>
@@ -295,7 +349,7 @@
     <div class="lesson-container">
         <div class="header">
             <h1 class="lesson-title">🌞 The Sun, Our Star</h1>
-            <p class="lesson-subtitle">Discover how the Sun powers everything on Earth</p>
+            <p class="lesson-subtitle">Discover how the Sun powers everything on Earth with Full Lip-Sync!</p>
         </div>
 
         <div class="avatar-section">
@@ -305,7 +359,7 @@
                 <div class="avatar-role">Your Guide</div>
             </div>
             <div class="avatar-card" data-avatar="ken">
-                <img src="assets/avatars/ken/ken_neutral_default.png" alt="Ken" class="avatar-card">
+                <img src="assets/avatars/ken/ken_neutral_default.png" alt="Ken" class="avatar-image">
                 <div class="avatar-name">Teacher Ken</div>
                 <div class="avatar-role">Your Guide</div>
             </div>
@@ -326,6 +380,7 @@
             <button class="control-btn hidden" id="pause-btn">⏸️ Pause</button>
             <button class="control-btn hidden" id="resume-btn">▶️ Resume</button>
             <button class="control-btn" id="stop-btn">⏹️ Stop</button>
+            <button class="control-btn" id="test-lip-sync-btn">🎭 Test Lip-Sync</button>
         </div>
 
         <div class="progress-section">
@@ -335,14 +390,28 @@
             <div class="progress-text" id="progress-text">Ready to begin</div>
         </div>
 
+        <!-- Lip-sync display container -->
+        <div class="lip-sync-container" id="lip-sync-container" style="display: none;">
+            <div class="avatar-display">
+                <img id="avatar-frame" class="avatar-frame" alt="Avatar Frame">
+            </div>
+            <div class="lip-sync-status" id="lip-sync-status">Ready</div>
+            <div class="performance-info" id="performance-info">
+                FPS: --<br>
+                Frame: --<br>
+                CDN: --
+            </div>
+        </div>
+
         <div class="lesson-content" id="lesson-content">
             <div class="phase-title">Welcome to The Sun Lesson!</div>
             <div class="phase-content">
-                Choose an avatar and click "Start Lesson" to begin exploring how the Sun powers our world.
+                Choose an avatar and click "Start Lesson" to begin exploring how the Sun powers our world with full lip-sync animation!
             </div>
         </div>
     </div>
 
+    <script src="cdn-config.js"></script>
     <script>
         class SunLessonSystem {
             constructor() {
@@ -351,6 +420,11 @@
                 this.isPaused = false;
                 this.currentAvatar = 'kelly';
                 this.userAnswers = [];
+                this.lipSyncEngine = null;
+                this.frameCache = new Map();
+                this.currentFrame = 0;
+                this.frameRate = 30;
+                this.lastFrameTime = 0;
                 
                 this.init();
             }
@@ -358,7 +432,8 @@
             init() {
                 this.setupEventListeners();
                 this.setupAvatarSelection();
-                console.log('Sun Lesson System initialized');
+                this.initLipSyncEngine();
+                console.log('Sun Lesson System initialized with Full Lip-Sync');
             }
 
             setupEventListeners() {
@@ -366,6 +441,7 @@
                 document.getElementById('pause-btn').addEventListener('click', () => this.pauseLesson());
                 document.getElementById('resume-btn').addEventListener('click', () => this.resumeLesson());
                 document.getElementById('stop-btn').addEventListener('click', () => this.stopLesson());
+                document.getElementById('test-lip-sync-btn').addEventListener('click', () => this.testLipSync());
             }
 
             setupAvatarSelection() {
@@ -387,7 +463,17 @@
                 document.querySelector(`[data-avatar="${avatar}"]`).classList.add('selected');
                 this.currentAvatar = avatar;
                 
+                // Update lip-sync engine
+                if (this.lipSyncEngine) {
+                    this.lipSyncEngine.setAvatar(avatar);
+                }
+                
                 console.log(`Selected avatar: ${avatar}`);
+            }
+
+            initLipSyncEngine() {
+                this.lipSyncEngine = new LipSyncEngine(this.currentAvatar);
+                console.log('Lip-sync engine initialized');
             }
 
             startLesson() {
@@ -399,8 +485,9 @@
                 this.userAnswers = [];
                 
                 this.updateControls();
+                this.showLipSyncContainer();
                 this.playCurrentPhase();
-                console.log('Lesson started');
+                console.log('Lesson started with Full Lip-Sync');
             }
 
             pauseLesson() {
@@ -408,6 +495,9 @@
                 
                 this.isPaused = true;
                 this.updateControls();
+                if (this.lipSyncEngine) {
+                    this.lipSyncEngine.pause();
+                }
                 console.log('Lesson paused');
             }
 
@@ -416,6 +506,9 @@
                 
                 this.isPaused = false;
                 this.updateControls();
+                if (this.lipSyncEngine) {
+                    this.lipSyncEngine.resume();
+                }
                 this.playCurrentPhase();
                 console.log('Lesson resumed');
             }
@@ -427,7 +520,11 @@
                 this.userAnswers = [];
                 
                 this.updateControls();
+                this.hideLipSyncContainer();
                 this.showWelcomePhase();
+                if (this.lipSyncEngine) {
+                    this.lipSyncEngine.stop();
+                }
                 console.log('Lesson stopped');
             }
 
@@ -451,6 +548,14 @@
                 }
             }
 
+            showLipSyncContainer() {
+                document.getElementById('lip-sync-container').style.display = 'block';
+            }
+
+            hideLipSyncContainer() {
+                document.getElementById('lip-sync-container').style.display = 'none';
+            }
+
             async playCurrentPhase() {
                 if (!this.isPlaying || this.isPaused) return;
                 
@@ -464,19 +569,16 @@
                 this.updatePhaseContent(phase);
                 this.updateProgress(this.getPhaseProgress());
                 
-                // Simulate speaking duration
-                await this.simulateSpeaking(phase.content);
+                // Start lip-sync for this phase
+                if (this.lipSyncEngine) {
+                    await this.lipSyncEngine.speak(phase.content);
+                }
                 
                 if (phase.question) {
                     this.showQuestion(phase);
                 } else {
                     this.onPhaseComplete();
                 }
-            }
-
-            async simulateSpeaking(text) {
-                const duration = Math.max(text.length * 50, 2000); // Minimum 2 seconds
-                await new Promise(resolve => setTimeout(resolve, duration));
             }
 
             updatePhaseContent(phase) {
@@ -567,6 +669,7 @@
                 
                 this.updateProgress(100);
                 this.updateControls();
+                this.hideLipSyncContainer();
                 console.log('Lesson completed successfully!');
             }
 
@@ -575,7 +678,7 @@
                 content.innerHTML = `
                     <div class="phase-title">Welcome to The Sun Lesson!</div>
                     <div class="phase-content">
-                        Choose an avatar and click "Start Lesson" to begin exploring how the Sun powers our world.
+                        Choose an avatar and click "Start Lesson" to begin exploring how the Sun powers our world with full lip-sync animation.
                     </div>
                 `;
                 
@@ -597,6 +700,15 @@
                     if (percentage === 0) progressText.textContent = 'Ready to begin';
                     else if (percentage >= 100) progressText.textContent = 'Lesson complete!';
                     else progressText.textContent = `${Math.round(percentage)}% complete`;
+                }
+            }
+
+            async testLipSync() {
+                console.log('Testing lip-sync system...');
+                this.showLipSyncContainer();
+                
+                if (this.lipSyncEngine) {
+                    await this.lipSyncEngine.testSequence();
                 }
             }
 
@@ -645,6 +757,176 @@
                     }
                 }
             };
+        }
+
+        // Lip-Sync Engine Class
+        class LipSyncEngine {
+            constructor(avatar) {
+                this.avatar = avatar;
+                this.isPlaying = false;
+                this.currentFrame = 0;
+                this.frameRate = CDN_HELPERS.getOptimalFrameRate();
+                this.frameCache = new Map();
+                this.animationId = null;
+                this.lastFrameTime = 0;
+                
+                this.init();
+            }
+
+            init() {
+                console.log(`Lip-sync engine initialized for ${this.avatar} at ${this.frameRate} FPS`);
+                this.updateStatus('Ready');
+                this.updatePerformanceInfo();
+            }
+
+            setAvatar(avatar) {
+                this.avatar = avatar;
+                this.frameCache.clear();
+                console.log(`Switched to avatar: ${avatar}`);
+            }
+
+            async speak(text) {
+                if (this.isPlaying) return;
+                
+                this.isPlaying = true;
+                this.updateStatus('Speaking...');
+                
+                // Calculate duration based on text length
+                const duration = Math.max(text.length * 50, 2000);
+                const totalFrames = Math.floor((duration / 1000) * this.frameRate);
+                
+                console.log(`Speaking for ${duration}ms with ${totalFrames} frames`);
+                
+                // Start frame animation
+                this.animateFrames(totalFrames);
+                
+                // Wait for completion
+                await new Promise(resolve => {
+                    setTimeout(() => {
+                        this.stop();
+                        resolve();
+                    }, duration);
+                });
+            }
+
+            animateFrames(totalFrames) {
+                const animate = (currentTime) => {
+                    if (!this.isPlaying) return;
+                    
+                    if (currentTime - this.lastFrameTime >= (1000 / this.frameRate)) {
+                        this.currentFrame = (this.currentFrame + 1) % totalFrames;
+                        this.displayFrame(this.currentFrame);
+                        this.lastFrameTime = currentTime;
+                        this.updatePerformanceInfo();
+                    }
+                    
+                    this.animationId = requestAnimationFrame(animate);
+                };
+                
+                this.animationId = requestAnimationFrame(animate);
+            }
+
+            async displayFrame(frameNumber) {
+                try {
+                    const frameUrl = CDN_HELPERS.getFrameUrl(this.avatar, frameNumber);
+                    if (!frameUrl) return;
+                    
+                    // Check cache first
+                    if (this.frameCache.has(frameUrl)) {
+                        this.showFrame(this.frameCache.get(frameUrl));
+                        return;
+                    }
+                    
+                    // Load frame from CDN
+                    const img = new Image();
+                    img.onload = () => {
+                        this.frameCache.set(frameUrl, img);
+                        this.showFrame(img);
+                    };
+                    img.onerror = () => {
+                        console.warn(`Failed to load frame ${frameNumber} for ${this.avatar}`);
+                        // Fallback to viseme
+                        this.fallbackToViseme();
+                    };
+                    img.src = frameUrl;
+                    
+                } catch (error) {
+                    console.error('Error displaying frame:', error);
+                    this.fallbackToViseme();
+                }
+            }
+
+            showFrame(img) {
+                const frameElement = document.getElementById('avatar-frame');
+                if (frameElement) {
+                    frameElement.src = img.src;
+                }
+            }
+
+            fallbackToViseme() {
+                // Fallback to viseme-based animation
+                const visemeUrl = CDN_HELPERS.getVisemeUrl(this.avatar, 'A');
+                if (visemeUrl) {
+                    const frameElement = document.getElementById('avatar-frame');
+                    if (frameElement) {
+                        frameElement.src = visemeUrl;
+                    }
+                }
+            }
+
+            pause() {
+                this.isPlaying = false;
+                if (this.animationId) {
+                    cancelAnimationFrame(this.animationId);
+                }
+                this.updateStatus('Paused');
+            }
+
+            resume() {
+                this.isPlaying = true;
+                this.updateStatus('Speaking...');
+            }
+
+            stop() {
+                this.isPlaying = false;
+                this.currentFrame = 0;
+                if (this.animationId) {
+                    cancelAnimationFrame(this.animationId);
+                }
+                this.updateStatus('Stopped');
+            }
+
+            async testSequence() {
+                console.log('Testing lip-sync sequence...');
+                this.updateStatus('Testing...');
+                
+                // Test frame loading
+                for (let i = 0; i < 10; i++) {
+                    await this.displayFrame(i);
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                }
+                
+                this.updateStatus('Test Complete');
+            }
+
+            updateStatus(status) {
+                const statusElement = document.getElementById('lip-sync-status');
+                if (statusElement) {
+                    statusElement.textContent = status;
+                }
+            }
+
+            updatePerformanceInfo() {
+                const infoElement = document.getElementById('performance-info');
+                if (infoElement) {
+                    const cdnHealth = CDN_HELPERS.checkCDNHealth();
+                    infoElement.innerHTML = `
+                        FPS: ${this.frameRate}<br>
+                        Frame: ${this.currentFrame}<br>
+                        CDN: ${cdnHealth ? '✅' : '❌'}
+                    `;
+                }
+            }
         }
 
         // Initialize the lesson system
